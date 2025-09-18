@@ -1,0 +1,15 @@
+item,label,block,switch,regularity,tense,subject,verb_base,verb_past,stim_text
+p1,practice,practice,switch,regular,NOW,boy,walk,walked,"boy walk"
+p2,practice,practice,switch,irregular,PAST,girl,run,ran,"girl run"
+
+1,SwitchRegular,SwitchRegular,switch,regular,NOW,boy,walk,walked,"boy walk"
+2,SwitchRegular,SwitchRegular,switch,regular,PAST,girl,call,called,"girl call"
+
+3,SwitchIrregular,SwitchIrregular,switch,irregular,NOW,man,bring,brought,"man bring"
+4,SwitchIrregular,SwitchIrregular,switch,irregular,PAST,woman,go,went,"woman go"
+
+5,NoSwitchRegular,NoSwitchRegular,no-switch,regular,PAST,boy,play,played,"boy play"
+6,NoSwitchRegular,NoSwitchRegular,no-switch,regular,PAST,girl,open,opened,"girl open"
+
+7,NoSwitchIrregular,NoSwitchIrregular,no-switch,irregular,PAST,man,see,saw,"man see"
+8,NoSwitchIrregular,NoSwitchIrregular,no-switch,irregular,PAST,woman,catch,caught,"woman catch"
