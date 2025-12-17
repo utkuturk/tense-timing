@@ -1,0 +1,187 @@
+---
+title: "de-glob-ify-ing morphology"
+embed-resources: true
+format:
+  revealjs:
+    theme: [simple]
+    css: custom.scss
+    slide-number: true
+    chalkboard: false
+    preview-links: auto
+    transition: fade
+    background-transition: fade
+    width: 1600
+    height: 900
+    margin: 0.1
+    min-scale: 0.2
+    max-scale: 2.0
+    fig-align: center
+    code-fold: true
+    highlight-style: github
+---
+
+## Theoretical Base
+
+::: {.incremental}
+* **Historically,** production models often treat morphology as a **"big glob"**.
+* **Reality** is that we know that morphological elements behave differently (e.g., number agreement vs. tense vs. gender marking).
+* **Theoretical Contributions:**
+    * Processes and not just features are what differentiate these elements.
+    * These processes work (mostly) without an immediate reference to the phonology.
+:::
+
+---
+
+## Theoretical Goal
+
+::: {.incremental}
+* **The Big Question:** What are the subparts of morphology, and when exactly do we plan them?
+* **Humble Goal:**
+    * Can we show that different morphological processes have different planning timelines?
+    * Can we also show a dissociation between:
+        * **Early Morphosyntax** (feature assignment)
+        * **Late Morphophonology** (form retrieval)
+:::
+
+---
+
+## Evidence from Number Agreement
+
+::: {.incremental}
+* **888 Focus:** Used planning differences between unaccusative and unergative verbs.
+    * Unaccusative (Verb planned early):
+      * Planning: `[doctor + freeze] --> [pirate]`
+      * Output: `[The doctor by the pirate is freezing]`
+    * Unergative (Verb planned late):
+      * Planning: `[doctor] --> [pirate] --> [run]`
+      * Output: `[The doctor by the pirate is running]`
+:::
+
+---
+
+## Evidence from Number Agreement
+
+::: {.incremental}
+* **Manipulation:** Introduced `pirate` vs. `pirates` (singular vs. plural attractor).
+* **Key Findings:**
+    * Attraction effects (errors) were the same for both verb types (i.e., **late** effect).
+    * Onset latency (speech start time) was modulated by unaccusativity and number mismatch (**early** effect).
+:::
+
+---
+
+## Evidence from Number Agreement
+
+::: {.incremental}
+* **Interpretation:**
+    * Number diacritics were assigned when the verb was retrieved (*early* in unaccusatives),
+    * but auxiliary retrieval (where attraction happens) occurred *late*.
+:::
+
+
+---
+
+## What About Other Morphological Elements?
+
+::: {.incremental}
+* **Tense is Different:** Unlike agreement, Tense is not a dependency between two elements; it's a **context-level element** dependent solely on the message being built. (ignore embedded sentences for now)
+* **The Core Question:** Can we dissociate
+  * **[PAST] feature assignment**
+  * from its **morphological form selection** (*-ed* vs. irregular)?
+:::
+
+---
+
+### Plan
+
+The overall experimental roadmap is structured in three phases:
+
+1.  **Phase 1:** (Manipulating Regularity and Irregularity)
+    - Establish **Morphophonological Priming** in sentence production.<br><br>
+2.  **Phase 2:** (Manipulating Tense)
+    - Establish **Morphosyntactic Priming** in sentence production.<br><br>
+3.  **Phase 3:**  (Manipulating the Task)
+    - Establish the **Dissociation between Morphosyntax and Conceptual Planning**.
+
+---
+
+### Initial Design Idea: Simple Blocks
+
+::: {.incremental}
+* **Task:** Sentence Production (for Phases 1 and 2).
+* **Initial Stimulus Idea:** Participants memorize a small, fixed list of verbs (sublists for Future/Past in Phases 2 and 3).
+* **Block Types:**
+    * **Homogeneous Block:** High predictability, e.g., `[All Regulars] → [All Irregulars]`.
+    * **Mixed Block:** Low predictability, i.e., random intermixing of all items.
+:::
+
+---
+
+### Predictions Based on Simple Blocks
+
+| Phase | Element Manipulated | Planning Stage | Predicted Advantage (Homogeneous vs. Mixed) |
+| :--- | :--- | :--- | :--- |
+| **Phase 1** | **Regularity (Form)** | Late (Morphophonological) | **Preverbal Adv.** |
+| **Phase 2** | **Tense (Feature)** | Early (Morphosyntactic) | **Onset Adv.** ⏱️ |
+
+---
+
+## A Problem: Conceptual Planning
+
+
+::: {.incremental}
+* **The Concern:** Is it theoretically interesting to show that phonology and a **compound conceptual + syntax** mechanism are planned at different times? We need to isolate syntax.
+* **The Solution:** Run a **non-verbal decision task** (Schriefers et al., 1999 JML) to isolate conceptual planning.
+* **Goal:** Participants must use the tense conceptual information but **not verbalize** the utterance.
+* **Procedure:** Show a picture and ask participants to decide: "Was this event **Past** or **Future**?"
+
+:::
+
+---
+
+### The Problem of Superfluous Predictability
+
+::: {.incremental}
+* **Issue:** The Decision Task is much **easier** (lower cognitive load) than Sentence Production.
+* The simple Homogeneous/Mixed blocks (with trials $\geq 6$) might create **superfluous predictability** in the easy Decision Task.
+* **Result:** Priming effects could be so strong that the "Mixed" block also starts to feel predictable, **washing out the critical block difference** needed for dissociation.
+* Alternatively, the magnitude of conceptual predictability might be artificially amplified, increasing the RT differences.
+* **Goal:** We need a block structure that controls **local context** more precisely to maintain the uncertainty contrast, even in an easy task.
+:::
+
+---
+
+## Solution 1: Meyer/MPI-Style Cycled Blocks
+
+This approach maintains the block contrast through controlled repetition.
+
+
+### Block Structure Detail (Example: Regularity)
+
+* **Constrained Sets:** Sets of **3 same-type verbs + 1 different-type verb**, cycling frequently (e.g., `{3 REG + 1 IRR}`).
+* The last verb in the REG sequence is treated as the **"Homogeneous condition"**.
+* The `+ 1` verb is taken to be the **"Mixed condition"**.
+* **Implementation:** Will create 4 Sets (2: $3 \times \text{Reg} + 1 \times \text{Irr}$, and 2: $3 \times \text{Irr} + 1 \times \text{Reg}$). Cycle through them 6 or 8 times.
+
+::: {.fragment}
+**Worry:** Past studies show clear results with this method, but the sheer number of repetitions (e.g., $8 \times$ per verb) still creates concern about **over-automatization** in an easy decision task.
+:::
+
+---
+
+## Solution 2: Local "Burst" Priming
+
+This approach replaces the long block manipulation with a trial-by-trial local context manipulation.
+
+### Strategy: Contextual Flashing
+* **Pre-Trial Burst:** Participants see a fast-flashing sequence (a "burst") of 3 context pictures immediately before the target item appears.
+* **Context Control:** The identity of the 3 context items determines the condition:
+    * **Homogeneous:** Burst items share the same Tense/Regularity as the target.
+    * **Mixed:** Burst items are a mix of Tense/Regularity.
+* **Attention Check:** Catch trials are used (e.g., "Did you just see X?") to ensure participants process the items in the burst.
+
+::: {.fragment}
+**Advantage:** Provides tighter control over the immediate preceding context, potentially minimizing global learning confounds.
+
+**Worry:** This is an **untested paradigm** for morphosyntactic priming; we must first validate that viewing images in a burst actually activates the necessary planning levels.
+:::
