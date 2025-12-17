@@ -7,9 +7,9 @@
 
 | Block | Prediction | Rationale |
 | :---- | :---- | :---- |
-| No Switch(Regular \+ Past) | Faster onset & preverbal times | Repeated “-ed” morphology provides facilitation |
-| No Switch(Irregular \+ Past) | Longer preverbal times vs. Block 1 | No shared morphology, suppletive forms controlled, but still there is a shared “irregularity” |
-| Switch (Regular \+ Irregular \+ Past) | Even longer preverbal times vs. Block 1; increased entropy | Switching reduces predictability; participants must attend to morphophonological cues |
+| No Switch (Regular \+ Past) | Faster onset & preverbal times | Repeated “-ed” morphology provides facilitation |
+| No Switch (Irregular \+ Past) | Longer preverbal times vs. Block 1 | No shared morphology, suppletive forms controlled, but still there is a shared “irregularity” |
+| Switch (Regular \+ Irregular \+ Past) | Even longer preverbal times vs. Block 1; increased entropy | Switching reduces predictability; participants must attend to morphophonological cues |
 
 **Trial flow**
 
