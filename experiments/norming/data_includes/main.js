@@ -7,7 +7,7 @@ PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experim
 PennController.ResetPrefix(null);
 DebugOff();
 
-Sequence("intro", "experiment", "send", "exit");
+Sequence("intro", randomize("experiment"), "send", "exit");
 
 // Introduction
 newTrial("intro",
@@ -26,6 +26,7 @@ newTrial("intro",
 Template("items.csv", row => {
     // Randomize task: 50% chance for Tense Task, 50% for Description Task
     const isTenseTask = Math.random() < 0.5;
+    const showFutureFirst = Math.random() < 0.5;
 
     return newTrial("experiment",
         // --- Phase 1: Selection ---
@@ -62,7 +63,7 @@ Template("items.csv", row => {
         newButton("submit_desc", "Submit"),
 
         // Logic branching based on random assignment
-        (isTenseTask ? [
+        ...(isTenseTask ? [
             getText("instr_norm").text("<p>For the picture you selected, which description is best?</p>").print(),
 
             // Define tense options with full sentences
@@ -71,36 +72,18 @@ Template("items.csv", row => {
             newText("t_neither", "Neither").css("padding", "5px"),
             newText("t_both", "Both").css("padding", "5px"),
 
-            // Randomize order of Past vs Future
-            // We use a helper Var or simple JS array shuffle before adding
-            // Since this is inside Template, standard JS works.
-            (Math.random() < 0.5 ?
-                [
-                    getCanvas("options_tense")
-                        .add(0, 0, getText("t_future"))
-                        .add(0, 40, getText("t_past"))
-                        .add(0, 80, getText("t_neither"))
-                        .add(0, 120, getText("t_both"))
-                        .center()
-                        .print(),
-                    newSelector("choice")
-                        .add(getText("t_future"), getText("t_past"), getText("t_neither"), getText("t_both"))
-                ]
-                :
-                [
-                    getCanvas("options_tense")
-                        .add(0, 0, getText("t_past"))
-                        .add(0, 40, getText("t_future"))
-                        .add(0, 80, getText("t_neither"))
-                        .add(0, 120, getText("t_both"))
-                        .center()
-                        .print(),
-                    newSelector("choice")
-                        .add(getText("t_past"), getText("t_future"), getText("t_neither"), getText("t_both"))
-                ]
-            ),
+            // Add to canvas in random order
+            getCanvas("options_tense")
+                .add(0, 0, getText(showFutureFirst ? "t_future" : "t_past"))
+                .add(0, 40, getText(showFutureFirst ? "t_past" : "t_future"))
+                .add(0, 80, getText("t_neither"))
+                .add(0, 120, getText("t_both"))
+                .center()
+                .print(),
 
-            getSelector("choice")
+            // Add all to selector
+            newSelector("choice")
+                .add(getText("t_future"), getText("t_past"), getText("t_neither"), getText("t_both"))
                 .keys("1", "2", "3", "4")
                 .log()
                 .wait()
