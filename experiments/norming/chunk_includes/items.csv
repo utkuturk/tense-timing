@@ -41,9 +41,9 @@ sing,sang,Chef,Irregular,The Chef sang a song,The Chef will sing a song,Chef_sin
 fly,flew,Wizard,Irregular,The Wizard flew with a jetpack,The Wizard will fly with a jetpack,Wizard_fly_v1.png,Wizard_fly_v2.png,Wizard_fly_v3.png
 fly,flew,Pirate,Irregular,The Pirate flew with a jetpack,The Pirate will fly with a jetpack,Pirate_fly_v1.png,Pirate_fly_v2.png,Pirate_fly_v3.png
 fly,flew,Chef,Irregular,The Chef flew with a jetpack,The Chef will fly with a jetpack,Chef_fly_v1.png,Chef_fly_v2.png,Chef_fly_v3.png
-blow,blew,Wizard,Irregular,The Wizard blew bubbles,The Wizard will blow bubbles,Wizard_blow_v1.png,Wizard_blow_v2.png,Wizard_blow_v3.png
-blow,blew,Pirate,Irregular,The Pirate blew bubbles,The Pirate will blow bubbles,Pirate_blow_v1.png,Pirate_blow_v2.png,Pirate_blow_v3.png
-blow,blew,Chef,Irregular,The Chef blew bubbles,The Chef will blow bubbles,Chef_blow_v1.png,Chef_blow_v2.png,Chef_blow_v3.png
+blow,blew,Wizard,Irregular,The Wizard blew candles,The Wizard will blow candles,Wizard_blow_v1.png,Wizard_blow_v2.png,Wizard_blow_v3.png
+blow,blew,Pirate,Irregular,The Pirate blew candles,The Pirate will blow candles,Pirate_blow_v1.png,Pirate_blow_v2.png,Pirate_blow_v3.png
+blow,blew,Chef,Irregular,The Chef blew candles,The Chef will blow candles,Chef_blow_v1.png,Chef_blow_v2.png,Chef_blow_v3.png
 spin,spun,Wizard,Irregular,The Wizard spun a top,The Wizard will spin a top,Wizard_spin_v1.png,Wizard_spin_v2.png,Wizard_spin_v3.png
 spin,spun,Pirate,Irregular,The Pirate spun a top,The Pirate will spin a top,Pirate_spin_v1.png,Pirate_spin_v2.png,Pirate_spin_v3.png
 spin,spun,Chef,Irregular,The Chef spun a top,The Chef will spin a top,Chef_spin_v1.png,Chef_spin_v2.png,Chef_spin_v3.png
@@ -98,9 +98,9 @@ stir,stirred,Chef,Regular,The Chef stirred the mixture,The Chef will stir the mi
 climb,climbed,Wizard,Regular,The Wizard climbed a ladder,The Wizard will climb a ladder,Wizard_climb_v1.png,Wizard_climb_v2.png,Wizard_climb_v3.png
 climb,climbed,Pirate,Regular,The Pirate climbed a ladder,The Pirate will climb a ladder,Pirate_climb_v1.png,Pirate_climb_v2.png,Pirate_climb_v3.png
 climb,climbed,Chef,Regular,The Chef climbed a ladder,The Chef will climb a ladder,Chef_climb_v1.png,Chef_climb_v2.png,Chef_climb_v3.png
-peel,peeled,Wizard,Regular,The Wizard peeled a banana,The Wizard will peel a banana,Wizard_peel_v1.png,Wizard_peel_v2.png,Wizard_peel_v3.png
-peel,peeled,Pirate,Regular,The Pirate peeled a banana,The Pirate will peel a banana,Pirate_peel_v1.png,Pirate_peel_v2.png,Pirate_peel_v3.png
-peel,peeled,Chef,Regular,The Chef peeled a banana,The Chef will peel a banana,Chef_peel_v1.png,Chef_peel_v2.png,Chef_peel_v3.png
+peel,peeled,Wizard,Regular,The Wizard peeled an orange,The Wizard will peel an orange,Wizard_peel_v1.png,Wizard_peel_v2.png,Wizard_peel_v3.png
+peel,peeled,Pirate,Regular,The Pirate peeled an orange,The Pirate will peel an orange,Pirate_peel_v1.png,Pirate_peel_v2.png,Pirate_peel_v3.png
+peel,peeled,Chef,Regular,The Chef peeled an orange,The Chef will peel an orange,Chef_peel_v1.png,Chef_peel_v2.png,Chef_peel_v3.png
 dance,danced,Wizard,Regular,The Wizard danced a dance,The Wizard will dance a dance,Wizard_dance_v1.png,Wizard_dance_v2.png,Wizard_dance_v3.png
 dance,danced,Pirate,Regular,The Pirate danced a dance,The Pirate will dance a dance,Pirate_dance_v1.png,Pirate_dance_v2.png,Pirate_dance_v3.png
 dance,danced,Chef,Regular,The Chef danced a dance,The Chef will dance a dance,Chef_dance_v1.png,Chef_dance_v2.png,Chef_dance_v3.png

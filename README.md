@@ -8,7 +8,7 @@ The repository is organized as follows:
 
 - **`experiments/`**: Contains the source code and materials for psycholinguistic experiments.
   - `conceptual-task/`: A PCIbex experiment testing tense planning using a switch task paradigm.
-  - `norming/`: A norming experiment to validate aspectual properties of stimuli.
+  - `norming/`: A norming experiment to validate aspectual properties of stimuli. [DEMO for the norming experiment](https://farm.pcibex.net/p/qHbGqX/)
   - `morphophonology/`: (Planned) Experiment focusing on phonological planning.
   - `morphosyntax/`: (Planned) Experiment focusing on syntactic planning.
 - **`analysis/`**: Scripts and notebooks for data analysis and stimulus generation.
