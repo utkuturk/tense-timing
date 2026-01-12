@@ -1,4 +1,9 @@
-PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/images.zip");
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/images_part_1.zip");
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/images_part_2.zip");
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/images_part_3.zip");
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/images_part_4.zip");
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/images_part_5.zip");
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/images_part_6.zip");
 PennController.ResetPrefix(null);
 DebugOff();
 
@@ -41,14 +46,18 @@ Template("items.csv", row => {
             .log()
             .wait(),
 
-        // Clear Phase 1
+        // Clear Phase 1 (Keep selected image)
         getText("instr_select").remove(),
-        getCanvas("images").remove(),
+        // Check which image was selected and remove the others
+        getSelector("selection").test.selected(getImage("img1")).failure(getImage("img1").remove()),
+        getSelector("selection").test.selected(getImage("img2")).failure(getImage("img2").remove()),
+        getSelector("selection").test.selected(getImage("img3")).failure(getImage("img3").remove()),
+        // Center the canvas if needed, or leave as is. Leaving as is preserves the position.
 
         // --- Phase 2: Norming ---
         // Dynamically assigned task
         newText("instr_norm", "").center().css("font-size", "1.2em"),
-        newCanvas("options_tense", 400, 200),
+        newCanvas("options_tense", 600, 200), // Increased width for full sentences
         newTextInput("input_desc", "").size(400, 100).lines(3).css("border", "1px solid #ccc"),
         newButton("submit_desc", "Submit"),
 
@@ -56,22 +65,42 @@ Template("items.csv", row => {
         (isTenseTask ? [
             getText("instr_norm").text("<p>For the picture you selected, which description is best?</p>").print(),
 
-            // Define tense options
-            newText("t_will", "1. " + row.character + " will " + row.verb),
-            newText("t_past", "2. " + row.character + " " + row.past_form),
-            newText("t_neither", "3. Neither"),
-            newText("t_both", "4. Both"),
+            // Define tense options with full sentences
+            newText("t_future", row.sentence_future).css("padding", "5px"),
+            newText("t_past", row.sentence_past).css("padding", "5px"),
+            newText("t_neither", "Neither").css("padding", "5px"),
+            newText("t_both", "Both").css("padding", "5px"),
 
-            getCanvas("options_tense")
-                .add(0, 20, getText("t_will"))
-                .add(0, 60, getText("t_past"))
-                .add(0, 100, getText("t_neither"))
-                .add(0, 140, getText("t_both"))
-                .center()
-                .print(),
+            // Randomize order of Past vs Future
+            // We use a helper Var or simple JS array shuffle before adding
+            // Since this is inside Template, standard JS works.
+            (Math.random() < 0.5 ?
+                [
+                    getCanvas("options_tense")
+                        .add(0, 0, getText("t_future"))
+                        .add(0, 40, getText("t_past"))
+                        .add(0, 80, getText("t_neither"))
+                        .add(0, 120, getText("t_both"))
+                        .center()
+                        .print(),
+                    newSelector("choice")
+                        .add(getText("t_future"), getText("t_past"), getText("t_neither"), getText("t_both"))
+                ]
+                :
+                [
+                    getCanvas("options_tense")
+                        .add(0, 0, getText("t_past"))
+                        .add(0, 40, getText("t_future"))
+                        .add(0, 80, getText("t_neither"))
+                        .add(0, 120, getText("t_both"))
+                        .center()
+                        .print(),
+                    newSelector("choice")
+                        .add(getText("t_past"), getText("t_future"), getText("t_neither"), getText("t_both"))
+                ]
+            ),
 
-            newSelector("choice")
-                .add(getText("t_will"), getText("t_past"), getText("t_neither"), getText("t_both"))
+            getSelector("choice")
                 .keys("1", "2", "3", "4")
                 .log()
                 .wait()
