@@ -31,6 +31,44 @@ See the [Experiment README](experiments/conceptual-task/README.md) for details o
 1. **Overall Goal**: Test dissociation between syntactic and phonological planning.
 2. **Current Focus**: Establish that the entropy-manipulation (switch task) works as intended using the `conceptual-task`.
 
+## Experiment Structure
+
+Blocks 1-3 (6 trials each). Representative images use the Wizard for consistency.
+
+**Block 1**
+| Order | Verb (Type) | Representative |
+| :--- | :--- | :---: |
+| Trial 1 | drink (I) | ![wizard drink coffee](experiments/conceptual-task/chunk_includes/wizard_drink_coffee_v5.png) |
+| Trial 2 | shake (I) | ![wizard shake bottle](experiments/conceptual-task/chunk_includes/wizard_shake_bottle_v3.png) |
+| Trial 3 | eat (I) | ![wizard eat apple](experiments/conceptual-task/chunk_includes/wizard_eat_apple_v4.png) |
+| Trial 4 | paint (R) | ![wizard paint canvas](experiments/conceptual-task/chunk_includes/wizard_paint_canvas_v2.png) |
+| Trial 5 | wash (R) | ![wizard wash dish](experiments/conceptual-task/chunk_includes/wizard_wash_dish_v5.png) |
+| Trial 6 | push (R) | ![wizard push cart](experiments/conceptual-task/chunk_includes/wizard_push_cart_v1.png) |
+
+↓
+
+**Block 2**
+| Order | Verb (Type) | Representative |
+| :--- | :--- | :---: |
+| Trial 1 | read (I) | ![wizard read book](experiments/conceptual-task/chunk_includes/wizard_read_book_v2.png) |
+| Trial 2 | sweep (I) | ![wizard sweep floor](experiments/conceptual-task/chunk_includes/wizard_sweep_floor_v3.png) |
+| Trial 3 | blow (I) | ![wizard blow bubbles](experiments/conceptual-task/chunk_includes/wizard_blow_bubbles_v5.png) |
+| Trial 4 | carry (R) | ![wizard carry box](experiments/conceptual-task/chunk_includes/wizard_carry_box_v1.png) |
+| Trial 5 | stir (R) | ![wizard stir pot](experiments/conceptual-task/chunk_includes/wizard_stir_pot_v2.png) |
+| Trial 6 | peel (R) | ![wizard peel banana](experiments/conceptual-task/chunk_includes/wizard_peel_banana_v1.png) |
+
+↓
+
+**Block 3**
+| Order | Verb (Type) | Representative |
+| :--- | :--- | :---: |
+| Trial 1 | build (I) | ![wizard build tower](experiments/conceptual-task/chunk_includes/wizard_build_tower_v2.png) |
+| Trial 2 | ride (I) | ![wizard ride bicycle](experiments/conceptual-task/chunk_includes/wizard_ride_bicycle_v5.png) |
+| Trial 3 | dig (I) | ![wizard dig hole](experiments/conceptual-task/chunk_includes/wizard_dig_hole_v4.png) |
+| Trial 4 | play (R) | ![wizard play guitar](experiments/conceptual-task/chunk_includes/wizard_play_guitar_v1.png) |
+| Trial 5 | climb (R) | ![wizard climb ladder](experiments/conceptual-task/chunk_includes/wizard_climb_ladder_v1.png) |
+| Trial 6 | smell (R) | ![wizard smell flower](experiments/conceptual-task/chunk_includes/wizard_smell_flower_v2.png) |
+
 ## Selected Conceptual-Task Images
 
 Best versions selected from `experiments/conceptual-task/chunk_includes` (generated from `combined_selection_report.csv`).
@@ -97,4 +135,3 @@ Best versions selected from `experiments/conceptual-task/chunk_includes` (genera
 | Wizard | stir | pot | ![wizard stir pot](experiments/conceptual-task/chunk_includes/wizard_stir_pot_v2.png) |
 | Wizard | sweep | floor | ![wizard sweep floor](experiments/conceptual-task/chunk_includes/wizard_sweep_floor_v3.png) |
 | Wizard | wash | dish | ![wizard wash dish](experiments/conceptual-task/chunk_includes/wizard_wash_dish_v5.png) |
-
