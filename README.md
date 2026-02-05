@@ -33,41 +33,41 @@ See the [Experiment README](experiments/conceptual-task/README.md) for details o
 
 ## Experiment Structure
 
-Blocks 1-3 (6 trials each). Representative images use the Wizard for consistency.
+Blocks 1-3 (6 trials each). Representative images use all three characters.
 
 **Block 1**
-| Order | Verb (Type) | Representative |
-| :--- | :--- | :---: |
-| Trial 1 | drink (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_drink_coffee_v5.png" alt="wizard drink coffee" width="90"> |
-| Trial 2 | shake (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_shake_bottle_v3.png" alt="wizard shake bottle" width="90"> |
-| Trial 3 | eat (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_eat_apple_v4.png" alt="wizard eat apple" width="90"> |
-| Trial 4 | paint (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_paint_canvas_v2.png" alt="wizard paint canvas" width="90"> |
-| Trial 5 | wash (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_wash_dish_v5.png" alt="wizard wash dish" width="90"> |
-| Trial 6 | push (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_push_cart_v1.png" alt="wizard push cart" width="90"> |
+| Order | Verb (Type) | Chef | Pirate | Wizard |
+| :--- | :--- | :---: | :---: | :---: |
+| Trial 1 | drink (I) | <img src="experiments/conceptual-task/chunk_includes/chef_drink_coffee_v1.png" alt="chef drink coffee" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_drink_coffee_v2.png" alt="pirate drink coffee" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_drink_coffee_v5.png" alt="wizard drink coffee" width="90"> |
+| Trial 2 | shake (I) | <img src="experiments/conceptual-task/chunk_includes/chef_shake_bottle_v2.png" alt="chef shake bottle" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_shake_bottle_v4.png" alt="pirate shake bottle" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_shake_bottle_v3.png" alt="wizard shake bottle" width="90"> |
+| Trial 3 | eat (I) | <img src="experiments/conceptual-task/chunk_includes/chef_eat_apple_v1.png" alt="chef eat apple" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_eat_apple_v5.png" alt="pirate eat apple" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_eat_apple_v4.png" alt="wizard eat apple" width="90"> |
+| Trial 4 | paint (R) | <img src="experiments/conceptual-task/chunk_includes/chef_paint_canvas_v3.png" alt="chef paint canvas" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_paint_canvas_v2.png" alt="pirate paint canvas" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_paint_canvas_v2.png" alt="wizard paint canvas" width="90"> |
+| Trial 5 | wash (R) | <img src="experiments/conceptual-task/chunk_includes/chef_wash_dish_v3.png" alt="chef wash dish" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_wash_dish_v3.png" alt="pirate wash dish" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_wash_dish_v5.png" alt="wizard wash dish" width="90"> |
+| Trial 6 | push (R) | <img src="experiments/conceptual-task/chunk_includes/chef_push_cart_v3.png" alt="chef push cart" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_push_cart_v3.png" alt="pirate push cart" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_push_cart_v1.png" alt="wizard push cart" width="90"> |
 
 ↓
 
 **Block 2**
-| Order | Verb (Type) | Representative |
-| :--- | :--- | :---: |
-| Trial 1 | read (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_read_book_v2.png" alt="wizard read book" width="90"> |
-| Trial 2 | sweep (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_sweep_floor_v3.png" alt="wizard sweep floor" width="90"> |
-| Trial 3 | blow (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_blow_bubbles_v5.png" alt="wizard blow bubbles" width="90"> |
-| Trial 4 | carry (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_carry_box_v1.png" alt="wizard carry box" width="90"> |
-| Trial 5 | stir (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_stir_pot_v2.png" alt="wizard stir pot" width="90"> |
-| Trial 6 | peel (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_peel_banana_v1.png" alt="wizard peel banana" width="90"> |
+| Order | Verb (Type) | Chef | Pirate | Wizard |
+| :--- | :--- | :---: | :---: | :---: |
+| Trial 1 | read (I) | <img src="experiments/conceptual-task/chunk_includes/chef_read_book_v2.png" alt="chef read book" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_read_book_v2.png" alt="pirate read book" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_read_book_v2.png" alt="wizard read book" width="90"> |
+| Trial 2 | sweep (I) | <img src="experiments/conceptual-task/chunk_includes/chef_sweep_floor_v1.png" alt="chef sweep floor" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_sweep_floor_v4.png" alt="pirate sweep floor" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_sweep_floor_v3.png" alt="wizard sweep floor" width="90"> |
+| Trial 3 | blow (I) | <img src="experiments/conceptual-task/chunk_includes/chef_blow_bubbles_v4.png" alt="chef blow bubbles" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_blow_bubbles_v5.png" alt="pirate blow bubbles" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_blow_bubbles_v5.png" alt="wizard blow bubbles" width="90"> |
+| Trial 4 | carry (R) | <img src="experiments/conceptual-task/chunk_includes/chef_carry_box_v5.png" alt="chef carry box" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_carry_box_v4.png" alt="pirate carry box" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_carry_box_v1.png" alt="wizard carry box" width="90"> |
+| Trial 5 | stir (R) | <img src="experiments/conceptual-task/chunk_includes/chef_stir_pot_v4.png" alt="chef stir pot" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_stir_pot_v3.png" alt="pirate stir pot" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_stir_pot_v2.png" alt="wizard stir pot" width="90"> |
+| Trial 6 | peel (R) | <img src="experiments/conceptual-task/chunk_includes/chef_peel_banana_v5.png" alt="chef peel banana" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_peel_banana_v5.png" alt="pirate peel banana" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_peel_banana_v1.png" alt="wizard peel banana" width="90"> |
 
 ↓
 
 **Block 3**
-| Order | Verb (Type) | Representative |
-| :--- | :--- | :---: |
-| Trial 1 | build (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_build_tower_v2.png" alt="wizard build tower" width="90"> |
-| Trial 2 | ride (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_ride_bicycle_v5.png" alt="wizard ride bicycle" width="90"> |
-| Trial 3 | dig (I) | <img src="experiments/conceptual-task/chunk_includes/wizard_dig_hole_v4.png" alt="wizard dig hole" width="90"> |
-| Trial 4 | play (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_play_guitar_v1.png" alt="wizard play guitar" width="90"> |
-| Trial 5 | climb (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_climb_ladder_v1.png" alt="wizard climb ladder" width="90"> |
-| Trial 6 | smell (R) | <img src="experiments/conceptual-task/chunk_includes/wizard_smell_flower_v2.png" alt="wizard smell flower" width="90"> |
+| Order | Verb (Type) | Chef | Pirate | Wizard |
+| :--- | :--- | :---: | :---: | :---: |
+| Trial 1 | build (I) | <img src="experiments/conceptual-task/chunk_includes/chef_build_tower_v1.png" alt="chef build tower" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_build_tower_v3.png" alt="pirate build tower" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_build_tower_v2.png" alt="wizard build tower" width="90"> |
+| Trial 2 | ride (I) | <img src="experiments/conceptual-task/chunk_includes/chef_ride_bicycle_v2.png" alt="chef ride bicycle" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_ride_bicycle_v3.png" alt="pirate ride bicycle" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_ride_bicycle_v5.png" alt="wizard ride bicycle" width="90"> |
+| Trial 3 | dig (I) | <img src="experiments/conceptual-task/chunk_includes/chef_dig_hole_v1.png" alt="chef dig hole" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_dig_hole_v4.png" alt="pirate dig hole" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_dig_hole_v4.png" alt="wizard dig hole" width="90"> |
+| Trial 4 | play (R) | <img src="experiments/conceptual-task/chunk_includes/chef_play_guitar_v2.png" alt="chef play guitar" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_play_guitar_v5.png" alt="pirate play guitar" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_play_guitar_v1.png" alt="wizard play guitar" width="90"> |
+| Trial 5 | climb (R) | <img src="experiments/conceptual-task/chunk_includes/chef_climb_ladder_v2.png" alt="chef climb ladder" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_climb_ladder_v1.png" alt="pirate climb ladder" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_climb_ladder_v1.png" alt="wizard climb ladder" width="90"> |
+| Trial 6 | smell (R) | <img src="experiments/conceptual-task/chunk_includes/chef_smell_flower_v1.png" alt="chef smell flower" width="90"> | <img src="experiments/conceptual-task/chunk_includes/pirate_smell_flower_v3.png" alt="pirate smell flower" width="90"> | <img src="experiments/conceptual-task/chunk_includes/wizard_smell_flower_v2.png" alt="wizard smell flower" width="90"> |
 
 ## Selected Conceptual-Task Images
 
