@@ -157,43 +157,74 @@ Here's an extended list to choose from, ensuring we have plenty of options:
 
 ---
 
-## Recommended Final Set
+## FINAL VERB SET (Implemented)
 
-Based on frequency matching needs and pictureability:
+**Critical constraint:** All verbs must be both **TRANSITIVE** (take a direct object for "The X verb-ed Y" structure) and **DURATIVE** (ongoing activity, not punctual achievement).
 
-### Irregular (9 verbs)
+### Replacements Made
 
-| Freq | Verb | Picture |
-|------|------|---------|
-| High | eat | eating apple |
-| High | drink | drinking coffee |
-| High | ride | riding bicycle |
-| High | build | building tower |
-| Medium | swim | swimming in pool |
-| Medium | draw | drawing on paper |
-| Medium | swing | swinging on swing |
-| Low | sweep | sweeping floor |
-| Low | dig | digging hole |
+| Removed (Punctual) | Replaced With (Durative) | Type | Reason |
+|--------------------|--------------------------|------|--------|
+| break | **shake** (shook) | Irregular | "break" is instantaneous - stick is broken or not |
+| throw | **blow** (blew) | Irregular | "throw" release is a single moment |
+| cut | **read** (read) | Irregular | "cut" each slice is punctual |
+| kick | **carry** (carried) | Regular | "kick" foot-ball contact is instantaneous |
+| hammer | **drag** (dragged) | Practice | "hammer" each strike is punctual |
+| light | **spin** (spun) | Practice | "light" ignition is instantaneous |
 
-### Regular (9 verbs)
+### Final Irregular Verbs (9)
 
-| Freq | Verb | Picture |
-|------|------|---------|
-| High | play | playing guitar |
-| High | walk | walking on path |
-| Medium | paint | painting canvas |
-| Medium | wash | washing dish |
-| Medium | push | pushing cart |
-| Medium | cook | cooking at stove |
-| Low | stir | stirring pot |
-| Low | climb | climbing ladder |
-| Low | peel | peeling banana |
+| Verb | Past | Object | Picture Description |
+|------|------|--------|---------------------|
+| eat | ate | apple | eating a shiny apple |
+| drink | drank | coffee | drinking from a steaming mug |
+| ride | rode | bicycle | riding a simple bicycle |
+| build | built | tower | stacking wooden blocks |
+| sweep | swept | floor | sweeping with a broom |
+| dig | dug | hole | digging with a shovel |
+| **shake** | shook | bottle | shaking a bottle |
+| **blow** | blew | bubbles | blowing soap bubbles |
+| **read** | read | book | reading a book |
+
+### Final Regular Verbs (9)
+
+| Verb | Past | Object | Picture Description |
+|------|------|--------|---------------------|
+| paint | painted | canvas | painting on an easel |
+| play | played | guitar | playing acoustic guitar |
+| wash | washed | dish | washing a plate with sponge |
+| stir | stirred | pot | stirring a cooking pot |
+| climb | climbed | ladder | climbing a wooden ladder |
+| push | pushed | cart | pushing a shopping cart |
+| peel | peeled | banana | peeling a banana |
+| smell | smelled | flower | smelling a flower |
+| **carry** | carried | box | carrying a cardboard box |
+
+### Final Practice Verbs (2)
+
+| Verb | Past | Object | Picture Description |
+|------|------|--------|---------------------|
+| **drag** | dragged | sack | dragging a burlap sack |
+| **spin** | spun | top | spinning a wooden top |
+
+---
+
+## Block Structure
+
+Each block has 3 irregular + 3 regular verbs:
+
+| Block | Irregular (3) | Regular (3) |
+|-------|---------------|-------------|
+| Block 1 | drink, shake, eat | paint, wash, push |
+| Block 2 | read, sweep, blow | carry, stir, peel |
+| Block 3 | build, ride, dig | play, climb, smell |
+| Practice | spin | drag |
 
 ---
 
 ## Notes
 
-- All recommended verbs describe **activities** (ongoing processes), not **achievements** (instantaneous completions)
+- All verbs describe **activities** (ongoing processes), not **achievements** (instantaneous completions)
 - Pictures should show the character clearly **in the middle** of the action
 - Avoid showing clear "before" (nothing started) or "after" (result visible) states
-- The v3 version of pictures should be the canonical "mid-action" frame
+- All verbs are **transitive** - they take direct objects for the "The X verb-ed Y" sentence structure
