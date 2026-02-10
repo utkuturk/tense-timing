@@ -1,0 +1,209 @@
+participant_hash,source,SONA_ID_URL,label,item_order,trialN,item_id,group,character,verb,past_form,type,picture,tense,sentence,rating,rt_ms,comments,results_reception_time,event_time
+8763722d2f3eec65377c986d643c49d5,utku,42,practice_1,7,1,,,,,,,,,,7,3014,NULL,1770697287,1770696714081
+8763722d2f3eec65377c986d643c49d5,utku,42,practice_2,8,2,,,,,,,,,,1,2920,NULL,1770697287,1770696720842
+8763722d2f3eec65377c986d643c49d5,utku,42,practice_3,9,3,,,,,,,,,,6,5174,NULL,1770697287,1770696730055
+8763722d2f3eec65377c986d643c49d5,utku,42,practice_4,10,4,,,,,,,,,,6,3712,NULL,1770697287,1770696739689
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,95,5,ctrl_hadalready_Wizard_push,filler,Wizard,push,pushed,Regular,wizard_push_cart.png,had_already,The Wizard had already pushed a cart,4,2639,NULL,1770697287,1770696746612
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,22,6,Wizard_light,B,Wizard,light,lit,Irregular,wizard_light_candle.png,past,The Wizard lit a candle,7,3465,NULL,1770697287,1770696750886
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,21,7,Wizard_kick,B,Wizard,kick,kicked,Regular,wizard_kick_ball.png,future,The Wizard will kick a ball,4,2789,NULL,1770697287,1770696754482
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,81,8,ctrl_prog_Chef_paint,filler,Chef,paint,painted,Regular,chef_paint_canvas.png,progressive,The Chef is painting a canvas,7,4177,NULL,1770697287,1770696759468
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,35,9,Pirate_climb,B,Pirate,climb,climbed,Regular,pirate_climb_ladder.png,future,The Pirate will climb a ladder,4,3694,NULL,1770697287,1770696763971
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,36,10,Pirate_cut,B,Pirate,cut,cut,Irregular,pirate_cut_bread.png,past,The Pirate cut bread,7,3563,NULL,1770697287,1770696768340
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,85,11,ctrl_prog_Chef_hammer,filler,Chef,hammer,hammered,Regular,chef_hammer_nail.png,progressive,The Chef is hammering a nail,7,5227,NULL,1770697287,1770696774377
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,37,12,Pirate_dig,B,Pirate,dig,dug,Irregular,pirate_dig_hole.png,future,The Pirate will dig a hole,4,3817,NULL,1770697287,1770696778998
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,92,13,ctrl_prog_Pirate_sweep,filler,Pirate,sweep,swept,Irregular,pirate_sweep_floor.png,progressive,The Pirate is sweeping the floor,7,3967,NULL,1770697287,1770696783775
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,19,14,Wizard_eat,B,Wizard,eat,ate,Irregular,wizard_eat_apple.png,future,The Wizard will eat an apple,7,2964,NULL,1770697287,1770696787546
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,15,15,Wizard_climb,B,Wizard,climb,climbed,Regular,wizard_climb_ladder.png,future,The Wizard will climb a ladder,4,2506,NULL,1770697287,1770696790860
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,112,16,ctrl_hadalready_Pirate_play,filler,Pirate,play,played,Regular,pirate_play_guitar.png,had_already,The Pirate had already played the guitar,4,4825,NULL,1770697287,1770696796493
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,49,17,Pirate_stir,B,Pirate,stir,stirred,Regular,pirate_stir_pot.png,future,The Pirate will stir a pot,7,4693,NULL,1770697287,1770696801992
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,102,18,ctrl_hadalready_Chef_play,filler,Chef,play,played,Regular,chef_play_guitar.png,had_already,The Chef had already played the guitar,6,3818,NULL,1770697287,1770696806619
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,44,19,Pirate_peel,B,Pirate,peel,peeled,Regular,pirate_peel_banana.png,past,The Pirate peeled a banana,7,2887,NULL,1770697287,1770696810315
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,38,20,Pirate_drink,B,Pirate,drink,drank,Irregular,pirate_drink_coffee.png,past,The Pirate drank coffee,7,4428,NULL,1770697287,1770696815553
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,108,21,ctrl_hadalready_Wizard_stir,filler,Wizard,stir,stirred,Regular,wizard_stir_pot.png,had_already,The Wizard had already stirred a pot,3,2780,NULL,1770697287,1770696819140
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,69,22,Chef_stir,B,Chef,stir,stirred,Regular,chef_stir_pot.png,future,The Chef will stir a pot,6,3091,NULL,1770697287,1770696823042
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,89,23,ctrl_prog_Chef_wash,filler,Chef,wash,washed,Regular,chef_wash_dish.png,progressive,The Chef is washing a dish,7,2910,NULL,1770697287,1770696826760
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,34,24,Pirate_build,B,Pirate,build,built,Irregular,pirate_build_tower.png,past,The Pirate built a tower,5,4720,NULL,1770697287,1770696832287
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,62,25,Chef_light,B,Chef,light,lit,Irregular,chef_light_candle.png,past,The Chef lit a candle,7,2422,NULL,1770697287,1770696839018
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,79,26,ctrl_prog_Pirate_wash,filler,Pirate,wash,washed,Regular,pirate_wash_dish.png,progressive,The Pirate is washing a dish,7,2250,NULL,1770697287,1770696842073
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,67,27,Chef_ride,B,Chef,ride,rode,Irregular,chef_ride_bicycle.png,future,The Chef will ride a bicycle,7,2950,NULL,1770697287,1770696845828
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,87,28,ctrl_prog_Chef_kick,filler,Chef,kick,kicked,Regular,chef_kick_ball.png,progressive,The Chef is kicking a ball,7,2439,NULL,1770697287,1770696849072
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,18,29,Wizard_drink,B,Wizard,drink,drank,Irregular,wizard_drink_coffee.png,past,The Wizard drank coffee,6,4995,NULL,1770697287,1770696854874
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,72,30,Chef_wash,B,Chef,wash,washed,Regular,chef_wash_dish.png,past,The Chef washed a dish,3,3018,NULL,1770697287,1770696858697
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,105,31,ctrl_hadalready_Pirate_push,filler,Pirate,push,pushed,Regular,pirate_push_cart.png,had_already,The Pirate had already pushed a cart,3,2617,NULL,1770697287,1770696862123
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,61,32,Chef_kick,B,Chef,kick,kicked,Regular,chef_kick_ball.png,future,The Chef will kick a ball,3,2648,NULL,1770697287,1770696865577
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,78,33,ctrl_prog_Pirate_ride,filler,Pirate,ride,rode,Irregular,pirate_ride_bicycle.png,progressive,The Pirate is riding a bicycle,7,2778,NULL,1770697287,1770696869161
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,41,34,Pirate_kick,B,Pirate,kick,kicked,Regular,pirate_kick_ball.png,future,The Pirate will kick a ball,6,4551,NULL,1770697287,1770696874520
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,58,35,Chef_drink,B,Chef,drink,drank,Irregular,chef_drink_coffee.png,past,The Chef drank coffee,5,5334,NULL,1770697287,1770696880659
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,99,36,ctrl_hadalready_Pirate_smell,filler,Pirate,smell,smelled,Regular,pirate_smell_flower.png,had_already,The Pirate had already smelled a flower,3,3774,NULL,1770697287,1770696885242
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,55,37,Chef_climb,B,Chef,climb,climbed,Regular,chef_climb_ladder.png,future,The Chef will climb a ladder,2,3287,NULL,1770697287,1770696889338
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,74,38,ctrl_prog_Wizard_climb,filler,Wizard,climb,climbed,Regular,wizard_climb_ladder.png,progressive,The Wizard is climbing a ladder,7,4329,NULL,1770697287,1770696894476
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,57,39,Chef_dig,B,Chef,dig,dug,Irregular,chef_dig_hole.png,future,The Chef will dig a hole,2,2595,NULL,1770697287,1770696897880
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,47,40,Pirate_ride,B,Pirate,ride,rode,Irregular,pirate_ride_bicycle.png,future,The Pirate will ride a bicycle,2,3836,NULL,1770697287,1770696902528
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,93,41,ctrl_hadalready_Wizard_cut,filler,Wizard,cut,cut,Irregular,wizard_cut_bread.png,had_already,The Wizard had already cut bread,4,4354,NULL,1770697287,1770696907688
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,56,42,Chef_cut,B,Chef,cut,cut,Irregular,chef_cut_bread.png,past,The Chef cut bread,7,2204,NULL,1770697287,1770696910704
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,86,43,ctrl_prog_Wizard_build,filler,Wizard,build,built,Irregular,wizard_build_tower.png,progressive,The Wizard is building a tower,7,3897,NULL,1770697287,1770696915405
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,13,44,Wizard_break,B,Wizard,break,broke,Irregular,wizard_break_stick.png,future,The Wizard will break a stick,3,2564,NULL,1770697287,1770696918776
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,63,45,Chef_paint,B,Chef,paint,painted,Regular,chef_paint_canvas.png,future,The Chef will paint a canvas,3,4763,NULL,1770697287,1770696930589
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,75,46,ctrl_prog_Wizard_hammer,filler,Wizard,hammer,hammered,Regular,wizard_hammer_nail.png,progressive,The Wizard is hammering a nail,6,5824,NULL,1770697287,1770696937219
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,51,47,Pirate_throw,B,Pirate,throw,threw,Irregular,pirate_throw_frisbee.png,future,The Pirate will throw a frisbee,3,8135,NULL,1770697287,1770696946164
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,73,48,ctrl_prog_Wizard_break,filler,Wizard,break,broke,Irregular,wizard_break_stick.png,progressive,The Wizard is breaking a stick,4,11344,NULL,1770697287,1770696958317
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,29,49,Wizard_stir,B,Wizard,stir,stirred,Regular,wizard_stir_pot.png,future,The Wizard will stir a pot,3,5513,NULL,1770697287,1770696964638
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,42,50,Pirate_light,B,Pirate,light,lit,Irregular,pirate_light_candle.png,past,The Pirate lit a candle,7,11088,NULL,1770697287,1770696976537
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,110,51,ctrl_hadalready_Pirate_eat,filler,Pirate,eat,ate,Irregular,pirate_eat_apple.png,had_already,The Pirate had already eaten an apple,6,9284,NULL,1770697287,1770696986632
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,46,52,Pirate_push,B,Pirate,push,pushed,Regular,pirate_push_cart.png,past,The Pirate pushed a cart,6,6128,NULL,1770697287,1770696993564
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,97,53,ctrl_hadalready_Pirate_peel,filler,Pirate,peel,peeled,Regular,pirate_peel_banana.png,had_already,The Pirate had already peeled a banana,6,2755,NULL,1770697287,1770696997127
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,17,54,Wizard_dig,B,Wizard,dig,dug,Irregular,wizard_dig_hole.png,future,The Wizard will dig a hole,5,8493,NULL,1770697287,1770697006428
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,60,55,Chef_hammer,B,Chef,hammer,hammered,Regular,chef_hammer_nail.png,past,The Chef hammered a nail,6,2983,NULL,1770697287,1770697010216
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,106,56,ctrl_hadalready_Wizard_drink,filler,Wizard,drink,drank,Irregular,wizard_drink_coffee.png,had_already,The Wizard had already drunk coffee,4,5169,NULL,1770697287,1770697016194
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,27,57,Wizard_ride,B,Wizard,ride,rode,Irregular,wizard_ride_bicycle.png,future,The Wizard will ride a bicycle,4,1374,NULL,1770697287,1770697018377
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,84,58,ctrl_prog_Pirate_climb,filler,Pirate,climb,climbed,Regular,pirate_climb_ladder.png,progressive,The Pirate is climbing a ladder,7,3164,NULL,1770697287,1770697022346
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,40,59,Pirate_hammer,B,Pirate,hammer,hammered,Regular,pirate_hammer_nail.png,past,The Pirate hammered a nail,6,5289,NULL,1770697287,1770697028445
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,83,60,ctrl_prog_Chef_break,filler,Chef,break,broke,Irregular,chef_break_stick.png,progressive,The Chef is breaking a stick,7,2823,NULL,1770697287,1770697032074
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,45,61,Pirate_play,B,Pirate,play,played,Regular,pirate_play_guitar.png,future,The Pirate will play the guitar,4,6296,NULL,1770697287,1770697039178
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,50,62,Pirate_sweep,B,Pirate,sweep,swept,Irregular,pirate_sweep_floor.png,past,The Pirate swept the floor,4,1912,NULL,1770697287,1770697041900
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,96,63,ctrl_hadalready_Pirate_drink,filler,Pirate,drink,drank,Irregular,pirate_drink_coffee.png,had_already,The Pirate had already drunk coffee,3,4800,NULL,1770697287,1770697047506
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,16,64,Wizard_cut,B,Wizard,cut,cut,Irregular,wizard_cut_bread.png,past,The Wizard cut bread,6,4145,NULL,1770697287,1770697052460
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,94,65,ctrl_hadalready_Wizard_light,filler,Wizard,light,lit,Irregular,wizard_light_candle.png,had_already,The Wizard had already lit a candle,7,2397,NULL,1770697287,1770697103974
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,64,66,Chef_peel,B,Chef,peel,peeled,Regular,chef_peel_banana.png,past,The Chef peeled a banana,7,2719,NULL,1770697287,1770697107502
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,25,67,Wizard_play,B,Wizard,play,played,Regular,wizard_play_guitar.png,future,The Wizard will play the guitar,NA,15000,No selection happened,1770697287,Never
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,82,68,ctrl_prog_Chef_sweep,filler,Chef,sweep,swept,Irregular,chef_sweep_floor.png,progressive,The Chef is sweeping the floor,7,5603,NULL,1770697287,1770697129725
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,59,69,Chef_eat,B,Chef,eat,ate,Irregular,chef_eat_apple.png,future,The Chef will eat an apple,7,3056,NULL,1770697287,1770697133589
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,98,70,ctrl_hadalready_Pirate_stir,filler,Pirate,stir,stirred,Regular,pirate_stir_pot.png,had_already,The Pirate had already stirred a pot,5,4435,NULL,1770697287,1770697138831
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,30,71,Wizard_sweep,B,Wizard,sweep,swept,Irregular,wizard_sweep_floor.png,past,The Wizard swept the floor,6,2472,NULL,1770697287,1770697142110
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,68,72,Chef_smell,B,Chef,smell,smelled,Regular,chef_smell_flower.png,past,The Chef smelled a flower,7,1942,NULL,1770697287,1770697144863
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,107,73,ctrl_hadalready_Chef_peel,filler,Chef,peel,peeled,Regular,chef_peel_banana.png,had_already,The Chef had already peeled a banana,6,4213,NULL,1770697287,1770697149886
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,28,74,Wizard_smell,B,Wizard,smell,smelled,Regular,wizard_smell_flower.png,past,The Wizard smelled a flower,6,3530,NULL,1770697287,1770697154226
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,77,75,ctrl_prog_Pirate_kick,filler,Pirate,kick,kicked,Regular,pirate_kick_ball.png,progressive,The Pirate is kicking a ball,6,5070,NULL,1770697287,1770697160107
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,66,76,Chef_push,B,Chef,push,pushed,Regular,chef_push_cart.png,past,The Chef pushed a cart,6,2253,NULL,1770697287,1770697163171
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,48,77,Pirate_smell,B,Pirate,smell,smelled,Regular,pirate_smell_flower.png,past,The Pirate smelled a flower,7,2855,NULL,1770697287,1770697166834
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,91,78,ctrl_prog_Wizard_paint,filler,Wizard,paint,painted,Regular,wizard_paint_canvas.png,progressive,The Wizard is painting a canvas,4,4585,NULL,1770697287,1770697172226
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,54,79,Chef_build,B,Chef,build,built,Irregular,chef_build_tower.png,past,The Chef built a tower,3,3976,NULL,1770697287,1770697177011
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,100,80,ctrl_hadalready_Chef_eat,filler,Chef,eat,ate,Irregular,chef_eat_apple.png,had_already,The Chef had already eaten an apple,2,3368,NULL,1770697287,1770697181188
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,53,81,Chef_break,B,Chef,break,broke,Irregular,chef_break_stick.png,future,The Chef will break a stick,1,2573,NULL,1770697287,1770697184572
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,65,82,Chef_play,B,Chef,play,played,Regular,chef_play_guitar.png,future,The Chef will play the guitar,3,3711,NULL,1770697287,1770697189091
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,109,83,ctrl_hadalready_Wizard_smell,filler,Wizard,smell,smelled,Regular,wizard_smell_flower.png,had_already,The Wizard had already smelled a flower,3,2729,NULL,1770697287,1770697192632
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,70,84,Chef_sweep,B,Chef,sweep,swept,Irregular,chef_sweep_floor.png,past,The Chef swept the floor,7,2631,NULL,1770697287,1770697196075
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,26,85,Wizard_push,B,Wizard,push,pushed,Regular,wizard_push_cart.png,past,The Wizard pushed a cart,7,1879,NULL,1770697287,1770697200563
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,76,86,ctrl_prog_Pirate_build,filler,Pirate,build,built,Irregular,pirate_build_tower.png,progressive,The Pirate is building a tower,7,2146,NULL,1770697287,1770697203521
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,71,87,Chef_throw,B,Chef,throw,threw,Irregular,chef_throw_frisbee.png,future,The Chef will throw a frisbee,7,2347,NULL,1770697287,1770697206677
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,111,88,ctrl_hadalready_Wizard_throw,filler,Wizard,throw,threw,Irregular,wizard_throw_frisbee.png,had_already,The Wizard had already thrown a frisbee,1,3976,NULL,1770697287,1770697211466
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,33,89,Pirate_break,B,Pirate,break,broke,Irregular,pirate_break_stick.png,future,The Pirate will break a stick,1,2555,NULL,1770697287,1770697214830
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,23,90,Wizard_paint,B,Wizard,paint,painted,Regular,wizard_paint_canvas.png,future,The Wizard will paint a canvas,7,2357,NULL,1770697287,1770697218001
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,88,91,ctrl_prog_Wizard_ride,filler,Wizard,ride,rode,Irregular,wizard_ride_bicycle.png,progressive,The Wizard is riding a bicycle,7,2233,NULL,1770697287,1770697221042
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,31,92,Wizard_throw,B,Wizard,throw,threw,Irregular,wizard_throw_frisbee.png,future,The Wizard will throw a frisbee,6,4070,NULL,1770697287,1770697225921
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,80,93,ctrl_prog_Chef_dig,filler,Chef,dig,dug,Irregular,chef_dig_hole.png,progressive,The Chef is digging a hole,6,4520,NULL,1770697287,1770697231251
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,32,94,Wizard_wash,B,Wizard,wash,washed,Regular,wizard_wash_dish.png,past,The Wizard washed a dish,2,4480,NULL,1770697287,1770697236541
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,101,95,ctrl_hadalready_Chef_throw,filler,Chef,throw,threw,Irregular,chef_throw_frisbee.png,had_already,The Chef had already thrown a frisbee,1,2522,NULL,1770697287,1770697239873
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,14,96,Wizard_build,B,Wizard,build,built,Irregular,wizard_build_tower.png,past,The Wizard built a tower,1,1984,NULL,1770697287,1770697242668
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,20,97,Wizard_hammer,B,Wizard,hammer,hammered,Regular,wizard_hammer_nail.png,past,The Wizard hammered a nail,3,4359,NULL,1770697287,1770697247841
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,103,98,ctrl_hadalready_Pirate_cut,filler,Pirate,cut,cut,Irregular,pirate_cut_bread.png,had_already,The Pirate had already cut bread,6,4337,NULL,1770697287,1770697252987
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,39,99,Pirate_eat,B,Pirate,eat,ate,Irregular,pirate_eat_apple.png,future,The Pirate will eat an apple,3,2726,NULL,1770697287,1770697256521
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,43,100,Pirate_paint,B,Pirate,paint,painted,Regular,pirate_paint_canvas.png,future,The Pirate will paint a canvas,2,8853,NULL,1770697287,1770697266183
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,104,101,ctrl_hadalready_Chef_light,filler,Chef,light,lit,Irregular,chef_light_candle.png,had_already,The Chef had already lit a candle,7,1942,NULL,1770697287,1770697268933
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,24,102,Wizard_peel,B,Wizard,peel,peeled,Regular,wizard_peel_banana.png,past,The Wizard peeled a banana,6,8947,NULL,1770697287,1770697278689
+8763722d2f3eec65377c986d643c49d5,utku,42,filler,90,103,ctrl_prog_Pirate_dig,filler,Pirate,dig,dug,Irregular,pirate_dig_hole.png,progressive,The Pirate is digging a hole,7,3393,NULL,1770697287,1770697282896
+8763722d2f3eec65377c986d643c49d5,utku,42,experiment,52,104,Pirate_wash,B,Pirate,wash,washed,Regular,pirate_wash_dish.png,past,The Pirate washed a dish,2,3399,NULL,1770697287,1770697287105
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,practice_1,7,1,,,,,,,,,,6,3524,NULL,1770731576,1770731149693
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,practice_2,8,2,,,,,,,,,,1,2937,NULL,1770731576,1770731157339
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,practice_3,9,3,,,,,,,,,,3,3608,NULL,1770731576,1770731165982
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,practice_4,10,4,,,,,,,,,,6,2500,NULL,1770731576,1770731174064
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,76,5,ctrl_prog_Pirate_build,filler,Pirate,build,built,Irregular,pirate_build_tower.png,progressive,The Pirate is building a tower,7,4114,NULL,1770731576,1770731185095
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,68,6,Chef_smell,A,Chef,smell,smelled,Regular,chef_smell_flower.png,future,The Chef will smell a flower,5,4501,NULL,1770731576,1770731190424
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,112,7,ctrl_hadalready_Pirate_play,filler,Pirate,play,played,Regular,pirate_play_guitar.png,had_already,The Pirate had already played the guitar,4,2941,NULL,1770731576,1770731194205
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,25,8,Wizard_play,A,Wizard,play,played,Regular,wizard_play_guitar.png,past,The Wizard played the guitar,3,2557,NULL,1770731576,1770731197590
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,54,9,Chef_build,A,Chef,build,built,Irregular,chef_build_tower.png,future,The Chef will build a tower,7,3108,NULL,1770731576,1770731201532
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,87,10,ctrl_prog_Chef_kick,filler,Chef,kick,kicked,Regular,chef_kick_ball.png,progressive,The Chef is kicking a ball,6,2123,NULL,1770731576,1770731204486
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,72,11,Chef_wash,A,Chef,wash,washed,Regular,chef_wash_dish.png,future,The Chef will wash a dish,5,3942,NULL,1770731576,1770731209256
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,93,12,ctrl_hadalready_Wizard_cut,filler,Wizard,cut,cut,Irregular,wizard_cut_bread.png,had_already,The Wizard had already cut bread,1,3405,NULL,1770731576,1770731213477
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,44,13,Pirate_peel,A,Pirate,peel,peeled,Regular,pirate_peel_banana.png,future,The Pirate will peel a banana,2,2824,NULL,1770731576,1770731217141
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,46,14,Pirate_push,A,Pirate,push,pushed,Regular,pirate_push_cart.png,future,The Pirate will push a cart,5,3253,NULL,1770731576,1770731221230
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,75,15,ctrl_prog_Wizard_hammer,filler,Wizard,hammer,hammered,Regular,wizard_hammer_nail.png,progressive,The Wizard is hammering a nail,7,2294,NULL,1770731576,1770731224348
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,19,16,Wizard_eat,A,Wizard,eat,ate,Irregular,wizard_eat_apple.png,past,The Wizard ate an apple,2,2682,NULL,1770731576,1770731227856
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,84,17,ctrl_prog_Pirate_climb,filler,Pirate,climb,climbed,Regular,pirate_climb_ladder.png,progressive,The Pirate is climbing a ladder,7,2375,NULL,1770731576,1770731231058
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,32,18,Wizard_wash,A,Wizard,wash,washed,Regular,wizard_wash_dish.png,future,The Wizard will wash a dish,5,3107,NULL,1770731576,1770731234989
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,62,19,Chef_light,A,Chef,light,lit,Irregular,chef_light_candle.png,future,The Chef will light a candle,1,3541,NULL,1770731576,1770731239354
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,106,20,ctrl_hadalready_Wizard_drink,filler,Wizard,drink,drank,Irregular,wizard_drink_coffee.png,had_already,The Wizard had already drunk coffee,1,2591,NULL,1770731576,1770731242774
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,67,21,Chef_ride,A,Chef,ride,rode,Irregular,chef_ride_bicycle.png,past,The Chef rode a bicycle,2,3266,NULL,1770731576,1770731246879
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,79,22,ctrl_prog_Pirate_wash,filler,Pirate,wash,washed,Regular,pirate_wash_dish.png,progressive,The Pirate is washing a dish,7,2956,NULL,1770731576,1770731250679
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,59,23,Chef_eat,A,Chef,eat,ate,Irregular,chef_eat_apple.png,past,The Chef ate an apple,3,3509,NULL,1770731576,1770731255022
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,69,24,Chef_stir,A,Chef,stir,stirred,Regular,chef_stir_pot.png,past,The Chef stirred a pot,6,2799,NULL,1770731576,1770731258642
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,104,25,ctrl_hadalready_Chef_light,filler,Chef,light,lit,Irregular,chef_light_candle.png,had_already,The Chef had already lit a candle,7,2558,NULL,1770731576,1770731263631
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,33,26,Pirate_break,A,Pirate,break,broke,Irregular,pirate_break_stick.png,past,The Pirate broke a stick,7,1832,NULL,1770731576,1770731266295
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,85,27,ctrl_prog_Chef_hammer,filler,Chef,hammer,hammered,Regular,chef_hammer_nail.png,progressive,The Chef is hammering a nail,7,1503,NULL,1770731576,1770731268626
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,35,28,Pirate_climb,A,Pirate,climb,climbed,Regular,pirate_climb_ladder.png,past,The Pirate climbed a ladder,5,2325,NULL,1770731576,1770731271777
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,22,29,Wizard_light,A,Wizard,light,lit,Irregular,wizard_light_candle.png,future,The Wizard will light a candle,3,2196,NULL,1770731576,1770731274809
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,102,30,ctrl_hadalready_Chef_play,filler,Chef,play,played,Regular,chef_play_guitar.png,had_already,The Chef had already played the guitar,5,3519,NULL,1770731576,1770731279161
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,20,31,Wizard_hammer,A,Wizard,hammer,hammered,Regular,wizard_hammer_nail.png,future,The Wizard will hammer a nail,7,2026,NULL,1770731576,1770731282034
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,83,32,ctrl_prog_Chef_break,filler,Chef,break,broke,Irregular,chef_break_stick.png,progressive,The Chef is breaking a stick,7,1445,NULL,1770731576,1770731284308
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,24,33,Wizard_peel,A,Wizard,peel,peeled,Regular,wizard_peel_banana.png,future,The Wizard will peel a banana,1,2464,NULL,1770731576,1770731287619
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,16,34,Wizard_cut,A,Wizard,cut,cut,Irregular,wizard_cut_bread.png,future,The Wizard will cut bread,5,3147,NULL,1770731576,1770731291611
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,74,35,ctrl_prog_Wizard_climb,filler,Wizard,climb,climbed,Regular,wizard_climb_ladder.png,progressive,The Wizard is climbing a ladder,7,4199,NULL,1770731576,1770731296652
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,40,36,Pirate_hammer,A,Pirate,hammer,hammered,Regular,pirate_hammer_nail.png,future,The Pirate will hammer a nail,7,2394,NULL,1770731576,1770731299877
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,97,37,ctrl_hadalready_Pirate_peel,filler,Pirate,peel,peeled,Regular,pirate_peel_banana.png,had_already,The Pirate had already peeled a banana,7,3870,NULL,1770731576,1770731304573
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,66,38,Chef_push,A,Chef,push,pushed,Regular,chef_push_cart.png,future,The Chef will push a cart,6,3533,NULL,1770731576,1770731308936
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,42,39,Pirate_light,A,Pirate,light,lit,Irregular,pirate_light_candle.png,future,The Pirate will light a candle,3,2874,NULL,1770731576,1770731312633
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,91,40,ctrl_prog_Wizard_paint,filler,Wizard,paint,painted,Regular,wizard_paint_canvas.png,progressive,The Wizard is painting a canvas,7,2897,NULL,1770731576,1770731316360
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,64,41,Chef_peel,A,Chef,peel,peeled,Regular,chef_peel_banana.png,future,The Chef will peel a banana,2,3798,NULL,1770731576,1770731320981
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,99,42,ctrl_hadalready_Pirate_smell,filler,Pirate,smell,smelled,Regular,pirate_smell_flower.png,had_already,The Pirate had already smelled a flower,4,3872,NULL,1770731576,1770731325695
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,57,43,Chef_dig,A,Chef,dig,dug,Irregular,chef_dig_hole.png,past,The Chef dug a hole,7,3343,NULL,1770731576,1770731329876
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,47,44,Pirate_ride,A,Pirate,ride,rode,Irregular,pirate_ride_bicycle.png,past,The Pirate rode a bicycle,3,3277,NULL,1770731576,1770731333983
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,88,45,ctrl_prog_Wizard_ride,filler,Wizard,ride,rode,Irregular,wizard_ride_bicycle.png,progressive,The Wizard is riding a bicycle,7,5049,NULL,1770731576,1770731340952
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,21,46,Wizard_kick,A,Wizard,kick,kicked,Regular,wizard_kick_ball.png,past,The Wizard kicked a ball,6,3010,NULL,1770731576,1770731344771
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,107,47,ctrl_hadalready_Chef_peel,filler,Chef,peel,peeled,Regular,chef_peel_banana.png,had_already,The Chef had already peeled a banana,7,1934,NULL,1770731576,1770731347536
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,49,48,Pirate_stir,A,Pirate,stir,stirred,Regular,pirate_stir_pot.png,past,The Pirate stirred a pot,5,3495,NULL,1770731576,1770731351883
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,17,49,Wizard_dig,A,Wizard,dig,dug,Irregular,wizard_dig_hole.png,past,The Wizard dug a hole,7,1757,NULL,1770731576,1770731354474
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,109,50,ctrl_hadalready_Wizard_smell,filler,Wizard,smell,smelled,Regular,wizard_smell_flower.png,had_already,The Wizard had already smelled a flower,3,3352,NULL,1770731576,1770731358657
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,13,51,Wizard_break,A,Wizard,break,broke,Irregular,wizard_break_stick.png,past,The Wizard broke a stick,7,2188,NULL,1770731576,1770731361683
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,110,52,ctrl_hadalready_Pirate_eat,filler,Pirate,eat,ate,Irregular,pirate_eat_apple.png,had_already,The Pirate had already eaten an apple,3,3987,NULL,1770731576,1770731366510
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,55,53,Chef_climb,A,Chef,climb,climbed,Regular,chef_climb_ladder.png,past,The Chef climbed a ladder,3,2886,NULL,1770731576,1770731370238
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,23,54,Wizard_paint,A,Wizard,paint,painted,Regular,wizard_paint_canvas.png,past,The Wizard painted a canvas,3,4162,NULL,1770731576,1770731375234
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,101,55,ctrl_hadalready_Chef_throw,filler,Chef,throw,threw,Irregular,chef_throw_frisbee.png,had_already,The Chef had already thrown a frisbee,3,4761,NULL,1770731576,1770731380833
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,38,56,Pirate_drink,A,Pirate,drink,drank,Irregular,pirate_drink_coffee.png,future,The Pirate will drink coffee,6,5438,NULL,1770731576,1770731387100
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,77,57,ctrl_prog_Pirate_kick,filler,Pirate,kick,kicked,Regular,pirate_kick_ball.png,progressive,The Pirate is kicking a ball,5,3973,NULL,1770731576,1770731391917
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,39,58,Pirate_eat,A,Pirate,eat,ate,Irregular,pirate_eat_apple.png,past,The Pirate ate an apple,6,6271,NULL,1770731576,1770731399014
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,105,59,ctrl_hadalready_Pirate_push,filler,Pirate,push,pushed,Regular,pirate_push_cart.png,had_already,The Pirate had already pushed a cart,3,2498,NULL,1770731576,1770731402331
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,31,60,Wizard_throw,A,Wizard,throw,threw,Irregular,wizard_throw_frisbee.png,past,The Wizard threw a frisbee,4,5887,NULL,1770731576,1770731409040
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,43,61,Pirate_paint,A,Pirate,paint,painted,Regular,pirate_paint_canvas.png,past,The Pirate painted a canvas,7,3655,NULL,1770731576,1770731413517
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,86,62,ctrl_prog_Wizard_build,filler,Wizard,build,built,Irregular,wizard_build_tower.png,progressive,The Wizard is building a tower,7,1531,NULL,1770731576,1770731415888
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,58,63,Chef_drink,A,Chef,drink,drank,Irregular,chef_drink_coffee.png,future,The Chef will drink coffee,6,2642,NULL,1770731576,1770731419343
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,98,64,ctrl_hadalready_Pirate_stir,filler,Pirate,stir,stirred,Regular,pirate_stir_pot.png,had_already,The Pirate had already stirred a pot,3,3866,NULL,1770731576,1770731424044
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,41,65,Pirate_kick,A,Pirate,kick,kicked,Regular,pirate_kick_ball.png,past,The Pirate kicked a ball,6,2593,NULL,1770731576,1770731428387
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,26,66,Wizard_push,A,Wizard,push,pushed,Regular,wizard_push_cart.png,future,The Wizard will push a cart,4,3634,NULL,1770731576,1770731432838
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,90,67,ctrl_prog_Pirate_dig,filler,Pirate,dig,dug,Irregular,pirate_dig_hole.png,progressive,The Pirate is digging a hole,7,2809,NULL,1770731576,1770731436460
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,27,68,Wizard_ride,A,Wizard,ride,rode,Irregular,wizard_ride_bicycle.png,past,The Wizard rode a bicycle,3,2097,NULL,1770731576,1770731439380
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,82,69,ctrl_prog_Chef_sweep,filler,Chef,sweep,swept,Irregular,chef_sweep_floor.png,progressive,The Chef is sweeping the floor,7,2567,NULL,1770731576,1770731442771
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,50,70,Pirate_sweep,A,Pirate,sweep,swept,Irregular,pirate_sweep_floor.png,future,The Pirate will sweep the floor,6,2533,NULL,1770731576,1770731446125
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,29,71,Wizard_stir,A,Wizard,stir,stirred,Regular,wizard_stir_pot.png,past,The Wizard stirred a pot,5,3871,NULL,1770731576,1770731450814
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,103,72,ctrl_hadalready_Pirate_cut,filler,Pirate,cut,cut,Irregular,pirate_cut_bread.png,had_already,The Pirate had already cut bread,3,5984,NULL,1770731576,1770731457616
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,36,73,Pirate_cut,A,Pirate,cut,cut,Irregular,pirate_cut_bread.png,future,The Pirate will cut bread,6,2926,NULL,1770731576,1770731461367
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,94,74,ctrl_hadalready_Wizard_light,filler,Wizard,light,lit,Irregular,wizard_light_candle.png,had_already,The Wizard had already lit a candle,7,1748,NULL,1770731576,1770731463943
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,15,75,Wizard_climb,A,Wizard,climb,climbed,Regular,wizard_climb_ladder.png,past,The Wizard climbed a ladder,3,2757,NULL,1770731576,1770731467510
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,45,76,Pirate_play,A,Pirate,play,played,Regular,pirate_play_guitar.png,past,The Pirate played the guitar,5,6306,NULL,1770731576,1770731474655
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,108,77,ctrl_hadalready_Wizard_stir,filler,Wizard,stir,stirred,Regular,wizard_stir_pot.png,had_already,The Wizard had already stirred a pot,3,2045,NULL,1770731576,1770731477525
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,18,78,Wizard_drink,A,Wizard,drink,drank,Irregular,wizard_drink_coffee.png,future,The Wizard will drink coffee,7,3025,NULL,1770731576,1770731481376
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,100,79,ctrl_hadalready_Chef_eat,filler,Chef,eat,ate,Irregular,chef_eat_apple.png,had_already,The Chef had already eaten an apple,2,3253,NULL,1770731576,1770731485459
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,65,80,Chef_play,A,Chef,play,played,Regular,chef_play_guitar.png,past,The Chef played the guitar,5,4248,NULL,1770731576,1770731490516
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,63,81,Chef_paint,A,Chef,paint,painted,Regular,chef_paint_canvas.png,past,The Chef painted a canvas,7,2500,NULL,1770731576,1770731493840
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,89,82,ctrl_prog_Chef_wash,filler,Chef,wash,washed,Regular,chef_wash_dish.png,progressive,The Chef is washing a dish,7,2214,NULL,1770731576,1770731496873
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,34,83,Pirate_build,A,Pirate,build,built,Irregular,pirate_build_tower.png,future,The Pirate will build a tower,7,1708,NULL,1770731576,1770731499394
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,48,84,Pirate_smell,A,Pirate,smell,smelled,Regular,pirate_smell_flower.png,future,The Pirate will smell a flower,5,2683,NULL,1770731576,1770731502894
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,73,85,ctrl_prog_Wizard_break,filler,Wizard,break,broke,Irregular,wizard_break_stick.png,progressive,The Wizard is breaking a stick,7,1398,NULL,1770731576,1770731506148
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,37,86,Pirate_dig,A,Pirate,dig,dug,Irregular,pirate_dig_hole.png,past,The Pirate dug a hole,7,1047,NULL,1770731576,1770731508008
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,78,87,ctrl_prog_Pirate_ride,filler,Pirate,ride,rode,Irregular,pirate_ride_bicycle.png,progressive,The Pirate is riding a bicycle,7,1676,NULL,1770731576,1770731510502
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,71,88,Chef_throw,A,Chef,throw,threw,Irregular,chef_throw_frisbee.png,past,The Chef threw a frisbee,3,2121,NULL,1770731576,1770731513441
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,28,89,Wizard_smell,A,Wizard,smell,smelled,Regular,wizard_smell_flower.png,future,The Wizard will smell a flower,5,4267,NULL,1770731576,1770731518529
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,95,90,ctrl_hadalready_Wizard_push,filler,Wizard,push,pushed,Regular,wizard_push_cart.png,had_already,The Wizard had already pushed a cart,3,3030,NULL,1770731576,1770731522382
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,53,91,Chef_break,A,Chef,break,broke,Irregular,chef_break_stick.png,past,The Chef broke a stick,7,3091,NULL,1770731576,1770731526299
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,81,92,ctrl_prog_Chef_paint,filler,Chef,paint,painted,Regular,chef_paint_canvas.png,progressive,The Chef is painting a canvas,7,1285,NULL,1770731576,1770731528395
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,51,93,Pirate_throw,A,Pirate,throw,threw,Irregular,pirate_throw_frisbee.png,past,The Pirate threw a frisbee,2,8235,NULL,1770731576,1770731537453
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,111,94,ctrl_hadalready_Wizard_throw,filler,Wizard,throw,threw,Irregular,wizard_throw_frisbee.png,had_already,The Wizard had already thrown a frisbee,2,2725,NULL,1770731576,1770731541007
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,30,95,Wizard_sweep,A,Wizard,sweep,swept,Irregular,wizard_sweep_floor.png,future,The Wizard will sweep the floor,7,2397,NULL,1770731576,1770731544227
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,14,96,Wizard_build,A,Wizard,build,built,Irregular,wizard_build_tower.png,future,The Wizard will build a tower,7,1508,NULL,1770731576,1770731546569
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,80,97,ctrl_prog_Chef_dig,filler,Chef,dig,dug,Irregular,chef_dig_hole.png,progressive,The Chef is digging a hole,7,1612,NULL,1770731576,1770731549009
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,56,98,Chef_cut,A,Chef,cut,cut,Irregular,chef_cut_bread.png,future,The Chef will cut bread,5,2267,NULL,1770731576,1770731552119
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,60,99,Chef_hammer,A,Chef,hammer,hammered,Regular,chef_hammer_nail.png,future,The Chef will hammer a nail,7,3653,NULL,1770731576,1770731556583
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,96,100,ctrl_hadalready_Pirate_drink,filler,Pirate,drink,drank,Irregular,pirate_drink_coffee.png,had_already,The Pirate had already drunk coffee,3,4544,NULL,1770731576,1770731561968
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,52,101,Pirate_wash,A,Pirate,wash,washed,Regular,pirate_wash_dish.png,future,The Pirate will wash a dish,7,2108,NULL,1770731576,1770731564911
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,filler,92,102,ctrl_prog_Pirate_sweep,filler,Pirate,sweep,swept,Irregular,pirate_sweep_floor.png,progressive,The Pirate is sweeping the floor,7,2029,NULL,1770731576,1770731567763
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,61,103,Chef_kick,A,Chef,kick,kicked,Regular,chef_kick_ball.png,past,The Chef kicked a ball,5,3123,NULL,1770731576,1770731571706
+e3a9cb9885a1fefc1e05ed632dd0e13a,utku,42,experiment,70,104,Chef_sweep,A,Chef,sweep,swept,Irregular,chef_sweep_floor.png,future,The Chef will sweep the floor,5,3006,NULL,1770731576,1770731575529
