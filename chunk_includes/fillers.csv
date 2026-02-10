@@ -1,0 +1,41 @@
+item_id,character,verb,past_form,type,picture,tense,sentence
+ctrl_prog_Wizard_break,Wizard,break,broke,Irregular,wizard_break_stick.png,progressive,The Wizard is breaking a stick
+ctrl_prog_Wizard_climb,Wizard,climb,climbed,Regular,wizard_climb_ladder.png,progressive,The Wizard is climbing a ladder
+ctrl_prog_Wizard_hammer,Wizard,hammer,hammered,Regular,wizard_hammer_nail.png,progressive,The Wizard is hammering a nail
+ctrl_prog_Pirate_build,Pirate,build,built,Irregular,pirate_build_tower.png,progressive,The Pirate is building a tower
+ctrl_prog_Pirate_kick,Pirate,kick,kicked,Regular,pirate_kick_ball.png,progressive,The Pirate is kicking a ball
+ctrl_prog_Pirate_ride,Pirate,ride,rode,Irregular,pirate_ride_bicycle.png,progressive,The Pirate is riding a bicycle
+ctrl_prog_Pirate_wash,Pirate,wash,washed,Regular,pirate_wash_dish.png,progressive,The Pirate is washing a dish
+ctrl_prog_Chef_dig,Chef,dig,dug,Irregular,chef_dig_hole.png,progressive,The Chef is digging a hole
+ctrl_prog_Chef_paint,Chef,paint,painted,Regular,chef_paint_canvas.png,progressive,The Chef is painting a canvas
+ctrl_prog_Chef_sweep,Chef,sweep,swept,Irregular,chef_sweep_floor.png,progressive,The Chef is sweeping the floor
+ctrl_prog_Chef_break,Chef,break,broke,Irregular,chef_break_stick.png,progressive,The Chef is breaking a stick
+ctrl_prog_Pirate_climb,Pirate,climb,climbed,Regular,pirate_climb_ladder.png,progressive,The Pirate is climbing a ladder
+ctrl_prog_Chef_hammer,Chef,hammer,hammered,Regular,chef_hammer_nail.png,progressive,The Chef is hammering a nail
+ctrl_prog_Wizard_build,Wizard,build,built,Irregular,wizard_build_tower.png,progressive,The Wizard is building a tower
+ctrl_prog_Chef_kick,Chef,kick,kicked,Regular,chef_kick_ball.png,progressive,The Chef is kicking a ball
+ctrl_prog_Wizard_ride,Wizard,ride,rode,Irregular,wizard_ride_bicycle.png,progressive,The Wizard is riding a bicycle
+ctrl_prog_Chef_wash,Chef,wash,washed,Regular,chef_wash_dish.png,progressive,The Chef is washing a dish
+ctrl_prog_Pirate_dig,Pirate,dig,dug,Irregular,pirate_dig_hole.png,progressive,The Pirate is digging a hole
+ctrl_prog_Wizard_paint,Wizard,paint,painted,Regular,wizard_paint_canvas.png,progressive,The Wizard is painting a canvas
+ctrl_prog_Pirate_sweep,Pirate,sweep,swept,Irregular,pirate_sweep_floor.png,progressive,The Pirate is sweeping the floor
+ctrl_hadalready_Wizard_cut,Wizard,cut,cut,Irregular,wizard_cut_bread.png,had_already,The Wizard had already cut bread
+ctrl_hadalready_Wizard_light,Wizard,light,lit,Irregular,wizard_light_candle.png,had_already,The Wizard had already lit a candle
+ctrl_hadalready_Wizard_push,Wizard,push,pushed,Regular,wizard_push_cart.png,had_already,The Wizard had already pushed a cart
+ctrl_hadalready_Pirate_drink,Pirate,drink,drank,Irregular,pirate_drink_coffee.png,had_already,The Pirate had already drunk coffee
+ctrl_hadalready_Pirate_peel,Pirate,peel,peeled,Regular,pirate_peel_banana.png,had_already,The Pirate had already peeled a banana
+ctrl_hadalready_Pirate_stir,Pirate,stir,stirred,Regular,pirate_stir_pot.png,had_already,The Pirate had already stirred a pot
+ctrl_hadalready_Pirate_smell,Pirate,smell,smelled,Regular,pirate_smell_flower.png,had_already,The Pirate had already smelled a flower
+ctrl_hadalready_Chef_eat,Chef,eat,ate,Irregular,chef_eat_apple.png,had_already,The Chef had already eaten an apple
+ctrl_hadalready_Chef_throw,Chef,throw,threw,Irregular,chef_throw_frisbee.png,had_already,The Chef had already thrown a frisbee
+ctrl_hadalready_Chef_play,Chef,play,played,Regular,chef_play_guitar.png,had_already,The Chef had already played the guitar
+ctrl_hadalready_Pirate_cut,Pirate,cut,cut,Irregular,pirate_cut_bread.png,had_already,The Pirate had already cut bread
+ctrl_hadalready_Chef_light,Chef,light,lit,Irregular,chef_light_candle.png,had_already,The Chef had already lit a candle
+ctrl_hadalready_Pirate_push,Pirate,push,pushed,Regular,pirate_push_cart.png,had_already,The Pirate had already pushed a cart
+ctrl_hadalready_Wizard_drink,Wizard,drink,drank,Irregular,wizard_drink_coffee.png,had_already,The Wizard had already drunk coffee
+ctrl_hadalready_Chef_peel,Chef,peel,peeled,Regular,chef_peel_banana.png,had_already,The Chef had already peeled a banana
+ctrl_hadalready_Wizard_stir,Wizard,stir,stirred,Regular,wizard_stir_pot.png,had_already,The Wizard had already stirred a pot
+ctrl_hadalready_Wizard_smell,Wizard,smell,smelled,Regular,wizard_smell_flower.png,had_already,The Wizard had already smelled a flower
+ctrl_hadalready_Pirate_eat,Pirate,eat,ate,Irregular,pirate_eat_apple.png,had_already,The Pirate had already eaten an apple
+ctrl_hadalready_Wizard_throw,Wizard,throw,threw,Irregular,wizard_throw_frisbee.png,had_already,The Wizard had already thrown a frisbee
+ctrl_hadalready_Pirate_play,Pirate,play,played,Regular,pirate_play_guitar.png,had_already,The Pirate had already played the guitar
