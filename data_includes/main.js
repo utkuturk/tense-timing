@@ -252,9 +252,9 @@ newTrial(
   "practice_1",
   newTimer("pre_trial_blank", 400).start().wait(),
   getVar("TrialN").set((v) => v + 1),
-  newImage("stim", "pirate_kick_ball.png").size(360, 360).center().print(),
+  newImage("stim", "pirate_build_tower_v3.png").size(360, 360).center().print(),
   newText("pic_rating_gap", "").css("height", "24px").print(),
-  newText("sentence", "The pirate is kicking a ball.")
+  newText("sentence", "The pirate is building a tower.")
     .center().css("font-size", "1.25em").css("margin-top", "8px").print(),
   newText("question", "How well does this sentence go with the picture? (1-7)")
     .center().css("margin-top", "16px").print(),
@@ -290,7 +290,7 @@ newTrial(
   "practice_2",
   newTimer("pre_trial_blank", 400).start().wait(),
   getVar("TrialN").set((v) => v + 1),
-  newImage("stim", "chef_paint_canvas.png").size(360, 360).center().print(),
+  newImage("stim", "chef_paint_canvas_v3.png").size(360, 360).center().print(),
   newText("pic_rating_gap", "").css("height", "24px").print(),
   newText("sentence", "The chef dug a hole.")
     .center().css("font-size", "1.25em").css("margin-top", "8px").print(),
@@ -328,7 +328,7 @@ newTrial(
   "practice_3",
   newTimer("pre_trial_blank", 400).start().wait(),
   getVar("TrialN").set((v) => v + 1),
-  newImage("stim", "wizard_stir_pot.png").size(360, 360).center().print(),
+  newImage("stim", "wizard_stir_pot_v2.png").size(360, 360).center().print(),
   newText("pic_rating_gap", "").css("height", "24px").print(),
   newText("sentence", "The wizard had already stirred a pot.")
     .center().css("font-size", "1.25em").css("margin-top", "8px").print(),
@@ -368,7 +368,7 @@ newTrial(
   "practice_4",
   newTimer("pre_trial_blank", 400).start().wait(),
   getVar("TrialN").set((v) => v + 1),
-  newImage("stim", "wizard_sweep_floor.png").size(360, 360).center().print(),
+  newImage("stim", "wizard_sweep_floor_v3.png").size(360, 360).center().print(),
   newText("pic_rating_gap", "").css("height", "24px").print(),
   newText("sentence", "The wizard will sweep the floor.")
     .center().css("font-size", "1.25em").css("margin-top", "8px").print(),
