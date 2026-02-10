@@ -1,121 +1,121 @@
 item_id,group,character,verb,past_form,type,picture,tense,sentence
-Wizard_break,A,Wizard,break,broke,Irregular,wizard_break_stick.png,past,The Wizard broke a stick
-Wizard_break,B,Wizard,break,broke,Irregular,wizard_break_stick.png,future,The Wizard will break a stick
-Wizard_build,A,Wizard,build,built,Irregular,wizard_build_tower.png,future,The Wizard will build a tower
-Wizard_build,B,Wizard,build,built,Irregular,wizard_build_tower.png,past,The Wizard built a tower
-Wizard_climb,A,Wizard,climb,climbed,Regular,wizard_climb_ladder.png,past,The Wizard climbed a ladder
-Wizard_climb,B,Wizard,climb,climbed,Regular,wizard_climb_ladder.png,future,The Wizard will climb a ladder
-Wizard_cut,A,Wizard,cut,cut,Irregular,wizard_cut_bread.png,future,The Wizard will cut bread
-Wizard_cut,B,Wizard,cut,cut,Irregular,wizard_cut_bread.png,past,The Wizard cut bread
-Wizard_dig,A,Wizard,dig,dug,Irregular,wizard_dig_hole.png,past,The Wizard dug a hole
-Wizard_dig,B,Wizard,dig,dug,Irregular,wizard_dig_hole.png,future,The Wizard will dig a hole
-Wizard_drink,A,Wizard,drink,drank,Irregular,wizard_drink_coffee.png,future,The Wizard will drink coffee
-Wizard_drink,B,Wizard,drink,drank,Irregular,wizard_drink_coffee.png,past,The Wizard drank coffee
-Wizard_eat,A,Wizard,eat,ate,Irregular,wizard_eat_apple.png,past,The Wizard ate an apple
-Wizard_eat,B,Wizard,eat,ate,Irregular,wizard_eat_apple.png,future,The Wizard will eat an apple
-Wizard_hammer,A,Wizard,hammer,hammered,Regular,wizard_hammer_nail.png,future,The Wizard will hammer a nail
-Wizard_hammer,B,Wizard,hammer,hammered,Regular,wizard_hammer_nail.png,past,The Wizard hammered a nail
-Wizard_kick,A,Wizard,kick,kicked,Regular,wizard_kick_ball.png,past,The Wizard kicked a ball
-Wizard_kick,B,Wizard,kick,kicked,Regular,wizard_kick_ball.png,future,The Wizard will kick a ball
-Wizard_light,A,Wizard,light,lit,Irregular,wizard_light_candle.png,future,The Wizard will light a candle
-Wizard_light,B,Wizard,light,lit,Irregular,wizard_light_candle.png,past,The Wizard lit a candle
-Wizard_paint,A,Wizard,paint,painted,Regular,wizard_paint_canvas.png,past,The Wizard painted a canvas
-Wizard_paint,B,Wizard,paint,painted,Regular,wizard_paint_canvas.png,future,The Wizard will paint a canvas
-Wizard_peel,A,Wizard,peel,peeled,Regular,wizard_peel_banana.png,future,The Wizard will peel a banana
-Wizard_peel,B,Wizard,peel,peeled,Regular,wizard_peel_banana.png,past,The Wizard peeled a banana
-Wizard_play,A,Wizard,play,played,Regular,wizard_play_guitar.png,past,The Wizard played the guitar
-Wizard_play,B,Wizard,play,played,Regular,wizard_play_guitar.png,future,The Wizard will play the guitar
-Wizard_push,A,Wizard,push,pushed,Regular,wizard_push_cart.png,future,The Wizard will push a cart
-Wizard_push,B,Wizard,push,pushed,Regular,wizard_push_cart.png,past,The Wizard pushed a cart
-Wizard_ride,A,Wizard,ride,rode,Irregular,wizard_ride_bicycle.png,past,The Wizard rode a bicycle
-Wizard_ride,B,Wizard,ride,rode,Irregular,wizard_ride_bicycle.png,future,The Wizard will ride a bicycle
-Wizard_smell,A,Wizard,smell,smelled,Regular,wizard_smell_flower.png,future,The Wizard will smell a flower
-Wizard_smell,B,Wizard,smell,smelled,Regular,wizard_smell_flower.png,past,The Wizard smelled a flower
-Wizard_stir,A,Wizard,stir,stirred,Regular,wizard_stir_pot.png,past,The Wizard stirred a pot
-Wizard_stir,B,Wizard,stir,stirred,Regular,wizard_stir_pot.png,future,The Wizard will stir a pot
-Wizard_sweep,A,Wizard,sweep,swept,Irregular,wizard_sweep_floor.png,future,The Wizard will sweep the floor
-Wizard_sweep,B,Wizard,sweep,swept,Irregular,wizard_sweep_floor.png,past,The Wizard swept the floor
-Wizard_throw,A,Wizard,throw,threw,Irregular,wizard_throw_frisbee.png,past,The Wizard threw a frisbee
-Wizard_throw,B,Wizard,throw,threw,Irregular,wizard_throw_frisbee.png,future,The Wizard will throw a frisbee
-Wizard_wash,A,Wizard,wash,washed,Regular,wizard_wash_dish.png,future,The Wizard will wash a dish
-Wizard_wash,B,Wizard,wash,washed,Regular,wizard_wash_dish.png,past,The Wizard washed a dish
-Pirate_break,A,Pirate,break,broke,Irregular,pirate_break_stick.png,past,The Pirate broke a stick
-Pirate_break,B,Pirate,break,broke,Irregular,pirate_break_stick.png,future,The Pirate will break a stick
-Pirate_build,A,Pirate,build,built,Irregular,pirate_build_tower.png,future,The Pirate will build a tower
-Pirate_build,B,Pirate,build,built,Irregular,pirate_build_tower.png,past,The Pirate built a tower
-Pirate_climb,A,Pirate,climb,climbed,Regular,pirate_climb_ladder.png,past,The Pirate climbed a ladder
-Pirate_climb,B,Pirate,climb,climbed,Regular,pirate_climb_ladder.png,future,The Pirate will climb a ladder
-Pirate_cut,A,Pirate,cut,cut,Irregular,pirate_cut_bread.png,future,The Pirate will cut bread
-Pirate_cut,B,Pirate,cut,cut,Irregular,pirate_cut_bread.png,past,The Pirate cut bread
-Pirate_dig,A,Pirate,dig,dug,Irregular,pirate_dig_hole.png,past,The Pirate dug a hole
-Pirate_dig,B,Pirate,dig,dug,Irregular,pirate_dig_hole.png,future,The Pirate will dig a hole
-Pirate_drink,A,Pirate,drink,drank,Irregular,pirate_drink_coffee.png,future,The Pirate will drink coffee
-Pirate_drink,B,Pirate,drink,drank,Irregular,pirate_drink_coffee.png,past,The Pirate drank coffee
-Pirate_eat,A,Pirate,eat,ate,Irregular,pirate_eat_apple.png,past,The Pirate ate an apple
-Pirate_eat,B,Pirate,eat,ate,Irregular,pirate_eat_apple.png,future,The Pirate will eat an apple
-Pirate_hammer,A,Pirate,hammer,hammered,Regular,pirate_hammer_nail.png,future,The Pirate will hammer a nail
-Pirate_hammer,B,Pirate,hammer,hammered,Regular,pirate_hammer_nail.png,past,The Pirate hammered a nail
-Pirate_kick,A,Pirate,kick,kicked,Regular,pirate_kick_ball.png,past,The Pirate kicked a ball
-Pirate_kick,B,Pirate,kick,kicked,Regular,pirate_kick_ball.png,future,The Pirate will kick a ball
-Pirate_light,A,Pirate,light,lit,Irregular,pirate_light_candle.png,future,The Pirate will light a candle
-Pirate_light,B,Pirate,light,lit,Irregular,pirate_light_candle.png,past,The Pirate lit a candle
-Pirate_paint,A,Pirate,paint,painted,Regular,pirate_paint_canvas.png,past,The Pirate painted a canvas
-Pirate_paint,B,Pirate,paint,painted,Regular,pirate_paint_canvas.png,future,The Pirate will paint a canvas
-Pirate_peel,A,Pirate,peel,peeled,Regular,pirate_peel_banana.png,future,The Pirate will peel a banana
-Pirate_peel,B,Pirate,peel,peeled,Regular,pirate_peel_banana.png,past,The Pirate peeled a banana
-Pirate_play,A,Pirate,play,played,Regular,pirate_play_guitar.png,past,The Pirate played the guitar
-Pirate_play,B,Pirate,play,played,Regular,pirate_play_guitar.png,future,The Pirate will play the guitar
-Pirate_push,A,Pirate,push,pushed,Regular,pirate_push_cart.png,future,The Pirate will push a cart
-Pirate_push,B,Pirate,push,pushed,Regular,pirate_push_cart.png,past,The Pirate pushed a cart
-Pirate_ride,A,Pirate,ride,rode,Irregular,pirate_ride_bicycle.png,past,The Pirate rode a bicycle
-Pirate_ride,B,Pirate,ride,rode,Irregular,pirate_ride_bicycle.png,future,The Pirate will ride a bicycle
-Pirate_smell,A,Pirate,smell,smelled,Regular,pirate_smell_flower.png,future,The Pirate will smell a flower
-Pirate_smell,B,Pirate,smell,smelled,Regular,pirate_smell_flower.png,past,The Pirate smelled a flower
-Pirate_stir,A,Pirate,stir,stirred,Regular,pirate_stir_pot.png,past,The Pirate stirred a pot
-Pirate_stir,B,Pirate,stir,stirred,Regular,pirate_stir_pot.png,future,The Pirate will stir a pot
-Pirate_sweep,A,Pirate,sweep,swept,Irregular,pirate_sweep_floor.png,future,The Pirate will sweep the floor
-Pirate_sweep,B,Pirate,sweep,swept,Irregular,pirate_sweep_floor.png,past,The Pirate swept the floor
-Pirate_throw,A,Pirate,throw,threw,Irregular,pirate_throw_frisbee.png,past,The Pirate threw a frisbee
-Pirate_throw,B,Pirate,throw,threw,Irregular,pirate_throw_frisbee.png,future,The Pirate will throw a frisbee
-Pirate_wash,A,Pirate,wash,washed,Regular,pirate_wash_dish.png,future,The Pirate will wash a dish
-Pirate_wash,B,Pirate,wash,washed,Regular,pirate_wash_dish.png,past,The Pirate washed a dish
-Chef_break,A,Chef,break,broke,Irregular,chef_break_stick.png,past,The Chef broke a stick
-Chef_break,B,Chef,break,broke,Irregular,chef_break_stick.png,future,The Chef will break a stick
-Chef_build,A,Chef,build,built,Irregular,chef_build_tower.png,future,The Chef will build a tower
-Chef_build,B,Chef,build,built,Irregular,chef_build_tower.png,past,The Chef built a tower
-Chef_climb,A,Chef,climb,climbed,Regular,chef_climb_ladder.png,past,The Chef climbed a ladder
-Chef_climb,B,Chef,climb,climbed,Regular,chef_climb_ladder.png,future,The Chef will climb a ladder
-Chef_cut,A,Chef,cut,cut,Irregular,chef_cut_bread.png,future,The Chef will cut bread
-Chef_cut,B,Chef,cut,cut,Irregular,chef_cut_bread.png,past,The Chef cut bread
-Chef_dig,A,Chef,dig,dug,Irregular,chef_dig_hole.png,past,The Chef dug a hole
-Chef_dig,B,Chef,dig,dug,Irregular,chef_dig_hole.png,future,The Chef will dig a hole
-Chef_drink,A,Chef,drink,drank,Irregular,chef_drink_coffee.png,future,The Chef will drink coffee
-Chef_drink,B,Chef,drink,drank,Irregular,chef_drink_coffee.png,past,The Chef drank coffee
-Chef_eat,A,Chef,eat,ate,Irregular,chef_eat_apple.png,past,The Chef ate an apple
-Chef_eat,B,Chef,eat,ate,Irregular,chef_eat_apple.png,future,The Chef will eat an apple
-Chef_hammer,A,Chef,hammer,hammered,Regular,chef_hammer_nail.png,future,The Chef will hammer a nail
-Chef_hammer,B,Chef,hammer,hammered,Regular,chef_hammer_nail.png,past,The Chef hammered a nail
-Chef_kick,A,Chef,kick,kicked,Regular,chef_kick_ball.png,past,The Chef kicked a ball
-Chef_kick,B,Chef,kick,kicked,Regular,chef_kick_ball.png,future,The Chef will kick a ball
-Chef_light,A,Chef,light,lit,Irregular,chef_light_candle.png,future,The Chef will light a candle
-Chef_light,B,Chef,light,lit,Irregular,chef_light_candle.png,past,The Chef lit a candle
-Chef_paint,A,Chef,paint,painted,Regular,chef_paint_canvas.png,past,The Chef painted a canvas
-Chef_paint,B,Chef,paint,painted,Regular,chef_paint_canvas.png,future,The Chef will paint a canvas
-Chef_peel,A,Chef,peel,peeled,Regular,chef_peel_banana.png,future,The Chef will peel a banana
-Chef_peel,B,Chef,peel,peeled,Regular,chef_peel_banana.png,past,The Chef peeled a banana
-Chef_play,A,Chef,play,played,Regular,chef_play_guitar.png,past,The Chef played the guitar
-Chef_play,B,Chef,play,played,Regular,chef_play_guitar.png,future,The Chef will play the guitar
-Chef_push,A,Chef,push,pushed,Regular,chef_push_cart.png,future,The Chef will push a cart
-Chef_push,B,Chef,push,pushed,Regular,chef_push_cart.png,past,The Chef pushed a cart
-Chef_ride,A,Chef,ride,rode,Irregular,chef_ride_bicycle.png,past,The Chef rode a bicycle
-Chef_ride,B,Chef,ride,rode,Irregular,chef_ride_bicycle.png,future,The Chef will ride a bicycle
-Chef_smell,A,Chef,smell,smelled,Regular,chef_smell_flower.png,future,The Chef will smell a flower
-Chef_smell,B,Chef,smell,smelled,Regular,chef_smell_flower.png,past,The Chef smelled a flower
-Chef_stir,A,Chef,stir,stirred,Regular,chef_stir_pot.png,past,The Chef stirred a pot
-Chef_stir,B,Chef,stir,stirred,Regular,chef_stir_pot.png,future,The Chef will stir a pot
-Chef_sweep,A,Chef,sweep,swept,Irregular,chef_sweep_floor.png,future,The Chef will sweep the floor
-Chef_sweep,B,Chef,sweep,swept,Irregular,chef_sweep_floor.png,past,The Chef swept the floor
-Chef_throw,A,Chef,throw,threw,Irregular,chef_throw_frisbee.png,past,The Chef threw a frisbee
-Chef_throw,B,Chef,throw,threw,Irregular,chef_throw_frisbee.png,future,The Chef will throw a frisbee
-Chef_wash,A,Chef,wash,washed,Regular,chef_wash_dish.png,future,The Chef will wash a dish
-Chef_wash,B,Chef,wash,washed,Regular,chef_wash_dish.png,past,The Chef washed a dish
+Chef_blow,A,Chef,blow,blew,Irregular,chef_blow_bubbles_v4.png,past,The Chef blew bubbles
+Chef_blow,B,Chef,blow,blew,Irregular,chef_blow_bubbles_v4.png,future,The Chef will blow bubbles
+Chef_build,A,Chef,build,built,Irregular,chef_build_tower_v1.png,future,The Chef will build a tower
+Chef_build,B,Chef,build,built,Irregular,chef_build_tower_v1.png,past,The Chef built a tower
+Chef_carry,A,Chef,carry,carried,Regular,chef_carry_box_v5.png,past,The Chef carried a box
+Chef_carry,B,Chef,carry,carried,Regular,chef_carry_box_v5.png,future,The Chef will carry a box
+Chef_climb,A,Chef,climb,climbed,Regular,chef_climb_ladder_v2.png,future,The Chef will climb a ladder
+Chef_climb,B,Chef,climb,climbed,Regular,chef_climb_ladder_v2.png,past,The Chef climbed a ladder
+Chef_dig,A,Chef,dig,dug,Irregular,chef_dig_hole_v1.png,past,The Chef dug a hole
+Chef_dig,B,Chef,dig,dug,Irregular,chef_dig_hole_v1.png,future,The Chef will dig a hole
+Chef_drag,A,Chef,drag,dragged,Practice,chef_drag_sack_v1.png,future,The Chef will drag a sack
+Chef_drag,B,Chef,drag,dragged,Practice,chef_drag_sack_v1.png,past,The Chef dragged a sack
+Chef_drink,A,Chef,drink,drank,Irregular,chef_drink_coffee_v1.png,past,The Chef drank coffee
+Chef_drink,B,Chef,drink,drank,Irregular,chef_drink_coffee_v1.png,future,The Chef will drink coffee
+Chef_eat,A,Chef,eat,ate,Irregular,chef_eat_apple_v1.png,future,The Chef will eat an apple
+Chef_eat,B,Chef,eat,ate,Irregular,chef_eat_apple_v1.png,past,The Chef ate an apple
+Chef_paint,A,Chef,paint,painted,Regular,chef_paint_canvas_v3.png,past,The Chef painted a canvas
+Chef_paint,B,Chef,paint,painted,Regular,chef_paint_canvas_v3.png,future,The Chef will paint a canvas
+Chef_peel,A,Chef,peel,peeled,Regular,chef_peel_banana_v5.png,future,The Chef will peel a banana
+Chef_peel,B,Chef,peel,peeled,Regular,chef_peel_banana_v5.png,past,The Chef peeled a banana
+Chef_play,A,Chef,play,played,Regular,chef_play_guitar_v2.png,past,The Chef played the guitar
+Chef_play,B,Chef,play,played,Regular,chef_play_guitar_v2.png,future,The Chef will play the guitar
+Chef_push,A,Chef,push,pushed,Regular,chef_push_cart_v3.png,future,The Chef will push a cart
+Chef_push,B,Chef,push,pushed,Regular,chef_push_cart_v3.png,past,The Chef pushed a cart
+Chef_read,A,Chef,read,read,Irregular,chef_read_book_v2.png,past,The Chef read a book
+Chef_read,B,Chef,read,read,Irregular,chef_read_book_v2.png,future,The Chef will read a book
+Chef_ride,A,Chef,ride,rode,Irregular,chef_ride_bicycle_v2.png,future,The Chef will ride a bicycle
+Chef_ride,B,Chef,ride,rode,Irregular,chef_ride_bicycle_v2.png,past,The Chef rode a bicycle
+Chef_shake,A,Chef,shake,shook,Irregular,chef_shake_bottle_v2.png,past,The Chef shook a bottle
+Chef_shake,B,Chef,shake,shook,Irregular,chef_shake_bottle_v2.png,future,The Chef will shake a bottle
+Chef_smell,A,Chef,smell,smelled,Regular,chef_smell_flower_v1.png,future,The Chef will smell a flower
+Chef_smell,B,Chef,smell,smelled,Regular,chef_smell_flower_v1.png,past,The Chef smelled a flower
+Chef_spin,A,Chef,spin,spun,Practice,chef_spin_top_v3.png,past,The Chef spun a top
+Chef_spin,B,Chef,spin,spun,Practice,chef_spin_top_v3.png,future,The Chef will spin a top
+Chef_stir,A,Chef,stir,stirred,Regular,chef_stir_pot_v4.png,future,The Chef will stir a pot
+Chef_stir,B,Chef,stir,stirred,Regular,chef_stir_pot_v4.png,past,The Chef stirred a pot
+Chef_sweep,A,Chef,sweep,swept,Irregular,chef_sweep_floor_v1.png,past,The Chef swept the floor
+Chef_sweep,B,Chef,sweep,swept,Irregular,chef_sweep_floor_v1.png,future,The Chef will sweep the floor
+Chef_wash,A,Chef,wash,washed,Regular,chef_wash_dish_v3.png,future,The Chef will wash a dish
+Chef_wash,B,Chef,wash,washed,Regular,chef_wash_dish_v3.png,past,The Chef washed a dish
+Pirate_blow,A,Pirate,blow,blew,Irregular,pirate_blow_bubbles_v5.png,past,The Pirate blew bubbles
+Pirate_blow,B,Pirate,blow,blew,Irregular,pirate_blow_bubbles_v5.png,future,The Pirate will blow bubbles
+Pirate_build,A,Pirate,build,built,Irregular,pirate_build_tower_v3.png,future,The Pirate will build a tower
+Pirate_build,B,Pirate,build,built,Irregular,pirate_build_tower_v3.png,past,The Pirate built a tower
+Pirate_carry,A,Pirate,carry,carried,Regular,pirate_carry_box_v4.png,past,The Pirate carried a box
+Pirate_carry,B,Pirate,carry,carried,Regular,pirate_carry_box_v4.png,future,The Pirate will carry a box
+Pirate_climb,A,Pirate,climb,climbed,Regular,pirate_climb_ladder_v1.png,future,The Pirate will climb a ladder
+Pirate_climb,B,Pirate,climb,climbed,Regular,pirate_climb_ladder_v1.png,past,The Pirate climbed a ladder
+Pirate_dig,A,Pirate,dig,dug,Irregular,pirate_dig_hole_v4.png,past,The Pirate dug a hole
+Pirate_dig,B,Pirate,dig,dug,Irregular,pirate_dig_hole_v4.png,future,The Pirate will dig a hole
+Pirate_drag,A,Pirate,drag,dragged,Practice,pirate_drag_sack_v3.png,future,The Pirate will drag a sack
+Pirate_drag,B,Pirate,drag,dragged,Practice,pirate_drag_sack_v3.png,past,The Pirate dragged a sack
+Pirate_drink,A,Pirate,drink,drank,Irregular,pirate_drink_coffee_v2.png,past,The Pirate drank coffee
+Pirate_drink,B,Pirate,drink,drank,Irregular,pirate_drink_coffee_v2.png,future,The Pirate will drink coffee
+Pirate_eat,A,Pirate,eat,ate,Irregular,pirate_eat_apple_v5.png,future,The Pirate will eat an apple
+Pirate_eat,B,Pirate,eat,ate,Irregular,pirate_eat_apple_v5.png,past,The Pirate ate an apple
+Pirate_paint,A,Pirate,paint,painted,Regular,pirate_paint_canvas_v2.png,past,The Pirate painted a canvas
+Pirate_paint,B,Pirate,paint,painted,Regular,pirate_paint_canvas_v2.png,future,The Pirate will paint a canvas
+Pirate_peel,A,Pirate,peel,peeled,Regular,pirate_peel_banana_v5.png,future,The Pirate will peel a banana
+Pirate_peel,B,Pirate,peel,peeled,Regular,pirate_peel_banana_v5.png,past,The Pirate peeled a banana
+Pirate_play,A,Pirate,play,played,Regular,pirate_play_guitar_v5.png,past,The Pirate played the guitar
+Pirate_play,B,Pirate,play,played,Regular,pirate_play_guitar_v5.png,future,The Pirate will play the guitar
+Pirate_push,A,Pirate,push,pushed,Regular,pirate_push_cart_v3.png,future,The Pirate will push a cart
+Pirate_push,B,Pirate,push,pushed,Regular,pirate_push_cart_v3.png,past,The Pirate pushed a cart
+Pirate_read,A,Pirate,read,read,Irregular,pirate_read_book_v2.png,past,The Pirate read a book
+Pirate_read,B,Pirate,read,read,Irregular,pirate_read_book_v2.png,future,The Pirate will read a book
+Pirate_ride,A,Pirate,ride,rode,Irregular,pirate_ride_bicycle_v3.png,future,The Pirate will ride a bicycle
+Pirate_ride,B,Pirate,ride,rode,Irregular,pirate_ride_bicycle_v3.png,past,The Pirate rode a bicycle
+Pirate_shake,A,Pirate,shake,shook,Irregular,pirate_shake_bottle_v4.png,past,The Pirate shook a bottle
+Pirate_shake,B,Pirate,shake,shook,Irregular,pirate_shake_bottle_v4.png,future,The Pirate will shake a bottle
+Pirate_smell,A,Pirate,smell,smelled,Regular,pirate_smell_flower_v3.png,future,The Pirate will smell a flower
+Pirate_smell,B,Pirate,smell,smelled,Regular,pirate_smell_flower_v3.png,past,The Pirate smelled a flower
+Pirate_spin,A,Pirate,spin,spun,Practice,pirate_spin_top_v5.png,past,The Pirate spun a top
+Pirate_spin,B,Pirate,spin,spun,Practice,pirate_spin_top_v5.png,future,The Pirate will spin a top
+Pirate_stir,A,Pirate,stir,stirred,Regular,pirate_stir_pot_v3.png,future,The Pirate will stir a pot
+Pirate_stir,B,Pirate,stir,stirred,Regular,pirate_stir_pot_v3.png,past,The Pirate stirred a pot
+Pirate_sweep,A,Pirate,sweep,swept,Irregular,pirate_sweep_floor_v4.png,past,The Pirate swept the floor
+Pirate_sweep,B,Pirate,sweep,swept,Irregular,pirate_sweep_floor_v4.png,future,The Pirate will sweep the floor
+Pirate_wash,A,Pirate,wash,washed,Regular,pirate_wash_dish_v3.png,future,The Pirate will wash a dish
+Pirate_wash,B,Pirate,wash,washed,Regular,pirate_wash_dish_v3.png,past,The Pirate washed a dish
+Wizard_blow,A,Wizard,blow,blew,Irregular,wizard_blow_bubbles_v5.png,past,The Wizard blew bubbles
+Wizard_blow,B,Wizard,blow,blew,Irregular,wizard_blow_bubbles_v5.png,future,The Wizard will blow bubbles
+Wizard_build,A,Wizard,build,built,Irregular,wizard_build_tower_v2.png,future,The Wizard will build a tower
+Wizard_build,B,Wizard,build,built,Irregular,wizard_build_tower_v2.png,past,The Wizard built a tower
+Wizard_carry,A,Wizard,carry,carried,Regular,wizard_carry_box_v1.png,past,The Wizard carried a box
+Wizard_carry,B,Wizard,carry,carried,Regular,wizard_carry_box_v1.png,future,The Wizard will carry a box
+Wizard_climb,A,Wizard,climb,climbed,Regular,wizard_climb_ladder_v1.png,future,The Wizard will climb a ladder
+Wizard_climb,B,Wizard,climb,climbed,Regular,wizard_climb_ladder_v1.png,past,The Wizard climbed a ladder
+Wizard_dig,A,Wizard,dig,dug,Irregular,wizard_dig_hole_v4.png,past,The Wizard dug a hole
+Wizard_dig,B,Wizard,dig,dug,Irregular,wizard_dig_hole_v4.png,future,The Wizard will dig a hole
+Wizard_drag,A,Wizard,drag,dragged,Practice,wizard_drag_sack_v1.png,future,The Wizard will drag a sack
+Wizard_drag,B,Wizard,drag,dragged,Practice,wizard_drag_sack_v1.png,past,The Wizard dragged a sack
+Wizard_drink,A,Wizard,drink,drank,Irregular,wizard_drink_coffee_v5.png,past,The Wizard drank coffee
+Wizard_drink,B,Wizard,drink,drank,Irregular,wizard_drink_coffee_v5.png,future,The Wizard will drink coffee
+Wizard_eat,A,Wizard,eat,ate,Irregular,wizard_eat_apple_v4.png,future,The Wizard will eat an apple
+Wizard_eat,B,Wizard,eat,ate,Irregular,wizard_eat_apple_v4.png,past,The Wizard ate an apple
+Wizard_paint,A,Wizard,paint,painted,Regular,wizard_paint_canvas_v2.png,past,The Wizard painted a canvas
+Wizard_paint,B,Wizard,paint,painted,Regular,wizard_paint_canvas_v2.png,future,The Wizard will paint a canvas
+Wizard_peel,A,Wizard,peel,peeled,Regular,wizard_peel_banana_v1.png,future,The Wizard will peel a banana
+Wizard_peel,B,Wizard,peel,peeled,Regular,wizard_peel_banana_v1.png,past,The Wizard peeled a banana
+Wizard_play,A,Wizard,play,played,Regular,wizard_play_guitar_v1.png,past,The Wizard played the guitar
+Wizard_play,B,Wizard,play,played,Regular,wizard_play_guitar_v1.png,future,The Wizard will play the guitar
+Wizard_push,A,Wizard,push,pushed,Regular,wizard_push_cart_v1.png,future,The Wizard will push a cart
+Wizard_push,B,Wizard,push,pushed,Regular,wizard_push_cart_v1.png,past,The Wizard pushed a cart
+Wizard_read,A,Wizard,read,read,Irregular,wizard_read_book_v2.png,past,The Wizard read a book
+Wizard_read,B,Wizard,read,read,Irregular,wizard_read_book_v2.png,future,The Wizard will read a book
+Wizard_ride,A,Wizard,ride,rode,Irregular,wizard_ride_bicycle_v5.png,future,The Wizard will ride a bicycle
+Wizard_ride,B,Wizard,ride,rode,Irregular,wizard_ride_bicycle_v5.png,past,The Wizard rode a bicycle
+Wizard_shake,A,Wizard,shake,shook,Irregular,wizard_shake_bottle_v3.png,past,The Wizard shook a bottle
+Wizard_shake,B,Wizard,shake,shook,Irregular,wizard_shake_bottle_v3.png,future,The Wizard will shake a bottle
+Wizard_smell,A,Wizard,smell,smelled,Regular,wizard_smell_flower_v2.png,future,The Wizard will smell a flower
+Wizard_smell,B,Wizard,smell,smelled,Regular,wizard_smell_flower_v2.png,past,The Wizard smelled a flower
+Wizard_spin,A,Wizard,spin,spun,Practice,wizard_spin_top_v5.png,past,The Wizard spun a top
+Wizard_spin,B,Wizard,spin,spun,Practice,wizard_spin_top_v5.png,future,The Wizard will spin a top
+Wizard_stir,A,Wizard,stir,stirred,Regular,wizard_stir_pot_v2.png,future,The Wizard will stir a pot
+Wizard_stir,B,Wizard,stir,stirred,Regular,wizard_stir_pot_v2.png,past,The Wizard stirred a pot
+Wizard_sweep,A,Wizard,sweep,swept,Irregular,wizard_sweep_floor_v3.png,past,The Wizard swept the floor
+Wizard_sweep,B,Wizard,sweep,swept,Irregular,wizard_sweep_floor_v3.png,future,The Wizard will sweep the floor
+Wizard_wash,A,Wizard,wash,washed,Regular,wizard_wash_dish_v5.png,future,The Wizard will wash a dish
+Wizard_wash,B,Wizard,wash,washed,Regular,wizard_wash_dish_v5.png,past,The Wizard washed a dish
