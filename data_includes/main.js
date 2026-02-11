@@ -1,9 +1,9 @@
 PennController.ResetPrefix(null);
 DebugOff();
 SetCounter("setcounter");
-
-const PSYCH_SONA_LINK_BASE = "<PSYCH_LINK>";
-const LING_SONA_LINK_BASE = "<LING_LINK>";
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/norming/chunk_includes/pictures.zip")
+const PSYCH_SONA_LINK_BASE = "https://umpsychology.sona-systems.com/webstudy_credit.aspx?experiment_id=XX&credit_token=XX&survey_code=";
+const LING_SONA_LINK_BASE = "https://umlinguistics.sona-systems.com/webstudy_credit.aspx?experiment_id=XX&credit_token=XX&survey_code=";
 var psych_sona_link = PSYCH_SONA_LINK_BASE + GetURLParameter("id");
 var ling_sona_link = LING_SONA_LINK_BASE + GetURLParameter("id");
 
