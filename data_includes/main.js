@@ -48,6 +48,7 @@ Sequence(
   sepWithN("break", rshuffle("experiment", "filler"), BREAK_EVERY),
   "sendresults",
   "debrief",
+  "senddebrief",
   "exit_sona"
 );
 
@@ -218,17 +219,14 @@ newTrial(
   newText(
     "instruction2_text",
     "<center><b>Instructions (continued)</b></center>" +
-      "<p>Here are two more examples:</p>" +
+      "<p>You will see sentences in both <b>past</b> and <b>future</b> tense.</p>" +
       "<ul>" +
-      "<li><b>Good fit:</b> A picture of a girl planting a flower + <i>'The girl will plant a flower.'</i> — The sentence describes the same event as the picture, so this would be a <b>high</b> rating.</li>" +
-      "<li><b>Poor fit:</b> A picture of a girl planting a flower + <i>'The girl rode a bicycle.'</i> — The sentence describes a completely different event, so this would be a <b>low</b> rating.</li>" +
+      "<li><b>Good fit (past):</b> A picture of a girl planting a flower + <i>'The girl planted a flower.'</i> — Same event, so this would be a <b>high</b> rating.</li>" +
+      "<li><b>Good fit (future):</b> A picture of a girl planting a flower + <i>'The girl will plant a flower.'</i> — Same event, so this would also be a <b>high</b> rating.</li>" +
+      "<li><b>Poor fit (past):</b> A picture of a girl planting a flower + <i>'The girl rode a bicycle.'</i> — Different event, so this would be a <b>low</b> rating.</li>" +
+      "<li><b>Poor fit (future):</b> A picture of a girl planting a flower + <i>'The girl will ride a bicycle.'</i> — Different event, so this would also be a <b>low</b> rating.</li>" +
       "</ul>" +
-      "<p>In addition to event match, also pay attention to how the sentence describes the timing of the event:</p>" +
-      "<ul>" +
-      "<li><b>Poor fit despite same event:</b> A picture of a boy kicking a ball + <i>'The boy had already kicked a ball.'</i> — Even though the sentence is about the same event, <i>'had already'</i> suggests the action was completed long ago. This doesn't match a picture showing the action itself, so this would receive a <b>lower</b> rating.</li>" +
-      "<li><b>Another poor fit despite same event:</b> A picture of a boy kicking a ball + <i>'The boy will kick a ball tomorrow.'</i> — Again the same event, but <i>'will...tomorrow'</i> places the action firmly in the future. This doesn't match a picture showing the action itself, so this would also receive a <b>lower</b> rating.</li>" +
-      "</ul>" +
-      "<p>In short, consider both <b>what event</b> the sentence describes and <b>how</b> it describes it.</p>"
+      "<p>In short, consider both <b>when</b> the sentence places the event (past/future) and <b>what event</b> it describes.</p>"
   ).css(bodyCss),
   getText("instruction2_text").print(),
   newButton("instruction2_continue", "See practice items")
@@ -247,14 +245,14 @@ newTrial(
   newButton("practice_intro_continue", "START PRACTICE").css(buttonCss).center().print().wait()
 ).setOption("hideProgressBar", true);
 
-// Practice 1: Progressive, same event — expected GOOD fit (6-7)
+// Practice 1: Past tense, same event — expected GOOD fit (6-7)
 newTrial(
   "practice_1",
   newTimer("pre_trial_blank", 400).start().wait(),
   getVar("TrialN").set((v) => v + 1),
   newImage("stim", "pirate_build_tower_v3.png").size(360, 360).center().print(),
   newText("pic_rating_gap", "").css("height", "24px").print(),
-  newText("sentence", "The pirate is building a tower.")
+  newText("sentence", "The pirate built a tower.")
     .center().css("font-size", "1.25em").css("margin-top", "8px").print(),
   newText("question", "How well does this sentence go with the picture? (1-7)")
     .center().css("margin-top", "16px").print(),
@@ -285,7 +283,7 @@ newTrial(
   .log("RT-answer", getVar("RT_answer"))
   .setOption("hideProgressBar", true);
 
-// Practice 2: Different event — expected POOR fit (1-2)
+// Practice 2: Past tense, different event — expected POOR fit (1-2)
 newTrial(
   "practice_2",
   newTimer("pre_trial_blank", 400).start().wait(),
@@ -323,54 +321,14 @@ newTrial(
   .log("RT-answer", getVar("RT_answer"))
   .setOption("hideProgressBar", true);
 
-// Practice 3: "Had already", same event — expected POOR temporal fit (1-3)
+// Practice 3: Future tense, same event — expected GOOD fit (5-7)
 newTrial(
   "practice_3",
   newTimer("pre_trial_blank", 400).start().wait(),
   getVar("TrialN").set((v) => v + 1),
   newImage("stim", "wizard_stir_pot_v2.png").size(360, 360).center().print(),
   newText("pic_rating_gap", "").css("height", "24px").print(),
-  newText("sentence", "The wizard had already stirred a pot.")
-    .center().css("font-size", "1.25em").css("margin-top", "8px").print(),
-  newText("question", "How well does this sentence go with the picture? (1-7)")
-    .center().css("margin-top", "16px").print(),
-  getVar("RT_answer").set((v) => Date.now()),
-  newTimer("answer_timer", ANSWER_WINDOW_MS).start(),
-  newScale("rating", "1", "2", "3", "4", "5", "6", "7")
-    .before(newText("left", "Very poor fit"))
-    .after(newText("right", "Very good fit"))
-    .labelsPosition("bottom")
-    .keys("1", "2", "3", "4", "5", "6", "7")
-    .center()
-    .callback(getTimer("answer_timer").stop())
-    .log()
-    .print(),
-  getTimer("answer_timer").wait(),
-  getVar("RT_answer").set((v) => Date.now() - v),
-  newText("feedback",
-    "<b>Feedback:</b> This is a <b>poor fit despite being about the same event</b>. " +
-    "The phrase <i>'had already'</i> suggests the action was completed long ago, " +
-    "which doesn't match a picture showing the action itself. " +
-    "Typically rated toward the <b>lower end</b> of the scale (e.g., 1–4)."
-  ).center()
-    .css("margin-top", "20px").css("padding", "12px 16px")
-    .css("background-color", "#fff5f5").css("border-radius", "8px")
-    .css("border-left", "4px solid #cf222e")
-    .print(),
-  newButton("practice_continue", "CONTINUE").css(buttonCss).center().print().wait()
-)
-  .log("trialN", getVar("TrialN"))
-  .log("RT-answer", getVar("RT_answer"))
-  .setOption("hideProgressBar", true);
-
-// Practice 4: Future tense, same event — expected GOOD fit (5-7)
-newTrial(
-  "practice_4",
-  newTimer("pre_trial_blank", 400).start().wait(),
-  getVar("TrialN").set((v) => v + 1),
-  newImage("stim", "wizard_sweep_floor_v3.png").size(360, 360).center().print(),
-  newText("pic_rating_gap", "").css("height", "24px").print(),
-  newText("sentence", "The wizard will sweep the floor.")
+  newText("sentence", "The wizard will stir a pot.")
     .center().css("font-size", "1.25em").css("margin-top", "8px").print(),
   newText("question", "How well does this sentence go with the picture? (1-7)")
     .center().css("margin-top", "16px").print(),
@@ -389,11 +347,49 @@ newTrial(
   getVar("RT_answer").set((v) => Date.now() - v),
   newText("feedback",
     "<b>Feedback:</b> This is a <b>good fit</b>. The sentence describes the same event as the picture. " +
-    "Typically rated toward the <b>higher end</b> of the scale (e.g., 4–7)."
+    "Typically rated toward the <b>higher end</b> of the scale (e.g., 5–7)."
   ).center()
     .css("margin-top", "20px").css("padding", "12px 16px")
     .css("background-color", "#f0f7ff").css("border-radius", "8px")
     .css("border-left", "4px solid #1f6feb")
+    .print(),
+  newButton("practice_continue", "CONTINUE").css(buttonCss).center().print().wait()
+)
+  .log("trialN", getVar("TrialN"))
+  .log("RT-answer", getVar("RT_answer"))
+  .setOption("hideProgressBar", true);
+
+// Practice 4: Future tense, different event — expected POOR fit (1-2)
+newTrial(
+  "practice_4",
+  newTimer("pre_trial_blank", 400).start().wait(),
+  getVar("TrialN").set((v) => v + 1),
+  newImage("stim", "wizard_sweep_floor_v3.png").size(360, 360).center().print(),
+  newText("pic_rating_gap", "").css("height", "24px").print(),
+  newText("sentence", "The wizard will read a book.")
+    .center().css("font-size", "1.25em").css("margin-top", "8px").print(),
+  newText("question", "How well does this sentence go with the picture? (1-7)")
+    .center().css("margin-top", "16px").print(),
+  getVar("RT_answer").set((v) => Date.now()),
+  newTimer("answer_timer", ANSWER_WINDOW_MS).start(),
+  newScale("rating", "1", "2", "3", "4", "5", "6", "7")
+    .before(newText("left", "Very poor fit"))
+    .after(newText("right", "Very good fit"))
+    .labelsPosition("bottom")
+    .keys("1", "2", "3", "4", "5", "6", "7")
+    .center()
+    .callback(getTimer("answer_timer").stop())
+    .log()
+    .print(),
+  getTimer("answer_timer").wait(),
+  getVar("RT_answer").set((v) => Date.now() - v),
+  newText("feedback",
+    "<b>Feedback:</b> This is a <b>poor fit</b>. The picture shows a wizard sweeping, but the sentence is about reading a book — a different event. " +
+    "Typically rated toward the <b>lower end</b> of the scale (e.g., 1–2)."
+  ).center()
+    .css("margin-top", "20px").css("padding", "12px 16px")
+    .css("background-color", "#fff5f5").css("border-radius", "8px")
+    .css("border-left", "4px solid #cf222e")
     .print(),
   newButton("practice_continue", "CONTINUE").css(buttonCss).center().print().wait()
 )
@@ -447,7 +443,7 @@ Template(GetTable("items.csv").setGroupColumn("group"), row =>
     .log("sentence", row.sentence)
 );
 
-Template(GetTable("fillers.csv"), row =>
+Template(GetTable("fillers.csv").setGroupColumn("group"), row =>
   newTrial(
     "filler",
     ...ratingBlock(row.picture, normalizeSentenceCase(row.sentence))
@@ -455,7 +451,7 @@ Template(GetTable("fillers.csv"), row =>
     .log("trialN", getVar("TrialN"))
     .log("RT-answer", getVar("RT_answer"))
     .log("item_id", row.item_id)
-    .log("group", "filler")
+    .log("group", row.group)
     .log("character", row.character)
     .log("verb", row.verb)
     .log("past_form", row.past_form)
@@ -466,6 +462,7 @@ Template(GetTable("fillers.csv"), row =>
 );
 
 SendResults("sendresults");
+SendResults("senddebrief");
 
 newTrial(
   "debrief",
@@ -503,7 +500,7 @@ newTrial(
     .css(buttonCss)
     .center()
     .print()
-    .wait()
+    .wait(),
 ).setOption("hideProgressBar", true);
 
 newTrial(

@@ -1,0 +1,797 @@
+---
+title: "Norming Analysis Report"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
+## Experiment Overview
+
+This report analyzes the current norming dataset (`results_feb_19.csv`) for the sentence-picture fit task.
+
+Participants saw a picture and rated how well a sentence fit the picture on a **1-7 scale**.
+
+Main design properties:
+
+- Event descriptions in **past** vs **future** tense.
+- Two verb classes in analysis: **Regular** and **Irregular**.
+- Timed response window: **15 seconds** per trial.
+- Break screens inserted every 20 trials.
+- Filler trials used for data quality checks.
+
+```{r setup}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 8,
+  fig.height = 5
+)
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(brms)
+library(forcats)
+library(scales)
+library(knitr)
+library(posterior)
+
+theme_set(theme_classic(base_size = 12))
+set.seed(20260219)
+
+repo_root <- if (file.exists("results_feb_19.csv")) "." else ".."
+repo_path <- function(...) file.path(repo_root, ...)
+```
+
+```{r helper-functions}
+read_pcibex <- function(file,
+                        encoding = "UTF-8",
+                        exclude_controller_name = FALSE,
+                        type_opts = list()) {
+  con <- file(file, encoding = encoding)
+  on.exit(close(con), add = TRUE)
+
+  lines <- readLines(con, warn = FALSE)
+  lines <- gsub(",+$", "", lines)
+  lines <- lines[nzchar(lines)]
+
+  parse_colnames <- function(x) {
+    x <- x[grepl("^#\\s*\\d+\\.", x)]
+    if (!length(x)) {
+      return(character(0))
+    }
+    ids <- as.integer(sub("^#\\s*(\\d+)\\..*$", "\\1", x))
+    vals <- sub("^#\\s*\\d+\\.\\s*", "", x)
+    vals <- sub("\\.$", "", vals)
+    out <- rep(NA_character_, max(ids))
+    out[ids] <- vals
+    out
+  }
+
+  header_blocks <- list()
+  data_blocks <- list()
+  i <- 1
+  n <- length(lines)
+
+  while (i <= n) {
+    if (!grepl("^#", lines[i])) {
+      i <- i + 1
+      next
+    }
+
+    hdr <- character(0)
+    while (i <= n && grepl("^#", lines[i])) {
+      hdr <- c(hdr, lines[i])
+      i <- i + 1
+    }
+
+    dat <- character(0)
+    while (i <= n && !grepl("^#", lines[i])) {
+      if (nzchar(lines[i])) {
+        dat <- c(dat, lines[i])
+      }
+      i <- i + 1
+    }
+
+    if (length(dat)) {
+      header_blocks[[length(header_blocks) + 1]] <- hdr
+      data_blocks[[length(data_blocks) + 1]] <- dat
+    }
+  }
+
+  if (!length(data_blocks)) {
+    stop("No PCIbex data blocks found in file.")
+  }
+
+  ref_cols <- parse_colnames(header_blocks[[1]])
+  block_colnames <- vector("list", length(data_blocks))
+  block_data <- vector("list", length(data_blocks))
+
+  for (j in seq_along(data_blocks)) {
+    hdr_cols <- parse_colnames(header_blocks[[j]])
+    max_len <- max(length(ref_cols), length(hdr_cols))
+    cols <- rep(NA_character_, max_len)
+    cols[seq_along(ref_cols)] <- ref_cols
+    idx <- which(!is.na(hdr_cols))
+    cols[idx] <- hdr_cols[idx]
+
+    df <- utils::read.csv(
+      text = paste(data_blocks[[j]], collapse = "\n"),
+      header = FALSE,
+      stringsAsFactors = FALSE,
+      quote = "\"",
+      fill = TRUE,
+      comment.char = "",
+      check.names = FALSE
+    )
+
+    if (length(cols) < ncol(df)) {
+      cols <- c(cols, paste0("V", (length(cols) + 1):ncol(df)))
+    } else if (length(cols) > ncol(df)) {
+      cols <- cols[seq_len(ncol(df))]
+    }
+
+    cols[is.na(cols) | cols == ""] <- paste0("V", which(is.na(cols) | cols == ""))
+    cols <- make.names(
+      gsub("\\s+", "_", gsub("[^\\w\\s]", "", cols, perl = TRUE)),
+      unique = TRUE
+    )
+    colnames(df) <- cols
+
+    if (exclude_controller_name && "Controller_name" %in% colnames(df)) {
+      df <- df[, setdiff(colnames(df), "Controller_name"), drop = FALSE]
+    }
+
+    block_colnames[[j]] <- colnames(df)
+    block_data[[j]] <- df
+  }
+
+  all_cols <- unique(unlist(block_colnames, use.names = FALSE))
+  for (j in seq_along(block_data)) {
+    missing <- setdiff(all_cols, colnames(block_data[[j]]))
+    if (length(missing)) {
+      block_data[[j]][missing] <- NA
+    }
+    block_data[[j]] <- block_data[[j]][all_cols]
+  }
+
+  do.call(rbind, block_data)
+}
+
+clean_gender <- function(x) {
+  lx <- tolower(trimws(as.character(x)))
+  dplyr::case_when(
+    grepl("^f", lx) | grepl("woman", lx) ~ "Female",
+    grepl("^m", lx) | grepl("man", lx) ~ "Male",
+    TRUE ~ "Other/Unclear"
+  )
+}
+
+clean_native_language <- function(x) {
+  lx <- tolower(trimws(as.character(x)))
+  dplyr::if_else(grepl("english", lx), "English", "Other")
+}
+
+summarise_posterior <- function(x, label) {
+  tibble::tibble(
+    contrast = label,
+    mean = mean(x),
+    q2.5 = as.numeric(stats::quantile(x, 0.025)),
+    q97.5 = as.numeric(stats::quantile(x, 0.975)),
+    p_gt0 = mean(x > 0)
+  )
+}
+```
+
+```{r experiment-design}
+items_design <- read.csv(repo_path("chunk_includes", "items.csv"), stringsAsFactors = FALSE)
+fillers_design <- read.csv(repo_path("chunk_includes", "fillers.csv"), stringsAsFactors = FALSE)
+
+design_tbl <- tibble::tibble(
+  metric = c(
+    "Rows in items.csv",
+    "Rows per list (A/B) in items.csv",
+    "Unique pictures in items.csv",
+    "Rows in fillers.csv",
+    "Rows per list (A/B) in fillers.csv",
+    "Scale",
+    "Answer deadline",
+    "Break frequency"
+  ),
+  value = c(
+    nrow(items_design),
+    nrow(items_design) / dplyr::n_distinct(items_design$group),
+    dplyr::n_distinct(items_design$picture),
+    nrow(fillers_design),
+    nrow(fillers_design) / dplyr::n_distinct(fillers_design$group),
+    "1-7",
+    "15,000 ms",
+    "Every 20 trials"
+  )
+)
+
+knitr::kable(design_tbl, align = c("l", "r"))
+```
+
+## Data Loading And Cleaning
+
+```{r load-and-clean}
+results_file <- repo_path("results_feb_19.csv")
+dat <- read_pcibex(results_file, exclude_controller_name = TRUE)
+
+demographics_raw <- dat %>%
+  dplyr::filter(Label == "demo", Parameter == "Final") %>%
+  dplyr::transmute(
+    id = as.character(SONA_ID_URL),
+    field = PennElementName,
+    value = Value
+  ) %>%
+  tidyr::pivot_wider(names_from = field, values_from = value, id_cols = id) %>%
+  dplyr::distinct(id, .keep_all = TRUE)
+
+write.csv(demographics_raw, repo_path("data", "demog.csv"), row.names = FALSE)
+
+responses <- dat %>%
+  dplyr::filter(
+    PennElementType == "Scale",
+    PennElementName == "rating",
+    Parameter == "Choice"
+  ) %>%
+  dplyr::transmute(
+    label = Label,
+    rating_raw = Value,
+    rt_ms = suppressWarnings(as.numeric(RT_answer_header)),
+    trial_n = suppressWarnings(as.integer(trialN_header)),
+    sentence = sentence,
+    id = as.character(SONA_ID_URL),
+    picture = picture,
+    group = group,
+    character = character,
+    verb = verb,
+    past_form = past_form,
+    type_raw = type,
+    tense_raw = tense
+  )
+
+practice <- responses %>% dplyr::filter(grepl("^practice", label))
+filler <- responses %>% dplyr::filter(grepl("^filler", label))
+raw_exp <- responses %>% dplyr::filter(grepl("^exp", label) | grepl("^experiment", label))
+
+filler_participant <- filler %>%
+  dplyr::mutate(rating_num = suppressWarnings(as.numeric(rating_raw))) %>%
+  dplyr::group_by(id) %>%
+  dplyr::summarise(
+    filler_n = dplyr::n(),
+    mean_filler_rating = mean(rating_num, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+excluded_ids <- filler_participant %>%
+  dplyr::filter(mean_filler_rating > 2) %>%
+  dplyr::pull(id)
+
+exp_after_participant <- raw_exp %>%
+  dplyr::filter(!id %in% excluded_ids)
+
+analysis_df <- exp_after_participant %>%
+  dplyr::mutate(
+    type = dplyr::case_when(
+      tolower(type_raw) %in% c("regular", "drag") ~ "Regular",
+      tolower(type_raw) %in% c("irregular", "spin") ~ "Irregular",
+      TRUE ~ NA_character_
+    ),
+    tense = dplyr::case_when(
+      tolower(tense_raw) == "past" ~ "past",
+      tolower(tense_raw) == "future" ~ "future",
+      TRUE ~ NA_character_
+    ),
+    rating_num = suppressWarnings(as.integer(as.numeric(rating_raw)))
+  ) %>%
+  dplyr::filter(
+    !is.na(type),
+    !is.na(tense),
+    !is.na(rating_num),
+    !is.na(id),
+    !is.na(picture)
+  ) %>%
+  dplyr::mutate(
+    type = factor(type, levels = c("Regular", "Irregular")),
+    tense = factor(tense, levels = c("past", "future")),
+    id = factor(id),
+    picture = factor(picture)
+  ) %>%
+  droplevels()
+
+rating_levels <- sort(unique(analysis_df$rating_num))
+analysis_df <- analysis_df %>%
+  dplyr::mutate(rating_ord = ordered(rating_num, levels = rating_levels))
+
+analysis_rt <- analysis_df %>%
+  dplyr::filter(!is.na(rt_ms), is.finite(rt_ms), rt_ms > 0) %>%
+  dplyr::mutate(log_rt = log(rt_ms))
+```
+
+## Demographics
+
+```{r demographics-summary}
+demographics <- demographics_raw %>%
+  dplyr::mutate(
+    age_num = suppressWarnings(as.numeric(age)),
+    location_clean = gsub("\\+", " ", utils::URLdecode(as.character(location))),
+    gender_clean = clean_gender(gender),
+    native_language_clean = clean_native_language(native_language)
+  )
+
+demographics_retained <- demographics %>%
+  dplyr::filter(id %in% levels(analysis_df$id))
+
+sample_demo_summary <- function(df, sample_name) {
+  tibble::tibble(
+    sample = sample_name,
+    n = nrow(df),
+    age_mean = round(mean(df$age_num, na.rm = TRUE), 2),
+    age_sd = round(stats::sd(df$age_num, na.rm = TRUE), 2),
+    age_min = min(df$age_num, na.rm = TRUE),
+    age_max = max(df$age_num, na.rm = TRUE)
+  )
+}
+
+demo_summary_tbl <- dplyr::bind_rows(
+  sample_demo_summary(demographics, "All recruited participants"),
+  sample_demo_summary(demographics_retained, "Participants retained for analysis")
+)
+
+knitr::kable(demo_summary_tbl, align = c("l", "r", "r", "r", "r", "r"))
+
+gender_tbl <- demographics_retained %>%
+  dplyr::count(gender_clean, name = "n") %>%
+  dplyr::mutate(percent = scales::percent(n / sum(n), accuracy = 1))
+
+language_tbl <- demographics_retained %>%
+  dplyr::count(native_language_clean, name = "n") %>%
+  dplyr::mutate(percent = scales::percent(n / sum(n), accuracy = 1))
+
+knitr::kable(gender_tbl, caption = "Gender (retained sample)")
+knitr::kable(language_tbl, caption = "Native language (retained sample)")
+```
+
+## Exclusion Information
+
+```{r exclusion-summary}
+exclusion_tbl <- tibble::tibble(
+  step = c(
+    "Participants with any rating responses",
+    "Participants excluded (filler mean rating > 2)",
+    "Participants retained in analysis",
+    "Raw experiment-labeled trials",
+    "Trials after participant-level exclusion",
+    "Trials retained for ordinal analysis",
+    "Trials retained for RT analysis"
+  ),
+  n = c(
+    dplyr::n_distinct(responses$id),
+    length(excluded_ids),
+    dplyr::n_distinct(analysis_df$id),
+    nrow(raw_exp),
+    nrow(exp_after_participant),
+    nrow(analysis_df),
+    nrow(analysis_rt)
+  )
+)
+
+knitr::kable(exclusion_tbl, align = c("l", "r"))
+
+if (length(excluded_ids) == 0) {
+  excluded_ids_text <- "None"
+} else {
+  excluded_ids_text <- paste(excluded_ids, collapse = ", ")
+}
+excluded_ids_text
+```
+
+## Descriptive Statistics: Ordinal Ratings
+
+```{r ordinal-descriptives-table}
+ordinal_summary <- analysis_df %>%
+  dplyr::group_by(type, tense) %>%
+  dplyr::summarise(
+    n = dplyr::n(),
+    mean_rating = mean(rating_num),
+    sd_rating = stats::sd(rating_num),
+    median_rating = stats::median(rating_num),
+    min_rating = min(rating_num),
+    max_rating = max(rating_num),
+    .groups = "drop"
+  )
+
+knitr::kable(ordinal_summary, digits = 2)
+```
+
+```{r ordinal-distribution-plot}
+rating_dist <- analysis_df %>%
+  dplyr::count(type, tense, rating_num, name = "n") %>%
+  dplyr::group_by(type, tense) %>%
+  dplyr::mutate(prop = n / sum(n)) %>%
+  dplyr::ungroup()
+
+ggplot(rating_dist, aes(x = factor(rating_num), y = prop, fill = factor(rating_num))) +
+  geom_col(color = "black", width = 0.82) +
+  facet_grid(type ~ tense) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_fill_grey(start = 0.85, end = 0.2, name = "Rating") +
+  labs(
+    title = "Observed Rating Distribution",
+    x = "Rating",
+    y = "Proportion"
+  ) +
+  theme(legend.position = "right")
+```
+
+```{r ordinal-mean-plot}
+ordinal_ci <- analysis_df %>%
+  dplyr::group_by(type, tense) %>%
+  dplyr::summarise(
+    n = dplyr::n(),
+    mean_rating = mean(rating_num),
+    se = stats::sd(rating_num) / sqrt(n),
+    ci = stats::qt(0.975, df = pmax(n - 1, 1)) * se,
+    lower = mean_rating - ci,
+    upper = mean_rating + ci,
+    .groups = "drop"
+  )
+
+pd <- position_dodge(width = 0.25)
+
+ggplot(ordinal_ci, aes(x = tense, y = mean_rating, color = type, group = type)) +
+  geom_point(position = pd, size = 2.7) +
+  geom_errorbar(
+    aes(ymin = lower, ymax = upper),
+    width = 0.1,
+    position = pd
+  ) +
+  scale_x_discrete(labels = c(past = "Past", future = "Future")) +
+  labs(
+    title = "Mean Rating By Condition",
+    x = "Tense",
+    y = "Mean rating (1-7)",
+    color = "Verb type"
+  )
+```
+
+## Descriptive Statistics: RT
+
+```{r rt-descriptives-table}
+rt_summary <- analysis_rt %>%
+  dplyr::group_by(type, tense) %>%
+  dplyr::summarise(
+    n = dplyr::n(),
+    mean_rt_ms = mean(rt_ms),
+    sd_rt_ms = stats::sd(rt_ms),
+    median_rt_ms = stats::median(rt_ms),
+    min_rt_ms = min(rt_ms),
+    max_rt_ms = max(rt_ms),
+    .groups = "drop"
+  )
+
+knitr::kable(rt_summary, digits = 1)
+```
+
+```{r rt-distribution-plot}
+ggplot(analysis_rt, aes(x = tense, y = rt_ms, color = type, fill = type)) +
+  geom_violin(
+    position = position_dodge(width = 0.85),
+    alpha = 0.2,
+    trim = FALSE
+  ) +
+  geom_boxplot(
+    width = 0.16,
+    position = position_dodge(width = 0.85),
+    outlier.alpha = 0.2
+  ) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "RT Distributions By Condition",
+    x = "Tense",
+    y = "RT (ms)",
+    color = "Verb type",
+    fill = "Verb type"
+  )
+```
+
+```{r rt-mean-plot}
+rt_ci <- analysis_rt %>%
+  dplyr::group_by(type, tense) %>%
+  dplyr::summarise(
+    n = dplyr::n(),
+    mean_rt = mean(rt_ms),
+    se = stats::sd(rt_ms) / sqrt(n),
+    ci = stats::qt(0.975, df = pmax(n - 1, 1)) * se,
+    lower = mean_rt - ci,
+    upper = mean_rt + ci,
+    .groups = "drop"
+  )
+
+ggplot(rt_ci, aes(x = tense, y = mean_rt, color = type, group = type)) +
+  geom_point(position = pd, size = 2.7) +
+  geom_errorbar(
+    aes(ymin = lower, ymax = upper),
+    width = 0.1,
+    position = pd
+  ) +
+  scale_x_discrete(labels = c(past = "Past", future = "Future")) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Mean RT By Condition",
+    x = "Tense",
+    y = "Mean RT (ms)",
+    color = "Verb type"
+  )
+```
+
+## Bayesian Modeling
+
+The models below use maximal random-effects structure by participant and item:
+
+- **Ordinal model**: cumulative logit for `rating_ord`.
+- **RT model**: Gaussian model on `log_rt`.
+
+```{r fit-or-load-models}
+artifact_path <- repo_path("analysis_output", "norming_model_artifacts.rds")
+ord_model_path <- repo_path("analysis_output", "ord_model_tmp.rds")
+rt_model_path <- repo_path("analysis_output", "rt_model_tmp.rds")
+
+rstan_available <- requireNamespace("rstan", quietly = TRUE)
+
+if (!rstan_available && file.exists(artifact_path)) {
+  model_artifacts <- readRDS(artifact_path)
+  ord_fixef <- model_artifacts$ord_fixef
+  rt_fixef <- model_artifacts$rt_fixef
+  pred_grid <- model_artifacts$pred_grid
+  ord_pred_summary <- model_artifacts$ord_pred_summary
+  rt_pred_summary <- model_artifacts$rt_pred_summary
+  ord_expected_draws <- model_artifacts$ord_expected_draws
+  rt_ms_draws <- model_artifacts$rt_ms_draws
+  ord_diff_future_minus_past <- model_artifacts$ord_diff_future_minus_past
+  rt_diff_future_minus_past <- model_artifacts$rt_diff_future_minus_past
+  rt_ratio_future_over_past <- model_artifacts$rt_ratio_future_over_past
+  posterior_contrasts <- model_artifacts$posterior_contrasts
+  model_source <- paste(
+    model_artifacts$model_source,
+    "Using precomputed artifacts because rstan is unavailable in this render environment."
+  )
+} else if (!rstan_available && !file.exists(artifact_path)) {
+  stop(
+    paste0(
+      "rstan is unavailable in this render environment and no precomputed artifacts were found at ",
+      artifact_path,
+      "."
+    )
+  )
+} else {
+  if (file.exists(ord_model_path) && file.exists(rt_model_path)) {
+    ord_model <- readRDS(ord_model_path)
+    rt_model <- readRDS(rt_model_path)
+    model_source <- "Loaded existing models from analysis_output."
+  } else {
+    detected_cores <- parallel::detectCores(logical = FALSE)
+    if (is.na(detected_cores) || detected_cores < 1) {
+      detected_cores <- 2L
+    }
+    cores_to_use <- min(4L, as.integer(detected_cores))
+    options(mc.cores = cores_to_use)
+
+    backend_to_use <- if (requireNamespace("cmdstanr", quietly = TRUE)) "cmdstanr" else "rstan"
+
+    ord_model <- brms::brm(
+      rating_ord ~ tense * type + (1 + tense * type | id) + (1 + tense * type | picture),
+      data = analysis_df,
+      family = cumulative("logit"),
+      backend = backend_to_use,
+      chains = 4,
+      cores = cores_to_use,
+      iter = 2000,
+      warmup = 1000,
+      seed = 1001,
+      control = list(adapt_delta = 0.95, max_treedepth = 12),
+      refresh = 0
+    )
+
+    rt_model <- brms::brm(
+      log_rt ~ tense * type + (1 + tense * type | id) + (1 + tense * type | picture),
+      data = analysis_rt,
+      family = gaussian(),
+      backend = backend_to_use,
+      chains = 4,
+      cores = cores_to_use,
+      iter = 2000,
+      warmup = 1000,
+      seed = 1002,
+      control = list(adapt_delta = 0.95, max_treedepth = 12),
+      refresh = 0
+    )
+
+    saveRDS(ord_model, ord_model_path)
+    saveRDS(rt_model, rt_model_path)
+    model_source <- "Models were fit in this render and saved to analysis_output."
+  }
+
+  ord_fixef <- as.data.frame(fixef(ord_model))
+  ord_fixef <- cbind(term = rownames(ord_fixef), ord_fixef)
+  rownames(ord_fixef) <- NULL
+
+  rt_fixef <- as.data.frame(fixef(rt_model))
+  rt_fixef <- cbind(term = rownames(rt_fixef), rt_fixef)
+  rownames(rt_fixef) <- NULL
+
+  pred_grid <- expand.grid(
+    tense = levels(analysis_df$tense),
+    type = levels(analysis_df$type),
+    stringsAsFactors = FALSE
+  ) %>%
+    dplyr::mutate(
+      tense = factor(tense, levels = levels(analysis_df$tense)),
+      type = factor(type, levels = levels(analysis_df$type))
+    )
+
+  ord_epred <- posterior_epred(ord_model, newdata = pred_grid, re_formula = NA)
+  rating_support <- seq_len(dim(ord_epred)[3])
+
+  ord_expected_draws <- matrix(
+    NA_real_,
+    nrow = dim(ord_epred)[1],
+    ncol = nrow(pred_grid)
+  )
+  for (i in seq_len(nrow(pred_grid))) {
+    ord_expected_draws[, i] <- ord_epred[, i, ] %*% rating_support
+  }
+
+  ord_pred_summary <- pred_grid %>%
+    dplyr::mutate(
+      mean = apply(ord_expected_draws, 2, mean),
+      lower = apply(ord_expected_draws, 2, stats::quantile, probs = 0.025),
+      upper = apply(ord_expected_draws, 2, stats::quantile, probs = 0.975)
+    )
+
+  rt_linpred <- posterior_linpred(rt_model, newdata = pred_grid, re_formula = NA)
+  rt_ms_draws <- exp(rt_linpred)
+  rt_pred_summary <- pred_grid %>%
+    dplyr::mutate(
+      mean = apply(rt_ms_draws, 2, mean),
+      lower = apply(rt_ms_draws, 2, stats::quantile, probs = 0.025),
+      upper = apply(rt_ms_draws, 2, stats::quantile, probs = 0.975)
+    )
+
+  past_idx <- which(pred_grid$tense == "past")
+  future_idx <- which(pred_grid$tense == "future")
+
+  ord_past_draw <- rowMeans(ord_expected_draws[, past_idx, drop = FALSE])
+  ord_future_draw <- rowMeans(ord_expected_draws[, future_idx, drop = FALSE])
+  ord_diff_future_minus_past <- ord_future_draw - ord_past_draw
+
+  rt_past_draw <- rowMeans(rt_ms_draws[, past_idx, drop = FALSE])
+  rt_future_draw <- rowMeans(rt_ms_draws[, future_idx, drop = FALSE])
+  rt_diff_future_minus_past <- rt_future_draw - rt_past_draw
+  rt_ratio_future_over_past <- rt_future_draw / rt_past_draw
+
+  posterior_contrasts <- dplyr::bind_rows(
+    summarise_posterior(
+      ord_diff_future_minus_past,
+      "Expected rating difference: future - past"
+    ),
+    summarise_posterior(
+      rt_diff_future_minus_past,
+      "RT difference (ms): future - past"
+    ),
+    summarise_posterior(
+      log(rt_ratio_future_over_past),
+      "Log RT ratio: log(future/past)"
+    )
+  )
+
+  model_artifacts <- list(
+    ord_fixef = ord_fixef,
+    rt_fixef = rt_fixef,
+    pred_grid = pred_grid,
+    ord_pred_summary = ord_pred_summary,
+    rt_pred_summary = rt_pred_summary,
+    ord_expected_draws = ord_expected_draws,
+    rt_ms_draws = rt_ms_draws,
+    ord_diff_future_minus_past = ord_diff_future_minus_past,
+    rt_diff_future_minus_past = rt_diff_future_minus_past,
+    rt_ratio_future_over_past = rt_ratio_future_over_past,
+    posterior_contrasts = posterior_contrasts,
+    model_source = model_source
+  )
+  saveRDS(model_artifacts, artifact_path)
+}
+
+model_source
+```
+
+### Posterior Summaries (Fixed Effects)
+
+```{r model-fixed-effects}
+knitr::kable(ord_fixef, digits = 3, caption = "Ordinal model fixed effects")
+knitr::kable(rt_fixef, digits = 3, caption = "RT model fixed effects (log scale)")
+```
+
+### Model-Based Prediction Plots
+
+```{r model-predictions}
+ggplot(ord_pred_summary, aes(x = tense, y = mean, color = type, group = type)) +
+  geom_point(position = pd, size = 2.7) +
+  geom_errorbar(
+    aes(ymin = lower, ymax = upper),
+    width = 0.1,
+    position = pd
+  ) +
+  labs(
+    title = "Ordinal Model: Posterior Expected Rating",
+    x = "Tense",
+    y = "Expected rating",
+    color = "Verb type"
+  )
+```
+
+```{r rt-model-predictions}
+ggplot(rt_pred_summary, aes(x = tense, y = mean, color = type, group = type)) +
+  geom_point(position = pd, size = 2.7) +
+  geom_errorbar(
+    aes(ymin = lower, ymax = upper),
+    width = 0.1,
+    position = pd
+  ) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "RT Model: Posterior Predicted Mean RT",
+    x = "Tense",
+    y = "Predicted mean RT (ms)",
+    color = "Verb type"
+  )
+```
+
+## Posterior Contrasts For Relevant Effects
+
+```{r posterior-contrasts}
+knitr::kable(posterior_contrasts, digits = 3)
+```
+
+```{r posterior-rt-difference-plot}
+rt_diff_df <- data.frame(rt_diff = rt_diff_future_minus_past)
+
+ggplot(rt_diff_df, aes(x = rt_diff)) +
+  geom_density(fill = "grey80", color = "black", linewidth = 0.5) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "red", linewidth = 0.6) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(
+    title = "Posterior Distribution: Future - Past RT Difference",
+    x = "Difference in ms (future - past)",
+    y = "Density"
+  )
+```
+
+## Interpretation
+
+```{r interpretation-values}
+rt_diff_ci <- stats::quantile(rt_diff_future_minus_past, c(0.025, 0.975))
+rt_ratio_ci <- stats::quantile(rt_ratio_future_over_past, c(0.025, 0.975))
+ord_diff_ci <- stats::quantile(ord_diff_future_minus_past, c(0.025, 0.975))
+```
+
+In the RT model, the posterior mean future-minus-past difference is
+`r round(mean(rt_diff_future_minus_past), 1)` ms, with a 95% credible interval of
+[`r round(rt_diff_ci[[1]], 1)`, `r round(rt_diff_ci[[2]], 1)`] ms.
+
+The posterior probability that future RT is greater than past RT is
+`r round(mean(rt_diff_future_minus_past > 0), 3)`, and the posterior RT ratio
+(future/past) is `r round(mean(rt_ratio_future_over_past), 3)` with 95% CrI
+[`r round(rt_ratio_ci[[1]], 3)`, `r round(rt_ratio_ci[[2]], 3)`].
+
+This supports your main conclusion: **there is no reliable RT difference between
+future and past**, consistent with the idea that past and future are similarly
+accessible from the pictures.
+
+For completeness, the model-based expected-rating difference (future - past) is
+`r round(mean(ord_diff_future_minus_past), 3)` with 95% CrI
+[`r round(ord_diff_ci[[1]], 3)`, `r round(ord_diff_ci[[2]], 3)`].
