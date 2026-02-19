@@ -2,6 +2,10 @@
 
 This directory contains a PCIbex experiment for norming stimuli.
 
+## Quick Links
+- [norming.html](./norming.html) (analysis report)
+- [norming.qmd](./norming.qmd) (source document)
+
 ## Structure
 - `data_includes/main.js`: The main experiment script.
 - `chunk_includes/items.csv`: The list of items (pictures and verbs) to test.
