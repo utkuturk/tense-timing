@@ -1,1 +1,34 @@
+# Virtual environments
+.venv
+venv/
+ENV/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+*.rds
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
 token
+.env
