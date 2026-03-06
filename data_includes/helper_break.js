@@ -20,6 +20,10 @@ function defineBreakTrial() {
     newButton("Continue")
         .center()
         .print()
+        ,
+    newKey("break_space_continue", " ").callback(getButton("Continue").click())
+        ,
+    getButton("Continue")
         .wait()
   )
     .setOption("hideProgressBar", true);

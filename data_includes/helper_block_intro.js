@@ -1,7 +1,7 @@
 var MIN_VERB_STUDY_MS = 1200;
 var MIN_TENSE_STUDY_MS = 1400;
 var __speechCounter = 0;
-var __ttsCurrentAudio = null;
+var ENTITY_DISPLAY_ORDER = ["Pirate", "Wizard", "Chef"];
 
 function uniqueByVerb(items) {
   const seen = {};
@@ -22,30 +22,6 @@ function sortByEntityThenVerb(items) {
   });
 }
 
-function speakText(text) {
-  const id = `speak_${__speechCounter++}`;
-  return newFunction(id, () => {
-    const fallbackSpeak = () => {
-      if (!window.speechSynthesis) return;
-      try {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.rate = 0.95;
-        utter.pitch = 1.0;
-        window.speechSynthesis.speak(utter);
-      } catch (e) {
-        // Keep the trial running even if speech synthesis is unavailable.
-      }
-    };
-
-    try {
-      fallbackSpeak();
-    } catch (e) {
-      fallbackSpeak();
-    }
-  }).call();
-}
-
 function audioFileForVerb(item) {
   return `tts_verb_${item.verb}.mp3`;
 }
@@ -56,35 +32,12 @@ function audioFileForSentence(item) {
   return `tts_sent_${entity}_${item.verb}_${tense}.mp3`;
 }
 
-function playPreGeneratedAudio(fileName, fallbackText) {
+function playPreGeneratedAudio(fileName) {
   const id = `audio_${__speechCounter++}`;
-  return newFunction(id, () => {
-    const fallbackSpeak = () => {
-      if (!window.speechSynthesis) return;
-      try {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(fallbackText);
-        utter.rate = 0.95;
-        utter.pitch = 1.0;
-        window.speechSynthesis.speak(utter);
-      } catch (e) {
-        // If both audio and fallback fail, continue silently.
-      }
-    };
-
-    try {
-      if (__ttsCurrentAudio) {
-        __ttsCurrentAudio.pause();
-        __ttsCurrentAudio.currentTime = 0;
-      }
-      const audio = new Audio(fileName);
-      __ttsCurrentAudio = audio;
-      audio.onerror = () => fallbackSpeak();
-      audio.play().catch(() => fallbackSpeak());
-    } catch (e) {
-      fallbackSpeak();
-    }
-  }).call();
+  return [
+    newAudio(id, fileName),
+    getAudio(id).play()
+  ];
 }
 
 function withObject(verb, objectPhrase) {
@@ -111,8 +64,9 @@ var introTrial = (blockName, items) => {
       .bold()
       .css(button_css)
       .center()
-      .print()
-      .wait(),
+      .print(),
+    newKey(`intro_start_space_${blockName}`, " ").callback(getButton("intro_start").click()),
+    getButton("intro_start").wait(),
     getText("intro_title").remove(),
     getText("intro_body").remove(),
     getButton("intro_start").remove()
@@ -121,10 +75,6 @@ var introTrial = (blockName, items) => {
   verbItems.forEach((item, idx) => {
     const n = idx + 1;
     commands.push(
-      newText(`vcount_${n}`, `Verb ${n} of ${verbItems.length}`)
-        .css({ "font-size": "1.2em", "font-weight": "bold" })
-        .center()
-        .print(),
       newImage(`vimg_${n}`, item.pic).size(220, 220).center().print(),
       newText(`vent_${n}`, item.entity).css({ "font-size": "1.1em" }).center().print(),
       newText(`vtxt_${n}`, item.verb)
@@ -135,7 +85,7 @@ var introTrial = (blockName, items) => {
         .css({ "font-size": "1.25em", "margin-top": "6px" })
         .center()
         .print(),
-      playPreGeneratedAudio(audioFileForVerb(item), withObject(item.verb, item.object)),
+      ...playPreGeneratedAudio(audioFileForVerb(item)),
       newTimer(`vmin_${n}`, MIN_VERB_STUDY_MS).start(),
       newButton(`vnext_${n}`, "Next")
         .bold()
@@ -145,8 +95,8 @@ var introTrial = (blockName, items) => {
         .print(),
       getTimer(`vmin_${n}`).wait(),
       getButton(`vnext_${n}`).enable(),
+      newKey(`vnext_space_${n}`, " ").callback(getButton(`vnext_${n}`).click()),
       getButton(`vnext_${n}`).wait(),
-      getText(`vcount_${n}`).remove(),
       getImage(`vimg_${n}`).remove(),
       getText(`vent_${n}`).remove(),
       getText(`vtxt_${n}`).remove(),
@@ -169,72 +119,118 @@ var tenseIntroTrial = (blockName) =>
       "body",
       "<p>Some events happened <b>yesterday</b> (Past).</p>" +
       "<p>Some events will happen <b>tomorrow</b> (Future).</p>" +
-      "<p>Next, each verb will be shown with its <b>assigned tense</b>.</p>"
+      "<p>Next, each item will appear one by one.</p>" +
+      "<p>For each item, press <b>SPACE</b> to reveal the picture and hear the sentence audio.</p>" +
+      "<p>Then click <b>Next</b> to continue.</p>"
     )
       .css({ "font-size": "1.25em", "max-width": "38em", "text-align": "left", "margin-top": "20px" })
       .center()
       .print(),
-    newButton("Continue")
-      .bold()
-      .css(button_css)
+    newText("space_to_start", "Press SPACE to begin.")
+      .css({ "font-size": "1.2em", "font-weight": "bold", "margin-top": "16px" })
       .center()
-      .print()
-      .wait()
+      .print(),
+    newKey(`tense_intro_space_${blockName}`, " ").wait()
   ).setOption("hideProgressBar", true);
 
 var tensePairTrial = (blockName, items) => {
-  const orderedItems = sortByEntityThenVerb(uniqueByVerb(items));
+  const byEntity = {};
+  uniqueByVerb(items).forEach(item => {
+    if (!byEntity[item.entity]) byEntity[item.entity] = {};
+    byEntity[item.entity][item.side] = item;
+  });
+
+  const extraEntities = Object.keys(byEntity)
+    .filter(e => !ENTITY_DISPLAY_ORDER.includes(e))
+    .sort();
+
+  const entityOrder = ENTITY_DISPLAY_ORDER
+    .concat(extraEntities)
+    .filter(e => byEntity[e] && byEntity[e].PAST && byEntity[e].FUTURE);
+
+  const orderedItems = [];
+  entityOrder.forEach(entity => {
+    orderedItems.push(byEntity[entity].PAST);
+    orderedItems.push(byEntity[entity].FUTURE);
+  });
+
+  const rowYByEntity = {};
+  entityOrder.forEach((entity, idx) => {
+    rowYByEntity[entity] = 165 + idx * 200;
+  });
+
+  const slotFor = (item) => ({
+    x: item.side === "PAST" ? 34 : 66,
+    y: rowYByEntity[item.entity]
+  });
+
+  const canvasId = `pairs_canvas_${blockName}`;
   const commands = [
     defaultText.css({ "font-size": "1.2em", "font-family": "sans-serif" }),
-    newText("pairs_title", "Assigned tense for each verb")
-      .css({ "font-size": "2.2em", "font-weight": "bold" })
+    newText("pairs_title", "Tense Assignment")
+      .css({ "font-size": "2.1em", "font-weight": "bold" })
       .center()
       .print(),
     newText(
       "pairs_body",
-      "Read each item carefully. Each character+verb has one assigned tense."
+      "All six locations are shown below.<br>" +
+      "Press <b>SPACE</b> to reveal each item in its correct location and hear the sentence audio."
     )
-      .css({ "font-size": "1.2em", "margin-top": "14px" })
+      .css({ "font-size": "1.2em", "margin-top": "10px" })
       .center()
       .print(),
-    newButton("pairs_start", "Start")
-      .bold()
-      .css(button_css)
+    newText("pairs_space_start", "Press SPACE to start.")
+      .css({ "font-size": "1.2em", "font-weight": "bold", "margin-top": "12px" })
       .center()
-      .print()
-      .wait(),
+      .print(),
+    newKey(`pairs_start_space_${blockName}`, " ").wait(),
     getText("pairs_title").remove(),
     getText("pairs_body").remove(),
-    getButton("pairs_start").remove()
+    getText("pairs_space_start").remove(),
+    newText(`lbl_past_${blockName}`, "Past (Yesterday)")
+      .css({ "font-size": "1.1em", "font-weight": "bold" }),
+    newText(`lbl_future_${blockName}`, "Future (Tomorrow)")
+      .css({ "font-size": "1.1em", "font-weight": "bold" }),
+    newCanvas(canvasId, 1200, 660)
+      .center()
+      .add("center at 34%", "top at 10px", getText(`lbl_past_${blockName}`))
+      .add("center at 66%", "top at 10px", getText(`lbl_future_${blockName}`))
+      .print()
   ];
+
+  entityOrder.forEach(entity => {
+    const rowY = rowYByEntity[entity];
+    const entityId = entity.toLowerCase();
+    commands.push(
+      newText(`row_ent_${blockName}_${entityId}`, `<b>${entity}</b>`)
+        .css({ "font-size": "1.2em" }),
+      getCanvas(canvasId)
+        .add("center at 10%", `middle at ${rowY}px`, getText(`row_ent_${blockName}_${entityId}`))
+    );
+  });
 
   orderedItems.forEach((item, idx) => {
     const n = idx + 1;
-    const objectSegment = item.object && item.object.length ? ` ${item.object}` : "";
-    const isPast = item.side === "PAST";
-    const tenseLabel = isPast ? "Yesterday (Past)" : "Tomorrow (Future)";
-    const sentence = isPast
-      ? `The ${item.entity} ${pastForm(item.verb)}${objectSegment}.`
-      : `The ${item.entity} will ${item.verb}${objectSegment}.`;
+    const tenseLabel = item.side === "PAST" ? "Past (Yesterday)" : "Future (Tomorrow)";
+    const slot = slotFor(item);
     commands.push(
       newText(`pc_${n}`, `Item ${n} of ${orderedItems.length}`)
         .css({ "font-size": "1.1em", "font-weight": "bold" })
         .center()
         .print(),
-      newImage(`pimg_${n}`, item.pic).size(220, 220).center().print(),
-      newText(`pent_${n}`, item.entity)
+      newText(`ptense_${n}`, `${item.entity} - ${tenseLabel}`)
         .css({ "font-size": "1.2em", "font-weight": "bold", "margin-top": "8px" })
         .center()
         .print(),
-      newText(`ptense_${n}`, tenseLabel)
-        .css({ "font-size": "1.1em", "font-weight": "bold", "margin-top": "10px" })
+      newText(`pwait_${n}`, "Press SPACE to reveal and hear this item.")
+        .css({ "font-size": "1.05em", "margin-top": "10px" })
         .center()
         .print(),
-      newText(`psent_${n}`, sentence)
-        .css({ "font-size": "1.3em", "margin-top": "6px" })
-        .center()
-        .print(),
-      playPreGeneratedAudio(audioFileForSentence(item), sentence),
+      newKey(`preveal_${blockName}_${n}`, " ").wait(),
+      getText(`pwait_${n}`).remove(),
+      newImage(`pimg_${n}`, item.pic).size(170, 170),
+      getCanvas(canvasId).add(`center at ${slot.x}%`, `middle at ${slot.y}px`, getImage(`pimg_${n}`)),
+      ...playPreGeneratedAudio(audioFileForSentence(item)),
       newTimer(`pmin_${n}`, MIN_TENSE_STUDY_MS).start(),
       newButton(`pnext_${n}`, "Next")
         .bold()
@@ -244,15 +240,39 @@ var tensePairTrial = (blockName, items) => {
         .print(),
       getTimer(`pmin_${n}`).wait(),
       getButton(`pnext_${n}`).enable(),
+      newKey(`pnext_space_${blockName}_${n}`, " ").callback(getButton(`pnext_${n}`).click()),
       getButton(`pnext_${n}`).wait(),
       getText(`pc_${n}`).remove(),
-      getImage(`pimg_${n}`).remove(),
-      getText(`pent_${n}`).remove(),
       getText(`ptense_${n}`).remove(),
-      getText(`psent_${n}`).remove(),
       getButton(`pnext_${n}`).remove()
     );
   });
 
   return newTrial(`tense_pairs_${blockName}`, ...commands).setOption("hideProgressBar", true);
 };
+
+var decisionReadyTrial = (blockName) =>
+  newTrial(
+    `ready_${blockName}`,
+    newText("ready_title", "Get Ready")
+      .css({ "font-size": "2.2em", "font-weight": "bold" })
+      .center()
+      .print(),
+    newText(
+      "ready_body",
+      "<p>The decision trials start next.</p>" +
+      "<p>Use this fixed key mapping:</p>" +
+      "<p><b>F = Past</b> (left), <b>J = Future</b> (right)</p>" +
+      "<p>Please respond quickly and accurately.</p>"
+    )
+      .css({ "font-size": "1.2em", "text-align": "left", "max-width": "36em" })
+      .center()
+      .print(),
+    newButton("ready_button", "Start Decision Trials")
+      .bold()
+      .css(button_css)
+      .center()
+      .print(),
+    newKey(`ready_space_${blockName}`, " ").callback(getButton("ready_button").click()),
+    getButton("ready_button").wait()
+  ).setOption("hideProgressBar", true);
