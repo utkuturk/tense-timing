@@ -1,10 +1,10 @@
-// Decision trial (fixed mapping: F=Past, J=Future)
+// Decision trial (fixed mapping: C=Past, M=Future)
 var trial = (blockLabel, patternTag = "p1") => (row) => {
   const uniqueLabel = `exp_${blockLabel}_${patternTag}_${row.verb}_${row.side}`;
-  const verbImage   = newImage(row.verb, row.pic).size(210, 210);
+  const verbImage   = newImage(row.verb, row.pic).size(400, 400);
 
-  const leftLabel  = "Past (F)";
-  const rightLabel = "Future (J)";
+  const leftLabel  = "Past (C)";
+  const rightLabel = "Future (M)";
 
   return newTrial(
     uniqueLabel,
@@ -43,7 +43,7 @@ var trial = (blockLabel, patternTag = "p1") => (row) => {
 
     newSelector("tenseChoice")
       .add(getText("leftOpt"), getText("rightOpt"))
-      .keys("F", "J")
+      .keys("C", "M")
       .once()
       .log()
       .wait(),
@@ -61,6 +61,88 @@ var trial = (blockLabel, patternTag = "p1") => (row) => {
     .log("LeftOpt", leftLabel)
     .log("RightOpt", rightLabel)
     .log("DecisionRT", getVar("decision_RT"));
+};
+
+var practiceDecisionTrial = (trialLabel, row) => {
+  const uniqueLabel = trialLabel;
+  const verbImage = newImage(`practice_${row.verb}`, row.pic).size(400, 400);
+  const leftLabel = "Past (C)";
+  const rightLabel = "Future (M)";
+  const correctLabel = row.side === "PAST" ? leftLabel : rightLabel;
+
+  return newTrial(
+    uniqueLabel,
+    defaultText.css({ "font-size": "1.35em", "font-family": "sans-serif" }),
+
+    newCanvas("practice_decision_blank", 1200, 700)
+      .css({ "background-color": "white" })
+      .center()
+      .print(),
+    newTimer("practice_decision_blank_t", 300).start(),
+    getTimer("practice_decision_blank_t").wait(),
+    getCanvas("practice_decision_blank").remove(),
+
+    newText("practice_decision_fix", "+")
+      .css({ "font-size": "3em", "font-weight": "bold" })
+      .center()
+      .print(),
+    newTimer("practice_decision_fix_t", 500).start(),
+    getTimer("practice_decision_fix_t").wait(),
+    getText("practice_decision_fix").remove(),
+
+    verbImage.center().print(),
+
+    newText("practice_leftOpt", leftLabel),
+    newText("practice_rightOpt", rightLabel),
+
+    newCanvas("practice_choices", 820, 120)
+      .add("center at 35%", "middle at 50%", getText("practice_leftOpt"))
+      .add("center at 65%", "middle at 50%", getText("practice_rightOpt"))
+      .print(),
+
+    newVar("practice_decision_RT").set(() => Date.now()),
+    newVar("practice_correct").set(0),
+
+    newSelector("practice_tenseChoice")
+      .add(getText("practice_leftOpt"), getText("practice_rightOpt"))
+      .keys("C", "M")
+      .once()
+      .log()
+      .wait(),
+
+    getVar("practice_decision_RT").set(v => Date.now() - v),
+    getSelector("practice_tenseChoice")
+      .test.selected(row.side === "PAST" ? getText("practice_leftOpt") : getText("practice_rightOpt"))
+      .success(
+        getVar("practice_correct").set(1),
+        newText("practice_feedback", "Correct!")
+          .css({ "font-size": "1.3em", "font-weight": "bold", "color": "green", "margin-top": "14px" })
+          .center()
+          .print(),
+        newTimer("practice_fb_ok_t", 1200).start(),
+        getTimer("practice_fb_ok_t").wait(),
+        getText("practice_feedback").remove()
+      )
+      .failure(
+        newText("practice_feedback", `Incorrect. Correct answer: ${correctLabel}.`)
+          .css({ "font-size": "1.2em", "font-weight": "bold", "color": "crimson", "margin-top": "14px" })
+          .center()
+          .print(),
+        newTimer("practice_fb_bad_t", 1700).start(),
+        getTimer("practice_fb_bad_t").wait(),
+        getText("practice_feedback").remove()
+      )
+  )
+    .setOption("hideProgressBar", true)
+    .log("Block", "practice")
+    .log("Verb", row.verb)
+    .log("Form", row.form)
+    .log("Tense", row.side)
+    .log("Entity", row.entity)
+    .log("LeftOpt", leftLabel)
+    .log("RightOpt", rightLabel)
+    .log("PracticeCorrect", getVar("practice_correct"))
+    .log("DecisionRT", getVar("practice_decision_RT"));
 };
 
 // Fixed P/F patterns used for decision trials.

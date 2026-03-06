@@ -1,12 +1,12 @@
 function defineBreakTrial() {
   newTrial("Break",
-    newText("message", "## Block Break")
+    newText("message", "Break")
         .css({ "font-size": "3em", "font-weight": "bold", "color": "#cc0000" })
         .center()
         .print(),
 
     newText("instruction",
-            "Now we are going to do the <b>next block</b>. Please <b>rest for a second</b>.")
+            "Now we are going to learn about other things they did. Please <b>rest for a second</b>.")
         .css({ "font-size": "1.8em", "margin-top": "30px" })
         .center()
         .print(),
@@ -16,19 +16,17 @@ function defineBreakTrial() {
         .css({ "font-size": "1.2em", "margin-top": "50px" })
         .center()
         .print(),
-
-    newButton("Continue")
-        .settings.disable()
+    newText("space1break", "<p>")
         .center()
-        .print()
-        ,
-    newTimer("break_continue_gate", 900)
+        .print(),
+    newTimer("break_continue_gate", 2000)
         .start()
         .wait()
         ,
-    getButton("Continue")
-        .settings.enable()
-        ,
+    newButton("Continue")
+        .css(button_css)
+        .center()
+        .print(),
     newKey("break_space_continue", " ").callback(getButton("Continue").click())
         ,
     getButton("Continue")

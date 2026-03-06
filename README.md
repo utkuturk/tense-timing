@@ -1,89 +1,228 @@
 # Conceptual Task: Tense Planning Experiment
 
-This is a PCIbex (PennController for Internet Based Experiments) study designed to test tense planning dissociations.
+This repository contains a PCIbex/PennController experiment for tense decision behavior.
+This README describes the current implementation in `data_includes/` and is meant to be reproducible against the code as-is.
 
-## Experiment Overview
+## Implementation Snapshot
 
-**Goal:** Establish that the entropy-manipulation (switch task) works as intended.
-**Method:** Participants describe scenes involving simple actions using Past or Future tense.
-**Task:** Participants see an image and choose between "Past" and "Future" options.
+- Platform: PCIbex + PennController
+- Main entry: `data_includes/main.js`
+- Helper logic:
+  - `data_includes/helper_block_intro.js`
+  - `data_includes/helper_trial.js`
+  - `data_includes/helper_break.js`
+  - `data_includes/helper_misc.js`
+- Response keys in decision task: `C = Past`, `M = Future`
 
-### Block Structure
+## Assets
 
-The experiment consists of **3 blocks** with **6 trials** each.
-Each block contains a mix of **Regular** and **Irregular** verbs (3 of each).
+At runtime, stimuli are preloaded from GitHub raw URLs in `main.js`:
 
-**Tense Pattern:**
-Trials within each block follow a fixed, balanced sequence of Past (P) and Future (F) tenses, using these two patterns:
-- `P -> F -> F -> P -> P -> F`
-- `F -> P -> P -> F -> F -> P`
+- Audio zip: `https://raw.githubusercontent.com/utkuturk/tense-timing/conceptual-task/chunk_includes/elevenlabs_audio.zip`
+- Pictures zip: `https://raw.githubusercontent.com/utkuturk/tense-timing/norming/chunk_includes/pictures.zip`
 
-This structure ensures that participants must attend to the tense cue on every trial, rather than predicting a single block-wide tense.
+Implication for reproducibility:
+- Internet access is required unless you replace these URLs with local assets.
+- If these remote files change, stimuli can change without code changes.
 
-### Experiment Sequence
+## Stimuli
 
-The experiment proceeds through the following phases:
+Entities:
+- `Pirate`, `Chef`, `Wizard`
 
-1.  **Introduction Phase**
-    *   Welcome & Consent
-    *   Demographics (Age, Gender, Language, etc.)
-    *   General Instructions
+Main experimental verbs (18 total; 6 per block):
+- Block 1: `drink, read, eat, paint, wash, push`
+- Block 2: `build, sweep, ride, climb, stir, peel`
+- Block 3: `blow, dig, shake, carry, play, smell`
 
-2.  **Practice Phase**
-    *   Participants learn practice verbs.
-    *   **Recall Test**: Participants must type the base form of the practice verbs.
-    *   **Practice Trials**: Participants perform the Past/Future decision task with practice items.
+Practice verbs:
+- `spin` (Past)
+- `drag` (Future)
+- Both use one randomly selected entity per participant.
 
-3.  **Part 1: Learning & Decision (Meta Block 1)**
-    *   Consists of 3 blocks (randomly ordered).
-    *   For each block:
-        *   **Block Intro**: Participants view the verbs for the current block.
-        *   **Recall Test**: Intro to recall -> Participants type the base form of each verb (randomized) -> Outro.
-        *   **Main Task**: Participants perform the Past/Future decision task with fixed tense-order patterns.
+Master verb list in code contains 20 verbs; `spin` and `drag` are currently reserved for practice.
 
-4.  **Part 2: Decision Only (Meta Block 2)**
-    *   Repeats the 3 blocks (in a new random order).
-    *   **Main Task Only**: Participants perform the decision task immediately (No intro or recall phases).
+## Counterbalancing and Randomization
 
-5.  **Conclusion**
-    *   Result submission.
-    *   Exit/Debrief.
+### List selection
+- One list is chosen per participant from `a/b/c/d` via `Math.random()`.
+- Note: in current code, `c` mirrors `b`, and `d` mirrors `a`.
 
-## Technical Details
+### Entity rotation across meta-blocks
+- Three meta-block rotations are used: `0,1,2`.
+- This rotates which entity is paired with each verb/tense assignment.
 
-- **Platform**: PCIbex
-- **Main Script**: [`data_includes/main.js`](data_includes/main.js)
-- **Helper Logic**: [`data_includes/helper_trial.js`](data_includes/helper_trial.js) (Contains `orderItemsByTensePattern`)
-- **Resources**: Images and zips are in `chunk_includes/`.
-- **Deployment**: This folder is self-contained. Do not remove files if deploying to a PCIbex server.
+### Block order
+- Within each meta-block, the three blocks are shuffled with Fisher-Yates.
 
-### Modifications
-- To change stimuli, edit the `verbs`, `items`, or `cbSets` in `main.js`.
-- The PFFPPF pattern logic is defined in `data_includes/helper_trial.js`.
+### Decision tense pattern order
+- Each block uses both fixed tense patterns once:
+  - `PAST, FUTURE, FUTURE, PAST, PAST, FUTURE`
+  - `FUTURE, PAST, PAST, FUTURE, FUTURE, PAST`
+- Which pattern comes first is randomized per block.
 
-## Analysis
-- **Measures**:
-  - **Reaction Time (RT)**: Time to select Past/Future.
-  - **Accuracy**: Correct tense selection.
+### Additional randomization
+- Verb-teaching order in each intro is shuffled.
+- Practice entity is randomized from `ENTITIES`.
+- Practice decision trial order is shuffled (`spin/drag` order).
 
-## Verbs & Frequency Matching
+### Ordering constraint
+- Decision ordering attempts to avoid immediate same-entity repetition.
+- If constraint solving fails, it falls back to tense-only ordering.
 
-The experiment uses a set of Regular and Irregular verbs matched for frequency.
+## Full Experiment Flow
 
-| Freq Bin | Regular | Irregular | Reg Freq (WPM) | Irreg Freq (WPM) |
-| :--- | :--- | :--- | :--- | :--- |
-| **High** | play | cut | 407.38 | 173.78 |
-| **High** | build | | | 109.648 |
-| **High** | break | | | 151.356 |
-| **High** | eat | | | 134.896 |
-| **Medium** | paint | ride | 33.113 | 70.795 |
-| **Medium** | kick | drink | 52.481 | 79.433 |
-| **Medium** | wash | throw | 28.840 | 67.608 |
-| **Medium** | push | | 66.069 | |
-| **Medium** | smell | | 30.903 | |
-| **Low** | stir | sweep | 9.120 | 9.333 |
-| **Low** | climb | dig | 16.596 | 16.596 |
-| **Low** | peel | | 6.310 | |
+Global sequence in `main.js`:
 
-*Frequencies are calculated using `wordfreq` (zipf to wpm conversion).*
-Detailed analysis available in: `analysis/regular_irregular_freqmatch.ipynb` <a target="_blank" href="https://colab.research.google.com/github/utkuturk/tense-timing/blob/main/analysis/regular_irregular_freqmatch.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+`Sequence(...introBlock, "check", ...metaSequences.flat(), "time_summary", "send_results", "debrief", "senddebrief", "exit_sona")`
+
+### Intro block sequence
+
+1. `intro`
+2. `consent`
+3. `demo`
+4. `instructions`
+5. `practice_intro`
+6. `intro_practice` (learn 2 practice verbs)
+7. `tense_intro_practice`
+8. `tense_pairs_practice`
+9. `ready_practice`
+10. 2 practice decision trials (with immediate feedback)
+11. `exp_ready`
+
+### Main task sequence
+
+- 3 meta-blocks (`m1/m2/m3`)
+- Each meta-block has 3 blocks (randomized order)
+- A break appears:
+  - between blocks inside each meta-block
+  - before meta-block 2 and 3
+
+For each block:
+1. Verb learning intro (`intro_<block>`)
+2. Tense intro (`tense_intro_<block>`)
+3. Tense pair reveal (`tense_pairs_<block>`)
+4. Decision ready screen (`ready_<block>`)
+5. 12 decision trials (6 from each tense pattern)
+
+Totals per participant:
+- 9 main blocks
+- 108 main decision trials
+- 2 practice decision trials
+
+## Trial Behavior and Timing
+
+### Verb learning (`introTrial`)
+
+Per verb item:
+- White screen: `300 ms`
+- Fixation: `500 ms`
+- Stimulus shown: image `400x400`, entity, verb, object
+- Verb audio plays (`tts_verb_<verb>.mp3`)
+- Minimum post-audio gate: `1000 ms`
+- Continue via `Next` button or `SPACE`
+
+### Tense assignment (`tensePairTrial`)
+
+- Grid layout by entity row and tense column
+- Item image size: `250x250`
+- Dynamic row spacing and canvas height to avoid overlap
+- Reveal each item with `SPACE`
+- Sentence audio plays (`tts_sent_<entity>_<verb>_<tense>.mp3`)
+- Minimum study gate before Next: `1400 ms`
+
+### Decision trials (`trial`)
+
+- White screen: `300 ms`
+- Fixation: `500 ms`
+- Picture size: `400x400`
+- Choice labels: `Past (C)` and `Future (M)`
+- Keys: `C` / `M`
+- RT logged from choice onset to response
+
+### Practice decisions (`practiceDecisionTrial`)
+
+- Same visual structure and key mapping as main decision trials
+- Immediate feedback:
+  - Correct
+  - Incorrect + correct answer label
+
+## Data Logging (Current)
+
+Header/global:
+- SONA id URL param
+- source URL param
+- experiment start timestamp
+
+Decision trials log:
+- Block
+- Verb
+- Form
+- Tense
+- Entity
+- PatternTag
+- LeftOpt / RightOpt
+- DecisionRT
+
+Practice decision log:
+- Same core fields plus `PracticeCorrect`
+
+Debrief logs:
+- technical issues scale
+- instruction clarity scale
+- free-text feedback
+
+Time summary logs:
+- start/end timestamps
+- elapsed ms/min
+
+## Running the Experiment
+
+### PCIbex (recommended)
+
+1. Create a PCIbex project.
+2. Upload this repository contents preserving folder structure (`data_includes`, `chunk_includes`, `js_includes`, `css_includes`, etc.).
+3. Confirm `main.js` is loaded and asset preload URLs are reachable.
+4. Run a pilot participant and verify preloading + response logging.
+
+### Local legacy Ibex server
+
+- This repository includes classic Ibex server files (`www/server.py`) that expect Python 2 syntax.
+- If you run locally with the legacy server path, use a Python 2 environment.
+- If you do not have Python 2, use PCIbex deployment instead.
+
+## Reproducibility Checklist
+
+To replicate the current behavior:
+
+1. Use this exact code snapshot in `data_includes/`.
+2. Keep external preload asset URLs unchanged, or vendor and pin local copies.
+3. Keep key mapping as `C/M`.
+4. Keep timing constants in:
+   - `helper_block_intro.js`
+   - `helper_trial.js`
+5. Keep sequence definition in `main.js` unchanged.
+
+For deterministic (non-random) replay, additionally hardcode:
+- `LIST_ID`
+- `PRACTICE_ENTITY`
+- block order shuffles
+- pattern-order shuffles
+- practice decision order shuffle
+- intro verb shuffle
+
+## Quick Validation Commands
+
+Use syntax checks after edits:
+
+```bash
+node --check data_includes/main.js
+node --check data_includes/helper_block_intro.js
+node --check data_includes/helper_trial.js
+node --check data_includes/helper_break.js
+```
+
+## Notes
+
+- `helper_trial.js` still contains recall-related trial builders, but they are not in the active sequence.
+- Participant-facing instruction text says "3 blocks", while the implemented sequence runs 3 meta-blocks x 3 blocks.
