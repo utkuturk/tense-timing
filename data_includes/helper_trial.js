@@ -50,20 +50,25 @@ var trial = (blockLabel) => (row) => {
     .log("DecisionRT", getVar("decision_RT"));
 };
 
-// Randomly enforce one of two P/F patterns per block:
-// 1) PAST, FUTURE, FUTURE, PAST, PAST, FUTURE
-// 2) FUTURE, PAST, PAST, FUTURE, FUTURE, PAST
-function orderItemsByTensePattern(items) {
+// Fixed P/F patterns used for decision trials.
+// Pattern 0: PAST, FUTURE, FUTURE, PAST, PAST, FUTURE
+// Pattern 1: FUTURE, PAST, PAST, FUTURE, FUTURE, PAST
+const TENSE_PATTERNS = [
+  ["PAST",   "FUTURE", "FUTURE", "PAST",   "PAST",   "FUTURE"],
+  ["FUTURE", "PAST",   "PAST",   "FUTURE", "FUTURE", "PAST"]
+];
+
+function getTensePatternByIndex(patternIndex) {
+  const safeIndex = Math.abs(Number(patternIndex) || 0) % TENSE_PATTERNS.length;
+  return TENSE_PATTERNS[safeIndex];
+}
+
+function orderItemsByTensePattern(items, patternIndex) {
   const past   = items.filter(it => it.side === "PAST");
   const future = items.filter(it => it.side === "FUTURE");
-
-  const patterns = [
-    ["PAST",   "FUTURE", "FUTURE", "PAST",   "PAST",   "FUTURE"],
-    ["FUTURE", "PAST",   "PAST",   "FUTURE", "FUTURE", "PAST"]
-  ];
-
-  // pick one pattern at random for this block
-  const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+  const pattern = Number.isInteger(patternIndex)
+    ? getTensePatternByIndex(patternIndex)
+    : TENSE_PATTERNS[Math.floor(Math.random() * TENSE_PATTERNS.length)];
 
   const pools = {
     PAST: past.slice(),
@@ -90,6 +95,10 @@ function orderItemsByTensePattern(items) {
   return ordered;
 }
 
+function escapeRegExp(s) {
+  return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 var recall_trial = (blockLabel) => (row) => {
   const uniqueLabel = `recall_${blockLabel}_${row.verb}_${row.side}`;
   const verbImage   = newImage(row.verb, row.pic).size(150, 150);
@@ -100,7 +109,7 @@ var recall_trial = (blockLabel) => (row) => {
 
     verbImage.center().print(),
 
-    newText("prompt", "Type the original verb (base form), without tense:")
+    newText("prompt", "Type the original verb (base form). You can include the object:")
       .center()
       .print(),
 
@@ -121,10 +130,10 @@ var recall_trial = (blockLabel) => (row) => {
       .wait(),
 
     getTextInput("answer")
-      .test.text(new RegExp(`^\\s*${row.verb}\\s*$`, "i"))
+      .test.text(new RegExp(`\\b${escapeRegExp(row.verb)}\\b`, "i"))
       .success(
         newText("feedback-ok",
-          "Correct! The verb was '" + row.verb + "'."
+          "Correct! Your answer included the verb '" + row.verb + "'."
         )
           .settings.bold()
           .settings.color("green")
@@ -135,7 +144,7 @@ var recall_trial = (blockLabel) => (row) => {
       )
       .failure(
         newText("feedback-bad",
-          "The verb was '" + row.verb + "'. Please try to remember them carefully next time."
+          "Please include the verb '" + row.verb + "' in your answer."
         )
           .settings.bold()
           .settings.color("red")
@@ -184,7 +193,7 @@ var recallOutroTrial = (blockName) =>
       .print(),
 
     newText("body",
-      "We practiced enough. Now we will start the experimental trials."
+      "Great. Next, we will learn how those verbs map to yesterday (Past) and tomorrow (Future)."
     )
       .css({ "font-size": "1.6em", "margin-top": "20px" })
       .center()

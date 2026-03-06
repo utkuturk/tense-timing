@@ -14,7 +14,7 @@ The experiment consists of **3 blocks** with **6 trials** each.
 Each block contains a mix of **Regular** and **Irregular** verbs (3 of each).
 
 **Tense Pattern:**
-Trials within each block follow a fixed, balanced sequence of Past (P) and Future (F) tenses, specifically one of the following patterns (randomized per block):
+Trials within each block follow a fixed, balanced sequence of Past (P) and Future (F) tenses, using these two patterns:
 - `P -> F -> F -> P -> P -> F`
 - `F -> P -> P -> F -> F -> P`
 
@@ -39,7 +39,7 @@ The experiment proceeds through the following phases:
     *   For each block:
         *   **Block Intro**: Participants view the verbs for the current block.
         *   **Recall Test**: Intro to recall -> Participants type the base form of each verb (randomized) -> Outro.
-        *   **Main Task**: Participants perform the Past/Future decision task (Fixed **PFFPPF** pattern).
+        *   **Main Task**: Participants perform the Past/Future decision task with fixed tense-order patterns.
 
 4.  **Part 2: Decision Only (Meta Block 2)**
     *   Repeats the 3 blocks (in a new random order).
@@ -87,4 +87,3 @@ The experiment uses a set of Regular and Irregular verbs matched for frequency.
 
 *Frequencies are calculated using `wordfreq` (zipf to wpm conversion).*
 Detailed analysis available in: `analysis/regular_irregular_freqmatch.ipynb` <a target="_blank" href="https://colab.research.google.com/github/utkuturk/tense-timing/blob/main/analysis/regular_irregular_freqmatch.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-

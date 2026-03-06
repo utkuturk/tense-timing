@@ -1,0 +1,41 @@
+item_id,group,character,verb,past_form,type,picture,tense,sentence
+ctrl_wrong_Chef_blow_past,A,Chef,build,built,Irregular,chef_blow_bubbles_v4.png,past,The Chef built a tower
+ctrl_wrong_Chef_blow_future,B,Chef,build,built,Irregular,chef_blow_bubbles_v4.png,future,The Chef will build a tower
+ctrl_wrong_Pirate_build_past,B,Pirate,carry,carried,Regular,pirate_build_tower_v3.png,past,The Pirate carried a box
+ctrl_wrong_Pirate_build_future,A,Pirate,carry,carried,Regular,pirate_build_tower_v3.png,future,The Pirate will carry a box
+ctrl_wrong_Wizard_carry_past,A,Wizard,climb,climbed,Regular,wizard_carry_box_v1.png,past,The Wizard climbed a ladder
+ctrl_wrong_Wizard_carry_future,B,Wizard,climb,climbed,Regular,wizard_carry_box_v1.png,future,The Wizard will climb a ladder
+ctrl_wrong_Chef_climb_past,B,Chef,dig,dug,Irregular,chef_climb_ladder_v2.png,past,The Chef dug a hole
+ctrl_wrong_Chef_climb_future,A,Chef,dig,dug,Irregular,chef_climb_ladder_v2.png,future,The Chef will dig a hole
+ctrl_wrong_Pirate_dig_past,A,Pirate,drag,dragged,Practice,pirate_dig_hole_v4.png,past,The Pirate dragged a sack
+ctrl_wrong_Pirate_dig_future,B,Pirate,drag,dragged,Practice,pirate_dig_hole_v4.png,future,The Pirate will drag a sack
+ctrl_wrong_Wizard_drag_past,B,Wizard,drink,drank,Irregular,wizard_drag_sack_v1.png,past,The Wizard drank coffee
+ctrl_wrong_Wizard_drag_future,A,Wizard,drink,drank,Irregular,wizard_drag_sack_v1.png,future,The Wizard will drink coffee
+ctrl_wrong_Chef_drink_past,A,Chef,eat,ate,Irregular,chef_drink_coffee_v1.png,past,The Chef ate an apple
+ctrl_wrong_Chef_drink_future,B,Chef,eat,ate,Irregular,chef_drink_coffee_v1.png,future,The Chef will eat an apple
+ctrl_wrong_Pirate_eat_past,B,Pirate,paint,painted,Regular,pirate_eat_apple_v5.png,past,The Pirate painted a canvas
+ctrl_wrong_Pirate_eat_future,A,Pirate,paint,painted,Regular,pirate_eat_apple_v5.png,future,The Pirate will paint a canvas
+ctrl_wrong_Wizard_paint_past,A,Wizard,peel,peeled,Regular,wizard_paint_canvas_v2.png,past,The Wizard peeled a banana
+ctrl_wrong_Wizard_paint_future,B,Wizard,peel,peeled,Regular,wizard_paint_canvas_v2.png,future,The Wizard will peel a banana
+ctrl_wrong_Chef_peel_past,B,Chef,play,played,Regular,chef_peel_banana_v5.png,past,The Chef played the guitar
+ctrl_wrong_Chef_peel_future,A,Chef,play,played,Regular,chef_peel_banana_v5.png,future,The Chef will play the guitar
+ctrl_wrong_Pirate_play_past,A,Pirate,push,pushed,Regular,pirate_play_guitar_v5.png,past,The Pirate pushed a cart
+ctrl_wrong_Pirate_play_future,B,Pirate,push,pushed,Regular,pirate_play_guitar_v5.png,future,The Pirate will push a cart
+ctrl_wrong_Wizard_push_past,B,Wizard,read,read,Irregular,wizard_push_cart_v1.png,past,The Wizard read a book
+ctrl_wrong_Wizard_push_future,A,Wizard,read,read,Irregular,wizard_push_cart_v1.png,future,The Wizard will read a book
+ctrl_wrong_Chef_read_past,A,Chef,ride,rode,Irregular,chef_read_book_v2.png,past,The Chef rode a bicycle
+ctrl_wrong_Chef_read_future,B,Chef,ride,rode,Irregular,chef_read_book_v2.png,future,The Chef will ride a bicycle
+ctrl_wrong_Pirate_ride_past,B,Pirate,shake,shook,Irregular,pirate_ride_bicycle_v3.png,past,The Pirate shook a bottle
+ctrl_wrong_Pirate_ride_future,A,Pirate,shake,shook,Irregular,pirate_ride_bicycle_v3.png,future,The Pirate will shake a bottle
+ctrl_wrong_Wizard_shake_past,A,Wizard,smell,smelled,Regular,wizard_shake_bottle_v3.png,past,The Wizard smelled a flower
+ctrl_wrong_Wizard_shake_future,B,Wizard,smell,smelled,Regular,wizard_shake_bottle_v3.png,future,The Wizard will smell a flower
+ctrl_wrong_Chef_smell_past,B,Chef,spin,spun,Practice,chef_smell_flower_v1.png,past,The Chef spun a top
+ctrl_wrong_Chef_smell_future,A,Chef,spin,spun,Practice,chef_smell_flower_v1.png,future,The Chef will spin a top
+ctrl_wrong_Pirate_spin_past,A,Pirate,stir,stirred,Regular,pirate_spin_top_v5.png,past,The Pirate stirred a pot
+ctrl_wrong_Pirate_spin_future,B,Pirate,stir,stirred,Regular,pirate_spin_top_v5.png,future,The Pirate will stir a pot
+ctrl_wrong_Wizard_stir_past,B,Wizard,sweep,swept,Irregular,wizard_stir_pot_v2.png,past,The Wizard swept the floor
+ctrl_wrong_Wizard_stir_future,A,Wizard,sweep,swept,Irregular,wizard_stir_pot_v2.png,future,The Wizard will sweep the floor
+ctrl_wrong_Chef_sweep_past,A,Chef,wash,washed,Regular,chef_sweep_floor_v1.png,past,The Chef washed a dish
+ctrl_wrong_Chef_sweep_future,B,Chef,wash,washed,Regular,chef_sweep_floor_v1.png,future,The Chef will wash a dish
+ctrl_wrong_Pirate_wash_past,B,Pirate,blow,blew,Irregular,pirate_wash_dish_v3.png,past,The Pirate blew bubbles
+ctrl_wrong_Pirate_wash_future,A,Pirate,blow,blew,Irregular,pirate_wash_dish_v3.png,future,The Pirate will blow bubbles
