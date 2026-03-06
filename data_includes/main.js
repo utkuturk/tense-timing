@@ -2,24 +2,19 @@
 PennController.ResetPrefix(null);
 DebugOff();
 SendResults("send_results");
-baselink = "https://github.com/utkuturk/tense-timing/conceptual-task/chunk_includes/"
-var EXPID = "AAAA";
-var CREDIT = 0.5;
-var debrief_link = "https://forms.gle/38QgPd9iFFF336oq6";
-var psych_sona_link =
-  "https://umpsychology.sona-systems.com/webstudy_credit.aspx?experiment_id=" +
-  EXPID +
-  "&credit_token=" +
-  CREDIT +
-  "&survey_code=" +
-  GetURLParameter("id");
-var prolific_code = "C110NELM";
-var prolific_link = "https://app.prolific.com/submissions/complete?cc=" + prolific_code;
+SendResults("senddebrief");
+PreloadZip("elevenlabs_audio.zip");
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/norming/chunk_includes/pictures.zip");
+const PSYCH_SONA_LINK_BASE = "https://umpsychology.sona-systems.com/webstudy_credit.aspx?experiment_id=2052&credit_token=26041bec45c64b83ba65ac7b05b6bd93&survey_code=";
+const LING_SONA_LINK_BASE = "https://umlinguistics.sona-systems.com/webstudy_credit.aspx?experiment_id=528&credit_token=0076a3889d544e94a368b38e997e923d&survey_code=";
+var psych_sona_link = PSYCH_SONA_LINK_BASE + GetURLParameter("id");
+var ling_sona_link = LING_SONA_LINK_BASE + GetURLParameter("id");
 
-PreloadZip(`${baselink}chef.zip`);
-PreloadZip(`${baselink}pirate.zip`);
-PreloadZip(`${baselink}doctor.zip`);
-
+Header(
+  newVar("source", "").global().set(GetURLParameter("source"))
+)
+  .log("SONA_ID_URL", GetURLParameter("id"))
+  .log("source", GetURLParameter("source"));
 
 defineBreakTrial();
 
@@ -28,104 +23,177 @@ const ENTITIES = ["Pirate", "Chef", "Wizard"];
 
 
 const verbs = [
-  "cut", "build", "sweep", "ride", "drink", "throw", "break", "eat", "dig",
-  "paint", "kick", "play", "wash", "stir", "climb", "push", "peel", "smell"
+  "blow", "build", "carry", "climb", "dig", "drink", "eat", "paint", "peel",
+  "play", "push", "read", "ride", "shake", "smell", "spin", "stir", "sweep", "wash", "drag"
 ];
 
-const verbsBlock1 = ["drink", "break", "eat", "paint", "wash", "push"];
-const verbsBlock2 = ["cut", "sweep", "throw", "kick", "stir", "peel"];
-const verbsBlock3 = ["build", "ride", "dig", "play", "climb", "smell"];
+const verbsBlock1 = ["drink", "read", "eat", "paint", "wash", "push"];
+const verbsBlock2 = ["build", "sweep", "ride", "climb", "stir", "peel"];
+const verbsBlock3 = ["blow", "dig", "shake", "carry", "play", "smell"];
 
 const cbSets = {
   a: { // R seed: 271486
-    past1: ["drink", "break", "eat"],
-    past2: ["cut", "sweep", "throw"],
-    past3: ["build", "ride", "dig"]
+    past1: ["drink", "read", "eat"],
+    past2: ["build", "sweep", "ride"],
+    past3: ["blow", "dig", "shake"]
   },
   b: {
     past1: ["paint", "wash", "push"],
-    past2: ["kick", "stir", "peel"],
-    past3: ["play", "climb", "smell"]
+    past2: ["climb", "stir", "peel"],
+    past3: ["carry", "play", "smell"]
   },
   c: { // R seed: 394761
     past1: ["paint", "wash", "push"], // flipped from b
-    past2: ["kick", "stir", "peel"],
-    past3: ["play", "climb", "smell"]
+    past2: ["climb", "stir", "peel"],
+    past3: ["carry", "play", "smell"]
   },
   d: {
-    past1: ["drink", "break", "eat"], // flipped from a
-    past2: ["cut", "sweep", "throw"],
-    past3: ["build", "ride", "dig"]
+    past1: ["drink", "read", "eat"], // flipped from a
+    past2: ["build", "sweep", "ride"],
+    past3: ["blow", "dig", "shake"]
   }
 };
 
-const IMAGE_SUFFIXES = {
-  // Practice
-  "light": "candle",
-  "hammer": "nail",
-
-  // Irregular
-  "cut": "bread",
-  "build": "tower",
-  "sweep": "floor",
-  "ride": "bicycle",
-  "drink": "coffee",
-  "throw": "frisbee",
-  "break": "stick",
-  "eat": "apple",
-  "dig": "hole",
-
-  // Regular
-  "paint": "canvas",
-  "kick": "ball",
-  "play": "guitar",
-  "wash": "dish",
-  "stir": "pot",
-  "climb": "ladder",
-  "push": "cart",
-  "peel": "banana",
-  "smell": "flower"
+const PICTURE_BY_ENTITY_VERB = {
+  Pirate: {
+    blow: "pirate_blow_bubbles_v5.png",
+    build: "pirate_build_tower_v3.png",
+    carry: "pirate_carry_box_v4.png",
+    climb: "pirate_climb_ladder_v1.png",
+    dig: "pirate_dig_hole_v4.png",
+    drag: "pirate_drag_sack_v3.png",
+    drink: "pirate_drink_coffee_v2.png",
+    eat: "pirate_eat_apple_v5.png",
+    paint: "pirate_paint_canvas_v2.png",
+    peel: "pirate_peel_banana_v5.png",
+    play: "pirate_play_guitar_v5.png",
+    push: "pirate_push_cart_v3.png",
+    read: "pirate_read_book_v2.png",
+    ride: "pirate_ride_bicycle_v3.png",
+    shake: "pirate_shake_bottle_v4.png",
+    smell: "pirate_smell_flower_v3.png",
+    spin: "pirate_spin_top_v5.png",
+    stir: "pirate_stir_pot_v3.png",
+    sweep: "pirate_sweep_floor_v4.png",
+    wash: "pirate_wash_dish_v3.png"
+  },
+  Chef: {
+    blow: "chef_blow_bubbles_v4.png",
+    build: "chef_build_tower_v1.png",
+    carry: "chef_carry_box_v5.png",
+    climb: "chef_climb_ladder_v2.png",
+    dig: "chef_dig_hole_v1.png",
+    drag: "chef_drag_sack_v1.png",
+    drink: "chef_drink_coffee_v1.png",
+    eat: "chef_eat_apple_v1.png",
+    paint: "chef_paint_canvas_v3.png",
+    peel: "chef_peel_banana_v5.png",
+    play: "chef_play_guitar_v2.png",
+    push: "chef_push_cart_v3.png",
+    read: "chef_read_book_v2.png",
+    ride: "chef_ride_bicycle_v2.png",
+    shake: "chef_shake_bottle_v2.png",
+    smell: "chef_smell_flower_v1.png",
+    spin: "chef_spin_top_v3.png",
+    stir: "chef_stir_pot_v4.png",
+    sweep: "chef_sweep_floor_v1.png",
+    wash: "chef_wash_dish_v3.png"
+  },
+  Wizard: {
+    blow: "wizard_blow_bubbles_v5.png",
+    build: "wizard_build_tower_v2.png",
+    carry: "wizard_carry_box_v1.png",
+    climb: "wizard_climb_ladder_v1.png",
+    dig: "wizard_dig_hole_v4.png",
+    drag: "wizard_drag_sack_v1.png",
+    drink: "wizard_drink_coffee_v5.png",
+    eat: "wizard_eat_apple_v4.png",
+    paint: "wizard_paint_canvas_v2.png",
+    peel: "wizard_peel_banana_v1.png",
+    play: "wizard_play_guitar_v1.png",
+    push: "wizard_push_cart_v1.png",
+    read: "wizard_read_book_v2.png",
+    ride: "wizard_ride_bicycle_v5.png",
+    shake: "wizard_shake_bottle_v3.png",
+    smell: "wizard_smell_flower_v2.png",
+    spin: "wizard_spin_top_v5.png",
+    stir: "wizard_stir_pot_v2.png",
+    sweep: "wizard_sweep_floor_v3.png",
+    wash: "wizard_wash_dish_v5.png"
+  }
 };
 
 const PAST_FORMS = {
-  // Practice
-  "light": "lit",
-  "hammer": "hammered",
-
-  // Irregular
-  "cut": "cut",
+  "blow": "blew",
   "build": "built",
-  "sweep": "swept",
-  "ride": "rode",
-  "drink": "drank",
-  "throw": "threw",
-  "break": "broke",
-  "eat": "ate",
+  "carry": "carried",
+  "climb": "climbed",
   "dig": "dug",
+  "drag": "dragged",
+  "drink": "drank",
+  "eat": "ate",
+  "paint": "painted",
+  "peel": "peeled",
+  "play": "played",
+  "push": "pushed",
+  "read": "read",
+  "ride": "rode",
+  "shake": "shook",
+  "smell": "smelled",
+  "spin": "spun",
+  "stir": "stirred",
+  "sweep": "swept",
+  "wash": "washed"
+};
 
-  // Regulars will be handled by default fallback if not listed, but listing to be safe/explicit if needed.
-  // We can let the fallback regularPast logic handle them, or list them.
-  // Given user wants simplest "verbs", standard -ed applies.
+const OBJECT_PHRASE_BY_VERB = {
+  "blow": "bubbles",
+  "build": "a tower",
+  "carry": "a box",
+  "climb": "a ladder",
+  "dig": "a hole",
+  "drag": "a sack",
+  "drink": "coffee",
+  "eat": "an apple",
+  "paint": "a canvas",
+  "peel": "a banana",
+  "play": "the guitar",
+  "push": "a cart",
+  "read": "a book",
+  "ride": "a bicycle",
+  "shake": "a bottle",
+  "smell": "a flower",
+  "spin": "a top",
+  "stir": "a pot",
+  "sweep": "the floor",
+  "wash": "a dish"
 };
 
 const pastForm = v => PAST_FORMS[v] || v + "ed"; // Simple fallback
 const futureForm = v => "will " + v;
-// Entity + "_" + verb + "_" + suffix + ".png" -> e.g. "Wizard_cut_bread.png"
-const toPicFilename = (v, ent) => `${ent}_${v}_${IMAGE_SUFFIXES[v]}.png`;
+const pictureFor = (verb, entity) => {
+  const byEntity = PICTURE_BY_ENTITY_VERB[entity] || {};
+  const picture = byEntity[verb];
+  if (!picture) throw new Error(`Missing picture mapping for ${entity}_${verb}`);
+  return picture;
+};
+const objectFor = (verb) => OBJECT_PHRASE_BY_VERB[verb] || "";
 
 const practiceItems = [
   {
-    verb: "light",
-    form: PAST_FORMS["light"],
-    entity: "Wizard",
-    pic: toPicFilename("light", "Wizard"),
+    verb: "spin",
+    form: pastForm("spin"),
+    object: objectFor("spin"),
+    entity: "Pirate",
+    pic: pictureFor("spin", "Pirate"),
     side: "PAST"
   },
   {
-    verb: "hammer",
-    form: futureForm("hammer"),
-    entity: "Pirate",
-    pic: toPicFilename("hammer", "Pirate"),
+    verb: "drag",
+    form: futureForm("drag"),
+    object: objectFor("drag"),
+    entity: "Wizard",
+    pic: pictureFor("drag", "Wizard"),
     side: "FUTURE"
   }
 ];
@@ -138,6 +206,8 @@ function buildPracticeSequence() {
     // Recall trials
     ...practiceItems.map(item => `recall_practice_${item.verb}_${item.side}`),
     "recall_outro_practice",
+    "tense_intro_practice",
+    "tense_pairs_practice",
     // Decision trials
     ...practiceItems.map(item => `exp_practice_${item.verb}_${item.side}`)
   ];
@@ -163,15 +233,17 @@ function makeBlockItems(blockVerbs, pastVerbs) {
     ...pastVerbs.map(v => ({
       verb: v,
       form: pastForm(v),
+      object: objectFor(v),
       entity: entityByVerb[v],
-      pic: toPicFilename(v, entityByVerb[v]),
+      pic: pictureFor(v, entityByVerb[v]),
       side: "PAST"
     })),
     ...futureVerbs.map(v => ({
       verb: v,
       form: futureForm(v),
+      object: objectFor(v),
       entity: entityByVerb[v],
-      pic: toPicFilename(v, entityByVerb[v]),
+      pic: pictureFor(v, entityByVerb[v]),
       side: "FUTURE"
     }))
   ];
@@ -205,6 +277,8 @@ practiceItems.forEach(item => {
 });
 recallIntroTrial("practice");
 recallOutroTrial("practice");
+tenseIntroTrial("practice");
+tensePairTrial("practice", practiceItems);
 
 
 // decision trials
@@ -221,6 +295,12 @@ items3.forEach(recall_trial("block3"));
 introTrial("block1", items1);
 introTrial("block2", items2);
 introTrial("block3", items3);
+tenseIntroTrial("block1");
+tenseIntroTrial("block2");
+tenseIntroTrial("block3");
+tensePairTrial("block1", items1);
+tensePairTrial("block2", items2);
+tensePairTrial("block3", items3);
 
 // recall intros / outros
 recallIntroTrial("block1");
@@ -276,8 +356,13 @@ function buildBlockSequence(blockOrder, withIntro, withRecall) {
       seq.push(`recall_outro_${b.name}`);
     }
 
+    if (withIntro) {
+      seq.push(`tense_intro_${b.name}`);
+      seq.push(`tense_pairs_${b.name}`);
+    }
+
     // Decision trials in fixed P F F P P F order
-    const decisionItems = orderItemsByTensePattern(b.items);
+    const decisionItems = orderItemsByTensePattern(b.items, index);
     decisionItems.forEach(item => {
       seq.push(`exp_${b.name}_${item.verb}_${item.side}`);
     });
@@ -295,7 +380,7 @@ fisherYates(order2);
 
 const metaBlock2 = [
   "Break",
-  ...buildBlockSequence(order2, false, false)
+  ...buildBlockSequence(order2, true, true)
 ];
 
 const practiceBlockSeq = buildPracticeSequence();
@@ -433,7 +518,7 @@ newTrial(
 
   newText(
     "inst-body",
-    "<p>You will see simple pictures of a chef doing actions (verbs)." +
+    "<p>You will see simple pictures of characters doing actions (verbs)." +
     "<p>The experiment has two parts that will repeat multiple times for a variety of set of actions:" +
     "<ol>" +
     "<li><b>Learning and practice</b>:<br>" +
@@ -471,103 +556,94 @@ const introBlock = ["intro", "consent", "demo", "instructions"];
 
 CheckPreloaded().label("check");
 
-// PROLIFIC EXIT
 newTrial(
-  "exit_prolific",
-  newText("exit-title",
-    "Thank you for participating in our study!"
-  )
-    .css({ "font-size": "1.6em", "font-weight": "bold" })
-    .center()
+  "debrief",
+  newText("debrief_title", "Debrief")
+    .css({ "font-size": "2em", "font-weight": "bold" })
     .print(),
-
   newText(
-    "exit-body",
-    "Your completion code is: <b>" + prolific_code + "</b>." +
-    "<p>Please paste this code into Prolific." +
-    "<p>You can also confirm your participation by clicking this link: " +
-    "<a href='" + prolific_link + "'>Confirm your participation on Prolific</a>." +
-    "<p>When you are finished, you may close this tab."
+    "debrief_body",
+    "<p>This study examines how people plan tense information during real-time language production.</p>" +
+    "<p>We are testing when tense is planned at different levels of representation:</p>" +
+    "<p>1) <b>Conceptual planning</b> (event-time meaning),</p>" +
+    "<p>2) <b>Syntactic planning</b> (grammatical tense features), and</p>" +
+    "<p>3) <b>Morphophonological planning</b> (the form used to express tense).</p>" +
+    "<p>Thank you for helping with this research.</p>" +
+    "<p>If you have any questions, contact <a href='mailto:utkuturk@umd.edu'>utkuturk@umd.edu</a>.</p>"
   )
-    .css({ "max-width": "40em", "text-align": "left" })
+    .css({ "max-width": "45em", "text-align": "left" })
     .center()
     .print(),
-
-  newTimer("wait-a-bit", 1000).start().wait()
-)
-  .setOption("hideProgressBar", true);
-
-
-
-// SONA (Psych) EXIT
-newTrial(
-  "exit_sona_psych",
-  newText("exit-title",
-    "Thank you for participating in our study!"
-  )
-    .css({ "font-size": "1.6em", "font-weight": "bold" })
-    .center()
+  newText("d_q1", "Did you experience any technical issues during the study?")
+    .css({ "margin-top": "10px" })
     .print(),
-
-  newText(
-    "exit-body",
-    "You can confirm your participation on SONA by clicking this link: " +
-    "<a href='" + psych_sona_link + "'>Confirm your participation on SONA</a>." +
-    "<p>When you are finished, you may close this tab."
-  )
-    .css({ "max-width": "40em", "text-align": "left" })
-    .center()
+  newScale("tech_issues", "No", "Yes")
+    .radio()
+    .labelsPosition("right")
+    .log()
     .print(),
-
-  newTimer("wait-a-bit", 1000).start().wait()
-)
-  .setOption("hideProgressBar", true);
-
-
-
-// SONA (Ling) EXIT + DEBRIEF REDIRECT
-newTrial(
-  "exit_sona_ling",
-  exitFullscreen(),
-
-  newText("exit-title",
-    "Thank you for participating in our study!"
-  )
-    .css({ "font-size": "1.6em", "font-weight": "bold" })
-    .center()
+  newText("d_q2", "How clear were the instructions overall?")
+    .css({ "margin-top": "10px" })
     .print(),
-
-  newText(
-    "exit-body",
-    "You can confirm your participation on SONA by clicking the <b>END</b> button below." +
-    "<p>After clicking it, you will be redirected to a short form that explains the study and asks a few questions."
-  )
-    .css({ "max-width": "40em", "text-align": "left" })
-    .center()
+  newScale("instruction_clarity", "1", "2", "3", "4", "5")
+    .labelsPosition("bottom")
+    .keys("1", "2", "3", "4", "5")
+    .log()
     .print(),
-
-  newButton("END")
+  newText("d_q3", "Optional feedback")
+    .css({ "margin-top": "10px" })
+    .print(),
+  newTextInput("feedback")
+    .lines(4)
+    .size("900px", "120px")
+    .log()
+    .print(),
+  newButton("debrief_continue", "Continue")
     .bold()
     .css(button_css)
     .center()
     .print()
-    .wait(),
+    .wait()
+).setOption("hideProgressBar", true);
 
-  // Replace content with redirect message
-  getText("exit-title").remove(),
-  getText("exit-body").remove(),
-
-  newHtml(
-    "ling_debrief",
-    "<!DOCTYPE html>" +
-    "<meta http-equiv='refresh' content='0; url=" + debrief_link + "'>" +
-    "The experiment has ended and your answers have been sent.<br />" +
-    "If you need credit, <a href='" + debrief_link + "'>click this link</a> and follow the instructions."
-  )
+newTrial(
+  "exit_sona",
+  newText("exit_thanks", "<center><b>Thank you for participating!</b></center>")
+    .css(text_css)
+    .print()
+    .center(),
+  newText("exit_sona_msg", "<p>You can confirm your participation on SONA by clicking the link below:</p>")
+    .css(text_css),
+  newText("psych_link", "<p><a href='" + psych_sona_link + "'>Confirm your participation.</a></p>")
+    .css(text_css),
+  newText("ling_link", "<p><a href='" + ling_sona_link + "'>Confirm your participation.</a></p>")
+    .css(text_css),
+  newText("fallback_msg", "<p>Thank you for your participation. Your credit will be approved within 3 days after the due date of the experiment.</p>")
+    .css(text_css),
+  getVar("source").test.is("psych")
+    .success(
+      getText("exit_sona_msg").print(),
+      getText("psych_link").print()
+    )
+    .failure(
+      getVar("source").test.is("ling")
+        .success(
+          getText("exit_sona_msg").print(),
+          getText("ling_link").print()
+        )
+        .failure(getText("fallback_msg").print())
+    ),
+  newText("exit_close", "<p>When you are finished, you may close this tab.</p>")
+    .css(text_css)
+    .print()
+    .center(),
+  newButton("exit_wait", "END")
+    .bold()
+    .css(button_css)
+    .center()
     .print()
     .wait()
-)
-  .setOption("hideProgressBar", true);
+).setOption("hideProgressBar", true);
 
 
-Sequence(...introBlock, "check", ...practiceBlockSeq, ...metaBlock1, ...metaBlock2, "send_results", "exit_sona_ling");
+Sequence(...introBlock, "check", ...practiceBlockSeq, ...metaBlock1, ...metaBlock2, "send_results", "debrief", "senddebrief", "exit_sona");
