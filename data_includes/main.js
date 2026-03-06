@@ -345,7 +345,11 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
+    .disable()
     .print(),
+  newTimer("intro_continue_gate", 1200).start(),
+  getTimer("intro_continue_gate").wait(),
+  getButton("CONTINUE").enable(),
   newKey("intro_space_continue", " ").callback(getButton("CONTINUE").click()),
   getButton("CONTINUE").wait()
 )
@@ -389,7 +393,11 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
+    .disable()
     .print(),
+  newTimer("consent_continue_gate", 1200).start(),
+  getTimer("consent_continue_gate").wait(),
+  getButton("agree").enable(),
   newKey("consent_space_agree", " ").callback(getButton("agree").click()),
   getButton("agree").wait()
 )
@@ -480,7 +488,11 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
+    .disable()
     .print(),
+  newTimer("instructions_continue_gate", 1500).start(),
+  getTimer("instructions_continue_gate").wait(),
+  getButton("CONTINUE").enable(),
   newKey("instructions_space_continue", " ").callback(getButton("CONTINUE").click()),
   getButton("CONTINUE").wait()
 )
@@ -553,7 +565,11 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
+    .disable()
     .print(),
+  newTimer("debrief_continue_gate", 1200).start(),
+  getTimer("debrief_continue_gate").wait(),
+  getButton("debrief_continue").enable(),
   newKey("debrief_space_continue", " ").callback(getButton("debrief_continue").click()),
   getButton("debrief_continue").wait()
 ).setOption("hideProgressBar", true);
@@ -593,7 +609,11 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
+    .disable()
     .print(),
+  newTimer("exit_end_gate", 900).start(),
+  getTimer("exit_end_gate").wait(),
+  getButton("exit_wait").enable(),
   newKey("exit_space_end", " ").callback(getButton("exit_wait").click()),
   getButton("exit_wait").wait()
 ).setOption("hideProgressBar", true);
