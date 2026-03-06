@@ -7,7 +7,7 @@ This project investigates the dissociation between syntactic planning (tense fea
 The repository is organized as follows:
 
 - **`experiments/`**: Contains the source code and materials for psycholinguistic experiments.
-  - `conceptual-task/`: A PCIbex experiment testing tense planning using a switch task paradigm.
+  - `conceptual-task/`: A PCIbex experiment testing tense planning using a switch task paradigm. [DEMO for the conceptual experiment](https://farm.pcibex.net/r/ZlMqba/)
   - `norming/`: A norming experiment to validate aspectual properties of stimuli. [DEMO for the norming experiment](https://farm.pcibex.net/p/qHbGqX/)
   - `morphophonology/`: (Planned) Experiment focusing on phonological planning.
   - `morphosyntax/`: (Planned) Experiment focusing on syntactic planning.
@@ -24,7 +24,22 @@ The repository is organized as follows:
 
 ### Conceptual Task
 To run or edit the main experiment, navigate to `experiments/conceptual-task/`.
-See the [Experiment README](experiments/conceptual-task/README.md) for details on the design, conditions, and deployment.
+See the [Experiment README](experiments/conceptual-task/README.md) for details on implementation, randomization, timing, and deployment.
+
+Live demo:
+- https://farm.pcibex.net/r/ZlMqba/
+
+## Conceptual Task (Quick Summary)
+
+- Participants learn action verbs for characters, learn tense assignments, then complete speeded tense decisions.
+- Response mapping in the current implementation: `C = Past`, `M = Future`.
+- The task includes a short practice phase and then 3 meta-blocks with randomized block order and fixed tense-pattern balancing.
+- Main implementation files:
+  - `experiments/conceptual-task/data_includes/main.js`
+  - `experiments/conceptual-task/data_includes/helper_block_intro.js`
+  - `experiments/conceptual-task/data_includes/helper_trial.js`
+- Full reproducibility and run instructions:
+  - [experiments/conceptual-task/README.md](experiments/conceptual-task/README.md)
 
 ## Research Goals
 
