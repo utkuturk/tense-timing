@@ -1,18 +1,14 @@
-// Decision trial (C/M past vs future)
-var trial = (blockLabel) => (row) => {
-  const uniqueLabel = `exp_${blockLabel}_${row.verb}_${row.side}`;
-  const verbImage   = newImage(row.verb, row.pic).size(150, 150);
+// Decision trial (fixed mapping: F=Past, J=Future)
+var trial = (blockLabel, patternTag = "p1") => (row) => {
+  const uniqueLabel = `exp_${blockLabel}_${patternTag}_${row.verb}_${row.side}`;
+  const verbImage   = newImage(row.verb, row.pic).size(210, 210);
 
-  const options = Math.random() < 0.5
-    ? ["Past", "Future"]
-    : ["Future", "Past"];
-
-  const leftLabel  = options[0];
-  const rightLabel = options[1];
+  const leftLabel  = "Past (F)";
+  const rightLabel = "Future (J)";
 
   return newTrial(
     uniqueLabel,
-    defaultText.css({ "font-size": "2em", "font-family": "sans-serif" }),
+    defaultText.css({ "font-size": "1.35em", "font-family": "sans-serif" }),
 
     // picture
     verbImage.center().print(),
@@ -21,7 +17,7 @@ var trial = (blockLabel) => (row) => {
     newText("leftOpt",  leftLabel),
     newText("rightOpt", rightLabel),
 
-    newCanvas("choices", 800, 150)
+    newCanvas("choices", 820, 120)
       .add("center at 35%", "middle at 50%", getText("leftOpt"))
       .add("center at 65%", "middle at 50%", getText("rightOpt"))
       .print(),
@@ -31,7 +27,7 @@ var trial = (blockLabel) => (row) => {
 
     newSelector("tenseChoice")
       .add(getText("leftOpt"), getText("rightOpt"))
-      .keys("C", "M")
+      .keys("F", "J")
       .once()
       .log()
       .wait(),
@@ -45,6 +41,7 @@ var trial = (blockLabel) => (row) => {
     .log("Form",    row.form)
     .log("Tense",   row.side)
     .log("Entity",  row.entity)          // <--- add this
+    .log("PatternTag", patternTag)
     .log("LeftOpt", leftLabel)
     .log("RightOpt", rightLabel)
     .log("DecisionRT", getVar("decision_RT"));
@@ -63,13 +60,46 @@ function getTensePatternByIndex(patternIndex) {
   return TENSE_PATTERNS[safeIndex];
 }
 
-function orderItemsByTensePattern(items, patternIndex) {
+function orderItemsByTensePattern(items, patternIndex, previousEntity) {
   const past   = items.filter(it => it.side === "PAST");
   const future = items.filter(it => it.side === "FUTURE");
   const pattern = Number.isInteger(patternIndex)
     ? getTensePatternByIndex(patternIndex)
     : TENSE_PATTERNS[Math.floor(Math.random() * TENSE_PATTERNS.length)];
 
+  const byTense = {
+    PAST: past.slice(),
+    FUTURE: future.slice()
+  };
+
+  function solve(pos, prevEntity, remaining) {
+    if (pos >= pattern.length) return [];
+
+    const neededTense = pattern[pos];
+    const candidates = remaining[neededTense]
+      .filter(item => item.entity !== prevEntity);
+
+    for (let i = 0; i < candidates.length; i++) {
+      const pick = candidates[i];
+      const nextRemaining = {
+        PAST: remaining.PAST.slice(),
+        FUTURE: remaining.FUTURE.slice()
+      };
+      const pool = nextRemaining[neededTense];
+      const idx = pool.indexOf(pick);
+      if (idx > -1) pool.splice(idx, 1);
+
+      const rest = solve(pos + 1, pick.entity, nextRemaining);
+      if (rest) return [pick].concat(rest);
+    }
+
+    return null;
+  }
+
+  const constrained = solve(0, previousEntity || null, byTense);
+  if (constrained) return constrained;
+
+  // Fallback to tense-only ordering if no constrained solution is found.
   const pools = {
     PAST: past.slice(),
     FUTURE: future.slice()
@@ -126,8 +156,9 @@ var recall_trial = (blockLabel) => (row) => {
       .bold()
     //   .css(button_css)
       .center()
-      .print()
-      .wait(),
+      .print(),
+    newKey(`recall_space_${blockLabel}_${row.verb}_${row.side}`, " ").callback(getButton("Next").click()),
+    getButton("Next").wait(),
 
     getTextInput("answer")
       .test.text(new RegExp(`\\b${escapeRegExp(row.verb)}\\b`, "i"))
@@ -165,13 +196,13 @@ var recall_trial = (blockLabel) => (row) => {
 var recallIntroTrial = (blockName) =>
   newTrial(
     `recall_intro_${blockName}`,
-    newText("title", "Practice time")
+    newText("title", "Memory check")
       .css({ "font-size": "2.5em", "font-weight": "bold" })
       .center()
       .print(),
 
     newText("body",
-      "Before the experimental trials, we will practice to see if you learned the verbs."
+      "Before the decision trials, please type the learned verb for each picture."
     )
       .css({ "font-size": "1.6em", "margin-top": "20px" })
       .center()
@@ -179,15 +210,16 @@ var recallIntroTrial = (blockName) =>
 
     newButton("Continue")
       .center()
-      .print()
-      .wait()
+      .print(),
+    newKey(`recall_intro_space_${blockName}`, " ").callback(getButton("Continue").click()),
+    getButton("Continue").wait()
   )
     .setOption("hideProgressBar", true);
 
 var recallOutroTrial = (blockName) =>
   newTrial(
     `recall_outro_${blockName}`,
-    newText("title", "Practice finished")
+    newText("title", "Memory check complete")
       .css({ "font-size": "2.5em", "font-weight": "bold" })
       .center()
       .print(),
@@ -201,7 +233,8 @@ var recallOutroTrial = (blockName) =>
 
     newButton("Continue")
       .center()
-      .print()
-      .wait()
+      .print(),
+    newKey(`recall_outro_space_${blockName}`, " ").callback(getButton("Continue").click()),
+    getButton("Continue").wait()
   )
     .setOption("hideProgressBar", true);

@@ -3,18 +3,21 @@ PennController.ResetPrefix(null);
 DebugOff();
 SendResults("send_results");
 SendResults("senddebrief");
-PreloadZip("elevenlabs_audio.zip");
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/conceptual-task/chunk_includes/elevenlabs_audio.zip");
 PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/norming/chunk_includes/pictures.zip");
+const EXP_START_TIMESTAMP = Date.now();
 const PSYCH_SONA_LINK_BASE = "https://umpsychology.sona-systems.com/webstudy_credit.aspx?experiment_id=2052&credit_token=26041bec45c64b83ba65ac7b05b6bd93&survey_code=";
 const LING_SONA_LINK_BASE = "https://umlinguistics.sona-systems.com/webstudy_credit.aspx?experiment_id=528&credit_token=0076a3889d544e94a368b38e997e923d&survey_code=";
 var psych_sona_link = PSYCH_SONA_LINK_BASE + GetURLParameter("id");
 var ling_sona_link = LING_SONA_LINK_BASE + GetURLParameter("id");
 
 Header(
-  newVar("source", "").global().set(GetURLParameter("source"))
+  newVar("source", "").global().set(GetURLParameter("source")),
+  newVar("exp_start_timestamp", 0).global().set(EXP_START_TIMESTAMP)
 )
   .log("SONA_ID_URL", GetURLParameter("id"))
-  .log("source", GetURLParameter("source"));
+  .log("source", GetURLParameter("source"))
+  .log("exp_start_timestamp", getVar("exp_start_timestamp"));
 
 defineBreakTrial();
 
@@ -179,41 +182,7 @@ const pictureFor = (verb, entity) => {
 };
 const objectFor = (verb) => OBJECT_PHRASE_BY_VERB[verb] || "";
 
-const practiceItems = [
-  {
-    verb: "spin",
-    form: pastForm("spin"),
-    object: objectFor("spin"),
-    entity: "Pirate",
-    pic: pictureFor("spin", "Pirate"),
-    side: "PAST"
-  },
-  {
-    verb: "drag",
-    form: futureForm("drag"),
-    object: objectFor("drag"),
-    entity: "Wizard",
-    pic: pictureFor("drag", "Wizard"),
-    side: "FUTURE"
-  }
-];
-
-// Helper to manually build the practice sequence
-function buildPracticeSequence() {
-  return [
-    "intro_practice",
-    "recall_intro_practice",
-    // Recall trials
-    ...practiceItems.map(item => `recall_practice_${item.verb}_${item.side}`),
-    "recall_outro_practice",
-    "tense_intro_practice",
-    "tense_pairs_practice",
-    // Decision trials
-    ...practiceItems.map(item => `exp_practice_${item.verb}_${item.side}`)
-  ];
-}
-
-function makeBlockItems(blockVerbs, pastVerbs) {
+function makeBlockItems(blockVerbs, pastVerbs, entityRotation = 0) {
   // Split verbs by tense
   const futureVerbs = blockVerbs.filter(v => !pastVerbs.includes(v));
 
@@ -224,8 +193,9 @@ function makeBlockItems(blockVerbs, pastVerbs) {
   // Map from verb -> entity so each entity gets 1 past, 1 future
   const entityByVerb = {};
 
-  ENTITIES.forEach((ent, i) => {
-    entityByVerb[pastSorted[i]] = ent;  // one past per entity
+  ENTITIES.forEach((_, i) => {
+    const ent = ENTITIES[(i + entityRotation) % ENTITIES.length];
+    entityByVerb[pastSorted[i]] = ent;    // one past per entity
     entityByVerb[futureSorted[i]] = ent;  // one future per entity
   });
 
@@ -249,67 +219,48 @@ function makeBlockItems(blockVerbs, pastVerbs) {
   ];
 }
 
-function makeItemsForList(listId) {
+function makeItemsForList(listId, entityRotation = 0) {
   const cfg = cbSets[listId];
-  const items1 = makeBlockItems(verbsBlock1, cfg.past1);
-  const items2 = makeBlockItems(verbsBlock2, cfg.past2);
-  const items3 = makeBlockItems(verbsBlock3, cfg.past3);
+  const items1 = makeBlockItems(verbsBlock1, cfg.past1, entityRotation);
+  const items2 = makeBlockItems(verbsBlock2, cfg.past2, entityRotation);
+  const items3 = makeBlockItems(verbsBlock3, cfg.past3, entityRotation);
   return { items1, items2, items3 };
 }
 
 // choose which CB list
 const listOptions = ["a", "b", "c", "d"];
 const LIST_ID = listOptions[Math.floor(Math.random() * listOptions.length)];
-let { items1, items2, items3 } = makeItemsForList(LIST_ID);
+const METABLOCK_ROTATIONS = [0, 1, 2];
+const metaBlocks = METABLOCK_ROTATIONS.map((rotation, idx) => ({
+  metaName: `m${idx + 1}`,
+  itemsByBlock: makeItemsForList(LIST_ID, rotation)
+}));
 
 // ==============================
 // 3. REGISTER ALL TRIALS
 // ==============================
 
-// PRACTICE TRIALS
-introTrial("practice", practiceItems);
-// Register recall trials for practice items
-practiceItems.forEach(recall_trial("practice"));
-// Register decision trials for practice items
-practiceItems.forEach(item => {
-  // Manually register decision trial for practice
-  trial("practice")(item);
+function registerBlockTrials(blockName, items) {
+  // decision trials (two passes per block: one pass per tense pattern)
+  items.forEach(trial(blockName, "p1"));
+  items.forEach(trial(blockName, "p2"));
+
+  // teaching trials
+  introTrial(blockName, items);
+  tenseIntroTrial(blockName);
+  tensePairTrial(blockName, items);
+  decisionReadyTrial(blockName);
+}
+
+const metaBlockSpecs = metaBlocks.map(meta => {
+  const blocks = [
+    { name: `${meta.metaName}_block1`, items: meta.itemsByBlock.items1 },
+    { name: `${meta.metaName}_block2`, items: meta.itemsByBlock.items2 },
+    { name: `${meta.metaName}_block3`, items: meta.itemsByBlock.items3 }
+  ];
+  blocks.forEach(b => registerBlockTrials(b.name, b.items));
+  return { metaName: meta.metaName, blocks };
 });
-recallIntroTrial("practice");
-recallOutroTrial("practice");
-tenseIntroTrial("practice");
-tensePairTrial("practice", practiceItems);
-
-
-// decision trials
-items1.forEach(trial("block1"));
-items2.forEach(trial("block2"));
-items3.forEach(trial("block3"));
-
-// recall trials
-items1.forEach(recall_trial("block1"));
-items2.forEach(recall_trial("block2"));
-items3.forEach(recall_trial("block3"));
-
-// teaching intros
-introTrial("block1", items1);
-introTrial("block2", items2);
-introTrial("block3", items3);
-tenseIntroTrial("block1");
-tenseIntroTrial("block2");
-tenseIntroTrial("block3");
-tensePairTrial("block1", items1);
-tensePairTrial("block2", items2);
-tensePairTrial("block3", items3);
-
-// recall intros / outros
-recallIntroTrial("block1");
-recallIntroTrial("block2");
-recallIntroTrial("block3");
-
-recallOutroTrial("block1");
-recallOutroTrial("block2");
-recallOutroTrial("block3");
 
 // ==============================
 // 4. SEQUENCE
@@ -323,17 +274,7 @@ function fisherYates(arr) {
   return arr;
 }
 
-function shuffled(arr) {
-  return fisherYates(arr.slice());
-}
-
-const blocks = [
-  { name: "block1", items: items1 },
-  { name: "block2", items: items2 },
-  { name: "block3", items: items3 }
-];
-
-function buildBlockSequence(blockOrder, withIntro, withRecall) {
+function buildBlockSequence(blockOrder, withIntro) {
   const seq = [];
 
   blockOrder.forEach((b, index) => {
@@ -343,48 +284,35 @@ function buildBlockSequence(blockOrder, withIntro, withRecall) {
 
     if (withIntro) {
       seq.push(`intro_${b.name}`);
-    }
-
-    if (withRecall) {
-      seq.push(`recall_intro_${b.name}`);
-
-      // RECALL TRIALS: random order within this block
-      shuffled(b.items).forEach(item => {
-        seq.push(`recall_${b.name}_${item.verb}_${item.side}`);
-      });
-
-      seq.push(`recall_outro_${b.name}`);
-    }
-
-    if (withIntro) {
       seq.push(`tense_intro_${b.name}`);
       seq.push(`tense_pairs_${b.name}`);
+      seq.push(`ready_${b.name}`);
     }
 
-    // Decision trials in fixed P F F P P F order
-    const decisionItems = orderItemsByTensePattern(b.items, index);
-    decisionItems.forEach(item => {
-      seq.push(`exp_${b.name}_${item.verb}_${item.side}`);
+    // Decision trials: both tense patterns per block (12 total), randomizing which pattern comes first.
+    const patternOrder = fisherYates([0, 1]);
+    let previousEntity = null;
+    patternOrder.forEach(patternIndex => {
+      const patternTag = patternIndex === 0 ? "p1" : "p2";
+      const decisionItems = orderItemsByTensePattern(b.items, patternIndex, previousEntity);
+      decisionItems.forEach(item => {
+        seq.push(`exp_${b.name}_${patternTag}_${item.verb}_${item.side}`);
+      });
+      if (decisionItems.length > 0) {
+        previousEntity = decisionItems[decisionItems.length - 1].entity;
+      }
     });
   });
 
   return seq;
 }
 
-const order1 = blocks.slice();
-fisherYates(order1);
-const metaBlock1 = buildBlockSequence(order1, true, true);
-
-const order2 = blocks.slice();
-fisherYates(order2);
-
-const metaBlock2 = [
-  "Break",
-  ...buildBlockSequence(order2, true, true)
-];
-
-const practiceBlockSeq = buildPracticeSequence();
-
+const metaSequences = metaBlockSpecs.map((metaSpec, metaIndex) => {
+  const order = metaSpec.blocks.slice();
+  fisherYates(order);
+  const seq = buildBlockSequence(order, true);
+  return metaIndex === 0 ? seq : ["Break", ...seq];
+});
 
 // INTRO
 newTrial(
@@ -417,8 +345,9 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
-    .print()
-    .wait()
+    .print(),
+  newKey("intro_space_continue", " ").callback(getButton("CONTINUE").click()),
+  getButton("CONTINUE").wait()
 )
   .setOption("hideProgressBar", true);
 
@@ -460,8 +389,9 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
-    .print()
-    .wait()
+    .print(),
+  newKey("consent_space_agree", " ").callback(getButton("agree").click()),
+  getButton("agree").wait()
 )
   .setOption("hideProgressBar", true);
 
@@ -518,23 +448,27 @@ newTrial(
 
   newText(
     "inst-body",
-    "<p>You will see simple pictures of characters doing actions (verbs)." +
-    "<p>The experiment has two parts that will repeat multiple times for a variety of set of actions:" +
+    "<p>You will see pictures of characters doing actions.</p>" +
+    "<p>The experiment has 3 rounds (metablocks), each with 3 blocks:</p>" +
     "<ol>" +
-    "<li><b>Learning and practice</b>:<br>" +
-    "You will first learn the verbs and their tenses." +
-    " Press the <b>SPACE</b> bar to reveal each verb and its tense." +
-    " Then you will practice by typing the base form of the verb" +
-    " (for example, type <b>build tower</b>, not <b>built tower</b>).<br><br>" +
-    "</li>" +
-    "<li><b>Main task</b>:<br>" +
-    "You will see a picture and choose whether the sentence is in the <b>Past</b> or <b>Future</b>." +
-    " You will see two words on the screen: <b>Past</b> on one side and <b>Future</b> on the other." +
-    " Press <b>C</b> for the option on the left and <b>M</b> for the option on the right." +
+    "<li><b>Learn verbs</b>:<br>" +
+    "You will study each character+verb (with object) one by one, with audio.</li>" +
+    "<li><b>Learn tense assignment</b>:<br>" +
+    "You will then study tense items one by one. " +
+    "Press <b>SPACE</b> to reveal each picture and hear the sentence audio. " +
+    "When <b>Next</b> appears, you can click it or press <b>SPACE</b> again.</li>" +
+    "<li><b>Get ready page</b>:<br>" +
+    "A short screen reminds you of the response keys before the test starts.</li>" +
+    "<li><b>Decision trials</b>:<br>" +
+    "Each block has 12 decision trials (6 per tense pattern). " +
+    "The two patterns are both shown, and the order of patterns is randomized.<br>" +
+    "Choose the tense shown by the picture using a fixed mapping:<br>" +
+    "<b>F = Past</b> (left), <b>J = Future</b> (right).<br>" +
+    "This key mapping never changes." +
     "</li>" +
     "</ol>" +
-    "<p>Please respond as quickly and accurately as you can." +
-    "<br>Keep your fingers on the <b>C</b> and <b>M</b> keys during the decision parts."
+    "<p>Please respond as quickly and accurately as possible.</p>" +
+    "<p>Keep your left index finger on <b>F</b> and right index finger on <b>J</b> during decision trials.</p>"
   )
     .css({ "font-size": "1.1em", "max-width": "45em", "text-align": "left" })
     .center()
@@ -546,8 +480,9 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
-    .print()
-    .wait()
+    .print(),
+  newKey("instructions_space_continue", " ").callback(getButton("CONTINUE").click()),
+  getButton("CONTINUE").wait()
 )
   .setOption("hideProgressBar", true);
 
@@ -555,6 +490,22 @@ const introBlock = ["intro", "consent", "demo", "instructions"];
 
 
 CheckPreloaded().label("check");
+
+newTrial(
+  "time_summary",
+  newVar("exp_end_timestamp", 0).global().set(() => Date.now()),
+  newVar("exp_elapsed_ms", 0).global().set(() => Date.now() - EXP_START_TIMESTAMP),
+  newVar("exp_elapsed_min", 0).global().set(() => {
+    const elapsed = Date.now() - EXP_START_TIMESTAMP;
+    return Math.round((elapsed / 60000) * 100) / 100;
+  }),
+  newTimer("time_summary_wait", 1).start().wait()
+)
+  .log("exp_start_timestamp", getVar("exp_start_timestamp"))
+  .log("exp_end_timestamp", getVar("exp_end_timestamp"))
+  .log("exp_elapsed_ms", getVar("exp_elapsed_ms"))
+  .log("exp_elapsed_min", getVar("exp_elapsed_min"))
+  .setOption("hideProgressBar", true);
 
 newTrial(
   "debrief",
@@ -602,8 +553,9 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
-    .print()
-    .wait()
+    .print(),
+  newKey("debrief_space_continue", " ").callback(getButton("debrief_continue").click()),
+  getButton("debrief_continue").wait()
 ).setOption("hideProgressBar", true);
 
 newTrial(
@@ -641,9 +593,10 @@ newTrial(
     .bold()
     .css(button_css)
     .center()
-    .print()
-    .wait()
+    .print(),
+  newKey("exit_space_end", " ").callback(getButton("exit_wait").click()),
+  getButton("exit_wait").wait()
 ).setOption("hideProgressBar", true);
 
 
-Sequence(...introBlock, "check", ...practiceBlockSeq, ...metaBlock1, ...metaBlock2, "send_results", "debrief", "senddebrief", "exit_sona");
+Sequence(...introBlock, "check", ...metaSequences.flat(), "time_summary", "send_results", "debrief", "senddebrief", "exit_sona");
