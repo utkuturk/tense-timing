@@ -10,6 +10,22 @@ var trial = (blockLabel, patternTag = "p1") => (row) => {
     uniqueLabel,
     defaultText.css({ "font-size": "1.35em", "font-family": "sans-serif" }),
 
+    newCanvas("decision_blank", 1200, 700)
+      .css({ "background-color": "white" })
+      .center()
+      .print(),
+    newTimer("decision_blank_t", 300).start(),
+    getTimer("decision_blank_t").wait(),
+    getCanvas("decision_blank").remove(),
+
+    newText("decision_fix", "+")
+      .css({ "font-size": "3em", "font-weight": "bold" })
+      .center()
+      .print(),
+    newTimer("decision_fix_t", 500).start(),
+    getTimer("decision_fix_t").wait(),
+    getText("decision_fix").remove(),
+
     // picture
     verbImage.center().print(),
 

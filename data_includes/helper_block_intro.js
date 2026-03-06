@@ -1,5 +1,8 @@
 var MIN_VERB_STUDY_MS = 1200;
 var MIN_TENSE_STUDY_MS = 1400;
+var VERB_WHITE_MS = 300;
+var VERB_FIX_MS = 500;
+var VERB_POST_AUDIO_MS = 250;
 var __speechCounter = 0;
 var ENTITY_DISPLAY_ORDER = ["Pirate", "Wizard", "Chef"];
 
@@ -64,7 +67,11 @@ var introTrial = (blockName, items) => {
       .bold()
       .css(button_css)
       .center()
+      .disable()
       .print(),
+    newTimer(`intro_start_gate_${blockName}`, 900).start(),
+    getTimer(`intro_start_gate_${blockName}`).wait(),
+    getButton("intro_start").enable(),
     newKey(`intro_start_space_${blockName}`, " ").callback(getButton("intro_start").click()),
     getButton("intro_start").wait(),
     getText("intro_title").remove(),
@@ -74,7 +81,22 @@ var introTrial = (blockName, items) => {
 
   verbItems.forEach((item, idx) => {
     const n = idx + 1;
+    const audioId = `v_audio_${n}`;
     commands.push(
+      newCanvas(`vblank_${n}`, 1200, 700)
+        .css({ "background-color": "white" })
+        .center()
+        .print(),
+      newTimer(`vblank_t_${n}`, VERB_WHITE_MS).start(),
+      getTimer(`vblank_t_${n}`).wait(),
+      getCanvas(`vblank_${n}`).remove(),
+      newText(`vcross_${n}`, "+")
+        .css({ "font-size": "3em", "font-weight": "bold" })
+        .center()
+        .print(),
+      newTimer(`vcross_t_${n}`, VERB_FIX_MS).start(),
+      getTimer(`vcross_t_${n}`).wait(),
+      getText(`vcross_${n}`).remove(),
       newImage(`vimg_${n}`, item.pic).size(220, 220).center().print(),
       newText(`vent_${n}`, item.entity).css({ "font-size": "1.1em" }).center().print(),
       newText(`vtxt_${n}`, item.verb)
@@ -85,15 +107,17 @@ var introTrial = (blockName, items) => {
         .css({ "font-size": "1.25em", "margin-top": "6px" })
         .center()
         .print(),
-      ...playPreGeneratedAudio(audioFileForVerb(item)),
-      newTimer(`vmin_${n}`, MIN_VERB_STUDY_MS).start(),
+      newAudio(audioId, audioFileForVerb(item)),
+      getAudio(audioId).play(),
+      newTimer(`vmin_${n}`, VERB_POST_AUDIO_MS).start(),
       newButton(`vnext_${n}`, "Next")
         .bold()
         .css(button_css)
         .center()
-        .disable()
-        .print(),
+        .disable(),
+      getAudio(audioId).wait("first"),
       getTimer(`vmin_${n}`).wait(),
+      getButton(`vnext_${n}`).print(),
       getButton(`vnext_${n}`).enable(),
       newKey(`vnext_space_${n}`, " ").callback(getButton(`vnext_${n}`).click()),
       getButton(`vnext_${n}`).wait(),
@@ -230,15 +254,17 @@ var tensePairTrial = (blockName, items) => {
       getText(`pwait_${n}`).remove(),
       newImage(`pimg_${n}`, item.pic).size(170, 170),
       getCanvas(canvasId).add(`center at ${slot.x}%`, `middle at ${slot.y}px`, getImage(`pimg_${n}`)),
-      ...playPreGeneratedAudio(audioFileForSentence(item)),
+      newAudio(`p_audio_${blockName}_${n}`, audioFileForSentence(item)),
+      getAudio(`p_audio_${blockName}_${n}`).play(),
       newTimer(`pmin_${n}`, MIN_TENSE_STUDY_MS).start(),
       newButton(`pnext_${n}`, "Next")
         .bold()
         .css(button_css)
         .center()
-        .disable()
-        .print(),
+        .disable(),
+      getAudio(`p_audio_${blockName}_${n}`).wait("first"),
       getTimer(`pmin_${n}`).wait(),
+      getButton(`pnext_${n}`).print(),
       getButton(`pnext_${n}`).enable(),
       newKey(`pnext_space_${blockName}_${n}`, " ").callback(getButton(`pnext_${n}`).click()),
       getButton(`pnext_${n}`).wait(),
@@ -272,7 +298,11 @@ var decisionReadyTrial = (blockName) =>
       .bold()
       .css(button_css)
       .center()
+      .disable()
       .print(),
+    newTimer(`ready_gate_${blockName}`, 900).start(),
+    getTimer(`ready_gate_${blockName}`).wait(),
+    getButton("ready_button").enable(),
     newKey(`ready_space_${blockName}`, " ").callback(getButton("ready_button").click()),
     getButton("ready_button").wait()
   ).setOption("hideProgressBar", true);

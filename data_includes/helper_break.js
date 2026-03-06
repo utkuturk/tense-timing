@@ -18,8 +18,16 @@ function defineBreakTrial() {
         .print(),
 
     newButton("Continue")
+        .settings.disable()
         .center()
         .print()
+        ,
+    newTimer("break_continue_gate", 900)
+        .start()
+        .wait()
+        ,
+    getButton("Continue")
+        .settings.enable()
         ,
     newKey("break_space_continue", " ").callback(getButton("Continue").click())
         ,
