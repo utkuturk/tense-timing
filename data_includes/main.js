@@ -314,6 +314,58 @@ const metaSequences = metaBlockSpecs.map((metaSpec, metaIndex) => {
   return metaIndex === 0 ? seq : ["Break", ...seq];
 });
 
+const PRACTICE_ENTITY = ENTITIES[Math.floor(Math.random() * ENTITIES.length)];
+const PRACTICE_ITEMS = [
+  {
+    verb: "spin",
+    form: pastForm("spin"),
+    object: objectFor("spin"),
+    entity: PRACTICE_ENTITY,
+    pic: pictureFor("spin", PRACTICE_ENTITY),
+    side: "PAST"
+  },
+  {
+    verb: "drag",
+    form: futureForm("drag"),
+    object: objectFor("drag"),
+    entity: PRACTICE_ENTITY,
+    pic: pictureFor("drag", PRACTICE_ENTITY),
+    side: "FUTURE"
+  }
+];
+
+const PRACTICE_DECISION_ITEMS = fisherYates(PRACTICE_ITEMS.slice());
+const PRACTICE_DECISION_LABELS = PRACTICE_DECISION_ITEMS.map(
+  item => `practice_decision_${item.verb}_${item.side.toLowerCase()}`
+);
+
+introTrial("practice", PRACTICE_ITEMS);
+tenseIntroTrial("practice", {
+  title: "Practice: Place events in time",
+  body:
+    `<p>This is a short practice with two ${PRACTICE_ENTITY} actions: <b>spin</b> and <b>drag</b>.</p>` +
+    "<p>One action happened in the <b>past</b>, and one action will happen in the <b>future</b>.</p>" +
+    "<p>Press <b>SPACE</b> to reveal each item and hear the sentence audio.</p>" +
+    "<p>Then click <b>Next</b> to continue.</p>"
+});
+tensePairTrial("practice", PRACTICE_ITEMS, {
+  body:
+    "The two practice items will be shown according to their tense.<br><br>" +
+    "Press <b>SPACE</b> to reveal each item and hear the sentence audio."
+});
+decisionReadyTrial("practice", {
+  title: "Practice: Choose Past or Future",
+  body:
+    "<p>Now you will choose the tense for each practice item.</p>" +
+    "<p>Use this fixed key mapping:</p>" +
+    "<p><b>C = Past</b> (left), <b>M = Future</b> (right)</p>" +
+    "<p>You will receive feedback after each response.</p>",
+  buttonText: "Start Practice Choices"
+});
+PRACTICE_DECISION_ITEMS.forEach((item, idx) => {
+  practiceDecisionTrial(PRACTICE_DECISION_LABELS[idx], item);
+});
+
 // INTRO
 newTrial(
   "intro",
@@ -368,22 +420,22 @@ newTrial(
   newText(
     "consent-body",
     "Please click " +
-    "<a target='_blank' rel='noopener noreferrer' href='irb.pdf'>here</a> " +
+    "<a target='_blank' rel='noopener noreferrer' href='https://utkuturk.com/files/web_consent.pdf'>here</a> " +
     "to open the consent form for this study in a new tab." +
     "<p>If you read it and agree to participate, click <b>I Agree</b> below." +
     "<br>You can leave the study at any time by closing this tab." +
     "<p>If you have any questions or encounter problems, you can contact the researchers by email."
   )
-    .css({ "font-size": "1.1em", "max-width": "40em", "text-align": "left" })
+    .css({ "font-size": "1.1em", "text-align": "left" })
     .center()
     .print(),
 
   newText(
     "researchers",
     "<p><b>Researchers:</b><br>" +
-    "Utku Turk, PhD (utkuturk@umd.edu) and Prof. Shota Momma"
+    "Utku Turk, PhD (utkuturk@umd.edu) and Asst. Prof. Shota Momma"
   )
-    .css({ "font-size": "0.95em", "max-width": "40em", "text-align": "left", "margin-top": "1em" })
+    .css({ "font-size": "0.95em", "text-align": "left", "margin-top": "1em" })
     .center()
     .print(),
 
@@ -456,27 +508,24 @@ newTrial(
 
   newText(
     "inst-body",
-    "<p>You will see pictures of characters doing actions.</p>" +
-    "<p>The experiment has 3 rounds (metablocks), each with 3 blocks:</p>" +
+    "<p>In this study, you will see pictures of characters doing certain actions.</p>" +
+    "<p>The experiment will consist of 3 blocks. In each block:</p>" +
     "<ol>" +
-    "<li><b>Learn verbs</b>:<br>" +
-    "You will study each character+verb (with object) one by one, with audio.</li>" +
-    "<li><b>Learn tense assignment</b>:<br>" +
-    "You will then study tense items one by one. " +
-    "Press <b>SPACE</b> to reveal each picture and hear the sentence audio. " +
-    "When <b>Next</b> appears, you can click it or press <b>SPACE</b> again.</li>" +
-    "<li><b>Get ready page</b>:<br>" +
-    "A short screen reminds you of the response keys before the test starts.</li>" +
-    "<li><b>Decision trials</b>:<br>" +
-    "Each block has 12 decision trials (6 per tense pattern). " +
-    "The two patterns are both shown, and the order of patterns is randomized.<br>" +
-    "Choose the tense shown by the picture using a fixed mapping:<br>" +
-    "<b>F = Past</b> (left), <b>J = Future</b> (right).<br>" +
-    "This key mapping never changes." +
+
+    "<li style='margin-bottom: 12px;'><b>Learn verbs</b>:<br>" +
+    "You will learn what each character has done one by one, with audio.</li>" +
+    
+    "<li style='margin-bottom: 12px;'><b>Learn tense assignment</b>:<br>" +
+    "You will then study whether these actions are already done or will be done in the future. " +
+    
+    "<li><b>Recalling</b>:<br>" +
+    "Lastly, you will be asked to remember when these actions were done.<br>" +
+    "You are expected the choose whether the event was in past or future according to what has been told by using keys: <br>" +
+    "<b>C for Past</b> (left), <b>M for Future</b> (right).<br>" +
     "</li>" +
     "</ol>" +
     "<p>Please respond as quickly and accurately as possible.</p>" +
-    "<p>Keep your left index finger on <b>F</b> and right index finger on <b>J</b> during decision trials.</p>"
+    "<p>Keep your left index finger on <b>C</b> and right index finger on <b>M</b> during decision trials.</p>"
   )
     .css({ "font-size": "1.1em", "max-width": "45em", "text-align": "left" })
     .center()
@@ -498,7 +547,79 @@ newTrial(
 )
   .setOption("hideProgressBar", true);
 
-const introBlock = ["intro", "consent", "demo", "instructions"];
+newTrial(
+  "practice_intro",
+  newText("practice_intro_title", "Practice")
+    .css({ "font-size": "2em", "font-weight": "bold" })
+    .center()
+    .print(),
+  newText(
+    "practice_intro_body",
+    "<p>You will now complete a short practice before the real experiment.</p>" +
+    `<p>First, you will learn two ${PRACTICE_ENTITY} verbs: <b>spin</b> and <b>drag</b>.</p>` +
+    "<p>Then you will see which one is <b>past</b> and which one is <b>future</b>, and make choices with feedback.</p>"
+  )
+    .css({ "font-size": "1.15em", "max-width": "42em", "text-align": "left" })
+    .center()
+    .print(),
+  newButton("practice_intro_start", "Start Practice")
+    .bold()
+    .css(button_css)
+    .center()
+    .disable()
+    .print(),
+  newTimer("practice_intro_gate", 1200).start(),
+  getTimer("practice_intro_gate").wait(),
+  getButton("practice_intro_start").enable(),
+  newKey("practice_intro_space_start", " ").callback(getButton("practice_intro_start").click()),
+  getButton("practice_intro_start").wait()
+)
+  .setOption("hideProgressBar", true);
+
+newTrial(
+  "exp_ready",
+  newText("exp_ready_title", "Practice Complete")
+    .css({ "font-size": "2em", "font-weight": "bold" })
+    .center()
+    .print(),
+  fullscreen(),
+  newText(
+    "exp_ready_body",
+    "<p>The real experiment is about to start.</p>" +
+    "<p>In each learning block, you will see <b>6 events</b>.</p>" +
+    "<p>Please get ready for the first block.</p>" +
+    "<p>Press <b>SPACE</b> or click <b>Start</b> when you are ready.</p>"
+  )
+    .css({ "font-size": "1.15em", "max-width": "42em", "text-align": "center" })
+    .center()
+    .print(),
+  newButton("exp_ready_start", "Start")
+    .bold()
+    .css(button_css)
+    .center()
+    .disable()
+    .print(),
+  newTimer("exp_ready_gate", 1200).start(),
+  getTimer("exp_ready_gate").wait(),
+  getButton("exp_ready_start").enable(),
+  newKey("exp_ready_space_start", " ").callback(getButton("exp_ready_start").click()),
+  getButton("exp_ready_start").wait()
+)
+  .setOption("hideProgressBar", true);
+
+const introBlock = [
+  "intro",
+  "consent",
+  "demo",
+  "instructions",
+  "practice_intro",
+  "intro_practice",
+  "tense_intro_practice",
+  "tense_pairs_practice",
+  "ready_practice",
+  ...PRACTICE_DECISION_LABELS,
+  "exp_ready"
+];
 
 
 CheckPreloaded().label("check");
