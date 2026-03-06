@@ -1,0 +1,708 @@
+{
+  "generated_at": "2026-03-06T03:53:11.934Z",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "model_id": "eleven_multilingual_v2",
+  "total_entries": 140,
+  "entries": [
+    {
+      "id": "verb:blow",
+      "file": "tts_verb_blow.mp3",
+      "text": "blow bubbles"
+    },
+    {
+      "id": "verb:build",
+      "file": "tts_verb_build.mp3",
+      "text": "build a tower"
+    },
+    {
+      "id": "verb:carry",
+      "file": "tts_verb_carry.mp3",
+      "text": "carry a box"
+    },
+    {
+      "id": "verb:climb",
+      "file": "tts_verb_climb.mp3",
+      "text": "climb a ladder"
+    },
+    {
+      "id": "verb:dig",
+      "file": "tts_verb_dig.mp3",
+      "text": "dig a hole"
+    },
+    {
+      "id": "verb:drink",
+      "file": "tts_verb_drink.mp3",
+      "text": "drink coffee"
+    },
+    {
+      "id": "verb:eat",
+      "file": "tts_verb_eat.mp3",
+      "text": "eat an apple"
+    },
+    {
+      "id": "verb:paint",
+      "file": "tts_verb_paint.mp3",
+      "text": "paint a canvas"
+    },
+    {
+      "id": "verb:peel",
+      "file": "tts_verb_peel.mp3",
+      "text": "peel a banana"
+    },
+    {
+      "id": "verb:play",
+      "file": "tts_verb_play.mp3",
+      "text": "play the guitar"
+    },
+    {
+      "id": "verb:push",
+      "file": "tts_verb_push.mp3",
+      "text": "push a cart"
+    },
+    {
+      "id": "verb:read",
+      "file": "tts_verb_read.mp3",
+      "text": "read a book"
+    },
+    {
+      "id": "verb:ride",
+      "file": "tts_verb_ride.mp3",
+      "text": "ride a bicycle"
+    },
+    {
+      "id": "verb:shake",
+      "file": "tts_verb_shake.mp3",
+      "text": "shake a bottle"
+    },
+    {
+      "id": "verb:smell",
+      "file": "tts_verb_smell.mp3",
+      "text": "smell a flower"
+    },
+    {
+      "id": "verb:spin",
+      "file": "tts_verb_spin.mp3",
+      "text": "spin a top"
+    },
+    {
+      "id": "verb:stir",
+      "file": "tts_verb_stir.mp3",
+      "text": "stir a pot"
+    },
+    {
+      "id": "verb:sweep",
+      "file": "tts_verb_sweep.mp3",
+      "text": "sweep the floor"
+    },
+    {
+      "id": "verb:wash",
+      "file": "tts_verb_wash.mp3",
+      "text": "wash a dish"
+    },
+    {
+      "id": "verb:drag",
+      "file": "tts_verb_drag.mp3",
+      "text": "drag a sack"
+    },
+    {
+      "id": "sentence:pirate:blow:past",
+      "file": "tts_sent_pirate_blow_past.mp3",
+      "text": "The Pirate blew bubbles."
+    },
+    {
+      "id": "sentence:pirate:blow:future",
+      "file": "tts_sent_pirate_blow_future.mp3",
+      "text": "The Pirate will blow bubbles."
+    },
+    {
+      "id": "sentence:pirate:build:past",
+      "file": "tts_sent_pirate_build_past.mp3",
+      "text": "The Pirate built a tower."
+    },
+    {
+      "id": "sentence:pirate:build:future",
+      "file": "tts_sent_pirate_build_future.mp3",
+      "text": "The Pirate will build a tower."
+    },
+    {
+      "id": "sentence:pirate:carry:past",
+      "file": "tts_sent_pirate_carry_past.mp3",
+      "text": "The Pirate carried a box."
+    },
+    {
+      "id": "sentence:pirate:carry:future",
+      "file": "tts_sent_pirate_carry_future.mp3",
+      "text": "The Pirate will carry a box."
+    },
+    {
+      "id": "sentence:pirate:climb:past",
+      "file": "tts_sent_pirate_climb_past.mp3",
+      "text": "The Pirate climbed a ladder."
+    },
+    {
+      "id": "sentence:pirate:climb:future",
+      "file": "tts_sent_pirate_climb_future.mp3",
+      "text": "The Pirate will climb a ladder."
+    },
+    {
+      "id": "sentence:pirate:dig:past",
+      "file": "tts_sent_pirate_dig_past.mp3",
+      "text": "The Pirate dug a hole."
+    },
+    {
+      "id": "sentence:pirate:dig:future",
+      "file": "tts_sent_pirate_dig_future.mp3",
+      "text": "The Pirate will dig a hole."
+    },
+    {
+      "id": "sentence:pirate:drink:past",
+      "file": "tts_sent_pirate_drink_past.mp3",
+      "text": "The Pirate drank coffee."
+    },
+    {
+      "id": "sentence:pirate:drink:future",
+      "file": "tts_sent_pirate_drink_future.mp3",
+      "text": "The Pirate will drink coffee."
+    },
+    {
+      "id": "sentence:pirate:eat:past",
+      "file": "tts_sent_pirate_eat_past.mp3",
+      "text": "The Pirate ate an apple."
+    },
+    {
+      "id": "sentence:pirate:eat:future",
+      "file": "tts_sent_pirate_eat_future.mp3",
+      "text": "The Pirate will eat an apple."
+    },
+    {
+      "id": "sentence:pirate:paint:past",
+      "file": "tts_sent_pirate_paint_past.mp3",
+      "text": "The Pirate painted a canvas."
+    },
+    {
+      "id": "sentence:pirate:paint:future",
+      "file": "tts_sent_pirate_paint_future.mp3",
+      "text": "The Pirate will paint a canvas."
+    },
+    {
+      "id": "sentence:pirate:peel:past",
+      "file": "tts_sent_pirate_peel_past.mp3",
+      "text": "The Pirate peeled a banana."
+    },
+    {
+      "id": "sentence:pirate:peel:future",
+      "file": "tts_sent_pirate_peel_future.mp3",
+      "text": "The Pirate will peel a banana."
+    },
+    {
+      "id": "sentence:pirate:play:past",
+      "file": "tts_sent_pirate_play_past.mp3",
+      "text": "The Pirate played the guitar."
+    },
+    {
+      "id": "sentence:pirate:play:future",
+      "file": "tts_sent_pirate_play_future.mp3",
+      "text": "The Pirate will play the guitar."
+    },
+    {
+      "id": "sentence:pirate:push:past",
+      "file": "tts_sent_pirate_push_past.mp3",
+      "text": "The Pirate pushed a cart."
+    },
+    {
+      "id": "sentence:pirate:push:future",
+      "file": "tts_sent_pirate_push_future.mp3",
+      "text": "The Pirate will push a cart."
+    },
+    {
+      "id": "sentence:pirate:read:past",
+      "file": "tts_sent_pirate_read_past.mp3",
+      "text": "The Pirate read a book."
+    },
+    {
+      "id": "sentence:pirate:read:future",
+      "file": "tts_sent_pirate_read_future.mp3",
+      "text": "The Pirate will read a book."
+    },
+    {
+      "id": "sentence:pirate:ride:past",
+      "file": "tts_sent_pirate_ride_past.mp3",
+      "text": "The Pirate rode a bicycle."
+    },
+    {
+      "id": "sentence:pirate:ride:future",
+      "file": "tts_sent_pirate_ride_future.mp3",
+      "text": "The Pirate will ride a bicycle."
+    },
+    {
+      "id": "sentence:pirate:shake:past",
+      "file": "tts_sent_pirate_shake_past.mp3",
+      "text": "The Pirate shook a bottle."
+    },
+    {
+      "id": "sentence:pirate:shake:future",
+      "file": "tts_sent_pirate_shake_future.mp3",
+      "text": "The Pirate will shake a bottle."
+    },
+    {
+      "id": "sentence:pirate:smell:past",
+      "file": "tts_sent_pirate_smell_past.mp3",
+      "text": "The Pirate smelled a flower."
+    },
+    {
+      "id": "sentence:pirate:smell:future",
+      "file": "tts_sent_pirate_smell_future.mp3",
+      "text": "The Pirate will smell a flower."
+    },
+    {
+      "id": "sentence:pirate:spin:past",
+      "file": "tts_sent_pirate_spin_past.mp3",
+      "text": "The Pirate spun a top."
+    },
+    {
+      "id": "sentence:pirate:spin:future",
+      "file": "tts_sent_pirate_spin_future.mp3",
+      "text": "The Pirate will spin a top."
+    },
+    {
+      "id": "sentence:pirate:stir:past",
+      "file": "tts_sent_pirate_stir_past.mp3",
+      "text": "The Pirate stirred a pot."
+    },
+    {
+      "id": "sentence:pirate:stir:future",
+      "file": "tts_sent_pirate_stir_future.mp3",
+      "text": "The Pirate will stir a pot."
+    },
+    {
+      "id": "sentence:pirate:sweep:past",
+      "file": "tts_sent_pirate_sweep_past.mp3",
+      "text": "The Pirate swept the floor."
+    },
+    {
+      "id": "sentence:pirate:sweep:future",
+      "file": "tts_sent_pirate_sweep_future.mp3",
+      "text": "The Pirate will sweep the floor."
+    },
+    {
+      "id": "sentence:pirate:wash:past",
+      "file": "tts_sent_pirate_wash_past.mp3",
+      "text": "The Pirate washed a dish."
+    },
+    {
+      "id": "sentence:pirate:wash:future",
+      "file": "tts_sent_pirate_wash_future.mp3",
+      "text": "The Pirate will wash a dish."
+    },
+    {
+      "id": "sentence:pirate:drag:past",
+      "file": "tts_sent_pirate_drag_past.mp3",
+      "text": "The Pirate dragged a sack."
+    },
+    {
+      "id": "sentence:pirate:drag:future",
+      "file": "tts_sent_pirate_drag_future.mp3",
+      "text": "The Pirate will drag a sack."
+    },
+    {
+      "id": "sentence:chef:blow:past",
+      "file": "tts_sent_chef_blow_past.mp3",
+      "text": "The Chef blew bubbles."
+    },
+    {
+      "id": "sentence:chef:blow:future",
+      "file": "tts_sent_chef_blow_future.mp3",
+      "text": "The Chef will blow bubbles."
+    },
+    {
+      "id": "sentence:chef:build:past",
+      "file": "tts_sent_chef_build_past.mp3",
+      "text": "The Chef built a tower."
+    },
+    {
+      "id": "sentence:chef:build:future",
+      "file": "tts_sent_chef_build_future.mp3",
+      "text": "The Chef will build a tower."
+    },
+    {
+      "id": "sentence:chef:carry:past",
+      "file": "tts_sent_chef_carry_past.mp3",
+      "text": "The Chef carried a box."
+    },
+    {
+      "id": "sentence:chef:carry:future",
+      "file": "tts_sent_chef_carry_future.mp3",
+      "text": "The Chef will carry a box."
+    },
+    {
+      "id": "sentence:chef:climb:past",
+      "file": "tts_sent_chef_climb_past.mp3",
+      "text": "The Chef climbed a ladder."
+    },
+    {
+      "id": "sentence:chef:climb:future",
+      "file": "tts_sent_chef_climb_future.mp3",
+      "text": "The Chef will climb a ladder."
+    },
+    {
+      "id": "sentence:chef:dig:past",
+      "file": "tts_sent_chef_dig_past.mp3",
+      "text": "The Chef dug a hole."
+    },
+    {
+      "id": "sentence:chef:dig:future",
+      "file": "tts_sent_chef_dig_future.mp3",
+      "text": "The Chef will dig a hole."
+    },
+    {
+      "id": "sentence:chef:drink:past",
+      "file": "tts_sent_chef_drink_past.mp3",
+      "text": "The Chef drank coffee."
+    },
+    {
+      "id": "sentence:chef:drink:future",
+      "file": "tts_sent_chef_drink_future.mp3",
+      "text": "The Chef will drink coffee."
+    },
+    {
+      "id": "sentence:chef:eat:past",
+      "file": "tts_sent_chef_eat_past.mp3",
+      "text": "The Chef ate an apple."
+    },
+    {
+      "id": "sentence:chef:eat:future",
+      "file": "tts_sent_chef_eat_future.mp3",
+      "text": "The Chef will eat an apple."
+    },
+    {
+      "id": "sentence:chef:paint:past",
+      "file": "tts_sent_chef_paint_past.mp3",
+      "text": "The Chef painted a canvas."
+    },
+    {
+      "id": "sentence:chef:paint:future",
+      "file": "tts_sent_chef_paint_future.mp3",
+      "text": "The Chef will paint a canvas."
+    },
+    {
+      "id": "sentence:chef:peel:past",
+      "file": "tts_sent_chef_peel_past.mp3",
+      "text": "The Chef peeled a banana."
+    },
+    {
+      "id": "sentence:chef:peel:future",
+      "file": "tts_sent_chef_peel_future.mp3",
+      "text": "The Chef will peel a banana."
+    },
+    {
+      "id": "sentence:chef:play:past",
+      "file": "tts_sent_chef_play_past.mp3",
+      "text": "The Chef played the guitar."
+    },
+    {
+      "id": "sentence:chef:play:future",
+      "file": "tts_sent_chef_play_future.mp3",
+      "text": "The Chef will play the guitar."
+    },
+    {
+      "id": "sentence:chef:push:past",
+      "file": "tts_sent_chef_push_past.mp3",
+      "text": "The Chef pushed a cart."
+    },
+    {
+      "id": "sentence:chef:push:future",
+      "file": "tts_sent_chef_push_future.mp3",
+      "text": "The Chef will push a cart."
+    },
+    {
+      "id": "sentence:chef:read:past",
+      "file": "tts_sent_chef_read_past.mp3",
+      "text": "The Chef read a book."
+    },
+    {
+      "id": "sentence:chef:read:future",
+      "file": "tts_sent_chef_read_future.mp3",
+      "text": "The Chef will read a book."
+    },
+    {
+      "id": "sentence:chef:ride:past",
+      "file": "tts_sent_chef_ride_past.mp3",
+      "text": "The Chef rode a bicycle."
+    },
+    {
+      "id": "sentence:chef:ride:future",
+      "file": "tts_sent_chef_ride_future.mp3",
+      "text": "The Chef will ride a bicycle."
+    },
+    {
+      "id": "sentence:chef:shake:past",
+      "file": "tts_sent_chef_shake_past.mp3",
+      "text": "The Chef shook a bottle."
+    },
+    {
+      "id": "sentence:chef:shake:future",
+      "file": "tts_sent_chef_shake_future.mp3",
+      "text": "The Chef will shake a bottle."
+    },
+    {
+      "id": "sentence:chef:smell:past",
+      "file": "tts_sent_chef_smell_past.mp3",
+      "text": "The Chef smelled a flower."
+    },
+    {
+      "id": "sentence:chef:smell:future",
+      "file": "tts_sent_chef_smell_future.mp3",
+      "text": "The Chef will smell a flower."
+    },
+    {
+      "id": "sentence:chef:spin:past",
+      "file": "tts_sent_chef_spin_past.mp3",
+      "text": "The Chef spun a top."
+    },
+    {
+      "id": "sentence:chef:spin:future",
+      "file": "tts_sent_chef_spin_future.mp3",
+      "text": "The Chef will spin a top."
+    },
+    {
+      "id": "sentence:chef:stir:past",
+      "file": "tts_sent_chef_stir_past.mp3",
+      "text": "The Chef stirred a pot."
+    },
+    {
+      "id": "sentence:chef:stir:future",
+      "file": "tts_sent_chef_stir_future.mp3",
+      "text": "The Chef will stir a pot."
+    },
+    {
+      "id": "sentence:chef:sweep:past",
+      "file": "tts_sent_chef_sweep_past.mp3",
+      "text": "The Chef swept the floor."
+    },
+    {
+      "id": "sentence:chef:sweep:future",
+      "file": "tts_sent_chef_sweep_future.mp3",
+      "text": "The Chef will sweep the floor."
+    },
+    {
+      "id": "sentence:chef:wash:past",
+      "file": "tts_sent_chef_wash_past.mp3",
+      "text": "The Chef washed a dish."
+    },
+    {
+      "id": "sentence:chef:wash:future",
+      "file": "tts_sent_chef_wash_future.mp3",
+      "text": "The Chef will wash a dish."
+    },
+    {
+      "id": "sentence:chef:drag:past",
+      "file": "tts_sent_chef_drag_past.mp3",
+      "text": "The Chef dragged a sack."
+    },
+    {
+      "id": "sentence:chef:drag:future",
+      "file": "tts_sent_chef_drag_future.mp3",
+      "text": "The Chef will drag a sack."
+    },
+    {
+      "id": "sentence:wizard:blow:past",
+      "file": "tts_sent_wizard_blow_past.mp3",
+      "text": "The Wizard blew bubbles."
+    },
+    {
+      "id": "sentence:wizard:blow:future",
+      "file": "tts_sent_wizard_blow_future.mp3",
+      "text": "The Wizard will blow bubbles."
+    },
+    {
+      "id": "sentence:wizard:build:past",
+      "file": "tts_sent_wizard_build_past.mp3",
+      "text": "The Wizard built a tower."
+    },
+    {
+      "id": "sentence:wizard:build:future",
+      "file": "tts_sent_wizard_build_future.mp3",
+      "text": "The Wizard will build a tower."
+    },
+    {
+      "id": "sentence:wizard:carry:past",
+      "file": "tts_sent_wizard_carry_past.mp3",
+      "text": "The Wizard carried a box."
+    },
+    {
+      "id": "sentence:wizard:carry:future",
+      "file": "tts_sent_wizard_carry_future.mp3",
+      "text": "The Wizard will carry a box."
+    },
+    {
+      "id": "sentence:wizard:climb:past",
+      "file": "tts_sent_wizard_climb_past.mp3",
+      "text": "The Wizard climbed a ladder."
+    },
+    {
+      "id": "sentence:wizard:climb:future",
+      "file": "tts_sent_wizard_climb_future.mp3",
+      "text": "The Wizard will climb a ladder."
+    },
+    {
+      "id": "sentence:wizard:dig:past",
+      "file": "tts_sent_wizard_dig_past.mp3",
+      "text": "The Wizard dug a hole."
+    },
+    {
+      "id": "sentence:wizard:dig:future",
+      "file": "tts_sent_wizard_dig_future.mp3",
+      "text": "The Wizard will dig a hole."
+    },
+    {
+      "id": "sentence:wizard:drink:past",
+      "file": "tts_sent_wizard_drink_past.mp3",
+      "text": "The Wizard drank coffee."
+    },
+    {
+      "id": "sentence:wizard:drink:future",
+      "file": "tts_sent_wizard_drink_future.mp3",
+      "text": "The Wizard will drink coffee."
+    },
+    {
+      "id": "sentence:wizard:eat:past",
+      "file": "tts_sent_wizard_eat_past.mp3",
+      "text": "The Wizard ate an apple."
+    },
+    {
+      "id": "sentence:wizard:eat:future",
+      "file": "tts_sent_wizard_eat_future.mp3",
+      "text": "The Wizard will eat an apple."
+    },
+    {
+      "id": "sentence:wizard:paint:past",
+      "file": "tts_sent_wizard_paint_past.mp3",
+      "text": "The Wizard painted a canvas."
+    },
+    {
+      "id": "sentence:wizard:paint:future",
+      "file": "tts_sent_wizard_paint_future.mp3",
+      "text": "The Wizard will paint a canvas."
+    },
+    {
+      "id": "sentence:wizard:peel:past",
+      "file": "tts_sent_wizard_peel_past.mp3",
+      "text": "The Wizard peeled a banana."
+    },
+    {
+      "id": "sentence:wizard:peel:future",
+      "file": "tts_sent_wizard_peel_future.mp3",
+      "text": "The Wizard will peel a banana."
+    },
+    {
+      "id": "sentence:wizard:play:past",
+      "file": "tts_sent_wizard_play_past.mp3",
+      "text": "The Wizard played the guitar."
+    },
+    {
+      "id": "sentence:wizard:play:future",
+      "file": "tts_sent_wizard_play_future.mp3",
+      "text": "The Wizard will play the guitar."
+    },
+    {
+      "id": "sentence:wizard:push:past",
+      "file": "tts_sent_wizard_push_past.mp3",
+      "text": "The Wizard pushed a cart."
+    },
+    {
+      "id": "sentence:wizard:push:future",
+      "file": "tts_sent_wizard_push_future.mp3",
+      "text": "The Wizard will push a cart."
+    },
+    {
+      "id": "sentence:wizard:read:past",
+      "file": "tts_sent_wizard_read_past.mp3",
+      "text": "The Wizard read a book."
+    },
+    {
+      "id": "sentence:wizard:read:future",
+      "file": "tts_sent_wizard_read_future.mp3",
+      "text": "The Wizard will read a book."
+    },
+    {
+      "id": "sentence:wizard:ride:past",
+      "file": "tts_sent_wizard_ride_past.mp3",
+      "text": "The Wizard rode a bicycle."
+    },
+    {
+      "id": "sentence:wizard:ride:future",
+      "file": "tts_sent_wizard_ride_future.mp3",
+      "text": "The Wizard will ride a bicycle."
+    },
+    {
+      "id": "sentence:wizard:shake:past",
+      "file": "tts_sent_wizard_shake_past.mp3",
+      "text": "The Wizard shook a bottle."
+    },
+    {
+      "id": "sentence:wizard:shake:future",
+      "file": "tts_sent_wizard_shake_future.mp3",
+      "text": "The Wizard will shake a bottle."
+    },
+    {
+      "id": "sentence:wizard:smell:past",
+      "file": "tts_sent_wizard_smell_past.mp3",
+      "text": "The Wizard smelled a flower."
+    },
+    {
+      "id": "sentence:wizard:smell:future",
+      "file": "tts_sent_wizard_smell_future.mp3",
+      "text": "The Wizard will smell a flower."
+    },
+    {
+      "id": "sentence:wizard:spin:past",
+      "file": "tts_sent_wizard_spin_past.mp3",
+      "text": "The Wizard spun a top."
+    },
+    {
+      "id": "sentence:wizard:spin:future",
+      "file": "tts_sent_wizard_spin_future.mp3",
+      "text": "The Wizard will spin a top."
+    },
+    {
+      "id": "sentence:wizard:stir:past",
+      "file": "tts_sent_wizard_stir_past.mp3",
+      "text": "The Wizard stirred a pot."
+    },
+    {
+      "id": "sentence:wizard:stir:future",
+      "file": "tts_sent_wizard_stir_future.mp3",
+      "text": "The Wizard will stir a pot."
+    },
+    {
+      "id": "sentence:wizard:sweep:past",
+      "file": "tts_sent_wizard_sweep_past.mp3",
+      "text": "The Wizard swept the floor."
+    },
+    {
+      "id": "sentence:wizard:sweep:future",
+      "file": "tts_sent_wizard_sweep_future.mp3",
+      "text": "The Wizard will sweep the floor."
+    },
+    {
+      "id": "sentence:wizard:wash:past",
+      "file": "tts_sent_wizard_wash_past.mp3",
+      "text": "The Wizard washed a dish."
+    },
+    {
+      "id": "sentence:wizard:wash:future",
+      "file": "tts_sent_wizard_wash_future.mp3",
+      "text": "The Wizard will wash a dish."
+    },
+    {
+      "id": "sentence:wizard:drag:past",
+      "file": "tts_sent_wizard_drag_past.mp3",
+      "text": "The Wizard dragged a sack."
+    },
+    {
+      "id": "sentence:wizard:drag:future",
+      "file": "tts_sent_wizard_drag_future.mp3",
+      "text": "The Wizard will drag a sack."
+    }
+  ]
+}
