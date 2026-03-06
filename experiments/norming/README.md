@@ -1,5 +1,8 @@
 # Norming Experiment
 
+> **Branch**: [`norming`](https://github.com/utkuturk/tense-timing/tree/norming)
+> **Live demo**: [PCIbex](https://farm.pcibex.net/p/qHbGqX/)
+
 This directory contains a PCIbex experiment for norming stimuli.
 
 ## Quick Links
