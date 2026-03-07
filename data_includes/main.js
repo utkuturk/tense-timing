@@ -28,6 +28,9 @@ Header(
   .log("source", GetURLParameter("source"))
   .log("exp_start_timestamp", getVar("exp_start_timestamp"));
 
+// Non-blocking recording uploads can be triggered by placing "async" in Sequence.
+UploadRecordings("async", "noblock");
+
 defineBreakTrial();
 
 
@@ -349,6 +352,9 @@ function buildBlockSequence(blockOrder, withIntro) {
         previousEntity = productionItems[productionItems.length - 1].entity;
       }
     });
+
+    // Trigger a non-blocking upload after each completed block.
+    seq.push("async");
   });
 
   return seq;
@@ -730,6 +736,7 @@ const introBlock = [
   "tense_pairs_practice",
   "ready_practice",
   ...PRACTICE_PRODUCTION_LABELS,
+  "async",
   "exp_ready"
 ];
 

@@ -59,28 +59,9 @@ var trial = (blockLabel, patternTag = "p1") => (row) => {
     newVar("production_rt").set(() => Date.now()),
     getVoiceRecorder(recorderId).record(),
 
-    newText("production_prompt", "Speak a canonical tense sentence for this picture.")
-      .css({ "font-size": "1.15em", "margin-top": "14px", "font-weight": "bold" })
-      .center()
-      .print(),
-    newText("production_hint", "Think in past/future, but speak canonically.")
-      .css({ "font-size": "1.0em", "margin-top": "6px" })
-      .center()
-      .print(),
-    newText("production_hint2", "Example: The Pirate will spin a top. / The Pirate spun a top.")
-      .css({ "font-size": "1.05em", "margin-top": "6px" })
-      .center()
-      .print(),
-
-    newText("production_recording_now", "Recording starts now. Please speak.")
-      .css({ "font-size": "1.1em", "font-weight": "bold", "color": "#B00020", "margin-top": "12px" })
-      .center()
-      .print(),
-
     newTimer("production_record_window", AUTO_RECORD_MS).start(),
     getTimer("production_record_window").wait(),
     getVoiceRecorder(recorderId).stop(),
-    getText("production_recording_now").remove(),
 
     newButton("production_continue", "Continue")
       .bold()
