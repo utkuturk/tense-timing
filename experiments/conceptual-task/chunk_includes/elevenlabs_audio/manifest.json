@@ -1,7 +1,13 @@
 {
-  "generated_at": "2026-03-06T03:53:11.934Z",
-  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
-  "model_id": "eleven_multilingual_v2",
+  "generated_at": "2026-03-11T02:24:41.555Z",
+  "voice_id": "pNInz6obpgDQGcFmaJgB",
+  "model_id": "eleven_turbo_v2_5",
+  "voice_settings": {
+    "stability": 0.45,
+    "similarity_boost": 0.8,
+    "style": 0.35,
+    "use_speaker_boost": true
+  },
   "total_entries": 140,
   "entries": [
     {
@@ -62,7 +68,7 @@
     {
       "id": "verb:read",
       "file": "tts_verb_read.mp3",
-      "text": "read a book"
+      "text": "red a book"
     },
     {
       "id": "verb:ride",
