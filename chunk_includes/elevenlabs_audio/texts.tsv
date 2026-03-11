@@ -9,7 +9,7 @@ tts_verb_paint.mp3	paint a canvas
 tts_verb_peel.mp3	peel a banana
 tts_verb_play.mp3	play the guitar
 tts_verb_push.mp3	push a cart
-tts_verb_read.mp3	red a book
+tts_verb_read.mp3	read a book
 tts_verb_ride.mp3	ride a bicycle
 tts_verb_shake.mp3	shake a bottle
 tts_verb_smell.mp3	smell a flower
@@ -18,123 +18,137 @@ tts_verb_stir.mp3	stir a pot
 tts_verb_sweep.mp3	sweep the floor
 tts_verb_wash.mp3	wash a dish
 tts_verb_drag.mp3	drag a sack
-tts_sent_pirate_blow_past.mp3	The Pirate blew bubbles.
-tts_sent_pirate_blow_future.mp3	The Pirate will blow bubbles.
-tts_sent_pirate_build_past.mp3	The Pirate built a tower.
-tts_sent_pirate_build_future.mp3	The Pirate will build a tower.
-tts_sent_pirate_carry_past.mp3	The Pirate carried a box.
-tts_sent_pirate_carry_future.mp3	The Pirate will carry a box.
-tts_sent_pirate_climb_past.mp3	The Pirate climbed a ladder.
-tts_sent_pirate_climb_future.mp3	The Pirate will climb a ladder.
-tts_sent_pirate_dig_past.mp3	The Pirate dug a hole.
-tts_sent_pirate_dig_future.mp3	The Pirate will dig a hole.
-tts_sent_pirate_drink_past.mp3	The Pirate drank coffee.
-tts_sent_pirate_drink_future.mp3	The Pirate will drink coffee.
-tts_sent_pirate_eat_past.mp3	The Pirate ate an apple.
-tts_sent_pirate_eat_future.mp3	The Pirate will eat an apple.
-tts_sent_pirate_paint_past.mp3	The Pirate painted a canvas.
-tts_sent_pirate_paint_future.mp3	The Pirate will paint a canvas.
-tts_sent_pirate_peel_past.mp3	The Pirate peeled a banana.
-tts_sent_pirate_peel_future.mp3	The Pirate will peel a banana.
-tts_sent_pirate_play_past.mp3	The Pirate played the guitar.
-tts_sent_pirate_play_future.mp3	The Pirate will play the guitar.
-tts_sent_pirate_push_past.mp3	The Pirate pushed a cart.
-tts_sent_pirate_push_future.mp3	The Pirate will push a cart.
-tts_sent_pirate_read_past.mp3	The Pirate read a book.
-tts_sent_pirate_read_future.mp3	The Pirate will read a book.
-tts_sent_pirate_ride_past.mp3	The Pirate rode a bicycle.
-tts_sent_pirate_ride_future.mp3	The Pirate will ride a bicycle.
-tts_sent_pirate_shake_past.mp3	The Pirate shook a bottle.
-tts_sent_pirate_shake_future.mp3	The Pirate will shake a bottle.
-tts_sent_pirate_smell_past.mp3	The Pirate smelled a flower.
-tts_sent_pirate_smell_future.mp3	The Pirate will smell a flower.
-tts_sent_pirate_spin_past.mp3	The Pirate spun a top.
-tts_sent_pirate_spin_future.mp3	The Pirate will spin a top.
-tts_sent_pirate_stir_past.mp3	The Pirate stirred a pot.
-tts_sent_pirate_stir_future.mp3	The Pirate will stir a pot.
-tts_sent_pirate_sweep_past.mp3	The Pirate swept the floor.
-tts_sent_pirate_sweep_future.mp3	The Pirate will sweep the floor.
-tts_sent_pirate_wash_past.mp3	The Pirate washed a dish.
-tts_sent_pirate_wash_future.mp3	The Pirate will wash a dish.
-tts_sent_pirate_drag_past.mp3	The Pirate dragged a sack.
-tts_sent_pirate_drag_future.mp3	The Pirate will drag a sack.
-tts_sent_chef_blow_past.mp3	The Chef blew bubbles.
-tts_sent_chef_blow_future.mp3	The Chef will blow bubbles.
-tts_sent_chef_build_past.mp3	The Chef built a tower.
-tts_sent_chef_build_future.mp3	The Chef will build a tower.
-tts_sent_chef_carry_past.mp3	The Chef carried a box.
-tts_sent_chef_carry_future.mp3	The Chef will carry a box.
-tts_sent_chef_climb_past.mp3	The Chef climbed a ladder.
-tts_sent_chef_climb_future.mp3	The Chef will climb a ladder.
-tts_sent_chef_dig_past.mp3	The Chef dug a hole.
-tts_sent_chef_dig_future.mp3	The Chef will dig a hole.
-tts_sent_chef_drink_past.mp3	The Chef drank coffee.
-tts_sent_chef_drink_future.mp3	The Chef will drink coffee.
-tts_sent_chef_eat_past.mp3	The Chef ate an apple.
-tts_sent_chef_eat_future.mp3	The Chef will eat an apple.
-tts_sent_chef_paint_past.mp3	The Chef painted a canvas.
-tts_sent_chef_paint_future.mp3	The Chef will paint a canvas.
-tts_sent_chef_peel_past.mp3	The Chef peeled a banana.
-tts_sent_chef_peel_future.mp3	The Chef will peel a banana.
-tts_sent_chef_play_past.mp3	The Chef played the guitar.
-tts_sent_chef_play_future.mp3	The Chef will play the guitar.
-tts_sent_chef_push_past.mp3	The Chef pushed a cart.
-tts_sent_chef_push_future.mp3	The Chef will push a cart.
-tts_sent_chef_read_past.mp3	The Chef read a book.
-tts_sent_chef_read_future.mp3	The Chef will read a book.
-tts_sent_chef_ride_past.mp3	The Chef rode a bicycle.
-tts_sent_chef_ride_future.mp3	The Chef will ride a bicycle.
-tts_sent_chef_shake_past.mp3	The Chef shook a bottle.
-tts_sent_chef_shake_future.mp3	The Chef will shake a bottle.
-tts_sent_chef_smell_past.mp3	The Chef smelled a flower.
-tts_sent_chef_smell_future.mp3	The Chef will smell a flower.
-tts_sent_chef_spin_past.mp3	The Chef spun a top.
-tts_sent_chef_spin_future.mp3	The Chef will spin a top.
-tts_sent_chef_stir_past.mp3	The Chef stirred a pot.
-tts_sent_chef_stir_future.mp3	The Chef will stir a pot.
-tts_sent_chef_sweep_past.mp3	The Chef swept the floor.
-tts_sent_chef_sweep_future.mp3	The Chef will sweep the floor.
-tts_sent_chef_wash_past.mp3	The Chef washed a dish.
-tts_sent_chef_wash_future.mp3	The Chef will wash a dish.
-tts_sent_chef_drag_past.mp3	The Chef dragged a sack.
-tts_sent_chef_drag_future.mp3	The Chef will drag a sack.
-tts_sent_wizard_blow_past.mp3	The Wizard blew bubbles.
-tts_sent_wizard_blow_future.mp3	The Wizard will blow bubbles.
-tts_sent_wizard_build_past.mp3	The Wizard built a tower.
-tts_sent_wizard_build_future.mp3	The Wizard will build a tower.
-tts_sent_wizard_carry_past.mp3	The Wizard carried a box.
-tts_sent_wizard_carry_future.mp3	The Wizard will carry a box.
-tts_sent_wizard_climb_past.mp3	The Wizard climbed a ladder.
-tts_sent_wizard_climb_future.mp3	The Wizard will climb a ladder.
-tts_sent_wizard_dig_past.mp3	The Wizard dug a hole.
-tts_sent_wizard_dig_future.mp3	The Wizard will dig a hole.
-tts_sent_wizard_drink_past.mp3	The Wizard drank coffee.
-tts_sent_wizard_drink_future.mp3	The Wizard will drink coffee.
-tts_sent_wizard_eat_past.mp3	The Wizard ate an apple.
-tts_sent_wizard_eat_future.mp3	The Wizard will eat an apple.
-tts_sent_wizard_paint_past.mp3	The Wizard painted a canvas.
-tts_sent_wizard_paint_future.mp3	The Wizard will paint a canvas.
-tts_sent_wizard_peel_past.mp3	The Wizard peeled a banana.
-tts_sent_wizard_peel_future.mp3	The Wizard will peel a banana.
-tts_sent_wizard_play_past.mp3	The Wizard played the guitar.
-tts_sent_wizard_play_future.mp3	The Wizard will play the guitar.
-tts_sent_wizard_push_past.mp3	The Wizard pushed a cart.
-tts_sent_wizard_push_future.mp3	The Wizard will push a cart.
-tts_sent_wizard_read_past.mp3	The Wizard read a book.
-tts_sent_wizard_read_future.mp3	The Wizard will read a book.
-tts_sent_wizard_ride_past.mp3	The Wizard rode a bicycle.
-tts_sent_wizard_ride_future.mp3	The Wizard will ride a bicycle.
-tts_sent_wizard_shake_past.mp3	The Wizard shook a bottle.
-tts_sent_wizard_shake_future.mp3	The Wizard will shake a bottle.
-tts_sent_wizard_smell_past.mp3	The Wizard smelled a flower.
-tts_sent_wizard_smell_future.mp3	The Wizard will smell a flower.
-tts_sent_wizard_spin_past.mp3	The Wizard spun a top.
-tts_sent_wizard_spin_future.mp3	The Wizard will spin a top.
-tts_sent_wizard_stir_past.mp3	The Wizard stirred a pot.
-tts_sent_wizard_stir_future.mp3	The Wizard will stir a pot.
-tts_sent_wizard_sweep_past.mp3	The Wizard swept the floor.
-tts_sent_wizard_sweep_future.mp3	The Wizard will sweep the floor.
-tts_sent_wizard_wash_past.mp3	The Wizard washed a dish.
-tts_sent_wizard_wash_future.mp3	The Wizard will wash a dish.
-tts_sent_wizard_drag_past.mp3	The Wizard dragged a sack.
-tts_sent_wizard_drag_future.mp3	The Wizard will drag a sack.
+tts_verb_cut.mp3	cut bread
+tts_verb_hammer.mp3	hammer a nail
+tts_sent_pirate_blow_past.mp3	The Pirate is blowing bubbles in the past.
+tts_sent_pirate_blow_future.mp3	The Pirate is blowing bubbles in the future.
+tts_sent_pirate_build_past.mp3	The Pirate is building a tower in the past.
+tts_sent_pirate_build_future.mp3	The Pirate is building a tower in the future.
+tts_sent_pirate_carry_past.mp3	The Pirate is carrying a box in the past.
+tts_sent_pirate_carry_future.mp3	The Pirate is carrying a box in the future.
+tts_sent_pirate_climb_past.mp3	The Pirate is climbing a ladder in the past.
+tts_sent_pirate_climb_future.mp3	The Pirate is climbing a ladder in the future.
+tts_sent_pirate_dig_past.mp3	The Pirate is digging a hole in the past.
+tts_sent_pirate_dig_future.mp3	The Pirate is digging a hole in the future.
+tts_sent_pirate_drink_past.mp3	The Pirate is drinking coffee in the past.
+tts_sent_pirate_drink_future.mp3	The Pirate is drinking coffee in the future.
+tts_sent_pirate_eat_past.mp3	The Pirate is eating an apple in the past.
+tts_sent_pirate_eat_future.mp3	The Pirate is eating an apple in the future.
+tts_sent_pirate_paint_past.mp3	The Pirate is painting a canvas in the past.
+tts_sent_pirate_paint_future.mp3	The Pirate is painting a canvas in the future.
+tts_sent_pirate_peel_past.mp3	The Pirate is peeling a banana in the past.
+tts_sent_pirate_peel_future.mp3	The Pirate is peeling a banana in the future.
+tts_sent_pirate_play_past.mp3	The Pirate is playing the guitar in the past.
+tts_sent_pirate_play_future.mp3	The Pirate is playing the guitar in the future.
+tts_sent_pirate_push_past.mp3	The Pirate is pushing a cart in the past.
+tts_sent_pirate_push_future.mp3	The Pirate is pushing a cart in the future.
+tts_sent_pirate_read_past.mp3	The Pirate is reading a book in the past.
+tts_sent_pirate_read_future.mp3	The Pirate is reading a book in the future.
+tts_sent_pirate_ride_past.mp3	The Pirate is riding a bicycle in the past.
+tts_sent_pirate_ride_future.mp3	The Pirate is riding a bicycle in the future.
+tts_sent_pirate_shake_past.mp3	The Pirate is shaking a bottle in the past.
+tts_sent_pirate_shake_future.mp3	The Pirate is shaking a bottle in the future.
+tts_sent_pirate_smell_past.mp3	The Pirate is smelling a flower in the past.
+tts_sent_pirate_smell_future.mp3	The Pirate is smelling a flower in the future.
+tts_sent_pirate_spin_past.mp3	The Pirate is spinning a top in the past.
+tts_sent_pirate_spin_future.mp3	The Pirate is spinning a top in the future.
+tts_sent_pirate_stir_past.mp3	The Pirate is stirring a pot in the past.
+tts_sent_pirate_stir_future.mp3	The Pirate is stirring a pot in the future.
+tts_sent_pirate_sweep_past.mp3	The Pirate is sweeping the floor in the past.
+tts_sent_pirate_sweep_future.mp3	The Pirate is sweeping the floor in the future.
+tts_sent_pirate_wash_past.mp3	The Pirate is washing a dish in the past.
+tts_sent_pirate_wash_future.mp3	The Pirate is washing a dish in the future.
+tts_sent_pirate_drag_past.mp3	The Pirate is dragging a sack in the past.
+tts_sent_pirate_drag_future.mp3	The Pirate is dragging a sack in the future.
+tts_sent_pirate_cut_past.mp3	The Pirate is cutting bread in the past.
+tts_sent_pirate_cut_future.mp3	The Pirate is cutting bread in the future.
+tts_sent_pirate_hammer_past.mp3	The Pirate is hammering a nail in the past.
+tts_sent_pirate_hammer_future.mp3	The Pirate is hammering a nail in the future.
+tts_sent_chef_blow_past.mp3	The Chef is blowing bubbles in the past.
+tts_sent_chef_blow_future.mp3	The Chef is blowing bubbles in the future.
+tts_sent_chef_build_past.mp3	The Chef is building a tower in the past.
+tts_sent_chef_build_future.mp3	The Chef is building a tower in the future.
+tts_sent_chef_carry_past.mp3	The Chef is carrying a box in the past.
+tts_sent_chef_carry_future.mp3	The Chef is carrying a box in the future.
+tts_sent_chef_climb_past.mp3	The Chef is climbing a ladder in the past.
+tts_sent_chef_climb_future.mp3	The Chef is climbing a ladder in the future.
+tts_sent_chef_dig_past.mp3	The Chef is digging a hole in the past.
+tts_sent_chef_dig_future.mp3	The Chef is digging a hole in the future.
+tts_sent_chef_drink_past.mp3	The Chef is drinking coffee in the past.
+tts_sent_chef_drink_future.mp3	The Chef is drinking coffee in the future.
+tts_sent_chef_eat_past.mp3	The Chef is eating an apple in the past.
+tts_sent_chef_eat_future.mp3	The Chef is eating an apple in the future.
+tts_sent_chef_paint_past.mp3	The Chef is painting a canvas in the past.
+tts_sent_chef_paint_future.mp3	The Chef is painting a canvas in the future.
+tts_sent_chef_peel_past.mp3	The Chef is peeling a banana in the past.
+tts_sent_chef_peel_future.mp3	The Chef is peeling a banana in the future.
+tts_sent_chef_play_past.mp3	The Chef is playing the guitar in the past.
+tts_sent_chef_play_future.mp3	The Chef is playing the guitar in the future.
+tts_sent_chef_push_past.mp3	The Chef is pushing a cart in the past.
+tts_sent_chef_push_future.mp3	The Chef is pushing a cart in the future.
+tts_sent_chef_read_past.mp3	The Chef is reading a book in the past.
+tts_sent_chef_read_future.mp3	The Chef is reading a book in the future.
+tts_sent_chef_ride_past.mp3	The Chef is riding a bicycle in the past.
+tts_sent_chef_ride_future.mp3	The Chef is riding a bicycle in the future.
+tts_sent_chef_shake_past.mp3	The Chef is shaking a bottle in the past.
+tts_sent_chef_shake_future.mp3	The Chef is shaking a bottle in the future.
+tts_sent_chef_smell_past.mp3	The Chef is smelling a flower in the past.
+tts_sent_chef_smell_future.mp3	The Chef is smelling a flower in the future.
+tts_sent_chef_spin_past.mp3	The Chef is spinning a top in the past.
+tts_sent_chef_spin_future.mp3	The Chef is spinning a top in the future.
+tts_sent_chef_stir_past.mp3	The Chef is stirring a pot in the past.
+tts_sent_chef_stir_future.mp3	The Chef is stirring a pot in the future.
+tts_sent_chef_sweep_past.mp3	The Chef is sweeping the floor in the past.
+tts_sent_chef_sweep_future.mp3	The Chef is sweeping the floor in the future.
+tts_sent_chef_wash_past.mp3	The Chef is washing a dish in the past.
+tts_sent_chef_wash_future.mp3	The Chef is washing a dish in the future.
+tts_sent_chef_drag_past.mp3	The Chef is dragging a sack in the past.
+tts_sent_chef_drag_future.mp3	The Chef is dragging a sack in the future.
+tts_sent_chef_cut_past.mp3	The Chef is cutting bread in the past.
+tts_sent_chef_cut_future.mp3	The Chef is cutting bread in the future.
+tts_sent_chef_hammer_past.mp3	The Chef is hammering a nail in the past.
+tts_sent_chef_hammer_future.mp3	The Chef is hammering a nail in the future.
+tts_sent_wizard_blow_past.mp3	The Wizard is blowing bubbles in the past.
+tts_sent_wizard_blow_future.mp3	The Wizard is blowing bubbles in the future.
+tts_sent_wizard_build_past.mp3	The Wizard is building a tower in the past.
+tts_sent_wizard_build_future.mp3	The Wizard is building a tower in the future.
+tts_sent_wizard_carry_past.mp3	The Wizard is carrying a box in the past.
+tts_sent_wizard_carry_future.mp3	The Wizard is carrying a box in the future.
+tts_sent_wizard_climb_past.mp3	The Wizard is climbing a ladder in the past.
+tts_sent_wizard_climb_future.mp3	The Wizard is climbing a ladder in the future.
+tts_sent_wizard_dig_past.mp3	The Wizard is digging a hole in the past.
+tts_sent_wizard_dig_future.mp3	The Wizard is digging a hole in the future.
+tts_sent_wizard_drink_past.mp3	The Wizard is drinking coffee in the past.
+tts_sent_wizard_drink_future.mp3	The Wizard is drinking coffee in the future.
+tts_sent_wizard_eat_past.mp3	The Wizard is eating an apple in the past.
+tts_sent_wizard_eat_future.mp3	The Wizard is eating an apple in the future.
+tts_sent_wizard_paint_past.mp3	The Wizard is painting a canvas in the past.
+tts_sent_wizard_paint_future.mp3	The Wizard is painting a canvas in the future.
+tts_sent_wizard_peel_past.mp3	The Wizard is peeling a banana in the past.
+tts_sent_wizard_peel_future.mp3	The Wizard is peeling a banana in the future.
+tts_sent_wizard_play_past.mp3	The Wizard is playing the guitar in the past.
+tts_sent_wizard_play_future.mp3	The Wizard is playing the guitar in the future.
+tts_sent_wizard_push_past.mp3	The Wizard is pushing a cart in the past.
+tts_sent_wizard_push_future.mp3	The Wizard is pushing a cart in the future.
+tts_sent_wizard_read_past.mp3	The Wizard is reading a book in the past.
+tts_sent_wizard_read_future.mp3	The Wizard is reading a book in the future.
+tts_sent_wizard_ride_past.mp3	The Wizard is riding a bicycle in the past.
+tts_sent_wizard_ride_future.mp3	The Wizard is riding a bicycle in the future.
+tts_sent_wizard_shake_past.mp3	The Wizard is shaking a bottle in the past.
+tts_sent_wizard_shake_future.mp3	The Wizard is shaking a bottle in the future.
+tts_sent_wizard_smell_past.mp3	The Wizard is smelling a flower in the past.
+tts_sent_wizard_smell_future.mp3	The Wizard is smelling a flower in the future.
+tts_sent_wizard_spin_past.mp3	The Wizard is spinning a top in the past.
+tts_sent_wizard_spin_future.mp3	The Wizard is spinning a top in the future.
+tts_sent_wizard_stir_past.mp3	The Wizard is stirring a pot in the past.
+tts_sent_wizard_stir_future.mp3	The Wizard is stirring a pot in the future.
+tts_sent_wizard_sweep_past.mp3	The Wizard is sweeping the floor in the past.
+tts_sent_wizard_sweep_future.mp3	The Wizard is sweeping the floor in the future.
+tts_sent_wizard_wash_past.mp3	The Wizard is washing a dish in the past.
+tts_sent_wizard_wash_future.mp3	The Wizard is washing a dish in the future.
+tts_sent_wizard_drag_past.mp3	The Wizard is dragging a sack in the past.
+tts_sent_wizard_drag_future.mp3	The Wizard is dragging a sack in the future.
+tts_sent_wizard_cut_past.mp3	The Wizard is cutting bread in the past.
+tts_sent_wizard_cut_future.mp3	The Wizard is cutting bread in the future.
+tts_sent_wizard_hammer_past.mp3	The Wizard is hammering a nail in the past.
+tts_sent_wizard_hammer_future.mp3	The Wizard is hammering a nail in the future.

@@ -34,3 +34,38 @@ function defineBreakTrial() {
   )
     .setOption("hideProgressBar", true);
 };
+
+function defineSituationSwitchTrial() {
+  newTrial("SituationSwitch",
+    newText("switch_title", "New Situation")
+        .css({ "font-size": "3em", "font-weight": "bold", "color": "#003366" })
+        .center()
+        .print(),
+
+    newText("switch_instruction",
+            "Now we are moving to a <b>new situation</b>.<br>The times of the events may be different from what you learned before.")
+        .css({ "font-size": "1.6em", "margin-top": "24px", "text-align": "center" })
+        .center()
+        .print(),
+
+    newText("switch_note",
+            "Click 'Continue' when you are ready to begin the next situation.")
+        .css({ "font-size": "1.2em", "margin-top": "42px" })
+        .center()
+        .print(),
+    newText("space_switch", "<p>")
+        .center()
+        .print(),
+    newTimer("switch_continue_gate", 2000)
+        .start()
+        .wait(),
+    newButton("switch_continue", "Continue")
+        .css(button_css)
+        .center()
+        .print(),
+    newKey("switch_space_continue", " ").callback(getButton("switch_continue").click()),
+    getButton("switch_continue")
+        .wait()
+  )
+    .setOption("hideProgressBar", true);
+};
