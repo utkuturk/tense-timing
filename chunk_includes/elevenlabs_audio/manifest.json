@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T02:24:41.555Z",
+  "generated_at": "2026-03-11T14:34:45.254Z",
   "voice_id": "pNInz6obpgDQGcFmaJgB",
   "model_id": "eleven_turbo_v2_5",
   "voice_settings": {
@@ -8,7 +8,7 @@
     "style": 0.35,
     "use_speaker_boost": true
   },
-  "total_entries": 140,
+  "total_entries": 154,
   "entries": [
     {
       "id": "verb:blow",
@@ -68,7 +68,7 @@
     {
       "id": "verb:read",
       "file": "tts_verb_read.mp3",
-      "text": "red a book"
+      "text": "read a book"
     },
     {
       "id": "verb:ride",
@@ -111,604 +111,674 @@
       "text": "drag a sack"
     },
     {
+      "id": "verb:cut",
+      "file": "tts_verb_cut.mp3",
+      "text": "cut bread"
+    },
+    {
+      "id": "verb:hammer",
+      "file": "tts_verb_hammer.mp3",
+      "text": "hammer a nail"
+    },
+    {
       "id": "sentence:pirate:blow:past",
       "file": "tts_sent_pirate_blow_past.mp3",
-      "text": "The Pirate blew bubbles."
+      "text": "The Pirate is blowing bubbles in the past."
     },
     {
       "id": "sentence:pirate:blow:future",
       "file": "tts_sent_pirate_blow_future.mp3",
-      "text": "The Pirate will blow bubbles."
+      "text": "The Pirate is blowing bubbles in the future."
     },
     {
       "id": "sentence:pirate:build:past",
       "file": "tts_sent_pirate_build_past.mp3",
-      "text": "The Pirate built a tower."
+      "text": "The Pirate is building a tower in the past."
     },
     {
       "id": "sentence:pirate:build:future",
       "file": "tts_sent_pirate_build_future.mp3",
-      "text": "The Pirate will build a tower."
+      "text": "The Pirate is building a tower in the future."
     },
     {
       "id": "sentence:pirate:carry:past",
       "file": "tts_sent_pirate_carry_past.mp3",
-      "text": "The Pirate carried a box."
+      "text": "The Pirate is carrying a box in the past."
     },
     {
       "id": "sentence:pirate:carry:future",
       "file": "tts_sent_pirate_carry_future.mp3",
-      "text": "The Pirate will carry a box."
+      "text": "The Pirate is carrying a box in the future."
     },
     {
       "id": "sentence:pirate:climb:past",
       "file": "tts_sent_pirate_climb_past.mp3",
-      "text": "The Pirate climbed a ladder."
+      "text": "The Pirate is climbing a ladder in the past."
     },
     {
       "id": "sentence:pirate:climb:future",
       "file": "tts_sent_pirate_climb_future.mp3",
-      "text": "The Pirate will climb a ladder."
+      "text": "The Pirate is climbing a ladder in the future."
     },
     {
       "id": "sentence:pirate:dig:past",
       "file": "tts_sent_pirate_dig_past.mp3",
-      "text": "The Pirate dug a hole."
+      "text": "The Pirate is digging a hole in the past."
     },
     {
       "id": "sentence:pirate:dig:future",
       "file": "tts_sent_pirate_dig_future.mp3",
-      "text": "The Pirate will dig a hole."
+      "text": "The Pirate is digging a hole in the future."
     },
     {
       "id": "sentence:pirate:drink:past",
       "file": "tts_sent_pirate_drink_past.mp3",
-      "text": "The Pirate drank coffee."
+      "text": "The Pirate is drinking coffee in the past."
     },
     {
       "id": "sentence:pirate:drink:future",
       "file": "tts_sent_pirate_drink_future.mp3",
-      "text": "The Pirate will drink coffee."
+      "text": "The Pirate is drinking coffee in the future."
     },
     {
       "id": "sentence:pirate:eat:past",
       "file": "tts_sent_pirate_eat_past.mp3",
-      "text": "The Pirate ate an apple."
+      "text": "The Pirate is eating an apple in the past."
     },
     {
       "id": "sentence:pirate:eat:future",
       "file": "tts_sent_pirate_eat_future.mp3",
-      "text": "The Pirate will eat an apple."
+      "text": "The Pirate is eating an apple in the future."
     },
     {
       "id": "sentence:pirate:paint:past",
       "file": "tts_sent_pirate_paint_past.mp3",
-      "text": "The Pirate painted a canvas."
+      "text": "The Pirate is painting a canvas in the past."
     },
     {
       "id": "sentence:pirate:paint:future",
       "file": "tts_sent_pirate_paint_future.mp3",
-      "text": "The Pirate will paint a canvas."
+      "text": "The Pirate is painting a canvas in the future."
     },
     {
       "id": "sentence:pirate:peel:past",
       "file": "tts_sent_pirate_peel_past.mp3",
-      "text": "The Pirate peeled a banana."
+      "text": "The Pirate is peeling a banana in the past."
     },
     {
       "id": "sentence:pirate:peel:future",
       "file": "tts_sent_pirate_peel_future.mp3",
-      "text": "The Pirate will peel a banana."
+      "text": "The Pirate is peeling a banana in the future."
     },
     {
       "id": "sentence:pirate:play:past",
       "file": "tts_sent_pirate_play_past.mp3",
-      "text": "The Pirate played the guitar."
+      "text": "The Pirate is playing the guitar in the past."
     },
     {
       "id": "sentence:pirate:play:future",
       "file": "tts_sent_pirate_play_future.mp3",
-      "text": "The Pirate will play the guitar."
+      "text": "The Pirate is playing the guitar in the future."
     },
     {
       "id": "sentence:pirate:push:past",
       "file": "tts_sent_pirate_push_past.mp3",
-      "text": "The Pirate pushed a cart."
+      "text": "The Pirate is pushing a cart in the past."
     },
     {
       "id": "sentence:pirate:push:future",
       "file": "tts_sent_pirate_push_future.mp3",
-      "text": "The Pirate will push a cart."
+      "text": "The Pirate is pushing a cart in the future."
     },
     {
       "id": "sentence:pirate:read:past",
       "file": "tts_sent_pirate_read_past.mp3",
-      "text": "The Pirate read a book."
+      "text": "The Pirate is reading a book in the past."
     },
     {
       "id": "sentence:pirate:read:future",
       "file": "tts_sent_pirate_read_future.mp3",
-      "text": "The Pirate will read a book."
+      "text": "The Pirate is reading a book in the future."
     },
     {
       "id": "sentence:pirate:ride:past",
       "file": "tts_sent_pirate_ride_past.mp3",
-      "text": "The Pirate rode a bicycle."
+      "text": "The Pirate is riding a bicycle in the past."
     },
     {
       "id": "sentence:pirate:ride:future",
       "file": "tts_sent_pirate_ride_future.mp3",
-      "text": "The Pirate will ride a bicycle."
+      "text": "The Pirate is riding a bicycle in the future."
     },
     {
       "id": "sentence:pirate:shake:past",
       "file": "tts_sent_pirate_shake_past.mp3",
-      "text": "The Pirate shook a bottle."
+      "text": "The Pirate is shaking a bottle in the past."
     },
     {
       "id": "sentence:pirate:shake:future",
       "file": "tts_sent_pirate_shake_future.mp3",
-      "text": "The Pirate will shake a bottle."
+      "text": "The Pirate is shaking a bottle in the future."
     },
     {
       "id": "sentence:pirate:smell:past",
       "file": "tts_sent_pirate_smell_past.mp3",
-      "text": "The Pirate smelled a flower."
+      "text": "The Pirate is smelling a flower in the past."
     },
     {
       "id": "sentence:pirate:smell:future",
       "file": "tts_sent_pirate_smell_future.mp3",
-      "text": "The Pirate will smell a flower."
+      "text": "The Pirate is smelling a flower in the future."
     },
     {
       "id": "sentence:pirate:spin:past",
       "file": "tts_sent_pirate_spin_past.mp3",
-      "text": "The Pirate spun a top."
+      "text": "The Pirate is spinning a top in the past."
     },
     {
       "id": "sentence:pirate:spin:future",
       "file": "tts_sent_pirate_spin_future.mp3",
-      "text": "The Pirate will spin a top."
+      "text": "The Pirate is spinning a top in the future."
     },
     {
       "id": "sentence:pirate:stir:past",
       "file": "tts_sent_pirate_stir_past.mp3",
-      "text": "The Pirate stirred a pot."
+      "text": "The Pirate is stirring a pot in the past."
     },
     {
       "id": "sentence:pirate:stir:future",
       "file": "tts_sent_pirate_stir_future.mp3",
-      "text": "The Pirate will stir a pot."
+      "text": "The Pirate is stirring a pot in the future."
     },
     {
       "id": "sentence:pirate:sweep:past",
       "file": "tts_sent_pirate_sweep_past.mp3",
-      "text": "The Pirate swept the floor."
+      "text": "The Pirate is sweeping the floor in the past."
     },
     {
       "id": "sentence:pirate:sweep:future",
       "file": "tts_sent_pirate_sweep_future.mp3",
-      "text": "The Pirate will sweep the floor."
+      "text": "The Pirate is sweeping the floor in the future."
     },
     {
       "id": "sentence:pirate:wash:past",
       "file": "tts_sent_pirate_wash_past.mp3",
-      "text": "The Pirate washed a dish."
+      "text": "The Pirate is washing a dish in the past."
     },
     {
       "id": "sentence:pirate:wash:future",
       "file": "tts_sent_pirate_wash_future.mp3",
-      "text": "The Pirate will wash a dish."
+      "text": "The Pirate is washing a dish in the future."
     },
     {
       "id": "sentence:pirate:drag:past",
       "file": "tts_sent_pirate_drag_past.mp3",
-      "text": "The Pirate dragged a sack."
+      "text": "The Pirate is dragging a sack in the past."
     },
     {
       "id": "sentence:pirate:drag:future",
       "file": "tts_sent_pirate_drag_future.mp3",
-      "text": "The Pirate will drag a sack."
+      "text": "The Pirate is dragging a sack in the future."
+    },
+    {
+      "id": "sentence:pirate:cut:past",
+      "file": "tts_sent_pirate_cut_past.mp3",
+      "text": "The Pirate is cutting bread in the past."
+    },
+    {
+      "id": "sentence:pirate:cut:future",
+      "file": "tts_sent_pirate_cut_future.mp3",
+      "text": "The Pirate is cutting bread in the future."
+    },
+    {
+      "id": "sentence:pirate:hammer:past",
+      "file": "tts_sent_pirate_hammer_past.mp3",
+      "text": "The Pirate is hammering a nail in the past."
+    },
+    {
+      "id": "sentence:pirate:hammer:future",
+      "file": "tts_sent_pirate_hammer_future.mp3",
+      "text": "The Pirate is hammering a nail in the future."
     },
     {
       "id": "sentence:chef:blow:past",
       "file": "tts_sent_chef_blow_past.mp3",
-      "text": "The Chef blew bubbles."
+      "text": "The Chef is blowing bubbles in the past."
     },
     {
       "id": "sentence:chef:blow:future",
       "file": "tts_sent_chef_blow_future.mp3",
-      "text": "The Chef will blow bubbles."
+      "text": "The Chef is blowing bubbles in the future."
     },
     {
       "id": "sentence:chef:build:past",
       "file": "tts_sent_chef_build_past.mp3",
-      "text": "The Chef built a tower."
+      "text": "The Chef is building a tower in the past."
     },
     {
       "id": "sentence:chef:build:future",
       "file": "tts_sent_chef_build_future.mp3",
-      "text": "The Chef will build a tower."
+      "text": "The Chef is building a tower in the future."
     },
     {
       "id": "sentence:chef:carry:past",
       "file": "tts_sent_chef_carry_past.mp3",
-      "text": "The Chef carried a box."
+      "text": "The Chef is carrying a box in the past."
     },
     {
       "id": "sentence:chef:carry:future",
       "file": "tts_sent_chef_carry_future.mp3",
-      "text": "The Chef will carry a box."
+      "text": "The Chef is carrying a box in the future."
     },
     {
       "id": "sentence:chef:climb:past",
       "file": "tts_sent_chef_climb_past.mp3",
-      "text": "The Chef climbed a ladder."
+      "text": "The Chef is climbing a ladder in the past."
     },
     {
       "id": "sentence:chef:climb:future",
       "file": "tts_sent_chef_climb_future.mp3",
-      "text": "The Chef will climb a ladder."
+      "text": "The Chef is climbing a ladder in the future."
     },
     {
       "id": "sentence:chef:dig:past",
       "file": "tts_sent_chef_dig_past.mp3",
-      "text": "The Chef dug a hole."
+      "text": "The Chef is digging a hole in the past."
     },
     {
       "id": "sentence:chef:dig:future",
       "file": "tts_sent_chef_dig_future.mp3",
-      "text": "The Chef will dig a hole."
+      "text": "The Chef is digging a hole in the future."
     },
     {
       "id": "sentence:chef:drink:past",
       "file": "tts_sent_chef_drink_past.mp3",
-      "text": "The Chef drank coffee."
+      "text": "The Chef is drinking coffee in the past."
     },
     {
       "id": "sentence:chef:drink:future",
       "file": "tts_sent_chef_drink_future.mp3",
-      "text": "The Chef will drink coffee."
+      "text": "The Chef is drinking coffee in the future."
     },
     {
       "id": "sentence:chef:eat:past",
       "file": "tts_sent_chef_eat_past.mp3",
-      "text": "The Chef ate an apple."
+      "text": "The Chef is eating an apple in the past."
     },
     {
       "id": "sentence:chef:eat:future",
       "file": "tts_sent_chef_eat_future.mp3",
-      "text": "The Chef will eat an apple."
+      "text": "The Chef is eating an apple in the future."
     },
     {
       "id": "sentence:chef:paint:past",
       "file": "tts_sent_chef_paint_past.mp3",
-      "text": "The Chef painted a canvas."
+      "text": "The Chef is painting a canvas in the past."
     },
     {
       "id": "sentence:chef:paint:future",
       "file": "tts_sent_chef_paint_future.mp3",
-      "text": "The Chef will paint a canvas."
+      "text": "The Chef is painting a canvas in the future."
     },
     {
       "id": "sentence:chef:peel:past",
       "file": "tts_sent_chef_peel_past.mp3",
-      "text": "The Chef peeled a banana."
+      "text": "The Chef is peeling a banana in the past."
     },
     {
       "id": "sentence:chef:peel:future",
       "file": "tts_sent_chef_peel_future.mp3",
-      "text": "The Chef will peel a banana."
+      "text": "The Chef is peeling a banana in the future."
     },
     {
       "id": "sentence:chef:play:past",
       "file": "tts_sent_chef_play_past.mp3",
-      "text": "The Chef played the guitar."
+      "text": "The Chef is playing the guitar in the past."
     },
     {
       "id": "sentence:chef:play:future",
       "file": "tts_sent_chef_play_future.mp3",
-      "text": "The Chef will play the guitar."
+      "text": "The Chef is playing the guitar in the future."
     },
     {
       "id": "sentence:chef:push:past",
       "file": "tts_sent_chef_push_past.mp3",
-      "text": "The Chef pushed a cart."
+      "text": "The Chef is pushing a cart in the past."
     },
     {
       "id": "sentence:chef:push:future",
       "file": "tts_sent_chef_push_future.mp3",
-      "text": "The Chef will push a cart."
+      "text": "The Chef is pushing a cart in the future."
     },
     {
       "id": "sentence:chef:read:past",
       "file": "tts_sent_chef_read_past.mp3",
-      "text": "The Chef read a book."
+      "text": "The Chef is reading a book in the past."
     },
     {
       "id": "sentence:chef:read:future",
       "file": "tts_sent_chef_read_future.mp3",
-      "text": "The Chef will read a book."
+      "text": "The Chef is reading a book in the future."
     },
     {
       "id": "sentence:chef:ride:past",
       "file": "tts_sent_chef_ride_past.mp3",
-      "text": "The Chef rode a bicycle."
+      "text": "The Chef is riding a bicycle in the past."
     },
     {
       "id": "sentence:chef:ride:future",
       "file": "tts_sent_chef_ride_future.mp3",
-      "text": "The Chef will ride a bicycle."
+      "text": "The Chef is riding a bicycle in the future."
     },
     {
       "id": "sentence:chef:shake:past",
       "file": "tts_sent_chef_shake_past.mp3",
-      "text": "The Chef shook a bottle."
+      "text": "The Chef is shaking a bottle in the past."
     },
     {
       "id": "sentence:chef:shake:future",
       "file": "tts_sent_chef_shake_future.mp3",
-      "text": "The Chef will shake a bottle."
+      "text": "The Chef is shaking a bottle in the future."
     },
     {
       "id": "sentence:chef:smell:past",
       "file": "tts_sent_chef_smell_past.mp3",
-      "text": "The Chef smelled a flower."
+      "text": "The Chef is smelling a flower in the past."
     },
     {
       "id": "sentence:chef:smell:future",
       "file": "tts_sent_chef_smell_future.mp3",
-      "text": "The Chef will smell a flower."
+      "text": "The Chef is smelling a flower in the future."
     },
     {
       "id": "sentence:chef:spin:past",
       "file": "tts_sent_chef_spin_past.mp3",
-      "text": "The Chef spun a top."
+      "text": "The Chef is spinning a top in the past."
     },
     {
       "id": "sentence:chef:spin:future",
       "file": "tts_sent_chef_spin_future.mp3",
-      "text": "The Chef will spin a top."
+      "text": "The Chef is spinning a top in the future."
     },
     {
       "id": "sentence:chef:stir:past",
       "file": "tts_sent_chef_stir_past.mp3",
-      "text": "The Chef stirred a pot."
+      "text": "The Chef is stirring a pot in the past."
     },
     {
       "id": "sentence:chef:stir:future",
       "file": "tts_sent_chef_stir_future.mp3",
-      "text": "The Chef will stir a pot."
+      "text": "The Chef is stirring a pot in the future."
     },
     {
       "id": "sentence:chef:sweep:past",
       "file": "tts_sent_chef_sweep_past.mp3",
-      "text": "The Chef swept the floor."
+      "text": "The Chef is sweeping the floor in the past."
     },
     {
       "id": "sentence:chef:sweep:future",
       "file": "tts_sent_chef_sweep_future.mp3",
-      "text": "The Chef will sweep the floor."
+      "text": "The Chef is sweeping the floor in the future."
     },
     {
       "id": "sentence:chef:wash:past",
       "file": "tts_sent_chef_wash_past.mp3",
-      "text": "The Chef washed a dish."
+      "text": "The Chef is washing a dish in the past."
     },
     {
       "id": "sentence:chef:wash:future",
       "file": "tts_sent_chef_wash_future.mp3",
-      "text": "The Chef will wash a dish."
+      "text": "The Chef is washing a dish in the future."
     },
     {
       "id": "sentence:chef:drag:past",
       "file": "tts_sent_chef_drag_past.mp3",
-      "text": "The Chef dragged a sack."
+      "text": "The Chef is dragging a sack in the past."
     },
     {
       "id": "sentence:chef:drag:future",
       "file": "tts_sent_chef_drag_future.mp3",
-      "text": "The Chef will drag a sack."
+      "text": "The Chef is dragging a sack in the future."
+    },
+    {
+      "id": "sentence:chef:cut:past",
+      "file": "tts_sent_chef_cut_past.mp3",
+      "text": "The Chef is cutting bread in the past."
+    },
+    {
+      "id": "sentence:chef:cut:future",
+      "file": "tts_sent_chef_cut_future.mp3",
+      "text": "The Chef is cutting bread in the future."
+    },
+    {
+      "id": "sentence:chef:hammer:past",
+      "file": "tts_sent_chef_hammer_past.mp3",
+      "text": "The Chef is hammering a nail in the past."
+    },
+    {
+      "id": "sentence:chef:hammer:future",
+      "file": "tts_sent_chef_hammer_future.mp3",
+      "text": "The Chef is hammering a nail in the future."
     },
     {
       "id": "sentence:wizard:blow:past",
       "file": "tts_sent_wizard_blow_past.mp3",
-      "text": "The Wizard blew bubbles."
+      "text": "The Wizard is blowing bubbles in the past."
     },
     {
       "id": "sentence:wizard:blow:future",
       "file": "tts_sent_wizard_blow_future.mp3",
-      "text": "The Wizard will blow bubbles."
+      "text": "The Wizard is blowing bubbles in the future."
     },
     {
       "id": "sentence:wizard:build:past",
       "file": "tts_sent_wizard_build_past.mp3",
-      "text": "The Wizard built a tower."
+      "text": "The Wizard is building a tower in the past."
     },
     {
       "id": "sentence:wizard:build:future",
       "file": "tts_sent_wizard_build_future.mp3",
-      "text": "The Wizard will build a tower."
+      "text": "The Wizard is building a tower in the future."
     },
     {
       "id": "sentence:wizard:carry:past",
       "file": "tts_sent_wizard_carry_past.mp3",
-      "text": "The Wizard carried a box."
+      "text": "The Wizard is carrying a box in the past."
     },
     {
       "id": "sentence:wizard:carry:future",
       "file": "tts_sent_wizard_carry_future.mp3",
-      "text": "The Wizard will carry a box."
+      "text": "The Wizard is carrying a box in the future."
     },
     {
       "id": "sentence:wizard:climb:past",
       "file": "tts_sent_wizard_climb_past.mp3",
-      "text": "The Wizard climbed a ladder."
+      "text": "The Wizard is climbing a ladder in the past."
     },
     {
       "id": "sentence:wizard:climb:future",
       "file": "tts_sent_wizard_climb_future.mp3",
-      "text": "The Wizard will climb a ladder."
+      "text": "The Wizard is climbing a ladder in the future."
     },
     {
       "id": "sentence:wizard:dig:past",
       "file": "tts_sent_wizard_dig_past.mp3",
-      "text": "The Wizard dug a hole."
+      "text": "The Wizard is digging a hole in the past."
     },
     {
       "id": "sentence:wizard:dig:future",
       "file": "tts_sent_wizard_dig_future.mp3",
-      "text": "The Wizard will dig a hole."
+      "text": "The Wizard is digging a hole in the future."
     },
     {
       "id": "sentence:wizard:drink:past",
       "file": "tts_sent_wizard_drink_past.mp3",
-      "text": "The Wizard drank coffee."
+      "text": "The Wizard is drinking coffee in the past."
     },
     {
       "id": "sentence:wizard:drink:future",
       "file": "tts_sent_wizard_drink_future.mp3",
-      "text": "The Wizard will drink coffee."
+      "text": "The Wizard is drinking coffee in the future."
     },
     {
       "id": "sentence:wizard:eat:past",
       "file": "tts_sent_wizard_eat_past.mp3",
-      "text": "The Wizard ate an apple."
+      "text": "The Wizard is eating an apple in the past."
     },
     {
       "id": "sentence:wizard:eat:future",
       "file": "tts_sent_wizard_eat_future.mp3",
-      "text": "The Wizard will eat an apple."
+      "text": "The Wizard is eating an apple in the future."
     },
     {
       "id": "sentence:wizard:paint:past",
       "file": "tts_sent_wizard_paint_past.mp3",
-      "text": "The Wizard painted a canvas."
+      "text": "The Wizard is painting a canvas in the past."
     },
     {
       "id": "sentence:wizard:paint:future",
       "file": "tts_sent_wizard_paint_future.mp3",
-      "text": "The Wizard will paint a canvas."
+      "text": "The Wizard is painting a canvas in the future."
     },
     {
       "id": "sentence:wizard:peel:past",
       "file": "tts_sent_wizard_peel_past.mp3",
-      "text": "The Wizard peeled a banana."
+      "text": "The Wizard is peeling a banana in the past."
     },
     {
       "id": "sentence:wizard:peel:future",
       "file": "tts_sent_wizard_peel_future.mp3",
-      "text": "The Wizard will peel a banana."
+      "text": "The Wizard is peeling a banana in the future."
     },
     {
       "id": "sentence:wizard:play:past",
       "file": "tts_sent_wizard_play_past.mp3",
-      "text": "The Wizard played the guitar."
+      "text": "The Wizard is playing the guitar in the past."
     },
     {
       "id": "sentence:wizard:play:future",
       "file": "tts_sent_wizard_play_future.mp3",
-      "text": "The Wizard will play the guitar."
+      "text": "The Wizard is playing the guitar in the future."
     },
     {
       "id": "sentence:wizard:push:past",
       "file": "tts_sent_wizard_push_past.mp3",
-      "text": "The Wizard pushed a cart."
+      "text": "The Wizard is pushing a cart in the past."
     },
     {
       "id": "sentence:wizard:push:future",
       "file": "tts_sent_wizard_push_future.mp3",
-      "text": "The Wizard will push a cart."
+      "text": "The Wizard is pushing a cart in the future."
     },
     {
       "id": "sentence:wizard:read:past",
       "file": "tts_sent_wizard_read_past.mp3",
-      "text": "The Wizard read a book."
+      "text": "The Wizard is reading a book in the past."
     },
     {
       "id": "sentence:wizard:read:future",
       "file": "tts_sent_wizard_read_future.mp3",
-      "text": "The Wizard will read a book."
+      "text": "The Wizard is reading a book in the future."
     },
     {
       "id": "sentence:wizard:ride:past",
       "file": "tts_sent_wizard_ride_past.mp3",
-      "text": "The Wizard rode a bicycle."
+      "text": "The Wizard is riding a bicycle in the past."
     },
     {
       "id": "sentence:wizard:ride:future",
       "file": "tts_sent_wizard_ride_future.mp3",
-      "text": "The Wizard will ride a bicycle."
+      "text": "The Wizard is riding a bicycle in the future."
     },
     {
       "id": "sentence:wizard:shake:past",
       "file": "tts_sent_wizard_shake_past.mp3",
-      "text": "The Wizard shook a bottle."
+      "text": "The Wizard is shaking a bottle in the past."
     },
     {
       "id": "sentence:wizard:shake:future",
       "file": "tts_sent_wizard_shake_future.mp3",
-      "text": "The Wizard will shake a bottle."
+      "text": "The Wizard is shaking a bottle in the future."
     },
     {
       "id": "sentence:wizard:smell:past",
       "file": "tts_sent_wizard_smell_past.mp3",
-      "text": "The Wizard smelled a flower."
+      "text": "The Wizard is smelling a flower in the past."
     },
     {
       "id": "sentence:wizard:smell:future",
       "file": "tts_sent_wizard_smell_future.mp3",
-      "text": "The Wizard will smell a flower."
+      "text": "The Wizard is smelling a flower in the future."
     },
     {
       "id": "sentence:wizard:spin:past",
       "file": "tts_sent_wizard_spin_past.mp3",
-      "text": "The Wizard spun a top."
+      "text": "The Wizard is spinning a top in the past."
     },
     {
       "id": "sentence:wizard:spin:future",
       "file": "tts_sent_wizard_spin_future.mp3",
-      "text": "The Wizard will spin a top."
+      "text": "The Wizard is spinning a top in the future."
     },
     {
       "id": "sentence:wizard:stir:past",
       "file": "tts_sent_wizard_stir_past.mp3",
-      "text": "The Wizard stirred a pot."
+      "text": "The Wizard is stirring a pot in the past."
     },
     {
       "id": "sentence:wizard:stir:future",
       "file": "tts_sent_wizard_stir_future.mp3",
-      "text": "The Wizard will stir a pot."
+      "text": "The Wizard is stirring a pot in the future."
     },
     {
       "id": "sentence:wizard:sweep:past",
       "file": "tts_sent_wizard_sweep_past.mp3",
-      "text": "The Wizard swept the floor."
+      "text": "The Wizard is sweeping the floor in the past."
     },
     {
       "id": "sentence:wizard:sweep:future",
       "file": "tts_sent_wizard_sweep_future.mp3",
-      "text": "The Wizard will sweep the floor."
+      "text": "The Wizard is sweeping the floor in the future."
     },
     {
       "id": "sentence:wizard:wash:past",
       "file": "tts_sent_wizard_wash_past.mp3",
-      "text": "The Wizard washed a dish."
+      "text": "The Wizard is washing a dish in the past."
     },
     {
       "id": "sentence:wizard:wash:future",
       "file": "tts_sent_wizard_wash_future.mp3",
-      "text": "The Wizard will wash a dish."
+      "text": "The Wizard is washing a dish in the future."
     },
     {
       "id": "sentence:wizard:drag:past",
       "file": "tts_sent_wizard_drag_past.mp3",
-      "text": "The Wizard dragged a sack."
+      "text": "The Wizard is dragging a sack in the past."
     },
     {
       "id": "sentence:wizard:drag:future",
       "file": "tts_sent_wizard_drag_future.mp3",
-      "text": "The Wizard will drag a sack."
+      "text": "The Wizard is dragging a sack in the future."
+    },
+    {
+      "id": "sentence:wizard:cut:past",
+      "file": "tts_sent_wizard_cut_past.mp3",
+      "text": "The Wizard is cutting bread in the past."
+    },
+    {
+      "id": "sentence:wizard:cut:future",
+      "file": "tts_sent_wizard_cut_future.mp3",
+      "text": "The Wizard is cutting bread in the future."
+    },
+    {
+      "id": "sentence:wizard:hammer:past",
+      "file": "tts_sent_wizard_hammer_past.mp3",
+      "text": "The Wizard is hammering a nail in the past."
+    },
+    {
+      "id": "sentence:wizard:hammer:future",
+      "file": "tts_sent_wizard_hammer_future.mp3",
+      "text": "The Wizard is hammering a nail in the future."
     }
   ]
 }

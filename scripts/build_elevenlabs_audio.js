@@ -45,6 +45,8 @@ const VERBS = [
   "sweep",
   "wash",
   "drag",
+  "cut",
+  "hammer",
 ];
 
 const OBJECT_PHRASE_BY_VERB = {
@@ -68,34 +70,38 @@ const OBJECT_PHRASE_BY_VERB = {
   stir: "a pot",
   sweep: "the floor",
   wash: "a dish",
+  cut: "bread",
+  hammer: "a nail",
 };
 
 // Force target pronunciations where orthography is ambiguous for TTS.
 const VERB_TEXT_OVERRIDES = {
-  read: "red a book",
+  read: "read a book",
 };
 
-const PAST_FORMS = {
-  blow: "blew",
-  build: "built",
-  carry: "carried",
-  climb: "climbed",
-  dig: "dug",
-  drag: "dragged",
-  drink: "drank",
-  eat: "ate",
-  paint: "painted",
-  peel: "peeled",
-  play: "played",
-  push: "pushed",
-  read: "read",
-  ride: "rode",
-  shake: "shook",
-  smell: "smelled",
-  spin: "spun",
-  stir: "stirred",
-  sweep: "swept",
-  wash: "washed",
+const GERUND_FORMS = {
+  blow: "blowing",
+  build: "building",
+  carry: "carrying",
+  climb: "climbing",
+  dig: "digging",
+  drag: "dragging",
+  drink: "drinking",
+  eat: "eating",
+  paint: "painting",
+  peel: "peeling",
+  play: "playing",
+  push: "pushing",
+  read: "reading",
+  ride: "riding",
+  shake: "shaking",
+  smell: "smelling",
+  spin: "spinning",
+  stir: "stirring",
+  sweep: "sweeping",
+  wash: "washing",
+  cut: "cutting",
+  hammer: "hammering",
 };
 
 function withObject(verb) {
@@ -103,12 +109,16 @@ function withObject(verb) {
   return `${verb} ${OBJECT_PHRASE_BY_VERB[verb]}`;
 }
 
+function gerundFor(verb) {
+  return GERUND_FORMS[verb] || `${verb}ing`;
+}
+
 function sentencePast(entity, verb) {
-  return `The ${entity} ${PAST_FORMS[verb]} ${OBJECT_PHRASE_BY_VERB[verb]}.`;
+  return `The ${entity} is ${gerundFor(verb)} ${OBJECT_PHRASE_BY_VERB[verb]} in the past.`;
 }
 
 function sentenceFuture(entity, verb) {
-  return `The ${entity} will ${verb} ${OBJECT_PHRASE_BY_VERB[verb]}.`;
+  return `The ${entity} is ${gerundFor(verb)} ${OBJECT_PHRASE_BY_VERB[verb]} in the future.`;
 }
 
 function buildEntries() {
