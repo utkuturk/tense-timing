@@ -618,10 +618,8 @@ tensePairTrial("practice", PRACTICE_ITEMS, {
 decisionReadyTrial("practice", {
   title: "Practice: Speak canonical tense sentences",
   body:
-    "<p>Now you will produce a canonical tense sentence for each practice item.</p>" +
-    "<p>Instruction framing is: <b>The &lt;Character&gt;'s &lt;action&gt; is in the past/future.</b></p>" +
-    "<p>You may think of the event in that format, but say it in canonical form:</p>" +
-    "<p><b>Future:</b> The Pirate <b>will spin</b> a top.<br>" +
+    "<p>Now that you learned which event happens when, you are expected to recall the events and then say them in the following format using appropriate tenses:</p>" +
+    "<p style='font-size:1.35em; line-height:1.5;'><b>Future:</b> The Pirate <b>will spin</b> a top.<br>" +
     "<b>Past:</b> The Pirate <b>spun</b> a top.</p>" +
     "<p>Recording starts and stops automatically.</p>",
   buttonText: "Start Practice Recording",

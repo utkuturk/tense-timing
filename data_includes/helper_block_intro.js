@@ -1,8 +1,8 @@
-var MIN_VERB_STUDY_MS = 1200;
-var MIN_TENSE_STUDY_MS = 1400;
+var MIN_VERB_STUDY_MS = 3000;
+var MIN_TENSE_STUDY_MS = 3000;
 var VERB_WHITE_MS = 300;
 var VERB_FIX_MS = 500;
-var VERB_POST_AUDIO_MS = 1000;
+var VERB_POST_AUDIO_MS = 2000;
 var __speechCounter = 0;
 var ENTITY_DISPLAY_ORDER = ["Pirate", "Wizard", "Chef"];
 
@@ -170,8 +170,18 @@ var tenseIntroTrial = (blockName, options = {}) =>
 var tensePairTrial = (blockName, items, options = {}) => {
   const byEntity = {};
   uniqueByVerb(items).forEach(item => {
-    if (!byEntity[item.entity]) byEntity[item.entity] = {};
-    byEntity[item.entity][item.side] = item;
+    if (!byEntity[item.entity]) byEntity[item.entity] = { PAST: [], FUTURE: [] };
+    if (!byEntity[item.entity][item.side]) byEntity[item.entity][item.side] = [];
+    byEntity[item.entity][item.side].push(item);
+  });
+
+  Object.keys(byEntity).forEach(entity => {
+    byEntity[entity].PAST = (byEntity[entity].PAST || [])
+      .slice()
+      .sort((a, b) => a.verb.localeCompare(b.verb));
+    byEntity[entity].FUTURE = (byEntity[entity].FUTURE || [])
+      .slice()
+      .sort((a, b) => a.verb.localeCompare(b.verb));
   });
 
   const extraEntities = Object.keys(byEntity)
@@ -180,12 +190,31 @@ var tensePairTrial = (blockName, items, options = {}) => {
 
   const entityOrder = ENTITY_DISPLAY_ORDER
     .concat(extraEntities)
-    .filter(e => byEntity[e] && byEntity[e].PAST && byEntity[e].FUTURE);
+    .filter(
+      e =>
+        byEntity[e] &&
+        ((byEntity[e].PAST && byEntity[e].PAST.length) ||
+          (byEntity[e].FUTURE && byEntity[e].FUTURE.length)),
+    );
+
+  const rows = [];
+  entityOrder.forEach(entity => {
+    const pastItems = byEntity[entity].PAST || [];
+    const futureItems = byEntity[entity].FUTURE || [];
+    const rowCount = Math.max(pastItems.length, futureItems.length);
+    for (let i = 0; i < rowCount; i++) {
+      rows.push({
+        entity,
+        pastItem: pastItems[i] || null,
+        futureItem: futureItems[i] || null,
+      });
+    }
+  });
 
   const orderedItems = [];
-  entityOrder.forEach(entity => {
-    orderedItems.push(byEntity[entity].PAST);
-    orderedItems.push(byEntity[entity].FUTURE);
+  rows.forEach(row => {
+    if (row.pastItem) orderedItems.push(row.pastItem);
+    if (row.futureItem) orderedItems.push(row.futureItem);
   });
 
   const tensePairImageSize = 250;
@@ -193,19 +222,27 @@ var tensePairTrial = (blockName, items, options = {}) => {
   const rowStepY = tensePairImageSize + 10;
   const pairCanvasHeight =
     rowStartY +
-    Math.max(entityOrder.length - 1, 0) * rowStepY +
+    Math.max(rows.length - 1, 0) * rowStepY +
     Math.ceil(tensePairImageSize / 2) +
     40;
 
-  const rowYByEntity = {};
-  entityOrder.forEach((entity, idx) => {
-    rowYByEntity[entity] = rowStartY + idx * rowStepY;
+  const itemKey = item => `${item.entity}|${item.side}|${item.verb}`;
+  const slotByItemKey = {};
+  rows.forEach((row, idx) => {
+    const rowY = rowStartY + idx * rowStepY;
+    if (row.pastItem) {
+      slotByItemKey[itemKey(row.pastItem)] = { x: 34, y: rowY };
+    }
+    if (row.futureItem) {
+      slotByItemKey[itemKey(row.futureItem)] = { x: 66, y: rowY };
+    }
   });
 
-  const slotFor = (item) => ({
-    x: item.side === "PAST" ? 34 : 66,
-    y: rowYByEntity[item.entity]
-  });
+  const slotFor = item =>
+    slotByItemKey[itemKey(item)] || {
+      x: item.side === "PAST" ? 34 : 66,
+      y: rowStartY,
+    };
 
   const canvasId = `pairs_canvas_${blockName}`;
   const commands = [
@@ -217,7 +254,7 @@ var tensePairTrial = (blockName, items, options = {}) => {
     newText(
       "pairs_body",
       options.body ||
-      "All six items will be shown according to their tense.<br><br>" +
+      "All items will be shown according to their tense.<br><br>" +
       "Press <b>SPACE</b> to reveal each item and hear the sentence audio."
     )
       .css({ "font-size": "1.2em", "margin-top": "10px" })
@@ -242,11 +279,11 @@ var tensePairTrial = (blockName, items, options = {}) => {
       .print()
   ];
 
-  entityOrder.forEach(entity => {
-    const rowY = rowYByEntity[entity];
-    const entityId = entity.toLowerCase();
+  rows.forEach((row, idx) => {
+    const rowY = rowStartY + idx * rowStepY;
+    const entityId = `${row.entity.toLowerCase()}_${idx + 1}`;
     commands.push(
-      newText(`row_ent_${blockName}_${entityId}`, `<b>${entity}</b>`)
+      newText(`row_ent_${blockName}_${entityId}`, `<b>${row.entity}</b>`)
         .css({ "font-size": "1.2em" }),
       getCanvas(canvasId)
         .add("center at 10%", `middle at ${rowY}px`, getText(`row_ent_${blockName}_${entityId}`))
