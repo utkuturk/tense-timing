@@ -46,6 +46,8 @@ const VERBS = [
   "sweep",
   "wash",
   "drag",
+  "cut",
+  "hammer",
 ];
 
 const OBJECT_PHRASE_BY_VERB = {
@@ -69,6 +71,8 @@ const OBJECT_PHRASE_BY_VERB = {
   stir: "a pot",
   sweep: "the floor",
   wash: "a dish",
+  cut: "bread",
+  hammer: "a nail",
 };
 
 const GERUND_FORMS = {
@@ -92,11 +96,13 @@ const GERUND_FORMS = {
   stir: "stirring",
   sweep: "sweeping",
   wash: "washing",
+  cut: "cutting",
+  hammer: "hammering",
 };
 
 // Force target pronunciations where orthography is ambiguous for TTS.
 const VERB_TEXT_OVERRIDES = {
-  read: "red a book",
+  read: "read a book",
 };
 
 function withObject(verb) {
@@ -109,11 +115,11 @@ function eventPhrase(verb) {
 }
 
 function sentencePast(entity, verb) {
-  return `The ${entity}'s ${eventPhrase(verb)} is in the past.`;
+  return `The ${entity} is ${eventPhrase(verb)} in the past.`;
 }
 
 function sentenceFuture(entity, verb) {
-  return `The ${entity}'s ${eventPhrase(verb)} is in the future.`;
+  return `The ${entity} is ${eventPhrase(verb)} in the future.`;
 }
 
 function buildEntries() {
