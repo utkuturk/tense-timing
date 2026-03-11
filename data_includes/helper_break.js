@@ -43,7 +43,7 @@ function defineSituationSwitchTrial() {
         .print(),
 
     newText("switch_instruction",
-            "Now we are moving to a <b>new situation</b>.<br>The times of the events may be different from what you learned before.")
+            "Now we are moving to a <b>new situation</b>.<br>The times of the events may be different from what you learned before. Please <b>rest for a second</b> and then click 'Continue' to see the verbs for the next block.")
         .css({ "font-size": "1.6em", "margin-top": "24px", "text-align": "center" })
         .center()
         .print(),
