@@ -25,7 +25,7 @@ const LIST_ID = hasValidRequestedList
   ? requestedListParam
   : listOptions[Math.floor(Math.random() * listOptions.length)];
 const LIST_SOURCE = hasValidRequestedList ? "url_param" : "random";
-const ENABLE_ASYNC_UPLOAD_CHECKPOINTS = false;
+const ENABLE_ASYNC_UPLOAD_CHECKPOINTS = true;
 const RECORDING_UPLOAD_TIMEOUT_MS = 120000;
 
 // Avoid indefinite hangs on recorder uploads by enforcing XHR timeouts for
