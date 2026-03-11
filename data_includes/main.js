@@ -98,7 +98,6 @@ Header(
 if (ENABLE_ASYNC_UPLOAD_CHECKPOINTS) UploadRecordings("async", "noblock");
 
 defineBreakTrial();
-defineSituationSwitchTrial();
 
 const ENTITIES = ["Pirate", "Chef", "Wizard"];
 
@@ -462,7 +461,7 @@ const metaSequences = metaBlockSpecs.map((metaSpec, metaIndex) => {
   const order = metaSpec.blocks.slice();
   fisherYates(order);
   const seq = buildBlockSequence(order, true);
-  return metaIndex === 0 ? seq : ["SituationSwitch", ...seq];
+  return metaIndex === 0 ? seq : ["Break", ...seq];
 });
 
 const PRACTICE_ENTITY = ENTITIES[Math.floor(Math.random() * ENTITIES.length)];
@@ -528,14 +527,13 @@ introTrial("practice", PRACTICE_ITEMS);
 decisionReadyTrial("practice", {
   title: "Practice: Speak past-tense sentences",
   body:
-    "<p>Now you will produce a past-tense sentence for each practice item.</p>" +
-    "<p>Instruction framing is: <b>The &lt;Character&gt;'s &lt;action&gt; is in the past.</b></p>" +
-    "<p>Say the sentence in canonical form:</p>" +
-    "<p><b>The Pirate spun a top.</b><br>" +
-    "<b>The Pirate dragged a sack.</b><br>" +
-    "<b>The Pirate cut bread.</b><br>" +
-    "<b>The Pirate hammered a nail.</b></p>" +
-    "<p>Recording starts and stops automatically.</p>",
+    `<p>Now you will produce a past-tense sentence for each practice item.</p>` +
+    `<p>Say the sentence in canonical form:</p>` +
+    `<p><b>The ${PRACTICE_ENTITY} spun a top.</b><br>` +
+    `<b>The ${PRACTICE_ENTITY} dragged a sack.</b><br>` +
+    `<b>The ${PRACTICE_ENTITY} cut bread.</b><br>` +
+    `<b>The ${PRACTICE_ENTITY} hammered a nail.</b></p>` +
+    `<p>Recording starts and stops automatically.</p>`,
   buttonText: "Start Practice Recording",
 });
 PRACTICE_PRODUCTION_ITEMS.forEach((item, idx) => {

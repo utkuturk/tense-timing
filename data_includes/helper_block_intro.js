@@ -1,8 +1,8 @@
-var MIN_VERB_STUDY_MS = 1200;
-var MIN_TENSE_STUDY_MS = 1400;
+var MIN_VERB_STUDY_MS = 3000;
+var MIN_TENSE_STUDY_MS = 3000;
 var VERB_WHITE_MS = 300;
 var VERB_FIX_MS = 500;
-var VERB_POST_AUDIO_MS = 1000;
+var VERB_POST_AUDIO_MS = 2000;
 var __speechCounter = 0;
 var ENTITY_DISPLAY_ORDER = ["Pirate", "Wizard", "Chef"];
 
