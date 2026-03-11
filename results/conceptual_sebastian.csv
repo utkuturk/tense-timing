@@ -1,0 +1,959 @@
+# Results on Mon, 09 Mar 2026 23:58:21 GMT
+# USER AGENT: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+# Design number was non-random = 6
+#
+# Columns below this comment are as follows:
+# 1. Results reception time.
+# 2. MD5 hash of participant's IP address.
+# 3. Controller name.
+# 4. Order number of item.
+# 5. Inner element number.
+# 6. Label.
+# 7. Latin Square Group.
+# 8. PennElementType.
+# 9. PennElementName.
+# 10. Parameter.
+# 11. Value.
+# 12. EventTime.
+# 13. exp_start_timestamp.
+# 14. source.
+# 15. SONA_ID_URL.
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,153,0,intro,NULL,PennController,151,_Trial_,Start,1773099591255,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,153,0,intro,NULL,PennController,151,_Header_,Start,1773099591255,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,153,0,intro,NULL,PennController,151,_Header_,End,1773099591256,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,153,0,intro,NULL,PennController,151,_Trial_,End,1773099612866,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,154,0,consent,NULL,PennController,152,_Trial_,Start,1773099612873,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,154,0,consent,NULL,PennController,152,_Header_,Start,1773099612873,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,154,0,consent,NULL,PennController,152,_Header_,End,1773099612873,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,154,0,consent,NULL,PennController,152,_Trial_,End,1773099618600,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,PennController,153,_Trial_,Start,1773099618606,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,PennController,153,_Header_,Start,1773099618606,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,PennController,153,_Header_,End,1773099618606,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,age,First,,1773099621782,1773099590821,source,demo,1
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,gender,First,,1773099622554,1773099590821,source,demo,1
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,geo,First,,1773099623565,1773099590821,source,demo,1
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,comp,First,,1773099624578,1773099590821,source,demo,1
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,language,First,,1773099631575,1773099590821,source,demo,Shift
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,otherlg,First,,1773099634430,1773099590821,source,demo,Shift
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,age,Final,1,1773099639595,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,gender,Final,1,1773099639595,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,geo,Final,1,1773099639595,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,comp,Final,1,1773099639595,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,language,Final,Armenian,1773099639595,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,TextInput,otherlg,Final,Greek,1773099639595,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,155,0,demo,NULL,PennController,153,_Trial_,End,1773099639596,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,156,0,instructions,NULL,PennController,154,_Trial_,Start,1773099639601,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,156,0,instructions,NULL,PennController,154,_Header_,Start,1773099639601,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,156,0,instructions,NULL,PennController,154,_Header_,End,1773099639601,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,156,0,instructions,NULL,PennController,154,_Trial_,End,1773099686476,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,157,0,practice_intro,NULL,PennController,155,_Trial_,Start,1773099686480,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,157,0,practice_intro,NULL,PennController,155,_Header_,Start,1773099686481,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,157,0,practice_intro,NULL,PennController,155,_Header_,End,1773099686481,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,157,0,practice_intro,NULL,PennController,155,_Trial_,End,1773099696648,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,147,0,intro_practice,NULL,PennController,145,_Trial_,Start,1773099696657,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,147,0,intro_practice,NULL,PennController,145,_Header_,Start,1773099696657,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,147,0,intro_practice,NULL,PennController,145,_Header_,End,1773099696657,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,147,0,intro_practice,NULL,PennController,145,_Trial_,End,1773099743779,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,148,0,tense_intro_practice,NULL,PennController,146,_Trial_,Start,1773099743783,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,148,0,tense_intro_practice,NULL,PennController,146,_Header_,Start,1773099743783,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,148,0,tense_intro_practice,NULL,PennController,146,_Header_,End,1773099743784,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,148,0,tense_intro_practice,NULL,PennController,146,_Trial_,End,1773099757758,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,149,0,tense_pairs_practice,NULL,PennController,147,_Trial_,Start,1773099757765,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,149,0,tense_pairs_practice,NULL,PennController,147,_Header_,Start,1773099757765,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,149,0,tense_pairs_practice,NULL,PennController,147,_Header_,End,1773099757766,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,149,0,tense_pairs_practice,NULL,PennController,147,_Trial_,End,1773099775559,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,150,0,ready_practice,NULL,PennController,148,_Trial_,Start,1773099775565,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,150,0,ready_practice,NULL,PennController,148,_Header_,Start,1773099775565,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,150,0,ready_practice,NULL,PennController,148,_Header_,End,1773099775565,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,150,0,ready_practice,NULL,PennController,148,_Trial_,End,1773099780905,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. LeftOpt.
+# 22. RightOpt.
+# 23. PracticeCorrect.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,151,0,practice_decision_spin_past,NULL,PennController,149,_Trial_,Start,1773099780912,1773099590821,source,demo,practice,spin,spun,PAST,Pirate,Past (C),Future (M),undefined,undefined,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,151,0,practice_decision_spin_past,NULL,PennController,149,_Header_,Start,1773099780912,1773099590821,source,demo,practice,spin,spun,PAST,Pirate,Past (C),Future (M),undefined,undefined,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,151,0,practice_decision_spin_past,NULL,PennController,149,_Header_,End,1773099780912,1773099590821,source,demo,practice,spin,spun,PAST,Pirate,Past (C),Future (M),undefined,undefined,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,151,0,practice_decision_spin_past,NULL,Selector,practice_tenseChoice,Selection,practice_leftOpt,1773099783726,1773099590821,source,demo,practice,spin,spun,PAST,Pirate,Past (C),Future (M),undefined,undefined,practice_leftOpt;practice_rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,151,0,practice_decision_spin_past,NULL,PennController,149,_Trial_,End,1773099784932,1773099590821,source,demo,practice,spin,spun,PAST,Pirate,Past (C),Future (M),undefined,undefined,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,152,0,practice_decision_drag_future,NULL,PennController,150,_Trial_,Start,1773099784942,1773099590821,source,demo,practice,drag,will drag,FUTURE,Pirate,Past (C),Future (M),undefined,undefined,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,152,0,practice_decision_drag_future,NULL,PennController,150,_Header_,Start,1773099784942,1773099590821,source,demo,practice,drag,will drag,FUTURE,Pirate,Past (C),Future (M),undefined,undefined,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,152,0,practice_decision_drag_future,NULL,PennController,150,_Header_,End,1773099784942,1773099590821,source,demo,practice,drag,will drag,FUTURE,Pirate,Past (C),Future (M),undefined,undefined,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,152,0,practice_decision_drag_future,NULL,Selector,practice_tenseChoice,Selection,practice_rightOpt,1773099786710,1773099590821,source,demo,practice,drag,will drag,FUTURE,Pirate,Past (C),Future (M),undefined,undefined,practice_leftOpt;practice_rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,152,0,practice_decision_drag_future,NULL,PennController,150,_Trial_,End,1773099787917,1773099590821,source,demo,practice,drag,will drag,FUTURE,Pirate,Past (C),Future (M),undefined,undefined,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,158,0,exp_ready,NULL,PennController,156,_Trial_,Start,1773099787925,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,158,0,exp_ready,NULL,PennController,156,_Header_,Start,1773099787925,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,158,0,exp_ready,NULL,PennController,156,_Header_,End,1773099787925,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,158,0,exp_ready,NULL,PennController,156,_Trial_,End,1773099795899,1773099590821,source,demo,NULL
+# 13. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,159,0,check,NULL,PennController,Preloader-0,_PreloadFailed_,pirate_drag_sack_v3.png,1773099855905,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,159,0,check,NULL,PennController,Preloader-0,_PreloadFailed_,tts_verb_drag.mp3,1773099855905,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,159,0,check,NULL,PennController,Preloader-0,_PreloadFailed_,pirate_spin_top_v5.png,1773099855905,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,159,0,check,NULL,PennController,Preloader-0,_Trial_,Start,1773099855905,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,159,0,check,NULL,PennController,Preloader-0,_Trial_,End,1773099855905,NULL
+# 13. exp_start_timestamp.
+# 14. source.
+# 15. SONA_ID_URL.
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,31,0,intro_m1_block2,NULL,PennController,29,_Trial_,Start,1773099855916,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,31,0,intro_m1_block2,NULL,PennController,29,_Header_,Start,1773099855916,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,31,0,intro_m1_block2,NULL,PennController,29,_Header_,End,1773099855917,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,31,0,intro_m1_block2,NULL,PennController,29,_Trial_,End,1773099893295,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,32,0,tense_intro_m1_block2,NULL,PennController,30,_Trial_,Start,1773099893303,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,32,0,tense_intro_m1_block2,NULL,PennController,30,_Header_,Start,1773099893303,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,32,0,tense_intro_m1_block2,NULL,PennController,30,_Header_,End,1773099893304,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,32,0,tense_intro_m1_block2,NULL,PennController,30,_Trial_,End,1773099903268,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,33,0,tense_pairs_m1_block2,NULL,PennController,31,_PreloadFailed_,pirate_build_tower_v3.png,1773099963281,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,33,0,tense_pairs_m1_block2,NULL,PennController,31,_Trial_,Start,1773099963281,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,33,0,tense_pairs_m1_block2,NULL,PennController,31,_Header_,Start,1773099963281,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,33,0,tense_pairs_m1_block2,NULL,PennController,31,_Header_,End,1773099963283,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,33,0,tense_pairs_m1_block2,NULL,PennController,31,_Trial_,End,1773100007199,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,34,0,ready_m1_block2,NULL,PennController,32,_Trial_,Start,1773100007205,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,34,0,ready_m1_block2,NULL,PennController,32,_Header_,Start,1773100007205,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,34,0,ready_m1_block2,NULL,PennController,32,_Header_,End,1773100007205,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,34,0,ready_m1_block2,NULL,PennController,32,_Trial_,End,1773100011228,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,28,0,exp_m1_block2_p2_climb_FUTURE,NULL,PennController,26,_Trial_,Start,1773100011234,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p2,Past (C),Future (M),1554,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,28,0,exp_m1_block2_p2_climb_FUTURE,NULL,PennController,26,_Header_,Start,1773100011234,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p2,Past (C),Future (M),1554,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,28,0,exp_m1_block2_p2_climb_FUTURE,NULL,PennController,26,_Header_,End,1773100011234,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p2,Past (C),Future (M),1554,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,28,0,exp_m1_block2_p2_climb_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100013597,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p2,Past (C),Future (M),1554,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,28,0,exp_m1_block2_p2_climb_FUTURE,NULL,PennController,26,_Trial_,End,1773100013598,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p2,Past (C),Future (M),1554,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,26,0,exp_m1_block2_p2_sweep_PAST,NULL,PennController,24,_Trial_,Start,1773100013608,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p2,Past (C),Future (M),1927,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,26,0,exp_m1_block2_p2_sweep_PAST,NULL,PennController,24,_Header_,Start,1773100013608,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p2,Past (C),Future (M),1927,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,26,0,exp_m1_block2_p2_sweep_PAST,NULL,PennController,24,_Header_,End,1773100013609,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p2,Past (C),Future (M),1927,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,26,0,exp_m1_block2_p2_sweep_PAST,NULL,Selector,tenseChoice,Selection,rightOpt,1773100016349,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p2,Past (C),Future (M),1927,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,26,0,exp_m1_block2_p2_sweep_PAST,NULL,PennController,24,_Trial_,End,1773100016351,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p2,Past (C),Future (M),1927,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,25,0,exp_m1_block2_p2_build_PAST,NULL,PennController,23,_Trial_,Start,1773100016360,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p2,Past (C),Future (M),933,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,25,0,exp_m1_block2_p2_build_PAST,NULL,PennController,23,_Header_,Start,1773100016360,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p2,Past (C),Future (M),933,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,25,0,exp_m1_block2_p2_build_PAST,NULL,PennController,23,_Header_,End,1773100016361,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p2,Past (C),Future (M),933,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,25,0,exp_m1_block2_p2_build_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100018103,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p2,Past (C),Future (M),933,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,25,0,exp_m1_block2_p2_build_PAST,NULL,PennController,23,_Trial_,End,1773100018105,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p2,Past (C),Future (M),933,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,30,0,exp_m1_block2_p2_peel_FUTURE,NULL,PennController,28,_Trial_,Start,1773100018114,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p2,Past (C),Future (M),985,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,30,0,exp_m1_block2_p2_peel_FUTURE,NULL,PennController,28,_Header_,Start,1773100018114,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p2,Past (C),Future (M),985,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,30,0,exp_m1_block2_p2_peel_FUTURE,NULL,PennController,28,_Header_,End,1773100018114,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p2,Past (C),Future (M),985,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,30,0,exp_m1_block2_p2_peel_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100019907,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p2,Past (C),Future (M),985,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,30,0,exp_m1_block2_p2_peel_FUTURE,NULL,PennController,28,_Trial_,End,1773100019908,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p2,Past (C),Future (M),985,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,29,0,exp_m1_block2_p2_stir_FUTURE,NULL,PennController,27,_Trial_,Start,1773100019917,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p2,Past (C),Future (M),2148,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,29,0,exp_m1_block2_p2_stir_FUTURE,NULL,PennController,27,_Header_,Start,1773100019917,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p2,Past (C),Future (M),2148,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,29,0,exp_m1_block2_p2_stir_FUTURE,NULL,PennController,27,_Header_,End,1773100019917,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p2,Past (C),Future (M),2148,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,29,0,exp_m1_block2_p2_stir_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100022874,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p2,Past (C),Future (M),2148,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,29,0,exp_m1_block2_p2_stir_FUTURE,NULL,PennController,27,_Trial_,End,1773100022876,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p2,Past (C),Future (M),2148,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,27,0,exp_m1_block2_p2_ride_PAST,NULL,PennController,25,_Trial_,Start,1773100022884,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p2,Past (C),Future (M),1158,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,27,0,exp_m1_block2_p2_ride_PAST,NULL,PennController,25,_Header_,Start,1773100022884,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p2,Past (C),Future (M),1158,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,27,0,exp_m1_block2_p2_ride_PAST,NULL,PennController,25,_Header_,End,1773100022884,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p2,Past (C),Future (M),1158,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,27,0,exp_m1_block2_p2_ride_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100024855,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p2,Past (C),Future (M),1158,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,27,0,exp_m1_block2_p2_ride_PAST,NULL,PennController,25,_Trial_,End,1773100024856,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p2,Past (C),Future (M),1158,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,19,0,exp_m1_block2_p1_build_PAST,NULL,PennController,17,_Trial_,Start,1773100024866,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p1,Past (C),Future (M),2909,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,19,0,exp_m1_block2_p1_build_PAST,NULL,PennController,17,_Header_,Start,1773100024866,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p1,Past (C),Future (M),2909,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,19,0,exp_m1_block2_p1_build_PAST,NULL,PennController,17,_Header_,End,1773100024866,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p1,Past (C),Future (M),2909,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,19,0,exp_m1_block2_p1_build_PAST,NULL,Selector,tenseChoice,Selection,rightOpt,1773100028586,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p1,Past (C),Future (M),2909,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,19,0,exp_m1_block2_p1_build_PAST,NULL,PennController,17,_Trial_,End,1773100028588,1773099590821,source,demo,m1_block2,build,built,PAST,Pirate,p1,Past (C),Future (M),2909,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,23,0,exp_m1_block2_p1_stir_FUTURE,NULL,PennController,21,_Trial_,Start,1773100028596,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p1,Past (C),Future (M),1275,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,23,0,exp_m1_block2_p1_stir_FUTURE,NULL,PennController,21,_Header_,Start,1773100028596,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p1,Past (C),Future (M),1275,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,23,0,exp_m1_block2_p1_stir_FUTURE,NULL,PennController,21,_Header_,End,1773100028597,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p1,Past (C),Future (M),1275,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,23,0,exp_m1_block2_p1_stir_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100030678,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p1,Past (C),Future (M),1275,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,23,0,exp_m1_block2_p1_stir_FUTURE,NULL,PennController,21,_Trial_,End,1773100030679,1773099590821,source,demo,m1_block2,stir,will stir,FUTURE,Wizard,p1,Past (C),Future (M),1275,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,22,0,exp_m1_block2_p1_climb_FUTURE,NULL,PennController,20,_Trial_,Start,1773100030688,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p1,Past (C),Future (M),1606,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,22,0,exp_m1_block2_p1_climb_FUTURE,NULL,PennController,20,_Header_,Start,1773100030688,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p1,Past (C),Future (M),1606,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,22,0,exp_m1_block2_p1_climb_FUTURE,NULL,PennController,20,_Header_,End,1773100030689,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p1,Past (C),Future (M),1606,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,22,0,exp_m1_block2_p1_climb_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100033102,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p1,Past (C),Future (M),1606,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,22,0,exp_m1_block2_p1_climb_FUTURE,NULL,PennController,20,_Trial_,End,1773100033104,1773099590821,source,demo,m1_block2,climb,will climb,FUTURE,Pirate,p1,Past (C),Future (M),1606,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,21,0,exp_m1_block2_p1_ride_PAST,NULL,PennController,19,_Trial_,Start,1773100033112,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p1,Past (C),Future (M),1393,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,21,0,exp_m1_block2_p1_ride_PAST,NULL,PennController,19,_Header_,Start,1773100033112,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p1,Past (C),Future (M),1393,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,21,0,exp_m1_block2_p1_ride_PAST,NULL,PennController,19,_Header_,End,1773100033113,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p1,Past (C),Future (M),1393,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,21,0,exp_m1_block2_p1_ride_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100035316,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p1,Past (C),Future (M),1393,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,21,0,exp_m1_block2_p1_ride_PAST,NULL,PennController,19,_Trial_,End,1773100035317,1773099590821,source,demo,m1_block2,ride,rode,PAST,Chef,p1,Past (C),Future (M),1393,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,20,0,exp_m1_block2_p1_sweep_PAST,NULL,PennController,18,_Trial_,Start,1773100035327,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p1,Past (C),Future (M),2244,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,20,0,exp_m1_block2_p1_sweep_PAST,NULL,PennController,18,_Header_,Start,1773100035327,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p1,Past (C),Future (M),2244,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,20,0,exp_m1_block2_p1_sweep_PAST,NULL,PennController,18,_Header_,End,1773100035327,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p1,Past (C),Future (M),2244,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,20,0,exp_m1_block2_p1_sweep_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100038384,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p1,Past (C),Future (M),2244,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,20,0,exp_m1_block2_p1_sweep_PAST,NULL,PennController,18,_Trial_,End,1773100038385,1773099590821,source,demo,m1_block2,sweep,swept,PAST,Wizard,p1,Past (C),Future (M),2244,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,24,0,exp_m1_block2_p1_peel_FUTURE,NULL,PennController,22,_Trial_,Start,1773100038396,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p1,Past (C),Future (M),921,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,24,0,exp_m1_block2_p1_peel_FUTURE,NULL,PennController,22,_Header_,Start,1773100038396,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p1,Past (C),Future (M),921,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,24,0,exp_m1_block2_p1_peel_FUTURE,NULL,PennController,22,_Header_,End,1773100038396,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p1,Past (C),Future (M),921,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,24,0,exp_m1_block2_p1_peel_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100040129,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p1,Past (C),Future (M),921,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,24,0,exp_m1_block2_p1_peel_FUTURE,NULL,PennController,22,_Trial_,End,1773100040129,1773099590821,source,demo,m1_block2,peel,will peel,FUTURE,Chef,p1,Past (C),Future (M),921,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,Start,1773100040134,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,Start,1773100040134,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,End,1773100040135,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,End,1773100044340,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,15,0,intro_m1_block1,NULL,PennController,13,_Trial_,Start,1773100044350,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,15,0,intro_m1_block1,NULL,PennController,13,_Header_,Start,1773100044350,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,15,0,intro_m1_block1,NULL,PennController,13,_Header_,End,1773100044350,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,15,0,intro_m1_block1,NULL,PennController,13,_Trial_,End,1773100081761,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,16,0,tense_intro_m1_block1,NULL,PennController,14,_Trial_,Start,1773100081770,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,16,0,tense_intro_m1_block1,NULL,PennController,14,_Header_,Start,1773100081770,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,16,0,tense_intro_m1_block1,NULL,PennController,14,_Header_,End,1773100081770,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,16,0,tense_intro_m1_block1,NULL,PennController,14,_Trial_,End,1773100089579,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,17,0,tense_pairs_m1_block1,NULL,PennController,15,_Trial_,Start,1773100089589,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,17,0,tense_pairs_m1_block1,NULL,PennController,15,_Header_,Start,1773100089589,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,17,0,tense_pairs_m1_block1,NULL,PennController,15,_Header_,End,1773100089589,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,17,0,tense_pairs_m1_block1,NULL,PennController,15,_Trial_,End,1773100110760,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,18,0,ready_m1_block1,NULL,PennController,16,_Trial_,Start,1773100110764,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,18,0,ready_m1_block1,NULL,PennController,16,_Header_,Start,1773100110764,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,18,0,ready_m1_block1,NULL,PennController,16,_Header_,End,1773100110764,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,18,0,ready_m1_block1,NULL,PennController,16,_Trial_,End,1773100112451,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,12,0,exp_m1_block1_p2_paint_FUTURE,NULL,PennController,10,_Trial_,Start,1773100112457,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p2,Past (C),Future (M),1750,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,12,0,exp_m1_block1_p2_paint_FUTURE,NULL,PennController,10,_Header_,Start,1773100112457,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p2,Past (C),Future (M),1750,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,12,0,exp_m1_block1_p2_paint_FUTURE,NULL,PennController,10,_Header_,End,1773100112457,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p2,Past (C),Future (M),1750,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,12,0,exp_m1_block1_p2_paint_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100115018,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p2,Past (C),Future (M),1750,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,12,0,exp_m1_block1_p2_paint_FUTURE,NULL,PennController,10,_Trial_,End,1773100115019,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p2,Past (C),Future (M),1750,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,10,0,exp_m1_block1_p2_read_PAST,NULL,PennController,8,_Trial_,Start,1773100115023,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p2,Past (C),Future (M),1230,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,10,0,exp_m1_block1_p2_read_PAST,NULL,PennController,8,_Header_,Start,1773100115023,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p2,Past (C),Future (M),1230,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,10,0,exp_m1_block1_p2_read_PAST,NULL,PennController,8,_Header_,End,1773100115023,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p2,Past (C),Future (M),1230,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,10,0,exp_m1_block1_p2_read_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100117066,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p2,Past (C),Future (M),1230,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,10,0,exp_m1_block1_p2_read_PAST,NULL,PennController,8,_Trial_,End,1773100117067,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p2,Past (C),Future (M),1230,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,9,0,exp_m1_block1_p2_drink_PAST,NULL,PennController,7,_Trial_,Start,1773100117074,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p2,Past (C),Future (M),1566,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,9,0,exp_m1_block1_p2_drink_PAST,NULL,PennController,7,_Header_,Start,1773100117074,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p2,Past (C),Future (M),1566,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,9,0,exp_m1_block1_p2_drink_PAST,NULL,PennController,7,_Header_,End,1773100117075,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p2,Past (C),Future (M),1566,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,9,0,exp_m1_block1_p2_drink_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100119455,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p2,Past (C),Future (M),1566,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,9,0,exp_m1_block1_p2_drink_PAST,NULL,PennController,7,_Trial_,End,1773100119457,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p2,Past (C),Future (M),1566,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,14,0,exp_m1_block1_p2_push_FUTURE,NULL,PennController,12,_Trial_,Start,1773100119467,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p2,Past (C),Future (M),1263,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,14,0,exp_m1_block1_p2_push_FUTURE,NULL,PennController,12,_Header_,Start,1773100119467,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p2,Past (C),Future (M),1263,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,14,0,exp_m1_block1_p2_push_FUTURE,NULL,PennController,12,_Header_,End,1773100119468,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p2,Past (C),Future (M),1263,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,14,0,exp_m1_block1_p2_push_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100121543,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p2,Past (C),Future (M),1263,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,14,0,exp_m1_block1_p2_push_FUTURE,NULL,PennController,12,_Trial_,End,1773100121544,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p2,Past (C),Future (M),1263,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,13,0,exp_m1_block1_p2_wash_FUTURE,NULL,PennController,11,_Trial_,Start,1773100121551,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p2,Past (C),Future (M),2789,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,13,0,exp_m1_block1_p2_wash_FUTURE,NULL,PennController,11,_Header_,Start,1773100121551,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p2,Past (C),Future (M),2789,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,13,0,exp_m1_block1_p2_wash_FUTURE,NULL,PennController,11,_Header_,End,1773100121551,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p2,Past (C),Future (M),2789,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,13,0,exp_m1_block1_p2_wash_FUTURE,NULL,Selector,tenseChoice,Selection,leftOpt,1773100125150,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p2,Past (C),Future (M),2789,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,13,0,exp_m1_block1_p2_wash_FUTURE,NULL,PennController,11,_Trial_,End,1773100125151,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p2,Past (C),Future (M),2789,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,11,0,exp_m1_block1_p2_eat_PAST,NULL,PennController,9,_Trial_,Start,1773100125159,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p2,Past (C),Future (M),3518,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,11,0,exp_m1_block1_p2_eat_PAST,NULL,PennController,9,_Header_,Start,1773100125159,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p2,Past (C),Future (M),3518,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,11,0,exp_m1_block1_p2_eat_PAST,NULL,PennController,9,_Header_,End,1773100125159,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p2,Past (C),Future (M),3518,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,11,0,exp_m1_block1_p2_eat_PAST,NULL,Selector,tenseChoice,Selection,rightOpt,1773100129484,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p2,Past (C),Future (M),3518,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,11,0,exp_m1_block1_p2_eat_PAST,NULL,PennController,9,_Trial_,End,1773100129485,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p2,Past (C),Future (M),3518,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,3,0,exp_m1_block1_p1_drink_PAST,NULL,PennController,1,_Trial_,Start,1773100129495,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p1,Past (C),Future (M),1652,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,3,0,exp_m1_block1_p1_drink_PAST,NULL,PennController,1,_Header_,Start,1773100129495,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p1,Past (C),Future (M),1652,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,3,0,exp_m1_block1_p1_drink_PAST,NULL,PennController,1,_Header_,End,1773100129495,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p1,Past (C),Future (M),1652,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,3,0,exp_m1_block1_p1_drink_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100131963,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p1,Past (C),Future (M),1652,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,3,0,exp_m1_block1_p1_drink_PAST,NULL,PennController,1,_Trial_,End,1773100131964,1773099590821,source,demo,m1_block1,drink,drank,PAST,Pirate,p1,Past (C),Future (M),1652,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,7,0,exp_m1_block1_p1_wash_FUTURE,NULL,PennController,5,_Trial_,Start,1773100131974,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p1,Past (C),Future (M),1192,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,7,0,exp_m1_block1_p1_wash_FUTURE,NULL,PennController,5,_Header_,Start,1773100131974,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p1,Past (C),Future (M),1192,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,7,0,exp_m1_block1_p1_wash_FUTURE,NULL,PennController,5,_Header_,End,1773100131974,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p1,Past (C),Future (M),1192,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,7,0,exp_m1_block1_p1_wash_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100133976,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p1,Past (C),Future (M),1192,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,7,0,exp_m1_block1_p1_wash_FUTURE,NULL,PennController,5,_Trial_,End,1773100133978,1773099590821,source,demo,m1_block1,wash,will wash,FUTURE,Wizard,p1,Past (C),Future (M),1192,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,6,0,exp_m1_block1_p1_paint_FUTURE,NULL,PennController,4,_Trial_,Start,1773100133986,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p1,Past (C),Future (M),1306,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,6,0,exp_m1_block1_p1_paint_FUTURE,NULL,PennController,4,_Header_,Start,1773100133986,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p1,Past (C),Future (M),1306,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,6,0,exp_m1_block1_p1_paint_FUTURE,NULL,PennController,4,_Header_,End,1773100133986,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p1,Past (C),Future (M),1306,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,6,0,exp_m1_block1_p1_paint_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100136099,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p1,Past (C),Future (M),1306,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,6,0,exp_m1_block1_p1_paint_FUTURE,NULL,PennController,4,_Trial_,End,1773100136100,1773099590821,source,demo,m1_block1,paint,will paint,FUTURE,Pirate,p1,Past (C),Future (M),1306,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,5,0,exp_m1_block1_p1_eat_PAST,NULL,PennController,3,_Trial_,Start,1773100136110,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p1,Past (C),Future (M),4063,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,5,0,exp_m1_block1_p1_eat_PAST,NULL,PennController,3,_Header_,Start,1773100136110,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p1,Past (C),Future (M),4063,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,5,0,exp_m1_block1_p1_eat_PAST,NULL,PennController,3,_Header_,End,1773100136110,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p1,Past (C),Future (M),4063,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,5,0,exp_m1_block1_p1_eat_PAST,NULL,Selector,tenseChoice,Selection,rightOpt,1773100140985,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p1,Past (C),Future (M),4063,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,5,0,exp_m1_block1_p1_eat_PAST,NULL,PennController,3,_Trial_,End,1773100140986,1773099590821,source,demo,m1_block1,eat,ate,PAST,Chef,p1,Past (C),Future (M),4063,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,4,0,exp_m1_block1_p1_read_PAST,NULL,PennController,2,_Trial_,Start,1773100140994,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p1,Past (C),Future (M),1064,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,4,0,exp_m1_block1_p1_read_PAST,NULL,PennController,2,_Header_,Start,1773100140994,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p1,Past (C),Future (M),1064,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,4,0,exp_m1_block1_p1_read_PAST,NULL,PennController,2,_Header_,End,1773100140994,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p1,Past (C),Future (M),1064,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,4,0,exp_m1_block1_p1_read_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100142868,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p1,Past (C),Future (M),1064,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,4,0,exp_m1_block1_p1_read_PAST,NULL,PennController,2,_Trial_,End,1773100142870,1773099590821,source,demo,m1_block1,read,read,PAST,Wizard,p1,Past (C),Future (M),1064,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,8,0,exp_m1_block1_p1_push_FUTURE,NULL,PennController,6,_Trial_,Start,1773100142878,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p1,Past (C),Future (M),1174,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,8,0,exp_m1_block1_p1_push_FUTURE,NULL,PennController,6,_Header_,Start,1773100142878,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p1,Past (C),Future (M),1174,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,8,0,exp_m1_block1_p1_push_FUTURE,NULL,PennController,6,_Header_,End,1773100142879,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p1,Past (C),Future (M),1174,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,8,0,exp_m1_block1_p1_push_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100144861,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p1,Past (C),Future (M),1174,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,8,0,exp_m1_block1_p1_push_FUTURE,NULL,PennController,6,_Trial_,End,1773100144863,1773099590821,source,demo,m1_block1,push,will push,FUTURE,Chef,p1,Past (C),Future (M),1174,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,Start,1773100144872,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,Start,1773100144872,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,End,1773100144872,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,End,1773100147344,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,47,0,intro_m1_block3,NULL,PennController,45,_Trial_,Start,1773100147353,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,47,0,intro_m1_block3,NULL,PennController,45,_Header_,Start,1773100147353,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,47,0,intro_m1_block3,NULL,PennController,45,_Header_,End,1773100147353,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,47,0,intro_m1_block3,NULL,PennController,45,_Trial_,End,1773100163518,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,48,0,tense_intro_m1_block3,NULL,PennController,46,_Trial_,Start,1773100163523,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,48,0,tense_intro_m1_block3,NULL,PennController,46,_Header_,Start,1773100163523,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,48,0,tense_intro_m1_block3,NULL,PennController,46,_Header_,End,1773100163523,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,48,0,tense_intro_m1_block3,NULL,PennController,46,_Trial_,End,1773100168577,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,49,0,tense_pairs_m1_block3,NULL,PennController,47,_PreloadFailed_,pirate_blow_bubbles_v5.png,1773100228586,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,49,0,tense_pairs_m1_block3,NULL,PennController,47,_Trial_,Start,1773100228586,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,49,0,tense_pairs_m1_block3,NULL,PennController,47,_Header_,Start,1773100228586,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,49,0,tense_pairs_m1_block3,NULL,PennController,47,_Header_,End,1773100228587,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,49,0,tense_pairs_m1_block3,NULL,PennController,47,_Trial_,End,1773100248455,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,50,0,ready_m1_block3,NULL,PennController,48,_Trial_,Start,1773100248460,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,50,0,ready_m1_block3,NULL,PennController,48,_Header_,Start,1773100248460,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,50,0,ready_m1_block3,NULL,PennController,48,_Header_,End,1773100248460,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,50,0,ready_m1_block3,NULL,PennController,48,_Trial_,End,1773100249827,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,44,0,exp_m1_block3_p2_carry_FUTURE,NULL,PennController,42,_Trial_,Start,1773100249833,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p2,Past (C),Future (M),2369,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,44,0,exp_m1_block3_p2_carry_FUTURE,NULL,PennController,42,_Header_,Start,1773100249833,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p2,Past (C),Future (M),2369,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,44,0,exp_m1_block3_p2_carry_FUTURE,NULL,PennController,42,_Header_,End,1773100249833,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p2,Past (C),Future (M),2369,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,44,0,exp_m1_block3_p2_carry_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100253011,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p2,Past (C),Future (M),2369,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,44,0,exp_m1_block3_p2_carry_FUTURE,NULL,PennController,42,_Trial_,End,1773100253011,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p2,Past (C),Future (M),2369,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,42,0,exp_m1_block3_p2_dig_PAST,NULL,PennController,40,_Trial_,Start,1773100253016,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p2,Past (C),Future (M),1009,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,42,0,exp_m1_block3_p2_dig_PAST,NULL,PennController,40,_Header_,Start,1773100253016,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p2,Past (C),Future (M),1009,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,42,0,exp_m1_block3_p2_dig_PAST,NULL,PennController,40,_Header_,End,1773100253016,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p2,Past (C),Future (M),1009,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,42,0,exp_m1_block3_p2_dig_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100254835,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p2,Past (C),Future (M),1009,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,42,0,exp_m1_block3_p2_dig_PAST,NULL,PennController,40,_Trial_,End,1773100254836,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p2,Past (C),Future (M),1009,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,41,0,exp_m1_block3_p2_blow_PAST,NULL,PennController,39,_Trial_,Start,1773100254843,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p2,Past (C),Future (M),1112,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,41,0,exp_m1_block3_p2_blow_PAST,NULL,PennController,39,_Header_,Start,1773100254843,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p2,Past (C),Future (M),1112,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,41,0,exp_m1_block3_p2_blow_PAST,NULL,PennController,39,_Header_,End,1773100254843,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p2,Past (C),Future (M),1112,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,41,0,exp_m1_block3_p2_blow_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100256759,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p2,Past (C),Future (M),1112,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,41,0,exp_m1_block3_p2_blow_PAST,NULL,PennController,39,_Trial_,End,1773100256760,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p2,Past (C),Future (M),1112,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,46,0,exp_m1_block3_p2_smell_FUTURE,NULL,PennController,44,_Trial_,Start,1773100256767,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p2,Past (C),Future (M),1174,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,46,0,exp_m1_block3_p2_smell_FUTURE,NULL,PennController,44,_Header_,Start,1773100256767,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p2,Past (C),Future (M),1174,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,46,0,exp_m1_block3_p2_smell_FUTURE,NULL,PennController,44,_Header_,End,1773100256767,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p2,Past (C),Future (M),1174,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,46,0,exp_m1_block3_p2_smell_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100258756,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p2,Past (C),Future (M),1174,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,46,0,exp_m1_block3_p2_smell_FUTURE,NULL,PennController,44,_Trial_,End,1773100258757,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p2,Past (C),Future (M),1174,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,45,0,exp_m1_block3_p2_play_FUTURE,NULL,PennController,43,_Trial_,Start,1773100258763,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p2,Past (C),Future (M),2537,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,45,0,exp_m1_block3_p2_play_FUTURE,NULL,PennController,43,_Header_,Start,1773100258763,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p2,Past (C),Future (M),2537,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,45,0,exp_m1_block3_p2_play_FUTURE,NULL,PennController,43,_Header_,End,1773100258763,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p2,Past (C),Future (M),2537,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,45,0,exp_m1_block3_p2_play_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100262108,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p2,Past (C),Future (M),2537,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,45,0,exp_m1_block3_p2_play_FUTURE,NULL,PennController,43,_Trial_,End,1773100262110,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p2,Past (C),Future (M),2537,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,43,0,exp_m1_block3_p2_shake_PAST,NULL,PennController,41,_Trial_,Start,1773100262117,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p2,Past (C),Future (M),1553,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,43,0,exp_m1_block3_p2_shake_PAST,NULL,PennController,41,_Header_,Start,1773100262117,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p2,Past (C),Future (M),1553,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,43,0,exp_m1_block3_p2_shake_PAST,NULL,PennController,41,_Header_,End,1773100262117,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p2,Past (C),Future (M),1553,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,43,0,exp_m1_block3_p2_shake_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100264478,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p2,Past (C),Future (M),1553,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,43,0,exp_m1_block3_p2_shake_PAST,NULL,PennController,41,_Trial_,End,1773100264479,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p2,Past (C),Future (M),1553,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,35,0,exp_m1_block3_p1_blow_PAST,NULL,PennController,33,_Trial_,Start,1773100264486,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p1,Past (C),Future (M),2759,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,35,0,exp_m1_block3_p1_blow_PAST,NULL,PennController,33,_Header_,Start,1773100264486,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p1,Past (C),Future (M),2759,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,35,0,exp_m1_block3_p1_blow_PAST,NULL,PennController,33,_Header_,End,1773100264486,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p1,Past (C),Future (M),2759,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,35,0,exp_m1_block3_p1_blow_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100268055,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p1,Past (C),Future (M),2759,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,35,0,exp_m1_block3_p1_blow_PAST,NULL,PennController,33,_Trial_,End,1773100268056,1773099590821,source,demo,m1_block3,blow,blew,PAST,Pirate,p1,Past (C),Future (M),2759,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,39,0,exp_m1_block3_p1_play_FUTURE,NULL,PennController,37,_Trial_,Start,1773100268062,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p1,Past (C),Future (M),813,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,39,0,exp_m1_block3_p1_play_FUTURE,NULL,PennController,37,_Header_,Start,1773100268062,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p1,Past (C),Future (M),813,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,39,0,exp_m1_block3_p1_play_FUTURE,NULL,PennController,37,_Header_,End,1773100268063,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p1,Past (C),Future (M),813,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,39,0,exp_m1_block3_p1_play_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100269680,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p1,Past (C),Future (M),813,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,39,0,exp_m1_block3_p1_play_FUTURE,NULL,PennController,37,_Trial_,End,1773100269682,1773099590821,source,demo,m1_block3,play,will play,FUTURE,Chef,p1,Past (C),Future (M),813,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,38,0,exp_m1_block3_p1_carry_FUTURE,NULL,PennController,36,_Trial_,Start,1773100269690,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p1,Past (C),Future (M),1395,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,38,0,exp_m1_block3_p1_carry_FUTURE,NULL,PennController,36,_Header_,Start,1773100269690,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p1,Past (C),Future (M),1395,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,38,0,exp_m1_block3_p1_carry_FUTURE,NULL,PennController,36,_Header_,End,1773100269690,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p1,Past (C),Future (M),1395,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,38,0,exp_m1_block3_p1_carry_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100271892,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p1,Past (C),Future (M),1395,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,38,0,exp_m1_block3_p1_carry_FUTURE,NULL,PennController,36,_Trial_,End,1773100271895,1773099590821,source,demo,m1_block3,carry,will carry,FUTURE,Pirate,p1,Past (C),Future (M),1395,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,37,0,exp_m1_block3_p1_shake_PAST,NULL,PennController,35,_Trial_,Start,1773100271903,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p1,Past (C),Future (M),833,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,37,0,exp_m1_block3_p1_shake_PAST,NULL,PennController,35,_Header_,Start,1773100271903,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p1,Past (C),Future (M),833,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,37,0,exp_m1_block3_p1_shake_PAST,NULL,PennController,35,_Header_,End,1773100271903,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p1,Past (C),Future (M),833,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,37,0,exp_m1_block3_p1_shake_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100273550,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p1,Past (C),Future (M),833,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,37,0,exp_m1_block3_p1_shake_PAST,NULL,PennController,35,_Trial_,End,1773100273551,1773099590821,source,demo,m1_block3,shake,shook,PAST,Wizard,p1,Past (C),Future (M),833,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,36,0,exp_m1_block3_p1_dig_PAST,NULL,PennController,34,_Trial_,Start,1773100273558,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p1,Past (C),Future (M),826,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,36,0,exp_m1_block3_p1_dig_PAST,NULL,PennController,34,_Header_,Start,1773100273559,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p1,Past (C),Future (M),826,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,36,0,exp_m1_block3_p1_dig_PAST,NULL,PennController,34,_Header_,End,1773100273560,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p1,Past (C),Future (M),826,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,36,0,exp_m1_block3_p1_dig_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100275195,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p1,Past (C),Future (M),826,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,36,0,exp_m1_block3_p1_dig_PAST,NULL,PennController,34,_Trial_,End,1773100275196,1773099590821,source,demo,m1_block3,dig,dug,PAST,Chef,p1,Past (C),Future (M),826,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,40,0,exp_m1_block3_p1_smell_FUTURE,NULL,PennController,38,_Trial_,Start,1773100275203,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p1,Past (C),Future (M),1105,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,40,0,exp_m1_block3_p1_smell_FUTURE,NULL,PennController,38,_Header_,Start,1773100275203,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p1,Past (C),Future (M),1105,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,40,0,exp_m1_block3_p1_smell_FUTURE,NULL,PennController,38,_Header_,End,1773100275203,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p1,Past (C),Future (M),1105,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,40,0,exp_m1_block3_p1_smell_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100277117,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p1,Past (C),Future (M),1105,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,40,0,exp_m1_block3_p1_smell_FUTURE,NULL,PennController,38,_Trial_,End,1773100277118,1773099590821,source,demo,m1_block3,smell,will smell,FUTURE,Wizard,p1,Past (C),Future (M),1105,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,Start,1773100277127,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,Start,1773100277127,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,End,1773100277127,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,End,1773100279418,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,63,0,intro_m2_block1,NULL,PennController,61,_Trial_,Start,1773100279427,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,63,0,intro_m2_block1,NULL,PennController,61,_Header_,Start,1773100279427,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,63,0,intro_m2_block1,NULL,PennController,61,_Header_,End,1773100279427,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,63,0,intro_m2_block1,NULL,PennController,61,_Trial_,End,1773100293866,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,64,0,tense_intro_m2_block1,NULL,PennController,62,_Trial_,Start,1773100293872,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,64,0,tense_intro_m2_block1,NULL,PennController,62,_Header_,Start,1773100293872,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,64,0,tense_intro_m2_block1,NULL,PennController,62,_Header_,End,1773100293872,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,64,0,tense_intro_m2_block1,NULL,PennController,62,_Trial_,End,1773100294590,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,65,0,tense_pairs_m2_block1,NULL,PennController,63,_Trial_,Start,1773100294598,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,65,0,tense_pairs_m2_block1,NULL,PennController,63,_Header_,Start,1773100294598,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,65,0,tense_pairs_m2_block1,NULL,PennController,63,_Header_,End,1773100294598,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,65,0,tense_pairs_m2_block1,NULL,PennController,63,_Trial_,End,1773100310398,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,66,0,ready_m2_block1,NULL,PennController,64,_Trial_,Start,1773100310402,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,66,0,ready_m2_block1,NULL,PennController,64,_Header_,Start,1773100310402,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,66,0,ready_m2_block1,NULL,PennController,64,_Header_,End,1773100310402,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,66,0,ready_m2_block1,NULL,PennController,64,_Trial_,End,1773100311338,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,51,0,exp_m2_block1_p1_drink_PAST,NULL,PennController,49,_Trial_,Start,1773100311344,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p1,Past (C),Future (M),974,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,51,0,exp_m2_block1_p1_drink_PAST,NULL,PennController,49,_Header_,Start,1773100311344,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p1,Past (C),Future (M),974,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,51,0,exp_m2_block1_p1_drink_PAST,NULL,PennController,49,_Header_,End,1773100311344,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p1,Past (C),Future (M),974,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,51,0,exp_m2_block1_p1_drink_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100313130,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p1,Past (C),Future (M),974,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,51,0,exp_m2_block1_p1_drink_PAST,NULL,PennController,49,_Trial_,End,1773100313130,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p1,Past (C),Future (M),974,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,55,0,exp_m2_block1_p1_wash_FUTURE,NULL,PennController,53,_Trial_,Start,1773100313135,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p1,Past (C),Future (M),924,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,55,0,exp_m2_block1_p1_wash_FUTURE,NULL,PennController,53,_Header_,Start,1773100313135,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p1,Past (C),Future (M),924,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,55,0,exp_m2_block1_p1_wash_FUTURE,NULL,PennController,53,_Header_,End,1773100313135,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p1,Past (C),Future (M),924,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,55,0,exp_m2_block1_p1_wash_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100314865,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p1,Past (C),Future (M),924,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,55,0,exp_m2_block1_p1_wash_FUTURE,NULL,PennController,53,_Trial_,End,1773100314866,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p1,Past (C),Future (M),924,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,54,0,exp_m2_block1_p1_paint_FUTURE,NULL,PennController,52,_Trial_,Start,1773100314872,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p1,Past (C),Future (M),1058,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,54,0,exp_m2_block1_p1_paint_FUTURE,NULL,PennController,52,_Header_,Start,1773100314872,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p1,Past (C),Future (M),1058,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,54,0,exp_m2_block1_p1_paint_FUTURE,NULL,PennController,52,_Header_,End,1773100314872,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p1,Past (C),Future (M),1058,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,54,0,exp_m2_block1_p1_paint_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100316738,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p1,Past (C),Future (M),1058,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,54,0,exp_m2_block1_p1_paint_FUTURE,NULL,PennController,52,_Trial_,End,1773100316739,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p1,Past (C),Future (M),1058,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,53,0,exp_m2_block1_p1_eat_PAST,NULL,PennController,51,_Trial_,Start,1773100316745,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p1,Past (C),Future (M),3041,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,53,0,exp_m2_block1_p1_eat_PAST,NULL,PennController,51,_Header_,Start,1773100316745,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p1,Past (C),Future (M),3041,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,53,0,exp_m2_block1_p1_eat_PAST,NULL,PennController,51,_Header_,End,1773100316745,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p1,Past (C),Future (M),3041,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,53,0,exp_m2_block1_p1_eat_PAST,NULL,Selector,tenseChoice,Selection,rightOpt,1773100320595,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p1,Past (C),Future (M),3041,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,53,0,exp_m2_block1_p1_eat_PAST,NULL,PennController,51,_Trial_,End,1773100320596,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p1,Past (C),Future (M),3041,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,52,0,exp_m2_block1_p1_read_PAST,NULL,PennController,50,_Trial_,Start,1773100320604,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p1,Past (C),Future (M),810,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,52,0,exp_m2_block1_p1_read_PAST,NULL,PennController,50,_Header_,Start,1773100320604,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p1,Past (C),Future (M),810,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,52,0,exp_m2_block1_p1_read_PAST,NULL,PennController,50,_Header_,End,1773100320604,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p1,Past (C),Future (M),810,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,52,0,exp_m2_block1_p1_read_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100322224,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p1,Past (C),Future (M),810,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,52,0,exp_m2_block1_p1_read_PAST,NULL,PennController,50,_Trial_,End,1773100322225,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p1,Past (C),Future (M),810,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,56,0,exp_m2_block1_p1_push_FUTURE,NULL,PennController,54,_Trial_,Start,1773100322230,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p1,Past (C),Future (M),1147,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,56,0,exp_m2_block1_p1_push_FUTURE,NULL,PennController,54,_Header_,Start,1773100322230,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p1,Past (C),Future (M),1147,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,56,0,exp_m2_block1_p1_push_FUTURE,NULL,PennController,54,_Header_,End,1773100322230,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p1,Past (C),Future (M),1147,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,56,0,exp_m2_block1_p1_push_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100324183,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p1,Past (C),Future (M),1147,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,56,0,exp_m2_block1_p1_push_FUTURE,NULL,PennController,54,_Trial_,End,1773100324184,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p1,Past (C),Future (M),1147,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,60,0,exp_m2_block1_p2_paint_FUTURE,NULL,PennController,58,_Trial_,Start,1773100324190,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p2,Past (C),Future (M),1196,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,60,0,exp_m2_block1_p2_paint_FUTURE,NULL,PennController,58,_Header_,Start,1773100324190,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p2,Past (C),Future (M),1196,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,60,0,exp_m2_block1_p2_paint_FUTURE,NULL,PennController,58,_Header_,End,1773100324190,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p2,Past (C),Future (M),1196,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,60,0,exp_m2_block1_p2_paint_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100326192,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p2,Past (C),Future (M),1196,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,60,0,exp_m2_block1_p2_paint_FUTURE,NULL,PennController,58,_Trial_,End,1773100326193,1773099590821,source,demo,m2_block1,paint,will paint,FUTURE,Chef,p2,Past (C),Future (M),1196,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,58,0,exp_m2_block1_p2_read_PAST,NULL,PennController,56,_Trial_,Start,1773100326199,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p2,Past (C),Future (M),696,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,58,0,exp_m2_block1_p2_read_PAST,NULL,PennController,56,_Header_,Start,1773100326199,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p2,Past (C),Future (M),696,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,58,0,exp_m2_block1_p2_read_PAST,NULL,PennController,56,_Header_,End,1773100326199,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p2,Past (C),Future (M),696,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,58,0,exp_m2_block1_p2_read_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100327700,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p2,Past (C),Future (M),696,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,58,0,exp_m2_block1_p2_read_PAST,NULL,PennController,56,_Trial_,End,1773100327702,1773099590821,source,demo,m2_block1,read,read,PAST,Pirate,p2,Past (C),Future (M),696,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,57,0,exp_m2_block1_p2_drink_PAST,NULL,PennController,55,_Trial_,Start,1773100327710,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p2,Past (C),Future (M),1020,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,57,0,exp_m2_block1_p2_drink_PAST,NULL,PennController,55,_Header_,Start,1773100327710,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p2,Past (C),Future (M),1020,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,57,0,exp_m2_block1_p2_drink_PAST,NULL,PennController,55,_Header_,End,1773100327710,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p2,Past (C),Future (M),1020,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,57,0,exp_m2_block1_p2_drink_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100329535,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p2,Past (C),Future (M),1020,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,57,0,exp_m2_block1_p2_drink_PAST,NULL,PennController,55,_Trial_,End,1773100329536,1773099590821,source,demo,m2_block1,drink,drank,PAST,Chef,p2,Past (C),Future (M),1020,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,62,0,exp_m2_block1_p2_push_FUTURE,NULL,PennController,60,_Trial_,Start,1773100329543,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p2,Past (C),Future (M),1215,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,62,0,exp_m2_block1_p2_push_FUTURE,NULL,PennController,60,_Header_,Start,1773100329543,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p2,Past (C),Future (M),1215,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,62,0,exp_m2_block1_p2_push_FUTURE,NULL,PennController,60,_Header_,End,1773100329543,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p2,Past (C),Future (M),1215,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,62,0,exp_m2_block1_p2_push_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100331566,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p2,Past (C),Future (M),1215,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,62,0,exp_m2_block1_p2_push_FUTURE,NULL,PennController,60,_Trial_,End,1773100331568,1773099590821,source,demo,m2_block1,push,will push,FUTURE,Wizard,p2,Past (C),Future (M),1215,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,61,0,exp_m2_block1_p2_wash_FUTURE,NULL,PennController,59,_Trial_,Start,1773100331577,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p2,Past (C),Future (M),1285,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,61,0,exp_m2_block1_p2_wash_FUTURE,NULL,PennController,59,_Header_,Start,1773100331577,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p2,Past (C),Future (M),1285,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,61,0,exp_m2_block1_p2_wash_FUTURE,NULL,PennController,59,_Header_,End,1773100331577,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p2,Past (C),Future (M),1285,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,61,0,exp_m2_block1_p2_wash_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100333669,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p2,Past (C),Future (M),1285,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,61,0,exp_m2_block1_p2_wash_FUTURE,NULL,PennController,59,_Trial_,End,1773100333671,1773099590821,source,demo,m2_block1,wash,will wash,FUTURE,Pirate,p2,Past (C),Future (M),1285,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,59,0,exp_m2_block1_p2_eat_PAST,NULL,PennController,57,_Trial_,Start,1773100333677,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p2,Past (C),Future (M),1199,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,59,0,exp_m2_block1_p2_eat_PAST,NULL,PennController,57,_Header_,Start,1773100333677,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p2,Past (C),Future (M),1199,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,59,0,exp_m2_block1_p2_eat_PAST,NULL,PennController,57,_Header_,End,1773100333678,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p2,Past (C),Future (M),1199,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,59,0,exp_m2_block1_p2_eat_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100335687,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p2,Past (C),Future (M),1199,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,59,0,exp_m2_block1_p2_eat_PAST,NULL,PennController,57,_Trial_,End,1773100335689,1773099590821,source,demo,m2_block1,eat,ate,PAST,Wizard,p2,Past (C),Future (M),1199,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,Start,1773100335697,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,Start,1773100335697,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,End,1773100335698,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,End,1773100338087,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,95,0,intro_m2_block3,NULL,PennController,93,_Trial_,Start,1773100338094,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,95,0,intro_m2_block3,NULL,PennController,93,_Header_,Start,1773100338094,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,95,0,intro_m2_block3,NULL,PennController,93,_Header_,End,1773100338094,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,95,0,intro_m2_block3,NULL,PennController,93,_Trial_,End,1773100351521,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,96,0,tense_intro_m2_block3,NULL,PennController,94,_Trial_,Start,1773100351529,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,96,0,tense_intro_m2_block3,NULL,PennController,94,_Header_,Start,1773100351529,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,96,0,tense_intro_m2_block3,NULL,PennController,94,_Header_,End,1773100351529,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,96,0,tense_intro_m2_block3,NULL,PennController,94,_Trial_,End,1773100352714,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,97,0,tense_pairs_m2_block3,NULL,PennController,95,_Trial_,Start,1773100352719,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,97,0,tense_pairs_m2_block3,NULL,PennController,95,_Header_,Start,1773100352719,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,97,0,tense_pairs_m2_block3,NULL,PennController,95,_Header_,End,1773100352719,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,97,0,tense_pairs_m2_block3,NULL,PennController,95,_Trial_,End,1773100367124,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,98,0,ready_m2_block3,NULL,PennController,96,_Trial_,Start,1773100367128,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,98,0,ready_m2_block3,NULL,PennController,96,_Header_,Start,1773100367128,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,98,0,ready_m2_block3,NULL,PennController,96,_Header_,End,1773100367128,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,98,0,ready_m2_block3,NULL,PennController,96,_Trial_,End,1773100368284,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,83,0,exp_m2_block3_p1_blow_PAST,NULL,PennController,81,_Trial_,Start,1773100368291,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p1,Past (C),Future (M),1064,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,83,0,exp_m2_block3_p1_blow_PAST,NULL,PennController,81,_Header_,Start,1773100368291,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p1,Past (C),Future (M),1064,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,83,0,exp_m2_block3_p1_blow_PAST,NULL,PennController,81,_Header_,End,1773100368291,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p1,Past (C),Future (M),1064,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,83,0,exp_m2_block3_p1_blow_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100370162,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p1,Past (C),Future (M),1064,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,83,0,exp_m2_block3_p1_blow_PAST,NULL,PennController,81,_Trial_,End,1773100370162,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p1,Past (C),Future (M),1064,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,87,0,exp_m2_block3_p1_play_FUTURE,NULL,PennController,85,_Trial_,Start,1773100370166,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p1,Past (C),Future (M),913,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,87,0,exp_m2_block3_p1_play_FUTURE,NULL,PennController,85,_Header_,Start,1773100370166,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p1,Past (C),Future (M),913,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,87,0,exp_m2_block3_p1_play_FUTURE,NULL,PennController,85,_Header_,End,1773100370166,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p1,Past (C),Future (M),913,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,87,0,exp_m2_block3_p1_play_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100371886,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p1,Past (C),Future (M),913,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,87,0,exp_m2_block3_p1_play_FUTURE,NULL,PennController,85,_Trial_,End,1773100371886,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p1,Past (C),Future (M),913,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,86,0,exp_m2_block3_p1_carry_FUTURE,NULL,PennController,84,_Trial_,Start,1773100371892,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p1,Past (C),Future (M),661,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,86,0,exp_m2_block3_p1_carry_FUTURE,NULL,PennController,84,_Header_,Start,1773100371892,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p1,Past (C),Future (M),661,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,86,0,exp_m2_block3_p1_carry_FUTURE,NULL,PennController,84,_Header_,End,1773100371892,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p1,Past (C),Future (M),661,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,86,0,exp_m2_block3_p1_carry_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100373362,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p1,Past (C),Future (M),661,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,86,0,exp_m2_block3_p1_carry_FUTURE,NULL,PennController,84,_Trial_,End,1773100373364,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p1,Past (C),Future (M),661,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,85,0,exp_m2_block3_p1_shake_PAST,NULL,PennController,83,_Trial_,Start,1773100373369,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p1,Past (C),Future (M),661,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,85,0,exp_m2_block3_p1_shake_PAST,NULL,PennController,83,_Header_,Start,1773100373369,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p1,Past (C),Future (M),661,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,85,0,exp_m2_block3_p1_shake_PAST,NULL,PennController,83,_Header_,End,1773100373369,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p1,Past (C),Future (M),661,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,85,0,exp_m2_block3_p1_shake_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100374839,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p1,Past (C),Future (M),661,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,85,0,exp_m2_block3_p1_shake_PAST,NULL,PennController,83,_Trial_,End,1773100374840,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p1,Past (C),Future (M),661,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,84,0,exp_m2_block3_p1_dig_PAST,NULL,PennController,82,_Trial_,Start,1773100374843,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p1,Past (C),Future (M),634,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,84,0,exp_m2_block3_p1_dig_PAST,NULL,PennController,82,_Header_,Start,1773100374843,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p1,Past (C),Future (M),634,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,84,0,exp_m2_block3_p1_dig_PAST,NULL,PennController,82,_Header_,End,1773100374843,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p1,Past (C),Future (M),634,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,84,0,exp_m2_block3_p1_dig_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100376284,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p1,Past (C),Future (M),634,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,84,0,exp_m2_block3_p1_dig_PAST,NULL,PennController,82,_Trial_,End,1773100376285,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p1,Past (C),Future (M),634,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,88,0,exp_m2_block3_p1_smell_FUTURE,NULL,PennController,86,_Trial_,Start,1773100376293,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p1,Past (C),Future (M),1014,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,88,0,exp_m2_block3_p1_smell_FUTURE,NULL,PennController,86,_Header_,Start,1773100376293,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p1,Past (C),Future (M),1014,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,88,0,exp_m2_block3_p1_smell_FUTURE,NULL,PennController,86,_Header_,End,1773100376293,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p1,Past (C),Future (M),1014,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,88,0,exp_m2_block3_p1_smell_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100378120,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p1,Past (C),Future (M),1014,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,88,0,exp_m2_block3_p1_smell_FUTURE,NULL,PennController,86,_Trial_,End,1773100378122,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p1,Past (C),Future (M),1014,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,92,0,exp_m2_block3_p2_carry_FUTURE,NULL,PennController,90,_Trial_,Start,1773100378130,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p2,Past (C),Future (M),759,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,92,0,exp_m2_block3_p2_carry_FUTURE,NULL,PennController,90,_Header_,Start,1773100378130,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p2,Past (C),Future (M),759,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,92,0,exp_m2_block3_p2_carry_FUTURE,NULL,PennController,90,_Header_,End,1773100378130,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p2,Past (C),Future (M),759,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,92,0,exp_m2_block3_p2_carry_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100379701,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p2,Past (C),Future (M),759,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,92,0,exp_m2_block3_p2_carry_FUTURE,NULL,PennController,90,_Trial_,End,1773100379702,1773099590821,source,demo,m2_block3,carry,will carry,FUTURE,Chef,p2,Past (C),Future (M),759,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,90,0,exp_m2_block3_p2_dig_PAST,NULL,PennController,88,_Trial_,Start,1773100379708,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p2,Past (C),Future (M),579,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,90,0,exp_m2_block3_p2_dig_PAST,NULL,PennController,88,_Header_,Start,1773100379708,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p2,Past (C),Future (M),579,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,90,0,exp_m2_block3_p2_dig_PAST,NULL,PennController,88,_Header_,End,1773100379708,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p2,Past (C),Future (M),579,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,90,0,exp_m2_block3_p2_dig_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100381099,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p2,Past (C),Future (M),579,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,90,0,exp_m2_block3_p2_dig_PAST,NULL,PennController,88,_Trial_,End,1773100381099,1773099590821,source,demo,m2_block3,dig,dug,PAST,Wizard,p2,Past (C),Future (M),579,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,89,0,exp_m2_block3_p2_blow_PAST,NULL,PennController,87,_Trial_,Start,1773100381103,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p2,Past (C),Future (M),664,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,89,0,exp_m2_block3_p2_blow_PAST,NULL,PennController,87,_Header_,Start,1773100381103,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p2,Past (C),Future (M),664,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,89,0,exp_m2_block3_p2_blow_PAST,NULL,PennController,87,_Header_,End,1773100381103,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p2,Past (C),Future (M),664,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,89,0,exp_m2_block3_p2_blow_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100382581,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p2,Past (C),Future (M),664,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,89,0,exp_m2_block3_p2_blow_PAST,NULL,PennController,87,_Trial_,End,1773100382582,1773099590821,source,demo,m2_block3,blow,blew,PAST,Chef,p2,Past (C),Future (M),664,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,94,0,exp_m2_block3_p2_smell_FUTURE,NULL,PennController,92,_Trial_,Start,1773100382588,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p2,Past (C),Future (M),1283,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,94,0,exp_m2_block3_p2_smell_FUTURE,NULL,PennController,92,_Header_,Start,1773100382588,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p2,Past (C),Future (M),1283,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,94,0,exp_m2_block3_p2_smell_FUTURE,NULL,PennController,92,_Header_,End,1773100382588,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p2,Past (C),Future (M),1283,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,94,0,exp_m2_block3_p2_smell_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100384682,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p2,Past (C),Future (M),1283,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,94,0,exp_m2_block3_p2_smell_FUTURE,NULL,PennController,92,_Trial_,End,1773100384683,1773099590821,source,demo,m2_block3,smell,will smell,FUTURE,Pirate,p2,Past (C),Future (M),1283,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,93,0,exp_m2_block3_p2_play_FUTURE,NULL,PennController,91,_Trial_,Start,1773100384690,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p2,Past (C),Future (M),898,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,93,0,exp_m2_block3_p2_play_FUTURE,NULL,PennController,91,_Header_,Start,1773100384690,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p2,Past (C),Future (M),898,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,93,0,exp_m2_block3_p2_play_FUTURE,NULL,PennController,91,_Header_,End,1773100384692,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p2,Past (C),Future (M),898,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,93,0,exp_m2_block3_p2_play_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100386402,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p2,Past (C),Future (M),898,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,93,0,exp_m2_block3_p2_play_FUTURE,NULL,PennController,91,_Trial_,End,1773100386403,1773099590821,source,demo,m2_block3,play,will play,FUTURE,Wizard,p2,Past (C),Future (M),898,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,91,0,exp_m2_block3_p2_shake_PAST,NULL,PennController,89,_Trial_,Start,1773100386413,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p2,Past (C),Future (M),610,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,91,0,exp_m2_block3_p2_shake_PAST,NULL,PennController,89,_Header_,Start,1773100386413,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p2,Past (C),Future (M),610,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,91,0,exp_m2_block3_p2_shake_PAST,NULL,PennController,89,_Header_,End,1773100386413,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p2,Past (C),Future (M),610,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,91,0,exp_m2_block3_p2_shake_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100387832,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p2,Past (C),Future (M),610,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,91,0,exp_m2_block3_p2_shake_PAST,NULL,PennController,89,_Trial_,End,1773100387833,1773099590821,source,demo,m2_block3,shake,shook,PAST,Pirate,p2,Past (C),Future (M),610,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,Start,1773100387841,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,Start,1773100387841,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,End,1773100387841,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,End,1773100390135,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,79,0,intro_m2_block2,NULL,PennController,77,_Trial_,Start,1773100390143,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,79,0,intro_m2_block2,NULL,PennController,77,_Header_,Start,1773100390143,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,79,0,intro_m2_block2,NULL,PennController,77,_Header_,End,1773100390143,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,79,0,intro_m2_block2,NULL,PennController,77,_Trial_,End,1773100403257,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,80,0,tense_intro_m2_block2,NULL,PennController,78,_Header_,End,1773100403260,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,80,0,tense_intro_m2_block2,NULL,PennController,78,_Trial_,Start,1773100403260,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,80,0,tense_intro_m2_block2,NULL,PennController,78,_Header_,Start,1773100403260,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,80,0,tense_intro_m2_block2,NULL,PennController,78,_Trial_,End,1773100403858,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,81,0,tense_pairs_m2_block2,NULL,PennController,79,_PreloadFailed_,pirate_sweep_floor_v4.png,1773100463864,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,81,0,tense_pairs_m2_block2,NULL,PennController,79,_Trial_,Start,1773100463864,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,81,0,tense_pairs_m2_block2,NULL,PennController,79,_Header_,Start,1773100463864,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,81,0,tense_pairs_m2_block2,NULL,PennController,79,_Header_,End,1773100463865,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,81,0,tense_pairs_m2_block2,NULL,PennController,79,_Trial_,End,1773100491118,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,82,0,ready_m2_block2,NULL,PennController,80,_Trial_,Start,1773100491124,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,82,0,ready_m2_block2,NULL,PennController,80,_Header_,Start,1773100491124,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,82,0,ready_m2_block2,NULL,PennController,80,_Header_,End,1773100491124,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,82,0,ready_m2_block2,NULL,PennController,80,_Trial_,End,1773100492471,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,76,0,exp_m2_block2_p2_climb_FUTURE,NULL,PennController,74,_Trial_,Start,1773100492478,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p2,Past (C),Future (M),771,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,76,0,exp_m2_block2_p2_climb_FUTURE,NULL,PennController,74,_Header_,Start,1773100492478,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p2,Past (C),Future (M),771,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,76,0,exp_m2_block2_p2_climb_FUTURE,NULL,PennController,74,_Header_,End,1773100492479,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p2,Past (C),Future (M),771,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,76,0,exp_m2_block2_p2_climb_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100494062,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p2,Past (C),Future (M),771,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,76,0,exp_m2_block2_p2_climb_FUTURE,NULL,PennController,74,_Trial_,End,1773100494064,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p2,Past (C),Future (M),771,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,74,0,exp_m2_block2_p2_sweep_PAST,NULL,PennController,72,_Trial_,Start,1773100494072,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p2,Past (C),Future (M),680,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,74,0,exp_m2_block2_p2_sweep_PAST,NULL,PennController,72,_Header_,Start,1773100494072,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p2,Past (C),Future (M),680,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,74,0,exp_m2_block2_p2_sweep_PAST,NULL,PennController,72,_Header_,End,1773100494072,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p2,Past (C),Future (M),680,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,74,0,exp_m2_block2_p2_sweep_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100495567,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p2,Past (C),Future (M),680,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,74,0,exp_m2_block2_p2_sweep_PAST,NULL,PennController,72,_Trial_,End,1773100495568,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p2,Past (C),Future (M),680,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,73,0,exp_m2_block2_p2_build_PAST,NULL,PennController,71,_Trial_,Start,1773100495573,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p2,Past (C),Future (M),843,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,73,0,exp_m2_block2_p2_build_PAST,NULL,PennController,71,_Header_,Start,1773100495573,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p2,Past (C),Future (M),843,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,73,0,exp_m2_block2_p2_build_PAST,NULL,PennController,71,_Header_,End,1773100495574,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p2,Past (C),Future (M),843,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,73,0,exp_m2_block2_p2_build_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100497220,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p2,Past (C),Future (M),843,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,73,0,exp_m2_block2_p2_build_PAST,NULL,PennController,71,_Trial_,End,1773100497221,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p2,Past (C),Future (M),843,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,78,0,exp_m2_block2_p2_peel_FUTURE,NULL,PennController,76,_Trial_,Start,1773100497226,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p2,Past (C),Future (M),2067,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,78,0,exp_m2_block2_p2_peel_FUTURE,NULL,PennController,76,_Header_,Start,1773100497226,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p2,Past (C),Future (M),2067,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,78,0,exp_m2_block2_p2_peel_FUTURE,NULL,PennController,76,_Header_,End,1773100497226,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p2,Past (C),Future (M),2067,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,78,0,exp_m2_block2_p2_peel_FUTURE,NULL,Selector,tenseChoice,Selection,leftOpt,1773100500099,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p2,Past (C),Future (M),2067,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,78,0,exp_m2_block2_p2_peel_FUTURE,NULL,PennController,76,_Trial_,End,1773100500100,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p2,Past (C),Future (M),2067,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,77,0,exp_m2_block2_p2_stir_FUTURE,NULL,PennController,75,_Trial_,Start,1773100500104,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p2,Past (C),Future (M),1497,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,77,0,exp_m2_block2_p2_stir_FUTURE,NULL,PennController,75,_Header_,Start,1773100500104,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p2,Past (C),Future (M),1497,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,77,0,exp_m2_block2_p2_stir_FUTURE,NULL,PennController,75,_Header_,End,1773100500104,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p2,Past (C),Future (M),1497,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,77,0,exp_m2_block2_p2_stir_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100502412,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p2,Past (C),Future (M),1497,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,77,0,exp_m2_block2_p2_stir_FUTURE,NULL,PennController,75,_Trial_,End,1773100502412,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p2,Past (C),Future (M),1497,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,75,0,exp_m2_block2_p2_ride_PAST,NULL,PennController,73,_Trial_,Start,1773100502415,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p2,Past (C),Future (M),1158,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,75,0,exp_m2_block2_p2_ride_PAST,NULL,PennController,73,_Header_,Start,1773100502415,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p2,Past (C),Future (M),1158,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,75,0,exp_m2_block2_p2_ride_PAST,NULL,PennController,73,_Header_,End,1773100502416,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p2,Past (C),Future (M),1158,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,75,0,exp_m2_block2_p2_ride_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100504383,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p2,Past (C),Future (M),1158,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,75,0,exp_m2_block2_p2_ride_PAST,NULL,PennController,73,_Trial_,End,1773100504384,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p2,Past (C),Future (M),1158,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,67,0,exp_m2_block2_p1_build_PAST,NULL,PennController,65,_Trial_,Start,1773100504388,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p1,Past (C),Future (M),652,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,67,0,exp_m2_block2_p1_build_PAST,NULL,PennController,65,_Header_,Start,1773100504388,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p1,Past (C),Future (M),652,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,67,0,exp_m2_block2_p1_build_PAST,NULL,PennController,65,_Header_,End,1773100504388,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p1,Past (C),Future (M),652,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,67,0,exp_m2_block2_p1_build_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100505850,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p1,Past (C),Future (M),652,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,67,0,exp_m2_block2_p1_build_PAST,NULL,PennController,65,_Trial_,End,1773100505851,1773099590821,source,demo,m2_block2,build,built,PAST,Chef,p1,Past (C),Future (M),652,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,71,0,exp_m2_block2_p1_stir_FUTURE,NULL,PennController,69,_Trial_,Start,1773100505853,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p1,Past (C),Future (M),751,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,71,0,exp_m2_block2_p1_stir_FUTURE,NULL,PennController,69,_Header_,Start,1773100505853,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p1,Past (C),Future (M),751,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,71,0,exp_m2_block2_p1_stir_FUTURE,NULL,PennController,69,_Header_,End,1773100505854,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p1,Past (C),Future (M),751,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,71,0,exp_m2_block2_p1_stir_FUTURE,NULL,Selector,tenseChoice,Selection,leftOpt,1773100507413,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p1,Past (C),Future (M),751,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,71,0,exp_m2_block2_p1_stir_FUTURE,NULL,PennController,69,_Trial_,End,1773100507414,1773099590821,source,demo,m2_block2,stir,will stir,FUTURE,Pirate,p1,Past (C),Future (M),751,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,70,0,exp_m2_block2_p1_climb_FUTURE,NULL,PennController,68,_Trial_,Start,1773100507418,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p1,Past (C),Future (M),1289,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,70,0,exp_m2_block2_p1_climb_FUTURE,NULL,PennController,68,_Header_,Start,1773100507418,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p1,Past (C),Future (M),1289,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,70,0,exp_m2_block2_p1_climb_FUTURE,NULL,PennController,68,_Header_,End,1773100507418,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p1,Past (C),Future (M),1289,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,70,0,exp_m2_block2_p1_climb_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100509513,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p1,Past (C),Future (M),1289,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,70,0,exp_m2_block2_p1_climb_FUTURE,NULL,PennController,68,_Trial_,End,1773100509514,1773099590821,source,demo,m2_block2,climb,will climb,FUTURE,Chef,p1,Past (C),Future (M),1289,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,69,0,exp_m2_block2_p1_ride_PAST,NULL,PennController,67,_Trial_,Start,1773100509517,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p1,Past (C),Future (M),624,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,69,0,exp_m2_block2_p1_ride_PAST,NULL,PennController,67,_Header_,Start,1773100509517,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p1,Past (C),Future (M),624,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,69,0,exp_m2_block2_p1_ride_PAST,NULL,PennController,67,_Header_,End,1773100509518,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p1,Past (C),Future (M),624,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,69,0,exp_m2_block2_p1_ride_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100510951,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p1,Past (C),Future (M),624,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,69,0,exp_m2_block2_p1_ride_PAST,NULL,PennController,67,_Trial_,End,1773100510951,1773099590821,source,demo,m2_block2,ride,rode,PAST,Wizard,p1,Past (C),Future (M),624,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,68,0,exp_m2_block2_p1_sweep_PAST,NULL,PennController,66,_Trial_,Start,1773100510954,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p1,Past (C),Future (M),749,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,68,0,exp_m2_block2_p1_sweep_PAST,NULL,PennController,66,_Header_,Start,1773100510954,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p1,Past (C),Future (M),749,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,68,0,exp_m2_block2_p1_sweep_PAST,NULL,PennController,66,_Header_,End,1773100510955,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p1,Past (C),Future (M),749,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,68,0,exp_m2_block2_p1_sweep_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100512514,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p1,Past (C),Future (M),749,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,68,0,exp_m2_block2_p1_sweep_PAST,NULL,PennController,66,_Trial_,End,1773100512515,1773099590821,source,demo,m2_block2,sweep,swept,PAST,Pirate,p1,Past (C),Future (M),749,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,72,0,exp_m2_block2_p1_peel_FUTURE,NULL,PennController,70,_Trial_,Start,1773100512519,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p1,Past (C),Future (M),841,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,72,0,exp_m2_block2_p1_peel_FUTURE,NULL,PennController,70,_Header_,Start,1773100512519,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p1,Past (C),Future (M),841,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,72,0,exp_m2_block2_p1_peel_FUTURE,NULL,PennController,70,_Header_,End,1773100512519,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p1,Past (C),Future (M),841,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,72,0,exp_m2_block2_p1_peel_FUTURE,NULL,Selector,tenseChoice,Selection,leftOpt,1773100514168,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p1,Past (C),Future (M),841,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,72,0,exp_m2_block2_p1_peel_FUTURE,NULL,PennController,70,_Trial_,End,1773100514169,1773099590821,source,demo,m2_block2,peel,will peel,FUTURE,Wizard,p1,Past (C),Future (M),841,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,End,1773100514176,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,Start,1773100514176,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,Start,1773100514176,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,End,1773100516497,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,111,0,intro_m3_block1,NULL,PennController,109,_Trial_,Start,1773100516503,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,111,0,intro_m3_block1,NULL,PennController,109,_Header_,Start,1773100516503,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,111,0,intro_m3_block1,NULL,PennController,109,_Header_,End,1773100516503,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,111,0,intro_m3_block1,NULL,PennController,109,_Trial_,End,1773100538420,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,112,0,tense_intro_m3_block1,NULL,PennController,110,_Trial_,Start,1773100538425,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,112,0,tense_intro_m3_block1,NULL,PennController,110,_Header_,Start,1773100538425,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,112,0,tense_intro_m3_block1,NULL,PennController,110,_Header_,End,1773100538425,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,112,0,tense_intro_m3_block1,NULL,PennController,110,_Trial_,End,1773100541501,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,113,0,tense_pairs_m3_block1,NULL,PennController,111,_Trial_,Start,1773100541507,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,113,0,tense_pairs_m3_block1,NULL,PennController,111,_Header_,Start,1773100541507,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,113,0,tense_pairs_m3_block1,NULL,PennController,111,_Header_,End,1773100541507,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,113,0,tense_pairs_m3_block1,NULL,PennController,111,_Trial_,End,1773100555088,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,114,0,ready_m3_block1,NULL,PennController,112,_Trial_,Start,1773100555091,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,114,0,ready_m3_block1,NULL,PennController,112,_Header_,Start,1773100555091,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,114,0,ready_m3_block1,NULL,PennController,112,_Header_,End,1773100555092,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,114,0,ready_m3_block1,NULL,PennController,112,_Trial_,End,1773100556355,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,108,0,exp_m3_block1_p2_paint_FUTURE,NULL,PennController,106,_Trial_,Start,1773100556357,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p2,Past (C),Future (M),795,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,108,0,exp_m3_block1_p2_paint_FUTURE,NULL,PennController,106,_Header_,Start,1773100556357,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p2,Past (C),Future (M),795,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,108,0,exp_m3_block1_p2_paint_FUTURE,NULL,PennController,106,_Header_,End,1773100556357,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p2,Past (C),Future (M),795,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,108,0,exp_m3_block1_p2_paint_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100557957,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p2,Past (C),Future (M),795,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,108,0,exp_m3_block1_p2_paint_FUTURE,NULL,PennController,106,_Trial_,End,1773100557958,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p2,Past (C),Future (M),795,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,106,0,exp_m3_block1_p2_read_PAST,NULL,PennController,104,_Trial_,Start,1773100557961,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p2,Past (C),Future (M),721,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,106,0,exp_m3_block1_p2_read_PAST,NULL,PennController,104,_Header_,Start,1773100557961,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p2,Past (C),Future (M),721,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,106,0,exp_m3_block1_p2_read_PAST,NULL,PennController,104,_Header_,End,1773100557961,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p2,Past (C),Future (M),721,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,106,0,exp_m3_block1_p2_read_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100559490,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p2,Past (C),Future (M),721,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,106,0,exp_m3_block1_p2_read_PAST,NULL,PennController,104,_Trial_,End,1773100559490,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p2,Past (C),Future (M),721,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,105,0,exp_m3_block1_p2_drink_PAST,NULL,PennController,103,_Trial_,Start,1773100559494,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p2,Past (C),Future (M),644,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,105,0,exp_m3_block1_p2_drink_PAST,NULL,PennController,103,_Header_,Start,1773100559494,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p2,Past (C),Future (M),644,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,105,0,exp_m3_block1_p2_drink_PAST,NULL,PennController,103,_Header_,End,1773100559495,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p2,Past (C),Future (M),644,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,105,0,exp_m3_block1_p2_drink_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100560946,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p2,Past (C),Future (M),644,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,105,0,exp_m3_block1_p2_drink_PAST,NULL,PennController,103,_Trial_,End,1773100560946,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p2,Past (C),Future (M),644,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,110,0,exp_m3_block1_p2_push_FUTURE,NULL,PennController,108,_Trial_,Start,1773100560951,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p2,Past (C),Future (M),837,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,110,0,exp_m3_block1_p2_push_FUTURE,NULL,PennController,108,_Header_,Start,1773100560951,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p2,Past (C),Future (M),837,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,110,0,exp_m3_block1_p2_push_FUTURE,NULL,PennController,108,_Header_,End,1773100560951,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p2,Past (C),Future (M),837,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,110,0,exp_m3_block1_p2_push_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100562598,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p2,Past (C),Future (M),837,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,110,0,exp_m3_block1_p2_push_FUTURE,NULL,PennController,108,_Trial_,End,1773100562598,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p2,Past (C),Future (M),837,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,109,0,exp_m3_block1_p2_wash_FUTURE,NULL,PennController,107,_Trial_,Start,1773100562601,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p2,Past (C),Future (M),1352,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,109,0,exp_m3_block1_p2_wash_FUTURE,NULL,PennController,107,_Header_,Start,1773100562601,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p2,Past (C),Future (M),1352,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,109,0,exp_m3_block1_p2_wash_FUTURE,NULL,PennController,107,_Header_,End,1773100562601,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p2,Past (C),Future (M),1352,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,109,0,exp_m3_block1_p2_wash_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100564768,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p2,Past (C),Future (M),1352,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,109,0,exp_m3_block1_p2_wash_FUTURE,NULL,PennController,107,_Trial_,End,1773100564769,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p2,Past (C),Future (M),1352,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,107,0,exp_m3_block1_p2_eat_PAST,NULL,PennController,105,_Trial_,Start,1773100564774,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p2,Past (C),Future (M),777,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,107,0,exp_m3_block1_p2_eat_PAST,NULL,PennController,105,_Header_,Start,1773100564774,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p2,Past (C),Future (M),777,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,107,0,exp_m3_block1_p2_eat_PAST,NULL,PennController,105,_Header_,End,1773100564774,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p2,Past (C),Future (M),777,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,107,0,exp_m3_block1_p2_eat_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100566357,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p2,Past (C),Future (M),777,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,107,0,exp_m3_block1_p2_eat_PAST,NULL,PennController,105,_Trial_,End,1773100566358,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p2,Past (C),Future (M),777,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,99,0,exp_m3_block1_p1_drink_PAST,NULL,PennController,97,_Trial_,Start,1773100566363,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p1,Past (C),Future (M),648,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,99,0,exp_m3_block1_p1_drink_PAST,NULL,PennController,97,_Header_,Start,1773100566363,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p1,Past (C),Future (M),648,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,99,0,exp_m3_block1_p1_drink_PAST,NULL,PennController,97,_Header_,End,1773100566363,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p1,Past (C),Future (M),648,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,99,0,exp_m3_block1_p1_drink_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100567820,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p1,Past (C),Future (M),648,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,99,0,exp_m3_block1_p1_drink_PAST,NULL,PennController,97,_Trial_,End,1773100567821,1773099590821,source,demo,m3_block1,drink,drank,PAST,Wizard,p1,Past (C),Future (M),648,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,103,0,exp_m3_block1_p1_wash_FUTURE,NULL,PennController,101,_Trial_,Start,1773100567826,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p1,Past (C),Future (M),679,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,103,0,exp_m3_block1_p1_wash_FUTURE,NULL,PennController,101,_Header_,Start,1773100567826,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p1,Past (C),Future (M),679,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,103,0,exp_m3_block1_p1_wash_FUTURE,NULL,PennController,101,_Header_,End,1773100567826,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p1,Past (C),Future (M),679,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,103,0,exp_m3_block1_p1_wash_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100569314,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p1,Past (C),Future (M),679,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,103,0,exp_m3_block1_p1_wash_FUTURE,NULL,PennController,101,_Trial_,End,1773100569316,1773099590821,source,demo,m3_block1,wash,will wash,FUTURE,Chef,p1,Past (C),Future (M),679,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,102,0,exp_m3_block1_p1_paint_FUTURE,NULL,PennController,100,_Trial_,Start,1773100569323,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p1,Past (C),Future (M),1050,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,102,0,exp_m3_block1_p1_paint_FUTURE,NULL,PennController,100,_Header_,Start,1773100569323,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p1,Past (C),Future (M),1050,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,102,0,exp_m3_block1_p1_paint_FUTURE,NULL,PennController,100,_Header_,End,1773100569323,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p1,Past (C),Future (M),1050,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,102,0,exp_m3_block1_p1_paint_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100571184,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p1,Past (C),Future (M),1050,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,102,0,exp_m3_block1_p1_paint_FUTURE,NULL,PennController,100,_Trial_,End,1773100571185,1773099590821,source,demo,m3_block1,paint,will paint,FUTURE,Wizard,p1,Past (C),Future (M),1050,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,101,0,exp_m3_block1_p1_eat_PAST,NULL,PennController,99,_Trial_,Start,1773100571189,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p1,Past (C),Future (M),1182,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,101,0,exp_m3_block1_p1_eat_PAST,NULL,PennController,99,_Header_,Start,1773100571189,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p1,Past (C),Future (M),1182,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,101,0,exp_m3_block1_p1_eat_PAST,NULL,PennController,99,_Header_,End,1773100571189,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p1,Past (C),Future (M),1182,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,101,0,exp_m3_block1_p1_eat_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100573181,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p1,Past (C),Future (M),1182,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,101,0,exp_m3_block1_p1_eat_PAST,NULL,PennController,99,_Trial_,End,1773100573182,1773099590821,source,demo,m3_block1,eat,ate,PAST,Pirate,p1,Past (C),Future (M),1182,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,100,0,exp_m3_block1_p1_read_PAST,NULL,PennController,98,_Trial_,Start,1773100573187,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p1,Past (C),Future (M),1305,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,100,0,exp_m3_block1_p1_read_PAST,NULL,PennController,98,_Header_,Start,1773100573187,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p1,Past (C),Future (M),1305,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,100,0,exp_m3_block1_p1_read_PAST,NULL,PennController,98,_Header_,End,1773100573187,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p1,Past (C),Future (M),1305,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,100,0,exp_m3_block1_p1_read_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100575299,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p1,Past (C),Future (M),1305,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,100,0,exp_m3_block1_p1_read_PAST,NULL,PennController,98,_Trial_,End,1773100575300,1773099590821,source,demo,m3_block1,read,read,PAST,Chef,p1,Past (C),Future (M),1305,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,104,0,exp_m3_block1_p1_push_FUTURE,NULL,PennController,102,_Trial_,Start,1773100575305,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p1,Past (C),Future (M),1079,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,104,0,exp_m3_block1_p1_push_FUTURE,NULL,PennController,102,_Header_,Start,1773100575305,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p1,Past (C),Future (M),1079,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,104,0,exp_m3_block1_p1_push_FUTURE,NULL,PennController,102,_Header_,End,1773100575305,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p1,Past (C),Future (M),1079,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,104,0,exp_m3_block1_p1_push_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100577196,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p1,Past (C),Future (M),1079,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,104,0,exp_m3_block1_p1_push_FUTURE,NULL,PennController,102,_Trial_,End,1773100577197,1773099590821,source,demo,m3_block1,push,will push,FUTURE,Pirate,p1,Past (C),Future (M),1079,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,Start,1773100577202,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,Start,1773100577202,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,End,1773100577203,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,End,1773100579466,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,143,0,intro_m3_block3,NULL,PennController,141,_Trial_,Start,1773100579474,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,143,0,intro_m3_block3,NULL,PennController,141,_Header_,Start,1773100579474,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,143,0,intro_m3_block3,NULL,PennController,141,_Header_,End,1773100579474,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,143,0,intro_m3_block3,NULL,PennController,141,_Trial_,End,1773100604456,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,144,0,tense_intro_m3_block3,NULL,PennController,142,_Trial_,Start,1773100604460,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,144,0,tense_intro_m3_block3,NULL,PennController,142,_Header_,Start,1773100604460,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,144,0,tense_intro_m3_block3,NULL,PennController,142,_Header_,End,1773100604460,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,144,0,tense_intro_m3_block3,NULL,PennController,142,_Trial_,End,1773100605595,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,145,0,tense_pairs_m3_block3,NULL,PennController,143,_Trial_,Start,1773100605601,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,145,0,tense_pairs_m3_block3,NULL,PennController,143,_Header_,Start,1773100605601,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,145,0,tense_pairs_m3_block3,NULL,PennController,143,_Header_,End,1773100605602,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,145,0,tense_pairs_m3_block3,NULL,PennController,143,_Trial_,End,1773100621984,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,146,0,ready_m3_block3,NULL,PennController,144,_Trial_,Start,1773100621988,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,146,0,ready_m3_block3,NULL,PennController,144,_Header_,Start,1773100621988,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,146,0,ready_m3_block3,NULL,PennController,144,_Header_,End,1773100621988,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,146,0,ready_m3_block3,NULL,PennController,144,_Trial_,End,1773100623131,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,131,0,exp_m3_block3_p1_blow_PAST,NULL,PennController,129,_Trial_,Start,1773100623134,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p1,Past (C),Future (M),183,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,131,0,exp_m3_block3_p1_blow_PAST,NULL,PennController,129,_Header_,Start,1773100623134,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p1,Past (C),Future (M),183,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,131,0,exp_m3_block3_p1_blow_PAST,NULL,PennController,129,_Header_,End,1773100623134,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p1,Past (C),Future (M),183,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,131,0,exp_m3_block3_p1_blow_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100624126,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p1,Past (C),Future (M),183,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,131,0,exp_m3_block3_p1_blow_PAST,NULL,PennController,129,_Trial_,End,1773100624128,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p1,Past (C),Future (M),183,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,135,0,exp_m3_block3_p1_play_FUTURE,NULL,PennController,133,_Trial_,Start,1773100624136,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p1,Past (C),Future (M),1193,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,135,0,exp_m3_block3_p1_play_FUTURE,NULL,PennController,133,_Header_,Start,1773100624136,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p1,Past (C),Future (M),1193,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,135,0,exp_m3_block3_p1_play_FUTURE,NULL,PennController,133,_Header_,End,1773100624137,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p1,Past (C),Future (M),1193,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,135,0,exp_m3_block3_p1_play_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100626137,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p1,Past (C),Future (M),1193,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,135,0,exp_m3_block3_p1_play_FUTURE,NULL,PennController,133,_Trial_,End,1773100626138,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p1,Past (C),Future (M),1193,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,134,0,exp_m3_block3_p1_carry_FUTURE,NULL,PennController,132,_Trial_,Start,1773100626141,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p1,Past (C),Future (M),1965,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,134,0,exp_m3_block3_p1_carry_FUTURE,NULL,PennController,132,_Header_,Start,1773100626141,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p1,Past (C),Future (M),1965,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,134,0,exp_m3_block3_p1_carry_FUTURE,NULL,PennController,132,_Header_,End,1773100626141,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p1,Past (C),Future (M),1965,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,134,0,exp_m3_block3_p1_carry_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100628910,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p1,Past (C),Future (M),1965,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,134,0,exp_m3_block3_p1_carry_FUTURE,NULL,PennController,132,_Trial_,End,1773100628911,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p1,Past (C),Future (M),1965,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,133,0,exp_m3_block3_p1_shake_PAST,NULL,PennController,131,_Trial_,Start,1773100628919,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p1,Past (C),Future (M),1765,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,133,0,exp_m3_block3_p1_shake_PAST,NULL,PennController,131,_Header_,Start,1773100628919,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p1,Past (C),Future (M),1765,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,133,0,exp_m3_block3_p1_shake_PAST,NULL,PennController,131,_Header_,End,1773100628919,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p1,Past (C),Future (M),1765,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,133,0,exp_m3_block3_p1_shake_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100631492,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p1,Past (C),Future (M),1765,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,133,0,exp_m3_block3_p1_shake_PAST,NULL,PennController,131,_Trial_,End,1773100631493,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p1,Past (C),Future (M),1765,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,132,0,exp_m3_block3_p1_dig_PAST,NULL,PennController,130,_Trial_,Start,1773100631499,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p1,Past (C),Future (M),865,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,132,0,exp_m3_block3_p1_dig_PAST,NULL,PennController,130,_Header_,Start,1773100631499,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p1,Past (C),Future (M),865,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,132,0,exp_m3_block3_p1_dig_PAST,NULL,PennController,130,_Header_,End,1773100631500,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p1,Past (C),Future (M),865,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,132,0,exp_m3_block3_p1_dig_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100633174,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p1,Past (C),Future (M),865,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,132,0,exp_m3_block3_p1_dig_PAST,NULL,PennController,130,_Trial_,End,1773100633175,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p1,Past (C),Future (M),865,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,136,0,exp_m3_block3_p1_smell_FUTURE,NULL,PennController,134,_Trial_,Start,1773100633185,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p1,Past (C),Future (M),734,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,136,0,exp_m3_block3_p1_smell_FUTURE,NULL,PennController,134,_Header_,Start,1773100633185,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p1,Past (C),Future (M),734,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,136,0,exp_m3_block3_p1_smell_FUTURE,NULL,PennController,134,_Header_,End,1773100633185,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p1,Past (C),Future (M),734,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,136,0,exp_m3_block3_p1_smell_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100634725,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p1,Past (C),Future (M),734,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,136,0,exp_m3_block3_p1_smell_FUTURE,NULL,PennController,134,_Trial_,End,1773100634726,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p1,Past (C),Future (M),734,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,140,0,exp_m3_block3_p2_carry_FUTURE,NULL,PennController,138,_Trial_,Start,1773100634733,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p2,Past (C),Future (M),1331,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,140,0,exp_m3_block3_p2_carry_FUTURE,NULL,PennController,138,_Header_,Start,1773100634733,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p2,Past (C),Future (M),1331,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,140,0,exp_m3_block3_p2_carry_FUTURE,NULL,PennController,138,_Header_,End,1773100634734,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p2,Past (C),Future (M),1331,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,140,0,exp_m3_block3_p2_carry_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100636871,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p2,Past (C),Future (M),1331,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,140,0,exp_m3_block3_p2_carry_FUTURE,NULL,PennController,138,_Trial_,End,1773100636872,1773099590821,source,demo,m3_block3,carry,will carry,FUTURE,Wizard,p2,Past (C),Future (M),1331,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,138,0,exp_m3_block3_p2_dig_PAST,NULL,PennController,136,_Trial_,Start,1773100636879,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p2,Past (C),Future (M),1498,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,138,0,exp_m3_block3_p2_dig_PAST,NULL,PennController,136,_Header_,Start,1773100636879,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p2,Past (C),Future (M),1498,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,138,0,exp_m3_block3_p2_dig_PAST,NULL,PennController,136,_Header_,End,1773100636880,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p2,Past (C),Future (M),1498,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,138,0,exp_m3_block3_p2_dig_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100639187,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p2,Past (C),Future (M),1498,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,138,0,exp_m3_block3_p2_dig_PAST,NULL,PennController,136,_Trial_,End,1773100639188,1773099590821,source,demo,m3_block3,dig,dug,PAST,Pirate,p2,Past (C),Future (M),1498,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,137,0,exp_m3_block3_p2_blow_PAST,NULL,PennController,135,_Trial_,Start,1773100639194,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p2,Past (C),Future (M),760,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,137,0,exp_m3_block3_p2_blow_PAST,NULL,PennController,135,_Header_,Start,1773100639194,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p2,Past (C),Future (M),760,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,137,0,exp_m3_block3_p2_blow_PAST,NULL,PennController,135,_Header_,End,1773100639194,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p2,Past (C),Future (M),760,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,137,0,exp_m3_block3_p2_blow_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100640763,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p2,Past (C),Future (M),760,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,137,0,exp_m3_block3_p2_blow_PAST,NULL,PennController,135,_Trial_,End,1773100640764,1773099590821,source,demo,m3_block3,blow,blew,PAST,Wizard,p2,Past (C),Future (M),760,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,142,0,exp_m3_block3_p2_smell_FUTURE,NULL,PennController,140,_Trial_,Start,1773100640771,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p2,Past (C),Future (M),691,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,142,0,exp_m3_block3_p2_smell_FUTURE,NULL,PennController,140,_Header_,Start,1773100640771,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p2,Past (C),Future (M),691,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,142,0,exp_m3_block3_p2_smell_FUTURE,NULL,PennController,140,_Header_,End,1773100640771,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p2,Past (C),Future (M),691,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,142,0,exp_m3_block3_p2_smell_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100642273,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p2,Past (C),Future (M),691,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,142,0,exp_m3_block3_p2_smell_FUTURE,NULL,PennController,140,_Trial_,End,1773100642274,1773099590821,source,demo,m3_block3,smell,will smell,FUTURE,Chef,p2,Past (C),Future (M),691,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,141,0,exp_m3_block3_p2_play_FUTURE,NULL,PennController,139,_Trial_,Start,1773100642278,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p2,Past (C),Future (M),1245,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,141,0,exp_m3_block3_p2_play_FUTURE,NULL,PennController,139,_Header_,Start,1773100642278,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p2,Past (C),Future (M),1245,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,141,0,exp_m3_block3_p2_play_FUTURE,NULL,PennController,139,_Header_,End,1773100642278,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p2,Past (C),Future (M),1245,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,141,0,exp_m3_block3_p2_play_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100644333,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p2,Past (C),Future (M),1245,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,141,0,exp_m3_block3_p2_play_FUTURE,NULL,PennController,139,_Trial_,End,1773100644334,1773099590821,source,demo,m3_block3,play,will play,FUTURE,Pirate,p2,Past (C),Future (M),1245,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,139,0,exp_m3_block3_p2_shake_PAST,NULL,PennController,137,_Trial_,Start,1773100644342,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p2,Past (C),Future (M),685,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,139,0,exp_m3_block3_p2_shake_PAST,NULL,PennController,137,_Header_,Start,1773100644342,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p2,Past (C),Future (M),685,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,139,0,exp_m3_block3_p2_shake_PAST,NULL,PennController,137,_Header_,End,1773100644342,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p2,Past (C),Future (M),685,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,139,0,exp_m3_block3_p2_shake_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100645837,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p2,Past (C),Future (M),685,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,139,0,exp_m3_block3_p2_shake_PAST,NULL,PennController,137,_Trial_,End,1773100645838,1773099590821,source,demo,m3_block3,shake,shook,PAST,Chef,p2,Past (C),Future (M),685,NULL
+# 16. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,Start,1773100645846,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,Start,1773100645846,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Header_,End,1773100645846,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,2,0,Break,NULL,PennController,0,_Trial_,End,1773100648170,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,127,0,intro_m3_block2,NULL,PennController,125,_Trial_,Start,1773100648179,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,127,0,intro_m3_block2,NULL,PennController,125,_Header_,Start,1773100648179,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,127,0,intro_m3_block2,NULL,PennController,125,_Header_,End,1773100648180,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,127,0,intro_m3_block2,NULL,PennController,125,_Trial_,End,1773100661506,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,128,0,tense_intro_m3_block2,NULL,PennController,126,_Trial_,Start,1773100661512,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,128,0,tense_intro_m3_block2,NULL,PennController,126,_Header_,Start,1773100661512,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,128,0,tense_intro_m3_block2,NULL,PennController,126,_Header_,End,1773100661513,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,128,0,tense_intro_m3_block2,NULL,PennController,126,_Trial_,End,1773100662398,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,129,0,tense_pairs_m3_block2,NULL,PennController,127,_Trial_,Start,1773100662405,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,129,0,tense_pairs_m3_block2,NULL,PennController,127,_Header_,Start,1773100662405,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,129,0,tense_pairs_m3_block2,NULL,PennController,127,_Header_,End,1773100662405,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,129,0,tense_pairs_m3_block2,NULL,PennController,127,_Trial_,End,1773100676525,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,130,0,ready_m3_block2,NULL,PennController,128,_Trial_,Start,1773100676533,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,130,0,ready_m3_block2,NULL,PennController,128,_Header_,Start,1773100676533,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,130,0,ready_m3_block2,NULL,PennController,128,_Header_,End,1773100676533,1773099590821,source,demo,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,130,0,ready_m3_block2,NULL,PennController,128,_Trial_,End,1773100677503,1773099590821,source,demo,NULL
+# 16. Block.
+# 17. Verb.
+# 18. Form.
+# 19. Tense.
+# 20. Entity.
+# 21. PatternTag.
+# 22. LeftOpt.
+# 23. RightOpt.
+# 24. DecisionRT.
+# 25. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,124,0,exp_m3_block2_p2_climb_FUTURE,NULL,PennController,122,_Trial_,Start,1773100677509,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p2,Past (C),Future (M),963,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,124,0,exp_m3_block2_p2_climb_FUTURE,NULL,PennController,122,_Header_,Start,1773100677509,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p2,Past (C),Future (M),963,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,124,0,exp_m3_block2_p2_climb_FUTURE,NULL,PennController,122,_Header_,End,1773100677509,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p2,Past (C),Future (M),963,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,124,0,exp_m3_block2_p2_climb_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100679283,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p2,Past (C),Future (M),963,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,124,0,exp_m3_block2_p2_climb_FUTURE,NULL,PennController,122,_Trial_,End,1773100679285,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p2,Past (C),Future (M),963,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,122,0,exp_m3_block2_p2_sweep_PAST,NULL,PennController,120,_Trial_,Start,1773100679290,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p2,Past (C),Future (M),1002,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,122,0,exp_m3_block2_p2_sweep_PAST,NULL,PennController,120,_Header_,Start,1773100679290,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p2,Past (C),Future (M),1002,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,122,0,exp_m3_block2_p2_sweep_PAST,NULL,PennController,120,_Header_,End,1773100679291,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p2,Past (C),Future (M),1002,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,122,0,exp_m3_block2_p2_sweep_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100681106,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p2,Past (C),Future (M),1002,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,122,0,exp_m3_block2_p2_sweep_PAST,NULL,PennController,120,_Trial_,End,1773100681107,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p2,Past (C),Future (M),1002,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,121,0,exp_m3_block2_p2_build_PAST,NULL,PennController,119,_Trial_,Start,1773100681112,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p2,Past (C),Future (M),745,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,121,0,exp_m3_block2_p2_build_PAST,NULL,PennController,119,_Header_,Start,1773100681112,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p2,Past (C),Future (M),745,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,121,0,exp_m3_block2_p2_build_PAST,NULL,PennController,119,_Header_,End,1773100681113,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p2,Past (C),Future (M),745,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,121,0,exp_m3_block2_p2_build_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100682665,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p2,Past (C),Future (M),745,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,121,0,exp_m3_block2_p2_build_PAST,NULL,PennController,119,_Trial_,End,1773100682666,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p2,Past (C),Future (M),745,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,126,0,exp_m3_block2_p2_peel_FUTURE,NULL,PennController,124,_Trial_,Start,1773100682669,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p2,Past (C),Future (M),952,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,126,0,exp_m3_block2_p2_peel_FUTURE,NULL,PennController,124,_Header_,Start,1773100682669,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p2,Past (C),Future (M),952,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,126,0,exp_m3_block2_p2_peel_FUTURE,NULL,PennController,124,_Header_,End,1773100682669,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p2,Past (C),Future (M),952,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,126,0,exp_m3_block2_p2_peel_FUTURE,NULL,Selector,tenseChoice,Selection,leftOpt,1773100684426,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p2,Past (C),Future (M),952,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,126,0,exp_m3_block2_p2_peel_FUTURE,NULL,PennController,124,_Trial_,End,1773100684427,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p2,Past (C),Future (M),952,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,125,0,exp_m3_block2_p2_stir_FUTURE,NULL,PennController,123,_Trial_,Start,1773100684432,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p2,Past (C),Future (M),827,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,125,0,exp_m3_block2_p2_stir_FUTURE,NULL,PennController,123,_Header_,Start,1773100684432,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p2,Past (C),Future (M),827,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,125,0,exp_m3_block2_p2_stir_FUTURE,NULL,PennController,123,_Header_,End,1773100684432,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p2,Past (C),Future (M),827,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,125,0,exp_m3_block2_p2_stir_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100686071,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p2,Past (C),Future (M),827,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,125,0,exp_m3_block2_p2_stir_FUTURE,NULL,PennController,123,_Trial_,End,1773100686072,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p2,Past (C),Future (M),827,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,123,0,exp_m3_block2_p2_ride_PAST,NULL,PennController,121,_Trial_,Start,1773100686076,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p2,Past (C),Future (M),712,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,123,0,exp_m3_block2_p2_ride_PAST,NULL,PennController,121,_Header_,Start,1773100686076,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p2,Past (C),Future (M),712,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,123,0,exp_m3_block2_p2_ride_PAST,NULL,PennController,121,_Header_,End,1773100686077,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p2,Past (C),Future (M),712,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,123,0,exp_m3_block2_p2_ride_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100687599,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p2,Past (C),Future (M),712,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,123,0,exp_m3_block2_p2_ride_PAST,NULL,PennController,121,_Trial_,End,1773100687600,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p2,Past (C),Future (M),712,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,115,0,exp_m3_block2_p1_build_PAST,NULL,PennController,113,_Trial_,Start,1773100687605,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p1,Past (C),Future (M),832,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,115,0,exp_m3_block2_p1_build_PAST,NULL,PennController,113,_Header_,Start,1773100687605,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p1,Past (C),Future (M),832,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,115,0,exp_m3_block2_p1_build_PAST,NULL,PennController,113,_Header_,End,1773100687606,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p1,Past (C),Future (M),832,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,115,0,exp_m3_block2_p1_build_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100689242,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p1,Past (C),Future (M),832,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,115,0,exp_m3_block2_p1_build_PAST,NULL,PennController,113,_Trial_,End,1773100689243,1773099590821,source,demo,m3_block2,build,built,PAST,Wizard,p1,Past (C),Future (M),832,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,119,0,exp_m3_block2_p1_stir_FUTURE,NULL,PennController,117,_Trial_,Start,1773100689249,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p1,Past (C),Future (M),736,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,119,0,exp_m3_block2_p1_stir_FUTURE,NULL,PennController,117,_Header_,Start,1773100689249,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p1,Past (C),Future (M),736,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,119,0,exp_m3_block2_p1_stir_FUTURE,NULL,PennController,117,_Header_,End,1773100689249,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p1,Past (C),Future (M),736,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,119,0,exp_m3_block2_p1_stir_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100690796,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p1,Past (C),Future (M),736,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,119,0,exp_m3_block2_p1_stir_FUTURE,NULL,PennController,117,_Trial_,End,1773100690796,1773099590821,source,demo,m3_block2,stir,will stir,FUTURE,Chef,p1,Past (C),Future (M),736,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,118,0,exp_m3_block2_p1_climb_FUTURE,NULL,PennController,116,_Trial_,Start,1773100690799,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p1,Past (C),Future (M),3324,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,118,0,exp_m3_block2_p1_climb_FUTURE,NULL,PennController,116,_Header_,Start,1773100690799,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p1,Past (C),Future (M),3324,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,118,0,exp_m3_block2_p1_climb_FUTURE,NULL,PennController,116,_Header_,End,1773100690800,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p1,Past (C),Future (M),3324,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,118,0,exp_m3_block2_p1_climb_FUTURE,NULL,Selector,tenseChoice,Selection,rightOpt,1773100694930,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p1,Past (C),Future (M),3324,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,118,0,exp_m3_block2_p1_climb_FUTURE,NULL,PennController,116,_Trial_,End,1773100694931,1773099590821,source,demo,m3_block2,climb,will climb,FUTURE,Wizard,p1,Past (C),Future (M),3324,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,117,0,exp_m3_block2_p1_ride_PAST,NULL,PennController,115,_Trial_,Start,1773100694935,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p1,Past (C),Future (M),1213,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,117,0,exp_m3_block2_p1_ride_PAST,NULL,PennController,115,_Header_,Start,1773100694935,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p1,Past (C),Future (M),1213,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,117,0,exp_m3_block2_p1_ride_PAST,NULL,PennController,115,_Header_,End,1773100694935,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p1,Past (C),Future (M),1213,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,117,0,exp_m3_block2_p1_ride_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100696961,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p1,Past (C),Future (M),1213,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,117,0,exp_m3_block2_p1_ride_PAST,NULL,PennController,115,_Trial_,End,1773100696962,1773099590821,source,demo,m3_block2,ride,rode,PAST,Pirate,p1,Past (C),Future (M),1213,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,116,0,exp_m3_block2_p1_sweep_PAST,NULL,PennController,114,_Trial_,Start,1773100696969,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p1,Past (C),Future (M),1310,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,116,0,exp_m3_block2_p1_sweep_PAST,NULL,PennController,114,_Header_,Start,1773100696969,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p1,Past (C),Future (M),1310,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,116,0,exp_m3_block2_p1_sweep_PAST,NULL,PennController,114,_Header_,End,1773100696970,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p1,Past (C),Future (M),1310,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,116,0,exp_m3_block2_p1_sweep_PAST,NULL,Selector,tenseChoice,Selection,leftOpt,1773100699089,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p1,Past (C),Future (M),1310,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,116,0,exp_m3_block2_p1_sweep_PAST,NULL,PennController,114,_Trial_,End,1773100699090,1773099590821,source,demo,m3_block2,sweep,swept,PAST,Chef,p1,Past (C),Future (M),1310,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,120,0,exp_m3_block2_p1_peel_FUTURE,NULL,PennController,118,_Trial_,Start,1773100699098,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p1,Past (C),Future (M),504,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,120,0,exp_m3_block2_p1_peel_FUTURE,NULL,PennController,118,_Header_,Start,1773100699099,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p1,Past (C),Future (M),504,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,120,0,exp_m3_block2_p1_peel_FUTURE,NULL,PennController,118,_Header_,End,1773100699099,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p1,Past (C),Future (M),504,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,120,0,exp_m3_block2_p1_peel_FUTURE,NULL,Selector,tenseChoice,Selection,leftOpt,1773100700412,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p1,Past (C),Future (M),504,leftOpt;rightOpt
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,120,0,exp_m3_block2_p1_peel_FUTURE,NULL,PennController,118,_Trial_,End,1773100700413,1773099590821,source,demo,m3_block2,peel,will peel,FUTURE,Pirate,p1,Past (C),Future (M),504,NULL
+# 16. exp_start_timestamp.
+# 17. exp_end_timestamp.
+# 18. exp_elapsed_ms.
+# 19. exp_elapsed_min.
+# 20. Comments.
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,160,0,time_summary,NULL,PennController,157,_Trial_,Start,1773100700417,1773099590821,source,demo,1773099590821,1773100700417,1109596,18.49,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,160,0,time_summary,NULL,PennController,157,_Header_,Start,1773100700417,1773099590821,source,demo,1773099590821,1773100700417,1109596,18.49,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,160,0,time_summary,NULL,PennController,157,_Header_,End,1773100700417,1773099590821,source,demo,1773099590821,1773100700417,1109596,18.49,NULL
+1773100701,d3dd47b61314fd033563b6592ced659f,PennController,160,0,time_summary,NULL,PennController,157,_Trial_,End,1773100700429,1773099590821,source,demo,1773099590821,1773100700417,1109596,18.49,NULL
+#
+# Results on Mon, 09 Mar 2026 23:58:35 GMT
+# USER AGENT: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+# Design number was non-random = 6
+#
+# Columns below this comment are as follows:
+# 1. Results reception time.
+# 2. MD5 hash of participant's IP address.
+# 3. Controller name.
+# 4. Order number of item.
+# 5. Inner element number.
+# 6. Label.
+# 7. Latin Square Group.
+# 8. PennElementType.
+# 9. PennElementName.
+# 10. Parameter.
+# 11. Value.
+# 12. EventTime.
+# 13. exp_start_timestamp.
+# 14. source.
+# 15. SONA_ID_URL.
+# 16. Comments.
+1773100715,d3dd47b61314fd033563b6592ced659f,PennController,161,0,debrief,NULL,PennController,158,_Header_,Start,1773100701140,1773099590821,source,demo,NULL
+1773100715,d3dd47b61314fd033563b6592ced659f,PennController,161,0,debrief,NULL,PennController,158,_Header_,End,1773100701140,1773099590821,source,demo,NULL
+1773100715,d3dd47b61314fd033563b6592ced659f,PennController,161,0,debrief,NULL,PennController,158,_Trial_,Start,1773100701140,1773099590821,source,demo,NULL
+1773100715,d3dd47b61314fd033563b6592ced659f,PennController,161,0,debrief,NULL,Scale,tech_issues,Choice,Yes,1773100711730,1773099590821,source,demo,NULL
+1773100715,d3dd47b61314fd033563b6592ced659f,PennController,161,0,debrief,NULL,Scale,instruction_clarity,Choice,5,1773100712969,1773099590821,source,demo,NULL
+1773100715,d3dd47b61314fd033563b6592ced659f,PennController,161,0,debrief,NULL,TextInput,feedback,Final,,1773100714124,1773099590821,source,demo,NULL
+1773100715,d3dd47b61314fd033563b6592ced659f,PennController,161,0,debrief,NULL,PennController,158,_Trial_,End,1773100714125,1773099590821,source,demo,NULL
