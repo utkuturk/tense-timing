@@ -25,6 +25,48 @@ const LIST_ID = hasValidRequestedList
   ? requestedListParam
   : listOptions[Math.floor(Math.random() * listOptions.length)];
 const LIST_SOURCE = hasValidRequestedList ? "url_param" : "random";
+const ENABLE_ASYNC_UPLOAD_CHECKPOINTS = true;
+const RECORDING_UPLOAD_TIMEOUT_MS = 120000;
+
+// Avoid indefinite hangs on recorder uploads by enforcing XHR timeouts for
+// recorder-related requests without modifying PennController internals.
+(function patchRecordingUploadTimeouts() {
+  if (window.__recordingUploadTimeoutPatched) return;
+  window.__recordingUploadTimeoutPatched = true;
+  if (typeof XMLHttpRequest === "undefined") return;
+
+  const origOpen = XMLHttpRequest.prototype.open;
+  const origSend = XMLHttpRequest.prototype.send;
+
+  XMLHttpRequest.prototype.open = function (method, url, ...rest) {
+    this.__pc_upload_url = String(url || "");
+    return origOpen.call(this, method, url, ...rest);
+  };
+
+  XMLHttpRequest.prototype.send = function (...args) {
+    const url = String(this.__pc_upload_url || "");
+    const isRecorderRequest =
+      url.includes("pcibex-s3-recorder") || url.includes("amazonaws.com");
+
+    if (isRecorderRequest) {
+      this.timeout = Math.max(
+        Number(this.timeout) || 0,
+        RECORDING_UPLOAD_TIMEOUT_MS,
+      );
+      const prevTimeout = this.ontimeout;
+      this.ontimeout = (ev) => {
+        if (typeof prevTimeout === "function") {
+          try {
+            prevTimeout.call(this, ev);
+          } catch (e) {}
+        }
+        if (typeof this.onerror === "function") this.onerror(ev);
+      };
+    }
+
+    return origSend.apply(this, args);
+  };
+})();
 
 const LAMBDA_URL =
   "https://u7dzjb1y1m.execute-api.us-east-2.amazonaws.com/default/pcibex-s3-recorder-phon";
@@ -52,10 +94,11 @@ Header(
   .log("assigned_list", getVar("assigned_list"))
   .log("list_source", getVar("list_source"));
 
-// Non-blocking recording uploads can be triggered by placing "async" in Sequence.
-UploadRecordings("async", "noblock");
+// Optional non-blocking checkpoints. Final blocking upload still runs before results.
+if (ENABLE_ASYNC_UPLOAD_CHECKPOINTS) UploadRecordings("async", "noblock");
 
 defineBreakTrial();
+defineSituationSwitchTrial();
 
 const ENTITIES = ["Pirate", "Chef", "Wizard"];
 
@@ -81,6 +124,8 @@ const verbs = [
   "wash",
   "drag",
 ];
+
+const PRACTICE_EXTRA_VERBS = ["cut", "hammer"];
 
 const verbsBlock1 = ["drink", "read", "eat", "paint", "wash", "push"];
 const verbsBlock2 = ["build", "sweep", "ride", "climb", "stir", "peel"];
@@ -108,6 +153,8 @@ const PICTURE_BY_ENTITY_VERB = {
     stir: "pirate_stir_pot_v3.png",
     sweep: "pirate_sweep_floor_v4.png",
     wash: "pirate_wash_dish_v3.png",
+    cut: "pirate_cut_bread_v1.png",
+    hammer: "pirate_hammer_nail_v1.png",
   },
   Chef: {
     blow: "chef_blow_bubbles_v4.png",
@@ -130,6 +177,8 @@ const PICTURE_BY_ENTITY_VERB = {
     stir: "chef_stir_pot_v4.png",
     sweep: "chef_sweep_floor_v1.png",
     wash: "chef_wash_dish_v3.png",
+    cut: "chef_cut_bread_v1.png",
+    hammer: "chef_hammer_nail_v1.png",
   },
   Wizard: {
     blow: "wizard_blow_bubbles_v5.png",
@@ -152,6 +201,8 @@ const PICTURE_BY_ENTITY_VERB = {
     stir: "wizard_stir_pot_v2.png",
     sweep: "wizard_sweep_floor_v3.png",
     wash: "wizard_wash_dish_v5.png",
+    cut: "wizard_cut_bread_v1.png",
+    hammer: "wizard_hammer_nail_v1.png",
   },
 };
 
@@ -176,6 +227,8 @@ const PAST_FORMS = {
   stir: "stirred",
   sweep: "swept",
   wash: "washed",
+  cut: "cut",
+  hammer: "hammered",
 };
 
 const GERUND_FORMS = {
@@ -199,6 +252,8 @@ const GERUND_FORMS = {
   stir: "stirring",
   sweep: "sweeping",
   wash: "washing",
+  cut: "cutting",
+  hammer: "hammering",
 };
 
 const OBJECT_PHRASE_BY_VERB = {
@@ -222,6 +277,8 @@ const OBJECT_PHRASE_BY_VERB = {
   stir: "a pot",
   sweep: "the floor",
   wash: "a dish",
+  cut: "bread",
+  hammer: "a nail",
 };
 
 const IRREGULAR_VERBS = new Set([
@@ -303,10 +360,28 @@ function makeItemsForRotation(entityRotation = 0) {
   return { items1, items2, items3 };
 }
 
+function chooseMetaLists(primaryList, count = 3) {
+  const uniquePool = listOptions.filter((id) => id !== primaryList).slice();
+  fisherYates(uniquePool);
+  return [primaryList, ...uniquePool.slice(0, Math.max(0, count - 1))];
+}
+
+function listRotationOffset(listId) {
+  const map = { a: 0, b: 1, c: 2, d: 0 };
+  return map[listId] ?? 0;
+}
+
+function makeItemsForList(listId, entityRotation = 0) {
+  const rotation = (entityRotation + listRotationOffset(listId)) % ENTITIES.length;
+  return makeItemsForRotation(rotation);
+}
+
 const METABLOCK_ROTATIONS = [0, 1, 2];
+const META_LIST_IDS = chooseMetaLists(LIST_ID, METABLOCK_ROTATIONS.length);
 const metaBlocks = METABLOCK_ROTATIONS.map((rotation, idx) => ({
   metaName: `m${idx + 1}`,
-  itemsByBlock: makeItemsForRotation(rotation),
+  listId: META_LIST_IDS[idx],
+  itemsByBlock: makeItemsForList(META_LIST_IDS[idx], rotation),
 }));
 
 // ==============================
@@ -330,7 +405,7 @@ const metaBlockSpecs = metaBlocks.map((meta) => {
     { name: `${meta.metaName}_block3`, items: meta.itemsByBlock.items3 },
   ];
   blocks.forEach((b) => registerBlockTrials(b.name, b.items));
-  return { metaName: meta.metaName, blocks };
+  return { metaName: meta.metaName, listId: meta.listId, blocks };
 });
 
 // ==============================
@@ -376,8 +451,8 @@ function buildBlockSequence(blockOrder, withIntro) {
       }
     });
 
-    // Trigger a non-blocking upload after each completed block.
-    seq.push("async");
+    // Optional non-blocking checkpoint upload after each completed block.
+    if (ENABLE_ASYNC_UPLOAD_CHECKPOINTS) seq.push("async");
   });
 
   return seq;
@@ -387,10 +462,12 @@ const metaSequences = metaBlockSpecs.map((metaSpec, metaIndex) => {
   const order = metaSpec.blocks.slice();
   fisherYates(order);
   const seq = buildBlockSequence(order, true);
-  return metaIndex === 0 ? seq : ["Break", ...seq];
+  return metaIndex === 0 ? seq : ["SituationSwitch", ...seq];
 });
 
 const PRACTICE_ENTITY = ENTITIES[Math.floor(Math.random() * ENTITIES.length)];
+const PRACTICE_VERBS = ["spin", "drag", ...PRACTICE_EXTRA_VERBS];
+const PRACTICE_VERB_TEXT = PRACTICE_VERBS.map((v) => `<b>${v}</b>`).join(", ");
 const PRACTICE_ITEMS = [
   {
     verb: "spin",
@@ -416,6 +493,30 @@ const PRACTICE_ITEMS = [
     target_label_sentence: conceptualLabelSentence(PRACTICE_ENTITY, "drag"),
     target_canonical_sentence: canonicalSentence(PRACTICE_ENTITY, "drag"),
   },
+  {
+    verb: "cut",
+    form: pastForm("cut"),
+    object: objectFor("cut"),
+    event_phrase: eventPhraseFor("cut"),
+    entity: PRACTICE_ENTITY,
+    pic: pictureFor("cut", PRACTICE_ENTITY),
+    side: "PAST",
+    regularity: regularityFor("cut"),
+    target_label_sentence: conceptualLabelSentence(PRACTICE_ENTITY, "cut"),
+    target_canonical_sentence: canonicalSentence(PRACTICE_ENTITY, "cut"),
+  },
+  {
+    verb: "hammer",
+    form: pastForm("hammer"),
+    object: objectFor("hammer"),
+    event_phrase: eventPhraseFor("hammer"),
+    entity: PRACTICE_ENTITY,
+    pic: pictureFor("hammer", PRACTICE_ENTITY),
+    side: "PAST",
+    regularity: regularityFor("hammer"),
+    target_label_sentence: conceptualLabelSentence(PRACTICE_ENTITY, "hammer"),
+    target_canonical_sentence: canonicalSentence(PRACTICE_ENTITY, "hammer"),
+  },
 ];
 
 const PRACTICE_PRODUCTION_ITEMS = fisherYates(PRACTICE_ITEMS.slice());
@@ -431,7 +532,9 @@ decisionReadyTrial("practice", {
     "<p>Instruction framing is: <b>The &lt;Character&gt;'s &lt;action&gt; is in the past.</b></p>" +
     "<p>Say the sentence in canonical form:</p>" +
     "<p><b>The Pirate spun a top.</b><br>" +
-    "<b>The Pirate dragged a sack.</b></p>" +
+    "<b>The Pirate dragged a sack.</b><br>" +
+    "<b>The Pirate cut bread.</b><br>" +
+    "<b>The Pirate hammered a nail.</b></p>" +
     "<p>Recording starts and stops automatically.</p>",
   buttonText: "Start Practice Recording",
 });
@@ -611,7 +714,7 @@ newTrial(
   newText(
     "practice_intro_body",
     "<p>You will now complete a short practice before the real experiment.</p>" +
-      `<p>First, you will learn two ${PRACTICE_ENTITY} verbs: <b>spin</b> and <b>drag</b>.</p>` +
+      `<p>First, you will learn four ${PRACTICE_ENTITY} verbs: ${PRACTICE_VERB_TEXT}.</p>` +
       "<p>Then you will record yourself saying past-tense sentences for each picture.</p>",
   )
     .css({ "font-size": "1.15em", "max-width": "42em", "text-align": "left" })
@@ -728,7 +831,7 @@ const introBlock = [
   "intro_practice",
   "ready_practice",
   ...PRACTICE_PRODUCTION_LABELS,
-  "async",
+  ...(ENABLE_ASYNC_UPLOAD_CHECKPOINTS ? ["async"] : []),
   "exp_ready",
 ];
 
@@ -801,9 +904,6 @@ newTrial(
   newTimer("debrief_continue_gate", 1200).start(),
   getTimer("debrief_continue_gate").wait(),
   getButton("debrief_continue").enable(),
-  newKey("debrief_space_continue", " ").callback(
-    getButton("debrief_continue").click(),
-  ),
   getButton("debrief_continue").wait(),
 ).setOption("hideProgressBar", true);
 
