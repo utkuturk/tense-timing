@@ -1029,21 +1029,11 @@ newTrial(
         .success(getText("exit_sona_msg").print(), getText("ling_link").print())
         .failure(getText("fallback_msg").print()),
     ),
-  newText("exit_close", "<p>When you are finished, you may close this tab.</p>")
+  newText("exit_close", "<p>You now may close this tab.</p>")
     .css(text_css)
     .print()
     .center(),
-  newButton("exit_wait", "END")
-    .bold()
-    .css(button_css)
-    .center()
-    .disable()
-    .print(),
-  newTimer("exit_end_gate", 900).start(),
-  getTimer("exit_end_gate").wait(),
-  getButton("exit_wait").enable(),
-  newKey("exit_space_end", " ").callback(getButton("exit_wait").click()),
-  getButton("exit_wait").wait(),
+  newButton().wait(),
 ).setOption("hideProgressBar", true);
 
 Sequence(
