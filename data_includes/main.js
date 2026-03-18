@@ -816,17 +816,7 @@ newTrial(
     .css(text_css)
     .print()
     .center(),
-  newButton("exit_wait", "END")
-    .bold()
-    .css(button_css)
-    .center()
-    .disable()
-    .print(),
-  newTimer("exit_end_gate", 900).start(),
-  getTimer("exit_end_gate").wait(),
-  getButton("exit_wait").enable(),
-  newKey("exit_space_end", " ").callback(getButton("exit_wait").click()),
-  getButton("exit_wait").wait(),
+  newButton().wait(),
 ).setOption("hideProgressBar", true);
 
 Sequence(
