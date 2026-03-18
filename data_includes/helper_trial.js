@@ -44,15 +44,15 @@ var trial =
         .css({ "background-color": "white" })
         .center()
         .print(),
-      newTimer("production_blank_t", 300).start(),
+      newTimer("production_blank_t", 400).start(),
       getTimer("production_blank_t").wait(),
       getCanvas("production_blank").remove(),
 
       newText("production_fix", "+")
-        .css({ "font-size": "3em", "font-weight": "bold" })
+        .css({ "font-size": "5em", "font-weight": "bold" })
         .center()
-        .print(),
-      newTimer("production_fix_t", 500).start(),
+        .print("center at 50vw", "middle at 35vh"),
+      newTimer("production_fix_t", 600).start(),
       getTimer("production_fix_t").wait(),
       getText("production_fix").remove(),
 
@@ -74,6 +74,30 @@ var trial =
         .css(button_css)
         .center()
         .print(),
+
+      newTimer("production_timeout_warn", 13000)
+        .callback(
+          newText(
+            "timeout_warning",
+            "Please do not wait too long between scenes!",
+          )
+            .css({
+              color: "red",
+              "font-size": "2.5em",
+              "font-weight": "bold",
+              "background-color": "#ffe0e0",
+              padding: "20px 40px",
+              border: "4px solid red",
+              "border-radius": "12px",
+              "margin-top": "20px",
+            })
+            .center()
+            .print(),
+        )
+        .start(),
+      newTimer("production_timeout_advance", 15000)
+        .callback(getButton("production_continue").click())
+        .start(),
 
       getVar("production_rt").set((v) => Date.now() - v),
       newKey(
@@ -134,7 +158,7 @@ var practiceDecisionTrial = (trialLabel, row) => {
 
     newText(
       "practice_prompt",
-      "Practice: speak a past-tense sentence for this picture.",
+      "describe this sentence using the past tense and a overt subject.<br>",
     )
       .css({
         "font-size": "1.15em",
@@ -143,19 +167,16 @@ var practiceDecisionTrial = (trialLabel, row) => {
       })
       .center()
       .print(),
-    newText(
-      "practice_hint",
-      "Example: The Pirate spun a top. / The Pirate dragged a sack.",
-    )
+    newText("practice_hint", "Example: The Pirate dragged a sack.<br>")
       .css({ "font-size": "1.0em", "margin-top": "6px" })
       .center()
       .print(),
-    newText("practice_hint2", "Recording starts and stops automatically.")
+    newText("practice_hint2", "Recording starts and stops automatically.<br>")
       .css({ "font-size": "1.05em", "margin-top": "6px" })
       .center()
       .print(),
 
-    newText("practice_recording_now", "Recording starts now. Please speak.")
+    newText("practice_recording_now", "Recording started! Please speak.<br>")
       .css({
         "font-size": "1.1em",
         "font-weight": "bold",

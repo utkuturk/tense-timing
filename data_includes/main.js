@@ -371,7 +371,8 @@ function listRotationOffset(listId) {
 }
 
 function makeItemsForList(listId, entityRotation = 0) {
-  const rotation = (entityRotation + listRotationOffset(listId)) % ENTITIES.length;
+  const rotation =
+    (entityRotation + listRotationOffset(listId)) % ENTITIES.length;
   return makeItemsForRotation(rotation);
 }
 
@@ -527,13 +528,14 @@ introTrial("practice", PRACTICE_ITEMS);
 decisionReadyTrial("practice", {
   title: "Practice: Speak past-tense sentences",
   body:
-    `<p>Now you will produce a past-tense sentence for each practice item.</p>` +
-    `<p>Say the sentence in canonical form:</p>` +
+    `<p>You heard sentences in the form of "Cut a bread". Now you will them in sentences with an overt subject.</p>` +
+    `<p>Produce sentences in the following form:</p>` +
     `<p><b>The ${PRACTICE_ENTITY} spun a top.</b><br>` +
     `<b>The ${PRACTICE_ENTITY} dragged a sack.</b><br>` +
-    `<b>The ${PRACTICE_ENTITY} cut bread.</b><br>` +
+    `<b>The ${PRACTICE_ENTITY} cut a bread.</b><br>` +
     `<b>The ${PRACTICE_ENTITY} hammered a nail.</b></p>` +
-    `<p>Recording starts and stops automatically.</p>`,
+    `<p>You are going to be recorded while doing and the recording will start with a 'click' sound, and will stop automatically.</p>` +
+    `<p><b>Do not use pronouns for subjects as in 'he' or 'she'.</b></p>`,
   buttonText: "Start Practice Recording",
 });
 PRACTICE_PRODUCTION_ITEMS.forEach((item, idx) => {
@@ -550,7 +552,7 @@ newTrial(
 
   newText(
     "welcome-body",
-    "This experiment takes about 25 minutes and requires your full attention." +
+    "This experiment takes about 30 minutes and requires your full attention." +
       "<p>Before you begin, please make sure:" +
       "<ul>" +
       "<li>You are using a <b>computer</b>, not a phone or tablet.</li>" +
@@ -676,16 +678,17 @@ newTrial(
       "<ol>" +
       "<li style='margin-bottom: 12px;'><b>Learn verbs</b>:<br>" +
       "You will learn what each character has done one by one, with audio.</li>" +
-      "<li><b>Recall by speaking</b>:<br>" +
-      "Picture will be shown to you randomly and you will be asked to describe the picture." +
-      "For each picture, produce a sentence in the <b>past tense</b>.<br>" +
+      "<li><b>Describe pictures out loud</b>:<br>" +
+      "Picture that you learned will be shown to you randomly and you will be asked to describe the picture." +
+      "For each picture, produce a sentence in the <b>past tense</b>.<br><br>" +
       "Your sentences should be in the form of:<br>" +
-      "<b>The Pirate spun a top.</b><br>" +
-      "<b>The Pirate dragged a sack.</b><br>" +
-      "Recording starts and stops automatically on each trial the moment you see the picture and you will hear a click sound.<br>" +
+      "<i>The Pirate spun a top</i> or <i>The Pirate dragged a sack.</i><br><br>" +
+      "<b>Important:</b> Do not use pronouns like 'he' or 'she', and do not produce incomplete sentences!<br><br>" +
+      "You will be recorded while you say these sentences out loud and the recording will start with a 'click' sound and will stop automatically. The moment you see the picture, you will hear a click sound.<br>" +
       "</li>" +
       "</ol>" +
-      "<p>Please speak clearly and naturally, and avoid long pauses.</p>",
+      "<p>Please speak clearly and naturally, and avoid long pauses. You will have <b>4 seconds</b> for each description.</p>" +
+      "<p>After each scene, press <b>Space</b> or click <b>Continue</b> to go to the next scene. Please do not wait more than <b>10 seconds</b> between the scenes.</p>",
   )
     .css({ "font-size": "1.1em", "max-width": "45em", "text-align": "left" })
     .center()
@@ -704,6 +707,37 @@ newTrial(
 ).setOption("hideProgressBar", true);
 
 newTrial(
+  "remember",
+  newText("remember_title", "Silent Environment")
+    .css({ "font-size": "2em", "font-weight": "bold" })
+    .center()
+    .print(),
+  newText(
+    "remember_body",
+    "<p>This experiment is going to record your audio and will play audio files for you to hear.</p>" +
+      "<p>Make sure that you are in a silent environment without any distractions or loud noises.</p>" +
+      "<p>Also make sure that you are using headphones to listen the audio instructions.</p>" +
+      "<p>In the case of no clear audio, or too much background noise, your data will not be reusable and you will not be rewarded for your time.</p>",
+  )
+    .css({ "font-size": "1.15em", "max-width": "42em", "text-align": "left" })
+    .center()
+    .print(),
+  newButton("remember_start", "Start Practice")
+    .bold()
+    .css(button_css)
+    .center()
+    .disable()
+    .print(),
+  newTimer("remember_gate", 1200).start(),
+  getTimer("remember_gate").wait(),
+  getButton("remember_start").enable(),
+  newKey("remember_space_start", " ").callback(
+    getButton("remember_start").click(),
+  ),
+  getButton("remember_start").wait(),
+).setOption("hideProgressBar", true);
+
+newTrial(
   "practice_intro",
   newText("practice_intro_title", "Practice")
     .css({ "font-size": "2em", "font-weight": "bold" })
@@ -712,8 +746,9 @@ newTrial(
   newText(
     "practice_intro_body",
     "<p>You will now complete a short practice before the real experiment.</p>" +
-      `<p>First, you will learn four ${PRACTICE_ENTITY} verbs: ${PRACTICE_VERB_TEXT}.</p>` +
-      "<p>Then you will record yourself saying past-tense sentences for each picture.</p>",
+      `<p>First, you will learn four actions that ${PRACTICE_ENTITY} did: ${PRACTICE_VERB_TEXT}.</p>` +
+      "<p>Then you will be recorded while describing each scene out loud in past-tense.</p>" +
+      "<p>You will have <b>4 seconds</b> to utter the sentences once the click is heard.</p>",
   )
     .css({ "font-size": "1.15em", "max-width": "42em", "text-align": "left" })
     .center()
@@ -744,10 +779,11 @@ newTrial(
     "exp_ready_body",
     "<p>The real experiment is about to start.</p>" +
       "<p>In each learning block, you will see <b>6 events</b>.</p>" +
-      "<p>You will respond by speaking into your microphone.</p>" +
-      "<p><b>Important reminder:</b> say canonical past-tense sentences.</p>" +
-      "<p>For example: <b>The Pirate spun a top.</b> or <b>The Pirate dragged a sack.</b></p>" +
-      "<p>Please get ready for the first block.</p>" +
+      "<p>Later you will describe these scenes out loud while being recorded.</p>" +
+      "<p><b>Important reminder:</b> say full sentences without using pronouns like 'he' or 'she'.</p>" +
+      "<p>For example: <i>The Pirate spun a top</i> or <i>The Pirate dragged a sack.</i></p>" +
+      "<p>Please get ready for the first block and make sure that you are in a relatively silent environment.</p>" +
+      "<p>Remember you have only <b>4 seconds</b> to describe the scenes once the click is heard.</p>" +
       "<p>Press <b>SPACE</b> or click <b>Start</b> when you are ready.</p>",
   )
     .css({ "font-size": "1.15em", "max-width": "42em", "text-align": "center" })
@@ -825,6 +861,7 @@ const introBlock = [
   "init",
   "recording_test",
   "instructions",
+  "remember",
   "practice_intro",
   "intro_practice",
   "ready_practice",
@@ -936,21 +973,11 @@ newTrial(
         .success(getText("exit_sona_msg").print(), getText("ling_link").print())
         .failure(getText("fallback_msg").print()),
     ),
-  newText("exit_close", "<p>When you are finished, you may close this tab.</p>")
+  newText("exit_close", "<p>You now may close this tab.</p>")
     .css(text_css)
     .print()
     .center(),
-  newButton("exit_wait", "END")
-    .bold()
-    .css(button_css)
-    .center()
-    .disable()
-    .print(),
-  newTimer("exit_end_gate", 900).start(),
-  getTimer("exit_end_gate").wait(),
-  getButton("exit_wait").enable(),
-  newKey("exit_space_end", " ").callback(getButton("exit_wait").click()),
-  getButton("exit_wait").wait(),
+  newButton().wait(),
 ).setOption("hideProgressBar", true);
 
 Sequence(
