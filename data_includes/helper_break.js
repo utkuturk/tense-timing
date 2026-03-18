@@ -27,6 +27,26 @@ function defineBreakTrial() {
         .css(button_css)
         .center()
         .print(),
+    newTimer("break_timeout_warn", 55000)
+        .callback(
+          newText("break_warn_text", "Please do not wait too long! Press Continue to proceed.")
+            .css({
+              color: "red",
+              "font-size": "2.5em",
+              "font-weight": "bold",
+              "background-color": "#ffe0e0",
+              padding: "20px 40px",
+              border: "4px solid red",
+              "border-radius": "12px",
+              "margin-top": "20px",
+            })
+            .center()
+            .print()
+        )
+        .start(),
+    newTimer("break_timeout_advance", 60000)
+        .callback(getButton("Continue").click())
+        .start(),
     newKey("break_space_continue", " ").callback(getButton("Continue").click())
         ,
     getButton("Continue")
@@ -63,6 +83,26 @@ function defineSituationSwitchTrial() {
         .css(button_css)
         .center()
         .print(),
+    newTimer("switch_timeout_warn", 55000)
+        .callback(
+          newText("switch_warn_text", "Please do not wait too long! Press Continue to proceed.")
+            .css({
+              color: "red",
+              "font-size": "2.5em",
+              "font-weight": "bold",
+              "background-color": "#ffe0e0",
+              padding: "20px 40px",
+              border: "4px solid red",
+              "border-radius": "12px",
+              "margin-top": "20px",
+            })
+            .center()
+            .print()
+        )
+        .start(),
+    newTimer("switch_timeout_advance", 60000)
+        .callback(getButton("switch_continue").click())
+        .start(),
     newKey("switch_space_continue", " ").callback(getButton("switch_continue").click()),
     getButton("switch_continue")
         .wait()
