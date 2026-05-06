@@ -1,0 +1,10 @@
+[project]
+name = "tense-timing"
+version = "0.1.0"
+description = "Tense timing production experiment analysis"
+requires-python = ">=3.11"
+dependencies = [
+    "assemblyai>=0.59.0",
+    "google-cloud-speech>=2.38.0",
+    "pydub>=0.25.1",
+]
