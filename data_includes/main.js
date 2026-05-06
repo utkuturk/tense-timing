@@ -2,14 +2,14 @@
 PennController.ResetPrefix(null);
 DebugOff();
 SendResults("send_results");
-SendResults("senddebrief");
 PreloadZip(
   "https://raw.githubusercontent.com/utkuturk/tense-timing/morphosyntax/chunk_includes/elevenlabs_audio.zip",
 );
 PreloadZip(
   "https://raw.githubusercontent.com/utkuturk/tense-timing/morphosyntax/chunk_includes/pictures.zip",
 );
-const EXP_START_TIMESTAMP = Date.now();
+const isDemoMode = GetURLParameter("id") === "demo";
+const SUBJECT_ID = isDemoMode ? "demo" : Math.random().toString(36).slice(2, 10);
 const PSYCH_SONA_LINK_BASE =
   "https://umpsychology.sona-systems.com/webstudy_credit.aspx?experiment_id=XX&credit_token=XX&survey_code=";
 const LING_SONA_LINK_BASE =
@@ -25,48 +25,6 @@ const LIST_ID = hasValidRequestedList
   ? requestedListParam
   : listOptions[Math.floor(Math.random() * listOptions.length)];
 const LIST_SOURCE = hasValidRequestedList ? "url_param" : "random";
-const ENABLE_ASYNC_UPLOAD_CHECKPOINTS = true;
-const RECORDING_UPLOAD_TIMEOUT_MS = 120000;
-
-// Avoid indefinite hangs on recorder uploads by enforcing XHR timeouts for
-// recorder-related requests without modifying PennController internals.
-(function patchRecordingUploadTimeouts() {
-  if (window.__recordingUploadTimeoutPatched) return;
-  window.__recordingUploadTimeoutPatched = true;
-  if (typeof XMLHttpRequest === "undefined") return;
-
-  const origOpen = XMLHttpRequest.prototype.open;
-  const origSend = XMLHttpRequest.prototype.send;
-
-  XMLHttpRequest.prototype.open = function (method, url, ...rest) {
-    this.__pc_upload_url = String(url || "");
-    return origOpen.call(this, method, url, ...rest);
-  };
-
-  XMLHttpRequest.prototype.send = function (...args) {
-    const url = String(this.__pc_upload_url || "");
-    const isRecorderRequest =
-      url.includes("pcibex-s3-recorder") || url.includes("amazonaws.com");
-
-    if (isRecorderRequest) {
-      this.timeout = Math.max(
-        Number(this.timeout) || 0,
-        RECORDING_UPLOAD_TIMEOUT_MS,
-      );
-      const prevTimeout = this.ontimeout;
-      this.ontimeout = (ev) => {
-        if (typeof prevTimeout === "function") {
-          try {
-            prevTimeout.call(this, ev);
-          } catch (e) {}
-        }
-        if (typeof this.onerror === "function") this.onerror(ev);
-      };
-    }
-
-    return origSend.apply(this, args);
-  };
-})();
 
 const LAMBDA_URL =
   "https://u7dzjb1y1m.execute-api.us-east-2.amazonaws.com/default/pcibex-s3-recorder";
@@ -80,7 +38,7 @@ InitiateRecorder(
 
 Header(
   newVar("source", "").global().set(GetURLParameter("source")),
-  newVar("exp_start_timestamp", 0).global().set(EXP_START_TIMESTAMP),
+  newVar("subject_id", "").global().set(SUBJECT_ID),
   newVar("requested_list", "")
     .global()
     .set(requestedListParam || "none"),
@@ -89,41 +47,821 @@ Header(
 )
   .log("SONA_ID_URL", GetURLParameter("id"))
   .log("source", GetURLParameter("source"))
-  .log("exp_start_timestamp", getVar("exp_start_timestamp"))
+  .log("subject_id", getVar("subject_id"))
   .log("requested_list", getVar("requested_list"))
   .log("assigned_list", getVar("assigned_list"))
   .log("list_source", getVar("list_source"));
 
-// Optional non-blocking checkpoints. Final blocking upload still runs before results.
-if (ENABLE_ASYNC_UPLOAD_CHECKPOINTS) UploadRecordings("async", "noblock");
+// --- CSS / UI Helpers ---
+const newDemo = (name, label) => [
+  newTextInput(name)
+    .before(
+      newText(label)
+        .size("15em", "1.5em")
+    )
+    .size("15em", "1.5em")
+    .lines(1)
+    .css(underline_blank)
+    .center()
+    .print()
+    .log(),
+  newText("<br><br>").print()
+];
 
-defineBreakTrial();
-defineSituationSwitchTrial();
+const requireFilled = (name, msg) =>
+  getTextInput(name)
+    .testNot.text("")
+    .failure(
+      newText("err-" + name, msg)
+        .settings.color("red")
+        .print()
+    );
+
+var button_css = {
+  "background-color": "#E03A3E",
+  color: "white",
+  "font-size": "1.25em",
+  padding: "0.5em",
+  "border-radius": "0.25em",
+  margin: "0 auto",
+  "text-align": "center",
+  border: "none",
+  display: "block",
+};
+
+var text_css = {
+  margin: "0 auto",
+  "font-size": "20px",
+  "font-family": "sans-serif",
+};
+
+var underline_blank = {
+  outline: "none",
+  resize: "none",
+  border: "0",
+  padding: "0",
+  margin: "0",
+  "margin-left": "1ex",
+  "margin-right": "1ex",
+  "vertical-align": "-.33em",
+  "background-color": "white",
+  "border-bottom": "2px solid black",
+  display: "inline",
+};
+
+// --- Break Trial ---
+newTrial("Break",
+  newText("message", "Break")
+      .css({ "font-size": "3em", "font-weight": "bold", "color": "#cc0000" })
+      .center()
+      .print(),
+
+  newText("instruction",
+          "Now we are going to learn about other things they did. Please <b>rest for a second</b>.")
+      .css({ "font-size": "1.8em", "margin-top": "30px" })
+      .center()
+      .print(),
+
+  newText("note",
+          "Click 'Continue' when you are ready to see the verbs for the next block.")
+      .css({ "font-size": "1.2em", "margin-top": "50px" })
+      .center()
+      .print(),
+  newText("space1break", "<p>")
+      .center()
+      .print(),
+  newTimer("break_continue_gate", 2000)
+      .start()
+      .wait()
+      ,
+  newButton("Continue")
+      .css(button_css)
+      .center()
+      .print(),
+  newTimer("break_timeout_warn", 55000)
+      .callback(
+        newText("break_warn_text", "Please do not wait too long! Press Continue to proceed.")
+          .css({
+            color: "red",
+            "font-size": "2.5em",
+            "font-weight": "bold",
+            "background-color": "#ffe0e0",
+            padding: "20px 40px",
+            border: "4px solid red",
+            "border-radius": "12px",
+            "margin-top": "20px",
+          })
+          .center()
+          .print()
+      )
+      .start(),
+  newTimer("break_timeout_advance", 60000)
+      .callback(getButton("Continue").click())
+      .start(),
+  newKey("break_space_continue", " ").callback(getButton("Continue").click())
+      ,
+  getButton("Continue")
+      .wait()
+)
+  .setOption("hideProgressBar", true);
+
+// --- Situation Switch Trial ---
+newTrial("SituationSwitch",
+  newText("switch_title", "New Situation")
+      .css({ "font-size": "3em", "font-weight": "bold", "color": "#003366" })
+      .center()
+      .print(),
+
+  newText("switch_instruction",
+          "Now we are moving to a <b>new situation</b>.<br>The times of the events may be different from what you learned before. Please <b>rest for a second</b> and then click 'Continue' to see the verbs for the next block.")
+      .css({ "font-size": "1.6em", "margin-top": "24px", "text-align": "center" })
+      .center()
+      .print(),
+
+  newText("switch_note",
+          "Click 'Continue' when you are ready to begin the next situation.")
+      .css({ "font-size": "1.2em", "margin-top": "42px" })
+      .center()
+      .print(),
+  newText("space_switch", "<p>")
+      .center()
+      .print(),
+  newTimer("switch_continue_gate", 2000)
+      .start()
+      .wait(),
+  newButton("switch_continue", "Continue")
+      .css(button_css)
+      .center()
+      .print(),
+  newTimer("switch_timeout_warn", 55000)
+      .callback(
+        newText("switch_warn_text", "Please do not wait too long! Press Continue to proceed.")
+          .css({
+            color: "red",
+            "font-size": "2.5em",
+            "font-weight": "bold",
+            "background-color": "#ffe0e0",
+            padding: "20px 40px",
+            border: "4px solid red",
+            "border-radius": "12px",
+            "margin-top": "20px",
+          })
+          .center()
+          .print()
+      )
+      .start(),
+  newTimer("switch_timeout_advance", 60000)
+      .callback(getButton("switch_continue").click())
+      .start(),
+  newKey("switch_space_continue", " ").callback(getButton("switch_continue").click()),
+  getButton("switch_continue")
+      .wait()
+)
+  .setOption("hideProgressBar", true);
+
+// --- Trial Functions ---
+const AUTO_RECORD_MS = 4500;
+
+var trial =
+  (blockLabel, patternTag = "p1") =>
+  (row) => {
+    const uniqueLabel = `exp_${blockLabel}_${patternTag}_${row.verb}_${row.side}`;
+    const verbImage = newImage(row.verb, row.pic).size(400, 400);
+    const recorderId =
+      `${SUBJECT_ID}_resp_${blockLabel}_${patternTag}_${row.verb}_${row.side}`.toLowerCase();
+
+    return newTrial(
+      uniqueLabel,
+      defaultText.css({ "font-size": "1.35em", "font-family": "sans-serif" }),
+
+      newCanvas("production_blank", 1200, 700)
+        .css({ "background-color": "white" })
+        .center()
+        .print(),
+      newTimer("production_blank_t", 400).start(),
+      getTimer("production_blank_t").wait(),
+      getCanvas("production_blank").remove(),
+
+      newText("production_fix", "+")
+        .css({ "font-size": "5em", "font-weight": "bold" })
+        .center()
+        .print("center at 50vw", "middle at 35vh"),
+      newTimer("production_fix_t", 600).start(),
+      getTimer("production_fix_t").wait(),
+      getText("production_fix").remove(),
+
+      newVoiceRecorder(recorderId).log(),
+      verbImage.center().print(),
+      getVoiceRecorder(recorderId).record(),
+
+      newTimer("production_record_window", AUTO_RECORD_MS)
+        .callback(getVoiceRecorder(recorderId).stop())
+        .start(),
+      getTimer("production_record_window").wait(),
+
+      newButton("production_continue", "Continue")
+        .bold()
+        .css(button_css)
+        .center()
+        .print(),
+
+      newTimer("production_timeout_warn", 13000)
+        .callback(
+          newText(
+            "production_warn_text",
+            "Please do not wait too long between scenes!",
+          )
+            .css({
+              color: "red",
+              "font-size": "2.5em",
+              "font-weight": "bold",
+              "background-color": "#ffe0e0",
+              padding: "20px 40px",
+              border: "4px solid red",
+              "border-radius": "12px",
+              "margin-top": "20px",
+            })
+            .center()
+            .print(),
+        )
+        .start(),
+      newTimer("production_timeout_advance", 15000)
+        .callback(getButton("production_continue").click())
+        .start(),
+
+      newKey(
+        `production_space_${blockLabel}_${row.verb}_${row.side}`,
+        " ",
+      ).callback(getButton("production_continue").click()),
+      getButton("production_continue").wait(),
+    )
+      .setOption("hideProgressBar", true)
+      .log("Block", blockLabel)
+      .log("Verb", row.verb)
+      .log("Regularity", row.regularity || "Unknown")
+      .log("Form", row.form)
+      .log("Tense", row.side)
+      .log("Entity", row.entity)
+      .log("EventPhrase", row.event_phrase)
+      .log("TargetLabelSentence", row.target_label_sentence)
+      .log("TargetCanonicalSentence", row.target_canonical_sentence)
+      .log("PatternTag", patternTag)
+      .log("ResponseMode", "spoken_production")
+      .log("AutoRecordMS", AUTO_RECORD_MS);
+  };
+
+var practiceDecisionTrial = (trialLabel, row) => {
+  const uniqueLabel = trialLabel;
+  const verbImage = newImage(`practice_${row.verb}`, row.pic).size(400, 400);
+  const recorderId = `${SUBJECT_ID}_${trialLabel}_recorder`.toLowerCase();
+
+  return newTrial(
+    uniqueLabel,
+    defaultText.css({ "font-size": "1.35em", "font-family": "sans-serif" }),
+
+    newCanvas("practice_production_blank", 1200, 700)
+      .css({ "background-color": "white" })
+      .center()
+      .print(),
+    newTimer("practice_production_blank_t", 300).start(),
+    getTimer("practice_production_blank_t").wait(),
+    getCanvas("practice_production_blank").remove(),
+
+    newText("practice_production_fix", "+")
+      .css({ "font-size": "3em", "font-weight": "bold" })
+      .center()
+      .print(),
+    newTimer("practice_production_fix_t", 500).start(),
+    getTimer("practice_production_fix_t").wait(),
+    getText("practice_production_fix").remove(),
+
+    newVoiceRecorder(recorderId).log(),
+    verbImage.center().print(),
+    getVoiceRecorder(recorderId).record(),
+
+    newText(
+      "practice_prompt",
+      "describe this sentence using the appropriate tense and a overt subject.<br>",
+    )
+      .css({
+        "font-size": "1.15em",
+        "margin-top": "14px",
+        "font-weight": "bold",
+      })
+      .center()
+      .print(),
+    newText(
+      "practice_hint",
+      "Example: The Pirate dragged a sack or The pirate will drag a sack.<br>",
+    )
+      .css({ "font-size": "1.0em", "margin-top": "6px" })
+      .center()
+      .print(),
+    newText("practice_hint2", "Recording starts and stops automatically.<br>")
+      .css({ "font-size": "1.05em", "margin-top": "6px" })
+      .center()
+      .print(),
+
+    newText("practice_recording_now", "Recording started! Please speak.<br>")
+      .css({
+        "font-size": "1.1em",
+        "font-weight": "bold",
+        color: "#B00020",
+        "margin-top": "12px",
+      })
+      .center()
+      .print(),
+
+    newTimer("practice_record_window", AUTO_RECORD_MS)
+      .callback(getVoiceRecorder(recorderId).stop())
+      .start(),
+    getTimer("practice_record_window").wait(),
+    getText("practice_recording_now").remove(),
+
+    newButton("practice_continue", "Continue")
+      .bold()
+      .css(button_css)
+      .center()
+      .print(),
+
+    newKey(`practice_space_${row.verb}_${row.side}`, " ").callback(
+      getButton("practice_continue").click(),
+    ),
+    getButton("practice_continue").wait(),
+  )
+    .setOption("hideProgressBar", true)
+    .log("Block", "practice")
+    .log("Verb", row.verb)
+    .log("Regularity", row.regularity || "Unknown")
+    .log("Form", row.form)
+    .log("Tense", row.side)
+    .log("Entity", row.entity)
+    .log("EventPhrase", row.event_phrase)
+    .log("TargetLabelSentence", row.target_label_sentence)
+    .log("TargetCanonicalSentence", row.target_canonical_sentence)
+    .log("ResponseMode", "spoken_production")
+    .log("AutoRecordMS", AUTO_RECORD_MS);
+};
+
+// Fixed P/F patterns used to order production trials.
+// Pattern 0: PAST, FUTURE, FUTURE, PAST, PAST, FUTURE
+// Pattern 1: FUTURE, PAST, PAST, FUTURE, FUTURE, PAST
+const TENSE_PATTERNS = [
+  ["PAST", "FUTURE", "FUTURE", "PAST", "PAST", "FUTURE"],
+  ["FUTURE", "PAST", "PAST", "FUTURE", "FUTURE", "PAST"],
+];
+
+function getTensePatternByIndex(patternIndex) {
+  const safeIndex = Math.abs(Number(patternIndex) || 0) % TENSE_PATTERNS.length;
+  return TENSE_PATTERNS[safeIndex];
+}
+
+function orderItemsByTensePattern(items, patternIndex, previousEntity) {
+  const past = items.filter((it) => it.side === "PAST");
+  const future = items.filter((it) => it.side === "FUTURE");
+  const pattern = Number.isInteger(patternIndex)
+    ? getTensePatternByIndex(patternIndex)
+    : TENSE_PATTERNS[Math.floor(Math.random() * TENSE_PATTERNS.length)];
+
+  const byTense = {
+    PAST: past.slice(),
+    FUTURE: future.slice(),
+  };
+
+  function solve(pos, prevEntity, remaining) {
+    if (pos >= pattern.length) return [];
+
+    const neededTense = pattern[pos];
+    const candidates = remaining[neededTense].filter(
+      (item) => item.entity !== prevEntity,
+    );
+
+    for (let i = 0; i < candidates.length; i++) {
+      const pick = candidates[i];
+      const nextRemaining = {
+        PAST: remaining.PAST.slice(),
+        FUTURE: remaining.FUTURE.slice(),
+      };
+      const pool = nextRemaining[neededTense];
+      const idx = pool.indexOf(pick);
+      if (idx > -1) pool.splice(idx, 1);
+
+      const rest = solve(pos + 1, pick.entity, nextRemaining);
+      if (rest) return [pick].concat(rest);
+    }
+
+    return null;
+  }
+
+  const constrained = solve(0, previousEntity || null, byTense);
+  if (constrained) return constrained;
+
+  // Fallback to tense-only ordering if no constrained solution is found.
+  const pools = {
+    PAST: past.slice(),
+    FUTURE: future.slice(),
+  };
+
+  const ordered = [];
+
+  pattern.forEach((t) => {
+    if (pools[t].length > 0) {
+      ordered.push(pools[t].shift());
+    } else {
+      const other = t === "PAST" ? "FUTURE" : "PAST";
+      if (pools[other].length > 0) {
+        ordered.push(pools[other].shift());
+      }
+    }
+  });
+
+  ordered.push(...pools.PAST, ...pools.FUTURE);
+
+  return ordered;
+}
+
+
+// --- Block Intro Functions ---
+var MIN_TENSE_STUDY_MS = 3000;
+var VERB_WHITE_MS = 400;
+var VERB_FIX_MS = 600;
+var VERB_POST_AUDIO_MS = 2000;
+var ENTITY_DISPLAY_ORDER = ["Pirate", "Wizard", "Chef"];
+
+function uniqueByVerb(items) {
+  const seen = {};
+  const out = [];
+  items.forEach((item) => {
+    if (!seen[item.verb]) {
+      seen[item.verb] = true;
+      out.push(item);
+    }
+  });
+  return out;
+}
+
+function shuffledCopy(items) {
+  const out = items.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+function audioFileForVerb(item) {
+  return `tts_verb_${item.verb}.mp3`;
+}
+
+function audioFileForSentence(item) {
+  const entity = String(item.entity || "").toLowerCase();
+  const tense = String(item.side || "").toLowerCase();
+  return `tts_sent_${entity}_${item.verb}_${tense}.mp3`;
+}
+
+var introTrial = (blockName, items) => {
+  const verbItems = shuffledCopy(uniqueByVerb(items));
+  const commands = [
+    defaultText.css({ "font-size": "1.25em", "font-family": "sans-serif" }),
+    newText("intro_title", "Learn the verbs")
+      .css({ "font-size": "2.2em", "font-weight": "bold" })
+      .center()
+      .print(),
+    newText(
+      "intro_body",
+      "You will now see the actions one by one.<br><br>" +
+        "Listen to each action and study it carefully. When you are ready, click <b>Next</b> or press <b>SPACE</b> to learn the next one.<br><br>" +
+        "You will also hear the verb and the object being told to you, but not the full sentence. Please utter full sentences when describing them.",
+    )
+      .css({ "font-size": "1.25em", "margin-top": "20px" })
+      .center()
+      .print(),
+    newText("intro_space_start", "<p>").print(),
+    newButton("intro_start", "Start")
+      .bold()
+      .css(button_css)
+      .center()
+      .disable()
+      .print(),
+    newTimer(`intro_start_gate_${blockName}`, 900).start(),
+    getTimer(`intro_start_gate_${blockName}`).wait(),
+    getButton("intro_start").enable(),
+    newKey(`intro_start_space_${blockName}`, " ").callback(
+      getButton("intro_start").click(),
+    ),
+    getButton("intro_start").wait(),
+    getText("intro_title").remove(),
+    getText("intro_body").remove(),
+    getButton("intro_start").remove(),
+  ];
+
+  verbItems.forEach((item, idx) => {
+    const n = idx + 1;
+    const audioId = `v_audio_${n}`;
+    commands.push(
+      newCanvas(`vblank_${n}`, 1200, 700)
+        .css({ "background-color": "white" })
+        .center()
+        .print(),
+      newTimer(`vblank_t_${n}`, VERB_WHITE_MS).start(),
+      getTimer(`vblank_t_${n}`).wait(),
+      getCanvas(`vblank_${n}`).remove(),
+      newText(`vcross_${n}`, "+")
+        .css({ "font-size": "5em", "font-weight": "bold" })
+        .center()
+        .print("center at 50vw", "middle at 35vh"),
+      newTimer(`vcross_t_${n}`, VERB_FIX_MS).start(),
+      getTimer(`vcross_t_${n}`).wait(),
+      getText(`vcross_${n}`).remove(),
+      newImage(`vimg_${n}`, item.pic).size(400, 400).center().print(),
+      newText(`vent_${n}`, item.entity)
+        .css({ "font-size": "1.1em" })
+        .center()
+        .print(),
+      newText(`vtxt_${n}`, item.verb)
+        .css({ "font-size": "2.2em", "font-weight": "bold" })
+        .center()
+        .print(),
+      newText(`vobj_${n}`, item.object || "")
+        .css({ "font-size": "1.25em", "margin-top": "6px" })
+        .center()
+        .print(),
+      newAudio(audioId, audioFileForVerb(item)),
+      getAudio(audioId).play(),
+      newTimer(`vmin_${n}`, VERB_POST_AUDIO_MS).start(),
+      // Do not block on audio end; missing/failed files can otherwise freeze the trial.
+      getTimer(`vmin_${n}`).wait(),
+      newText(`vspace2_${n}`, "<p>").print(),
+      newButton(`vnext_${n}`, "Next").bold().css(button_css).center().print(),
+      newKey(`vnext_space_${n}`, " ").callback(getButton(`vnext_${n}`).click()),
+      getButton(`vnext_${n}`).wait(),
+      getImage(`vimg_${n}`).remove(),
+      getText(`vent_${n}`).remove(),
+      getText(`vtxt_${n}`).remove(),
+      getText(`vobj_${n}`).remove(),
+      getButton(`vnext_${n}`).remove(),
+    );
+  });
+
+  return newTrial(`intro_${blockName}`, ...commands).setOption(
+    "hideProgressBar",
+    true,
+  );
+};
+
+var tenseIntroTrial = (blockName, options = {}) =>
+  newTrial(
+    `tense_intro_${blockName}`,
+    newText("title", options.title || "Now let's place events in time")
+      .css({ "font-size": "2.2em", "font-weight": "bold" })
+      .center()
+      .print(),
+    newText(
+      "body",
+      options.body ||
+        "<p>Each character has an event that they completed in the <b>past</b> and an event they will complete in the <b>future</b>.</p>" +
+          "<p>Now we will show you times for each event for each participant.</p>" +
+          "<p>For each item, press <b>SPACE</b> to reveal the picture and hear the sentence audio.</p>" +
+          "<p>Then click <b>Next</b> to continue.</p>",
+    )
+      .css({
+        "font-size": "1.25em",
+        "max-width": "38em",
+        "text-align": "left",
+        "margin-top": "20px",
+      })
+      .center()
+      .print(),
+    newText("space_to_start", options.startPrompt || "Press SPACE to begin.")
+      .css({
+        "font-size": "1.2em",
+        "font-weight": "bold",
+        "margin-top": "16px",
+      })
+      .center()
+      .print(),
+    newKey(`tense_intro_space_${blockName}`, " ").wait(),
+  ).setOption("hideProgressBar", true);
+
+var tensePairTrial = (blockName, items, options = {}) => {
+  const byEntity = {};
+  uniqueByVerb(items).forEach((item) => {
+    if (!byEntity[item.entity])
+      byEntity[item.entity] = { PAST: [], FUTURE: [] };
+    if (!byEntity[item.entity][item.side])
+      byEntity[item.entity][item.side] = [];
+    byEntity[item.entity][item.side].push(item);
+  });
+
+  Object.keys(byEntity).forEach((entity) => {
+    byEntity[entity].PAST = (byEntity[entity].PAST || [])
+      .slice()
+      .sort((a, b) => a.verb.localeCompare(b.verb));
+    byEntity[entity].FUTURE = (byEntity[entity].FUTURE || [])
+      .slice()
+      .sort((a, b) => a.verb.localeCompare(b.verb));
+  });
+
+  const extraEntities = Object.keys(byEntity)
+    .filter((e) => !ENTITY_DISPLAY_ORDER.includes(e))
+    .sort();
+
+  const entityOrder = ENTITY_DISPLAY_ORDER.concat(extraEntities).filter(
+    (e) =>
+      byEntity[e] &&
+      ((byEntity[e].PAST && byEntity[e].PAST.length) ||
+        (byEntity[e].FUTURE && byEntity[e].FUTURE.length)),
+  );
+
+  const rows = [];
+  entityOrder.forEach((entity) => {
+    const pastItems = byEntity[entity].PAST || [];
+    const futureItems = byEntity[entity].FUTURE || [];
+    const rowCount = Math.max(pastItems.length, futureItems.length);
+    for (let i = 0; i < rowCount; i++) {
+      rows.push({
+        entity,
+        pastItem: pastItems[i] || null,
+        futureItem: futureItems[i] || null,
+      });
+    }
+  });
+
+  const orderedItems = [];
+  rows.forEach((row) => {
+    if (row.pastItem) orderedItems.push(row.pastItem);
+    if (row.futureItem) orderedItems.push(row.futureItem);
+  });
+
+  const tensePairImageSize = 250;
+  const rowStartY = 155;
+  const rowStepY = tensePairImageSize + 10;
+  const pairCanvasHeight =
+    rowStartY +
+    Math.max(rows.length - 1, 0) * rowStepY +
+    Math.ceil(tensePairImageSize / 2) +
+    40;
+
+  const itemKey = (item) => `${item.entity}|${item.side}|${item.verb}`;
+  const slotByItemKey = {};
+  rows.forEach((row, idx) => {
+    const rowY = rowStartY + idx * rowStepY;
+    if (row.pastItem) {
+      slotByItemKey[itemKey(row.pastItem)] = { x: 34, y: rowY };
+    }
+    if (row.futureItem) {
+      slotByItemKey[itemKey(row.futureItem)] = { x: 66, y: rowY };
+    }
+  });
+
+  const slotFor = (item) =>
+    slotByItemKey[itemKey(item)] || {
+      x: item.side === "PAST" ? 34 : 66,
+      y: rowStartY,
+    };
+
+  const canvasId = `pairs_canvas_${blockName}`;
+  const commands = [
+    defaultText.css({ "font-size": "1.2em", "font-family": "sans-serif" }),
+    newText("pairs_title", "Tense Assignment")
+      .css({ "font-size": "2.1em", "font-weight": "bold" })
+      .center()
+      .print(),
+    newText(
+      "pairs_body",
+      options.body ||
+        "All items will be shown according to their tense.<br><br>" +
+          "Press <b>SPACE</b> to reveal each item and hear the sentence audio.",
+    )
+      .css({ "font-size": "1.2em", "margin-top": "10px" })
+      .center()
+      .print(),
+    newText("pairs_space_start", options.startPrompt || "Press SPACE to start.")
+      .css({
+        "font-size": "1.2em",
+        "font-weight": "bold",
+        "margin-top": "12px",
+      })
+      .center()
+      .print(),
+    newKey(`pairs_start_space_${blockName}`, " ").wait(),
+    getText("pairs_title").remove(),
+    getText("pairs_body").remove(),
+    getText("pairs_space_start").remove(),
+    newText(`lbl_past_${blockName}`, "Past (Yesterday)").css({
+      "font-size": "1.1em",
+      "font-weight": "bold",
+    }),
+    newText(`lbl_future_${blockName}`, "Future (Tomorrow)").css({
+      "font-size": "1.1em",
+      "font-weight": "bold",
+    }),
+    newCanvas(canvasId, 1200, pairCanvasHeight)
+      .center()
+      .add("center at 34%", "top at 10px", getText(`lbl_past_${blockName}`))
+      .add("center at 66%", "top at 10px", getText(`lbl_future_${blockName}`))
+      .print(),
+  ];
+
+  rows.forEach((row, idx) => {
+    const rowY = rowStartY + idx * rowStepY;
+    const entityId = `${row.entity.toLowerCase()}_${idx + 1}`;
+    commands.push(
+      newText(`row_ent_${blockName}_${entityId}`, `<b>${row.entity}</b>`).css({
+        "font-size": "1.2em",
+      }),
+      getCanvas(canvasId).add(
+        "center at 10%",
+        `middle at ${rowY}px`,
+        getText(`row_ent_${blockName}_${entityId}`),
+      ),
+    );
+  });
+
+  orderedItems.forEach((item, idx) => {
+    const n = idx + 1;
+    const slot = slotFor(item);
+    commands.push(
+      newText(
+        `pwait_${n}`,
+        options.revealPrompt || "Press SPACE to reveal the next item.",
+      )
+        .css({ "font-size": "1.05em", "margin-top": "10px" })
+        .center()
+        .print(),
+      newKey(`preveal_${blockName}_${n}`, " ").wait(),
+      getText(`pwait_${n}`).remove(),
+      newImage(`pimg_${n}`, item.pic).size(
+        tensePairImageSize,
+        tensePairImageSize,
+      ),
+      getCanvas(canvasId).add(
+        `center at ${slot.x}%`,
+        `middle at ${slot.y}px`,
+        getImage(`pimg_${n}`),
+      ),
+      newAudio(`p_audio_${blockName}_${n}`, audioFileForSentence(item)),
+      getAudio(`p_audio_${blockName}_${n}`).play(),
+      newTimer(`pmin_${n}`, MIN_TENSE_STUDY_MS).start(),
+      newButton(`pnext_${n}`, "Next").bold().css(button_css).center().disable(),
+      // Do not block on audio end; missing/failed files can otherwise freeze the trial.
+      getTimer(`pmin_${n}`).wait(),
+      getButton(`pnext_${n}`).print(),
+      getButton(`pnext_${n}`).enable(),
+      newKey(`pnext_space_${blockName}_${n}`, " ").callback(
+        getButton(`pnext_${n}`).click(),
+      ),
+      getButton(`pnext_${n}`).wait(),
+      getButton(`pnext_${n}`).remove(),
+    );
+  });
+
+  return newTrial(`tense_pairs_${blockName}`, ...commands).setOption(
+    "hideProgressBar",
+    true,
+  );
+};
+
+var decisionReadyTrial = (blockName, options = {}) =>
+  newTrial(
+    `ready_${blockName}`,
+    newText("ready_title", options.title || "Get Ready")
+      .css({ "font-size": "2.2em", "font-weight": "bold" })
+      .center()
+      .print(),
+    newText(
+      "ready_body",
+      options.body ||
+        "<p>The description trials start next.</p>" +
+          "<p>Your instructions were framed as 'The pirate's spinning a top is in the past/future'.</p>" +
+          "<p>You are expected to produce canonical sentences without using the -ing form.</p>" +
+          "<p><b>Examples:</b> The Pirate will spin a top. / The Pirate dragged a sack.</p>" +
+          "<p>Speak as soon as possible once you see the picture. Recording starts and stops automatically.</p>" +
+          "<p>Please respond clearly and naturally and describe the scenes in 4 seconds.</p>",
+    )
+      .css({ "font-size": "1.2em", "text-align": "left", "max-width": "36em" })
+      .center()
+      .print(),
+    newButton("ready_button", options.buttonText || "Start Recording Trials")
+      .bold()
+      .css(button_css)
+      .center()
+      .disable()
+      .print(),
+    newTimer(`ready_gate_${blockName}`, 900).start(),
+    getTimer(`ready_gate_${blockName}`).wait(),
+    getButton("ready_button").enable(),
+    newKey(`ready_space_${blockName}`, " ").callback(
+      getButton("ready_button").click(),
+    ),
+    getButton("ready_button").wait(),
+  ).setOption("hideProgressBar", true);
+
+// ==============================
+// 1. DATA DEFINITIONS
+// ==============================
 
 const ENTITIES = ["Pirate", "Chef", "Wizard"];
-
-const verbs = [
-  "blow",
-  "build",
-  "carry",
-  "climb",
-  "dig",
-  "drink",
-  "eat",
-  "paint",
-  "peel",
-  "play",
-  "push",
-  "read",
-  "ride",
-  "shake",
-  "smell",
-  "spin",
-  "stir",
-  "sweep",
-  "wash",
-  "drag",
-];
 
 const PRACTICE_EXTRA_VERBS = ["cut", "hammer"];
 
@@ -323,7 +1061,7 @@ const OBJECT_PHRASE_BY_VERB = {
   hammer: "a nail",
 };
 
-const pastForm = (v) => PAST_FORMS[v] || v + "ed"; // Simple fallback
+const pastForm = (v) => PAST_FORMS[v] || v + "ed";
 const futureForm = (v) => "will " + v;
 const gerundForm = (v) =>
   GERUND_FORMS[v] || (v.endsWith("e") ? `${v.slice(0, -1)}ing` : `${v}ing`);
@@ -347,20 +1085,17 @@ const canonicalSentence = (entity, verb, side) =>
     : `The ${entity} will ${verb} ${objectFor(verb)}.`;
 
 function makeBlockItems(blockVerbs, pastVerbs, entityRotation = 0) {
-  // Split verbs by tense
   const futureVerbs = blockVerbs.filter((v) => !pastVerbs.includes(v));
 
-  // Sort so the assignment is fixed and reproducible
   const pastSorted = pastVerbs.slice().sort();
   const futureSorted = futureVerbs.slice().sort();
 
-  // Map from verb -> entity so each entity gets 1 past, 1 future
   const entityByVerb = {};
 
   ENTITIES.forEach((_, i) => {
     const ent = ENTITIES[(i + entityRotation) % ENTITIES.length];
-    entityByVerb[pastSorted[i]] = ent; // one past per entity
-    entityByVerb[futureSorted[i]] = ent; // one future per entity
+    entityByVerb[pastSorted[i]] = ent;
+    entityByVerb[futureSorted[i]] = ent;
   });
 
   return [
@@ -417,6 +1152,18 @@ function chooseMetaLists(primaryList, count = 3) {
   return [primaryList, ...uniquePool.slice(0, Math.max(0, count - 1))];
 }
 
+// ==============================
+// 2. SEQUENCE HELPERS
+// ==============================
+
+function fisherYates(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 const METABLOCK_ROTATIONS = [0, 1, 2];
 const META_LIST_IDS = chooseMetaLists(LIST_ID, METABLOCK_ROTATIONS.length);
 const metaBlocks = METABLOCK_ROTATIONS.map((rotation, idx) => ({
@@ -430,11 +1177,9 @@ const metaBlocks = METABLOCK_ROTATIONS.map((rotation, idx) => ({
 // ==============================
 
 function registerBlockTrials(blockName, items) {
-  // production trials (two passes per block: one pass per tense pattern)
   items.forEach(trial(blockName, "p1"));
   items.forEach(trial(blockName, "p2"));
 
-  // teaching trials
   introTrial(blockName, items);
   tenseIntroTrial(blockName);
   tensePairTrial(blockName, items);
@@ -455,14 +1200,6 @@ const metaBlockSpecs = metaBlocks.map((meta) => {
 // 4. SEQUENCE
 // ==============================
 
-function fisherYates(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
 function buildBlockSequence(blockOrder, withIntro) {
   const seq = [];
 
@@ -478,7 +1215,6 @@ function buildBlockSequence(blockOrder, withIntro) {
       seq.push(`ready_${b.name}`);
     }
 
-    // Production trials: both tense patterns per block (12 total), randomizing which pattern comes first.
     const patternOrder = fisherYates([0, 1]);
     let previousEntity = null;
     patternOrder.forEach((patternIndex) => {
@@ -495,9 +1231,6 @@ function buildBlockSequence(blockOrder, withIntro) {
         previousEntity = productionItems[productionItems.length - 1].entity;
       }
     });
-
-    // Optional non-blocking checkpoint upload after each completed block.
-    if (ENABLE_ASYNC_UPLOAD_CHECKPOINTS) seq.push("async");
   });
 
   return seq;
@@ -623,7 +1356,7 @@ decisionReadyTrial("practice", {
     "<p style='font-size:1.35em; line-height:1.5;'>" +
     `<b>The ${PRACTICE_ENTITY} cut a bread.</b><br>` +
     "</p>" +
-    "<p>You are going to be recorded while doing and the recording will start with a 'click' sound, and will stop automatically.</p>" +
+    "<p>Speak as soon as possible once you see the picture. The recording will stop automatically.</p>" +
     "<p><b>Do not use pronouns for subjects as in 'he' or 'she'.</b></p>",
   buttonText: "Start Practice Recording",
 });
@@ -732,7 +1465,6 @@ newTrial(
     .center()
     .print()
     .wait(
-      // age must be numeric
       getTextInput("age")
         .test.text(/^\d+$/)
         .failure(
@@ -776,7 +1508,7 @@ newTrial(
       "Your sentences should be in the form of:<br><br>" +
       "<i>The Pirate will spin a top</i> or <i>The Pirate dragged a sack.</i><br><br>" +
       "<b>Important:</b> Do not use pronouns like 'he' or 'she', and do not produce incomplete sentences!<br><br>" +
-      "You will be recorded while you say these sentences out loud and the recording will start with a 'click' sound and will stop automatically. The moment you see the picture, you will hear a click sound.<br>" +
+      "You will be recorded while you say these sentences out loud. Speak as soon as possible once you see the picture, and the recording will stop automatically.<br>" +
       "</li>" +
       "</ol>" +
       "<p>Please speak clearly and naturally, and avoid long pauses. You will have <b>4 seconds</b> for each description.</p>" +
@@ -840,7 +1572,7 @@ newTrial(
     "<p>You will now complete a short practice before the real experiment.</p>" +
       `<p>First, you will learn four actions that ${PRACTICE_ENTITY} did: ${PRACTICE_VERB_TEXT}.</p>` +
       "<p>Then you will be recorded while describing each scene out loud in its <b>appropriate</b> tense.</p>" +
-      "<p>You will have <b>4 seconds</b> to utter the sentences once the click is heard.</p>",
+      "<p>Speak as soon as possible once you see the picture. You will have <b>4 seconds</b> to describe each scene.</p>",
   )
     .css({ "font-size": "1.15em", "max-width": "42em", "text-align": "left" })
     .center()
@@ -875,7 +1607,7 @@ newTrial(
       "<p><b>Important reminder:</b> say full sentences without using pronouns like 'he' or 'she'.</p>" +
       "<p>For example: <i>The Pirate will spin a top</i> or <i>The Pirate spun a top</i></p>" +
       "<p>Please get ready for the first block and make sure that you are in a relatively silent environment.</p>" +
-      "<p>Remember you have only <b>4 seconds</b> to describe the scenes once the click is heard.</p>" +
+      "<p>Remember to speak as soon as possible once you see the picture. You have <b>4 seconds</b> to describe each scene.</p>" +
       "<p>Press <b>SPACE</b> or click <b>Start</b> when you are ready.</p>",
   )
     .css({ "font-size": "1.15em", "max-width": "42em", "text-align": "center" })
@@ -912,14 +1644,14 @@ newTrial(
     .css({ "max-width": "42em", "text-align": "left" })
     .center()
     .print(),
-  newVoiceRecorder("recording_test_recorder").log().center().print(),
+  newVoiceRecorder(`${SUBJECT_ID}_recording_test_recorder`).log().center().print(),
   newButton("recording_test_continue", "Continue")
     .bold()
     .css(button_css)
     .center()
     .print()
     .wait(
-      getVoiceRecorder("recording_test_recorder")
+      getVoiceRecorder(`${SUBJECT_ID}_recording_test_recorder`)
         .test.recorded()
         .failure(
           newText(
@@ -931,7 +1663,7 @@ newTrial(
             .print(),
         )
         .and(
-          getVoiceRecorder("recording_test_recorder")
+          getVoiceRecorder(`${SUBJECT_ID}_recording_test_recorder`)
             .test.hasPlayed()
             .failure(
               newText(
@@ -947,8 +1679,7 @@ newTrial(
 ).setOption("hideProgressBar", true);
 
 const introBlock = [
-  "intro",
-  "consent",
+  ...(isDemoMode ? [] : ["intro", "consent"]),
   "demo",
   "init",
   "recording_test",
@@ -960,33 +1691,11 @@ const introBlock = [
   "tense_pairs_practice",
   "ready_practice",
   ...PRACTICE_PRODUCTION_LABELS,
-  ...(ENABLE_ASYNC_UPLOAD_CHECKPOINTS ? ["async"] : []),
   "exp_ready",
 ];
 
 CheckPreloaded().label("check");
-
-newTrial(
-  "time_summary",
-  newVar("exp_end_timestamp", 0)
-    .global()
-    .set(() => Date.now()),
-  newVar("exp_elapsed_ms", 0)
-    .global()
-    .set(() => Date.now() - EXP_START_TIMESTAMP),
-  newVar("exp_elapsed_min", 0)
-    .global()
-    .set(() => {
-      const elapsed = Date.now() - EXP_START_TIMESTAMP;
-      return Math.round((elapsed / 60000) * 100) / 100;
-    }),
-  newTimer("time_summary_wait", 1).start().wait(),
-)
-  .log("exp_start_timestamp", getVar("exp_start_timestamp"))
-  .log("exp_end_timestamp", getVar("exp_end_timestamp"))
-  .log("exp_elapsed_ms", getVar("exp_elapsed_ms"))
-  .log("exp_elapsed_min", getVar("exp_elapsed_min"))
-  .setOption("hideProgressBar", true);
+UploadRecordings("upload_recordings");
 
 newTrial(
   "debrief",
@@ -1078,9 +1787,8 @@ Sequence(
   ...introBlock,
   "check",
   ...metaSequences.flat(),
-  "time_summary",
+  "upload_recordings",
   "send_results",
   "debrief",
-  "senddebrief",
   "exit_sona",
 );
