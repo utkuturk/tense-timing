@@ -1,0 +1,35 @@
+name: Sync experiment branches
+
+# Each experiment lives twice: as experiments/<name>/ on main, and as the root of
+# a standalone branch <name> that PCIbex fetches assets from at runtime. main is
+# the source of truth; this keeps the branches matching it.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-experiment-branches
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set commit identity
+        run: |
+          git config user.name  "${{ github.event.head_commit.author.name  || github.actor }}"
+          git config user.email "${{ github.event.head_commit.author.email || format('{0}@users.noreply.github.com', github.actor) }}"
+
+      - name: Propagate experiments/ to the experiment branches
+        run: ./experiments/sync-to-branches.sh --push

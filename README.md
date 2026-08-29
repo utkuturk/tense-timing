@@ -30,6 +30,37 @@ This project investigates the dissociation between syntactic planning (tense fea
   [`exp_details.md`](docs/notes/exp_details.md)), and slides and posters
   ([`presentations/`](docs/presentations/)).
 
+## Experiments and their branches
+
+Each experiment lives in two places: as `experiments/<name>/` here on `main`, and
+as the root of a standalone branch `<name>`. The branches exist because PCIbex
+fetches assets at runtime from
+`raw.githubusercontent.com/utkuturk/tense-timing/<branch>/chunk_includes/...`.
+
+**`main` is the source of truth.** Edit `experiments/<name>/` on `main`; the
+branch is derived from it. Pushing a change under `experiments/` to `main` fires
+`.github/workflows/sync-experiment-branches.yml`, which adds a commit to each
+affected branch making its tree match `main` and pushes it. Nothing is rewritten
+or force-pushed, and unaffected branches are left alone.
+
+To do the same by hand, or to check what would change:
+
+```
+experiments/sync-to-branches.sh            # update local branches only
+experiments/sync-to-branches.sh --push     # and push them
+```
+
+It is idempotent, so running it when everything already matches does nothing.
+
+A consequence worth knowing: a commit made directly on an experiment branch stays
+in that branch's history, but its *content* is superseded the next time `main`
+syncs. Make the edit on `main` instead.
+
+The SONA credit links in each `data_includes/main.js` ship as
+`experiment_id=XX&credit_token=XX`. Fill in the real values from the SONA
+researcher dashboard when deploying to PCIbex; they are not kept in this
+repository.
+
 ## Running the pipeline
 
 All scripts take repository-root-relative paths and expect to be run from the
