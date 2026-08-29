@@ -17,9 +17,10 @@ pip-delete-this-directory.txt
 .Rhistory
 .RData
 .Ruserdata
-*.rds
+.Rproj.user
+Rplots.pdf
 
-# IDE
+# IDE / editors
 .vscode/
 .idea/
 *.swp
@@ -29,8 +30,28 @@ pip-delete-this-directory.txt
 .DS_Store
 Thumbs.db
 
-# Project specific
+# Credentials
 token
 .env
-.Rproj.user
-analysis/
+
+# Analysis: track code, figures and the rendered report; ignore heavy artifacts
+analysis/fits/
+analysis/mfa_corpus/
+analysis/mfa_state/
+analysis/mfa_runs/
+analysis/mfa_aligned/
+analysis/mfa_tmp_*/
+analysis/logs/
+analysis/*.pkl
+analysis/*.html
+analysis/analysis_files/
+*.rds
+
+# Data: track derived tables; ignore raw participant archives and recordings
+data/phon/
+data/syn/
+*.zip
+!experiments/**/*.zip
+
+# Superseded local backup of the April 9 run
+backup_apr9_run/
