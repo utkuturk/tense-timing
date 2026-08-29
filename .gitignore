@@ -36,15 +36,11 @@ token
 
 # Analysis: track code, figures and the rendered report; ignore heavy artifacts
 analysis/fits/
-analysis/mfa_corpus/
-analysis/mfa_state/
-analysis/mfa_runs/
-analysis/mfa_aligned/
-analysis/mfa_tmp_*/
+analysis/mfa/
 analysis/logs/
-analysis/*.pkl
 analysis/*.html
 analysis/analysis_files/
+*.pkl
 *.rds
 
 # Data: track derived tables; ignore raw participant archives and recordings

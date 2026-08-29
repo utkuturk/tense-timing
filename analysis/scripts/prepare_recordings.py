@@ -3,13 +3,13 @@
 Parse PCIbex results CSVs to map session UUIDs → SONA IDs,
 then unzip and convert all phon + syntax recordings into an MFA corpus layout:
 
-  mfa_corpus/phon/<sona_id>/<file>.wav
-  mfa_corpus/syntax/<sona_id>/<file>.wav
-  mfa_corpus/phon/rando_<n>/<file>.wav   (no matching SONA ID)
-  mfa_corpus/syntax/rando_<n>/<file>.wav
+  analysis/mfa/corpus/phon/<sona_id>/<file>.wav
+  analysis/mfa/corpus/syntax/<sona_id>/<file>.wav
+  analysis/mfa/corpus/phon/rando_<n>/<file>.wav   (no matching SONA ID)
+  analysis/mfa/corpus/syntax/rando_<n>/<file>.wav
 
 Usage:
-    python3 prepare_recordings.py [--analysis-dir DIR]
+    python3 analysis/scripts/prepare_recordings.py [--analysis-dir DIR]
 """
 
 import argparse
@@ -165,7 +165,7 @@ def main():
 
     analysis = Path(args.analysis_dir).resolve()
     data_dir = Path(args.data_dir).resolve()
-    corpus_root = analysis / "mfa_corpus"
+    corpus_root = analysis / "mfa" / "corpus"
 
     phon_csv = data_dir / args.phon_csv
     syn_csv = data_dir / args.syn_csv

@@ -4,6 +4,7 @@ Pipeline that produced the picture set used in `experiments/`. Every script take
 repository-root-relative paths, so run them from the repository root:
 
 ```
+uv pip install -r stimuli/requirements.txt
 python stimuli/<script>.py --help
 ```
 

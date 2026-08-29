@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 # MFA forced alignment for phon and syntax corpora.
-# Input:  mfa_corpus/{phon,syntax}/<speaker>/<file>.wav + <file>.lab
-# Output: mfa_aligned/{phon,syntax}/<speaker>/<file>.TextGrid
+# Input:  analysis/mfa/corpus/{phon,syntax}/<speaker>/<file>.wav + <file>.lab
+# Output: analysis/mfa/aligned/{phon,syntax}/<speaker>/<file>.TextGrid
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CORPUS_ROOT="${CORPUS_ROOT:-$SCRIPT_DIR/mfa_corpus}"
-ALIGN_ROOT="${ALIGN_ROOT:-$SCRIPT_DIR/mfa_aligned}"
-RUN_ROOT="${RUN_ROOT:-$SCRIPT_DIR/mfa_runs}"
+MFA_DIR="${MFA_DIR:-$(cd "$SCRIPT_DIR/.." && pwd)/mfa}"
+CORPUS_ROOT="${CORPUS_ROOT:-$MFA_DIR/corpus}"
+ALIGN_ROOT="${ALIGN_ROOT:-$MFA_DIR/aligned}"
+RUN_ROOT="${RUN_ROOT:-$MFA_DIR/runs}"
 
 mfa() { conda run -n aligner mfa "$@"; }
 
-export MFA_ROOT_DIR="${MFA_ROOT_DIR:-$SCRIPT_DIR/mfa_state}"
-export MFA_TMP_DIR="${MFA_TMP_DIR:-$SCRIPT_DIR/mfa_tmp}"
+export MFA_ROOT_DIR="${MFA_ROOT_DIR:-$MFA_DIR/state}"
+export MFA_TMP_DIR="${MFA_TMP_DIR:-$MFA_DIR/tmp}"
 
 DICTIONARY_MODEL="english_us_arpa"
 ACOUSTIC_MODEL="english_us_arpa"

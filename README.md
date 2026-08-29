@@ -10,23 +10,37 @@ This project investigates the dissociation between syntactic planning (tense fea
   - [`conceptual-task/`](experiments/conceptual-task/): A non-linguistic decision task. Participants are being thought which event happens when and asked to remember. The trials are ordered in a way that the previous trial is either a prime or not a prime. (PCIbex). Branch: [`conceptual-task`](https://github.com/utkuturk/tense-timing/tree/conceptual-task). [Live demo](https://farm.pcibex.net/r/ZlMqba/)
   - [`morphosyntax/`](experiments/morphosyntax/): A production version of the conceptual task. Intead of the non-linguistic task, participants are asked to produce sentences according to the time and the event taught to them. Branch: [`morphosyntax`](https://github.com/utkuturk/tense-timing/tree/morphosyntax)
   - [`morphophonology/`](experiments/morphophonology/): A version of the morphosyntax experiment, where all participants where asked to produce sentences in past tense. But now the priming is done according to past tense form regularity.  Branch: [`morphophonology`](https://github.com/utkuturk/tense-timing/tree/morphophonology)
-- **`analysis/`**: Analysis source, figures and the rendered report. Model fits, MFA
-  working directories and transcription caches are generated locally and left untracked.
+- **`analysis/`**: Analysis source, figures and the rendered report. Model fits and the
+  MFA working tree are generated locally and left untracked.
   - [`analysis.qmd`](analysis/analysis.qmd): main Quarto analysis; renders to `analysis.pdf`.
   - `fig_output/`: figures produced by `analysis.qmd`.
-  - `prepare_recordings.py`, `transcribe_to_lab.py`, `run_mfa.sh`: recording preparation,
-    transcription and forced alignment pipeline.
-  - `regular_irregular_freqmatch.ipynb` <a target="_blank" href="https://colab.research.google.com/github/utkuturk/tense-timing/blob/main/analysis/regular_irregular_freqmatch.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-  - `experiment_materials_generator.ipynb` <a target="_blank" href="https://colab.research.google.com/github/utkuturk/tense-timing/blob/main/analysis/experiment_materials_generator.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+  - `scripts/`: recording preparation, transcription and forced alignment
+    (`prepare_recordings.sh` → `transcribe_to_lab.py` → `run_mfa.sh`).
+  - `mfa/`: forced-alignment working tree (`corpus/`, `aligned/`, `runs/`, `state/`), untracked.
+  - `notebooks/`:
+    - `regular_irregular_freqmatch.ipynb` <a target="_blank" href="https://colab.research.google.com/github/utkuturk/tense-timing/blob/main/analysis/notebooks/regular_irregular_freqmatch.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+    - `experiment_materials_generator.ipynb` <a target="_blank" href="https://colab.research.google.com/github/utkuturk/tense-timing/blob/main/analysis/notebooks/experiment_materials_generator.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 - **`stimuli/`**: Image generation and selection pipeline for the experiment materials,
   with the resulting scores and the selected image set. Run the scripts from the repository
   root. See [`stimuli/README.md`](stimuli/README.md).
 - **`data/`**: Derived participant tables (`*_june6.csv`) and verb frequency norms. Raw
   per-participant archives and audio recordings live in `data/phon/` and `data/syn/` and
   are untracked.
-- **`presentations/`**: Slides and posters for conferences and talks.
-- **`notes/`**: Research notes, meeting minutes, and experiment design details
-  ([`exp_details.md`](notes/exp_details.md)).
+- **`docs/`**: Research notes and meeting minutes ([`notes/`](docs/notes/), including
+  [`exp_details.md`](docs/notes/exp_details.md)), and slides and posters
+  ([`presentations/`](docs/presentations/)).
+
+## Running the pipeline
+
+All scripts take repository-root-relative paths and expect to be run from the
+repository root:
+
+```
+uv run analysis/scripts/prepare_recordings.sh      # zips -> analysis/mfa/corpus/
+uv run python analysis/scripts/transcribe_to_lab.py  # .wav -> .lab transcripts
+bash analysis/scripts/run_mfa.sh                   # -> analysis/mfa/aligned/
+quarto render analysis/analysis.qmd                # -> analysis.pdf, fig_output/
+```
 
 ## Research Goals
 

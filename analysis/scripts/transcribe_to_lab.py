@@ -8,8 +8,8 @@ Both run up to 5 requests concurrently and use a pickle cache to skip re-runs.
 Skips: rando_* speaker folders, non-resp_ files, files that already have a .lab.
 
 Usage (run from the project root; assemblyai is the default backend):
-  uv run python analysis/transcribe_to_lab.py
-  uv run python analysis/transcribe_to_lab.py --backend google --project-id speech-492821
+  uv run python analysis/scripts/transcribe_to_lab.py
+  uv run python analysis/scripts/transcribe_to_lab.py --backend google --project-id speech-492821
 """
 
 import argparse
@@ -18,16 +18,26 @@ import os
 import pickle
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import pathlib
 from pathlib import Path
 
 os.environ.setdefault("GRPC_VERBOSITY", "ERROR")
 os.environ.setdefault("GRPC_TRACE", "")
 
+LOG_DIR = pathlib.Path(__file__).resolve().parent.parent / "logs"
+
+
+def _log_path() -> pathlib.Path:
+    """Write run logs to analysis/logs/, not the current working directory."""
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    return LOG_DIR / f"transcription_{time.strftime('%Y%m%d_%H%M%S')}.log"
+
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
     handlers=[
-        logging.FileHandler(f"transcription_{time.strftime('%Y%m%d_%H%M%S')}.log"),
+        logging.FileHandler(_log_path()),
         logging.StreamHandler(),
     ],
 )
@@ -169,8 +179,8 @@ def save_cache(path: Path, data: dict):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--backend", choices=["google", "assemblyai"], default="assemblyai")
-    parser.add_argument("--corpus-root", default="analysis/mfa_corpus")
-    parser.add_argument("--cache", default="analysis/transcription_cache.pkl")
+    parser.add_argument("--corpus-root", default="analysis/mfa/corpus")
+    parser.add_argument("--cache", default="analysis/mfa/transcription_cache.pkl")
     parser.add_argument("--no-cache", action="store_true")
     # Google options
     parser.add_argument("--project-id", default=os.getenv("GOOGLE_CLOUD_PROJECT", ""))
