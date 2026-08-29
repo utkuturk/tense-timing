@@ -1,0 +1,6 @@
+.Rproj.user/
+.venv/
+analysis/
+experiments/
+.DS_Store
+.Rhistory
