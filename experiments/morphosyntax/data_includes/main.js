@@ -23,8 +23,9 @@ var ling_sona_link = LING_SONA_LINK_BASE + GetURLParameter("id");
 // Prolific. Set the completion code from the Prolific study page before
 // deploying; the real value is deliberately not kept in this repository.
 const PROLIFIC_COMPLETION_CODE = "XX";
-var prolific_link =
-  "https://app.prolific.com/submissions/complete?cc=" + PROLIFIC_COMPLETION_CODE;
+var prolific_completion_link =
+  "https://app.prolific.com/submissions/complete?cc=" +
+  PROLIFIC_COMPLETION_CODE;
 
 // Which pool the participant came from. Prolific is recognised either from an
 // explicit source=prolific or from Prolific's own PROLIFIC_PID parameter, so a
@@ -1793,25 +1794,27 @@ newTrial(
   ).css(text_css),
   newText(
     "prolific_msg",
-    "<p>Thank you. Returning you to Prolific to complete your submission.</p>" +
-      "<p>If you are not sent back automatically, " +
-      "<a href='" + prolific_link + "'>click here to return to Prolific</a>.</p>",
+    "<p>Thank you for participating.</p>" +
+      "<p>Click the link below to return to Prolific and complete your " +
+      "submission. Your submission is not recorded until you do.</p>",
+  ).css(text_css),
+  newText(
+    "prolific_link",
+    "<p><a href='" +
+      prolific_completion_link +
+      "'>Complete your submission on Prolific.</a></p>",
   ).css(text_css),
   newText(
     "exit_close",
     "<p>When you are finished, you may close this tab.</p>",
   ).css(text_css),
-  newTimer("prolific_redirect_delay", 1500),
-  newFunction("prolific_redirect", () => window.location.assign(prolific_link)),
 
-  // Prolific returns straight to Prolific. SONA participants read the debrief
-  // above, then click through to confirm their credit.
+  // Every pool clicks through: Prolific to complete the submission, SONA to
+  // confirm credit after the debrief above.
   ...(RECRUITMENT === "prolific"
     ? [
         getText("prolific_msg").print().center(),
-        getTimer("prolific_redirect_delay").start(),
-        getTimer("prolific_redirect_delay").wait(),
-        getFunction("prolific_redirect").call(),
+        getText("prolific_link").print().center(),
       ]
     : RECRUITMENT === "psych"
       ? [
