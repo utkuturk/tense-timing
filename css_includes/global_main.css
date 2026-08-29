@@ -1,3 +1,10 @@
+.PennController-Scale .option {
+    margin: 0em 1em;
+}
+div.bar {
+    background-color: #E03A3E;
+}
+
 body {
     color: black;
     background-color: white;
