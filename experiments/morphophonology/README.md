@@ -6,12 +6,9 @@ This README reflects the current implementation in `data_includes/`.
 ## Implementation Snapshot
 
 - Platform: PCIbex + PennController
-- Main entry: `data_includes/main.js`
-- Helpers:
-  - `data_includes/helper_block_intro.js`
-  - `data_includes/helper_trial.js`
-  - `data_includes/helper_break.js`
-  - `data_includes/helper_misc.js`
+- Main entry: `data_includes/main.js`, which holds the whole experiment. The
+  former `helper_block_intro.js`, `helper_trial.js`, `helper_break.js` and
+  `helper_misc.js` were merged into it; there are no separate helper files.
 - Response mode: spoken production with automatic recording windows
 - Recording backend: `InitiateRecorder` + S3 recorder lambda
 - Upload mode: asynchronous checkpoints via `UploadRecordings("async", "noblock")`
@@ -193,5 +190,4 @@ node --check scripts/build_elevenlabs_audio.js
 
 ## Notes
 
-- `tenseIntroTrial`/`tensePairTrial` builders still exist in `helper_block_intro.js` as legacy helpers but are not used in the active sequence.
 - `helper_trial.js` still includes recall-typing helpers not used in the active sequence.

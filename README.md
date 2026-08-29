@@ -73,9 +73,85 @@ bash analysis/scripts/run_mfa.sh                   # -> analysis/mfa/aligned/
 quarto render analysis/analysis.qmd                # -> analysis.pdf, fig_output/
 ```
 
-## Research Goals
+## Research question
 
-1. **Overall Goal**: Test dissociation between syntactic and phonological planning.
+Tense has to be planned before a sentence is spoken, but planning it involves two
+things that can come apart: choosing the tense feature, which is a decision about
+the structure of the sentence, and retrieving the form that realises it, which is
+a decision about the word. If those are separate operations, they should leave
+their traces at different points in the utterance. Selecting a feature happens
+before articulation starts, so it should show up early, at the onset of the
+sentence. Retrieving a form is not needed until the word carrying it is spoken,
+so it should show up late, around the verb.
+
+Each experiment repeats something from the previous trial and asks where in the
+next utterance the repetition helps. Experiment 3 repeats the tense; Experiment 2
+repeats the morphophonological form; Experiment 1 repeats the decision without
+requiring any speech, as a control on whether repetition effects need to be
+linguistic at all.
+
+| Report label | Directory | Task | Repeated across trials |
+|:--|:--|:--|:--|
+| Experiment 1 | `conceptual-task/` | Speeded keypress (`C` past, `M` future) | Tense of the decision |
+| Experiment 2 | `morphophonology/` | Spoken production, all past tense | Regular vs irregular past form |
+| Experiment 3 | `morphosyntax/` | Spoken production, past vs future | Tense |
+| (stimulus norming) | `norming/` | 1-7 sentence-picture fit rating | n/a |
+
+## Findings
+
+Estimates are Bayesian posterior means on the log scale with 95% credible
+intervals; P(dir) is the posterior probability that the effect has the stated
+sign. Full models, priors and checks are in
+[`analysis/analysis.pdf`](analysis/analysis.pdf), which these numbers come from.
+
+**The dissociation holds, with the two effects landing where they were predicted
+to land.** Form repetition acts late and leaves the start of the sentence
+untouched. Tense repetition acts early, at the onset of the subject noun, and
+does not reach the verb. Neither effect appears in the non-linguistic control.
+
+**Experiment 1, conceptual task** (106 participants, 7427 analysed trials).
+Deciding about the future took longer than deciding about the past, 1125 ms
+(SE 11.4) against 1099 ms (SE 11.4), b = 0.028, CrI [0.001, 0.055], P(dir) =
+0.98. Repeating the tense of the decision did nothing: 1108 ms (SE 11.2) primed
+against 1116 ms (SE 11.6) unprimed, b = 0.007, CrI [-0.044, 0.057], P(dir) =
+0.61, and the interaction with tense was centred on zero, b = 0.009, CrI
+[-0.035, 0.052], P(dir) = 0.65. Repetition effects in the production experiments
+therefore cannot be attributed to repeating a decision.
+
+**Experiment 2, morphophonology** (41 participants after exclusions, 3799 of 4344
+trials retained). Repeating an irregular past form shortened the verb, 87
+ms/phone (SE 1.5) after an irregular prime against 100 ms/phone (SE 1.7) when
+unprimed, while regular verbs moved from 94 to 90 ms/phone; b = 0.030, CrI
+[-0.019, 0.068], P(dir) = 0.92. The clearest effect is on pausing before the
+verb: pauses occurred on 28.2% (SE 1.8) of trials before an unprimed irregular
+and 18.6% (SE 1.5) when the previous trial had also used an irregular, against
+16.1% and 17.6% for regulars. All three terms separate, with P(dir) > 0.99 for
+each: irregulars draw more pauses (b = -0.492, CrI [-0.719, -0.271]), repetition
+reduces pausing (b = 0.413, CrI [0.181, 0.639]), and the reduction is larger for
+irregulars (b = 0.690, CrI [0.242, 1.137]). Speech onset was unchanged, 1082 ms
+(SE 10.3) primed against 1083 ms (SE 10.6) unprimed. A form effect that leaves
+onset alone and surfaces at the verb is what a late, form-based locus predicts.
+
+**Experiment 3, morphosyntax** (17 participants after exclusions, 1400 of 1800
+trials retained). Tense affected the utterance throughout: future sentences
+reached the subject noun at 1456 ms (SE 20.8) against 1401 ms (SE 20.1) for past,
+b = 0.046, CrI [0.004, 0.088], P(dir) = 0.98. Tense repetition on its own did
+nothing (b = 0.009, CrI [-0.034, 0.052], P(dir) = 0.67), but it interacted with
+tense at the onset of the subject noun, b = 0.036, CrI [-0.035, 0.106], P(dir) =
+0.85, and at no later measure. With 17 participants this is suggestive rather
+than established; the report estimates that resolving it needs roughly 45.
+
+**Stimulus norming** (12 participants retained of 17, 641 trials; numbers from
+[`experiments/norming/scripts/norming.html`](experiments/norming/scripts/norming.html)).
+The pictures afford past and future descriptions equally well. The
+future-minus-past reading time difference was 13.7 ms, 95% CrI [-166.2, 191.3],
+with P(future > past) = 0.56, and the expected rating difference was -0.273, 95%
+CrI [-0.794, 0.042].
+
+### Open
+
+Experiment 3 is underpowered for its key interaction and is the obvious thing to
+run again. `data/todo.md` tracks the remaining data-side work.
 
 ## Conceptual Task
 

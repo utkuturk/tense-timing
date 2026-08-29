@@ -6,12 +6,9 @@ This README documents the current implementation in `data_includes/` as it is cu
 ## Implementation Snapshot
 
 - Platform: PCIbex + PennController
-- Main entry: `data_includes/main.js`
-- Helper logic:
-  - `data_includes/helper_block_intro.js`
-  - `data_includes/helper_trial.js`
-  - `data_includes/helper_break.js`
-  - `data_includes/helper_misc.js`
+- Main entry: `data_includes/main.js`, which holds the whole experiment. The
+  former `helper_block_intro.js`, `helper_trial.js`, `helper_break.js` and
+  `helper_misc.js` were merged into it; there are no separate helper files.
 - Response modality: spoken production with automatic recording windows
 - Recording backend: PennController `InitiateRecorder` + S3 recorder lambda
 
