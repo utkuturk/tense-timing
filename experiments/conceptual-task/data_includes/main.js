@@ -19,6 +19,23 @@ const LING_SONA_LINK_BASE =
   "https://umlinguistics.sona-systems.com/webstudy_credit.aspx?experiment_id=XX&credit_token=XX&survey_code=";
 var psych_sona_link = PSYCH_SONA_LINK_BASE + GetURLParameter("id");
 var ling_sona_link = LING_SONA_LINK_BASE + GetURLParameter("id");
+
+// Prolific. Set the completion code from the Prolific study page before
+// deploying; the real value is deliberately not kept in this repository.
+const PROLIFIC_COMPLETION_CODE = "XX";
+var prolific_link =
+  "https://app.prolific.com/submissions/complete?cc=" + PROLIFIC_COMPLETION_CODE;
+
+// Which pool the participant came from. Prolific is recognised either from an
+// explicit source=prolific or from Prolific's own PROLIFIC_PID parameter, so a
+// bare Prolific link still lands on the right end page.
+var RECRUITMENT = (function () {
+  var s = String(GetURLParameter("source") || "").toLowerCase();
+  if (s === "prolific" || GetURLParameter("PROLIFIC_PID")) return "prolific";
+  if (s === "psych") return "psych";
+  if (s === "ling") return "ling";
+  return "other";
+})();
 const listOptions = ["a", "b", "c", "d"];
 const requestedListParam = String(GetURLParameter("list") || "")
   .trim()
@@ -39,6 +56,10 @@ Header(
   newVar("list_source", "").global().set(LIST_SOURCE),
 )
   .log("SONA_ID_URL", GetURLParameter("id"))
+  .log("PROLIFIC_PID", GetURLParameter("PROLIFIC_PID"))
+  .log("PROLIFIC_STUDY_ID", GetURLParameter("STUDY_ID"))
+  .log("PROLIFIC_SESSION_ID", GetURLParameter("SESSION_ID"))
+  .log("recruitment", RECRUITMENT)
   .log("source", GetURLParameter("source"))
   .log("exp_start_timestamp", getVar("exp_start_timestamp"))
   .log("requested_list", getVar("requested_list"))
@@ -806,19 +827,44 @@ newTrial(
     "fallback_msg",
     "<p>Thank you for your participation. Your credit will be approved within 3 days after the due date of the experiment.</p>",
   ).css(text_css),
-  getVar("source")
-    .test.is("psych")
-    .success(getText("exit_sona_msg").print(), getText("psych_link").print())
-    .failure(
-      getVar("source")
-        .test.is("ling")
-        .success(getText("exit_sona_msg").print(), getText("ling_link").print())
-        .failure(getText("fallback_msg").print()),
-    ),
-  newText("exit_close", "<p>When you are finished, you may close this tab.</p>")
-    .css(text_css)
-    .print()
-    .center(),
+  newText(
+    "prolific_msg",
+    "<p>Thank you. Returning you to Prolific to complete your submission.</p>" +
+      "<p>If you are not sent back automatically, " +
+      "<a href='" + prolific_link + "'>click here to return to Prolific</a>.</p>",
+  ).css(text_css),
+  newText(
+    "exit_close",
+    "<p>When you are finished, you may close this tab.</p>",
+  ).css(text_css),
+  newTimer("prolific_redirect_delay", 1500),
+  newFunction("prolific_redirect", () => window.location.assign(prolific_link)),
+
+  // Prolific returns straight to Prolific. SONA participants read the debrief
+  // above, then click through to confirm their credit.
+  ...(RECRUITMENT === "prolific"
+    ? [
+        getText("prolific_msg").print().center(),
+        getTimer("prolific_redirect_delay").start(),
+        getTimer("prolific_redirect_delay").wait(),
+        getFunction("prolific_redirect").call(),
+      ]
+    : RECRUITMENT === "psych"
+      ? [
+          getText("exit_sona_msg").print().center(),
+          getText("psych_link").print().center(),
+          getText("exit_close").print().center(),
+        ]
+      : RECRUITMENT === "ling"
+        ? [
+            getText("exit_sona_msg").print().center(),
+            getText("ling_link").print().center(),
+            getText("exit_close").print().center(),
+          ]
+        : [
+            getText("fallback_msg").print().center(),
+            getText("exit_close").print().center(),
+          ]),
   newButton().wait(),
 ).setOption("hideProgressBar", true);
 
