@@ -829,45 +829,53 @@ newTrial(
     "<p>Thank you for your participation. Your credit will be approved within 3 days after the due date of the experiment.</p>",
   ).css(text_css),
   newText(
-    "prolific_msg",
-    "<p>Thank you for participating.</p>" +
-      "<p>Click the link below to return to Prolific and complete your " +
-      "submission. Your submission is not recorded until you do.</p>",
+    "exit_close",
+    "<p>When you are finished, you may close this tab.</p>",
   ).css(text_css),
+
+  ...(RECRUITMENT === "psych"
+    ? [
+        getText("exit_sona_msg").print().center(),
+        getText("psych_link").print().center(),
+        getText("exit_close").print().center(),
+      ]
+    : RECRUITMENT === "ling"
+      ? [
+          getText("exit_sona_msg").print().center(),
+          getText("ling_link").print().center(),
+          getText("exit_close").print().center(),
+        ]
+      : [
+          getText("fallback_msg").print().center(),
+          getText("exit_close").print().center(),
+        ]),
+  newButton().wait(),
+).setOption("hideProgressBar", true);
+
+
+newTrial(
+  "exit_prolific",
+  newText("exit_thanks", "<center><b>Thank you for participating!</b></center>")
+    .css(text_css)
+    .print()
+    .center(),
+  newText(
+    "prolific_msg",
+    "<p>Click the link below to return to Prolific and complete your " +
+      "submission. Your submission is not recorded until you do.</p>",
+  )
+    .css(text_css)
+    .print()
+    .center(),
   newText(
     "prolific_link",
     "<p><a href='" +
       prolific_completion_link +
       "'>Complete your submission on Prolific.</a></p>",
-  ).css(text_css),
-  newText(
-    "exit_close",
-    "<p>When you are finished, you may close this tab.</p>",
-  ).css(text_css),
-
-  // Every pool clicks through: Prolific to complete the submission, SONA to
-  // confirm credit after the debrief above.
-  ...(RECRUITMENT === "prolific"
-    ? [
-        getText("prolific_msg").print().center(),
-        getText("prolific_link").print().center(),
-      ]
-    : RECRUITMENT === "psych"
-      ? [
-          getText("exit_sona_msg").print().center(),
-          getText("psych_link").print().center(),
-          getText("exit_close").print().center(),
-        ]
-      : RECRUITMENT === "ling"
-        ? [
-            getText("exit_sona_msg").print().center(),
-            getText("ling_link").print().center(),
-            getText("exit_close").print().center(),
-          ]
-        : [
-            getText("fallback_msg").print().center(),
-            getText("exit_close").print().center(),
-          ]),
+  )
+    .css(text_css)
+    .print()
+    .center(),
   newButton().wait(),
 ).setOption("hideProgressBar", true);
 
@@ -877,7 +885,7 @@ Sequence(
   ...metaSequences.flat(),
   "time_summary",
   "send_results",
-  "debrief",
-  "senddebrief",
-  "exit_sona",
+  ...(RECRUITMENT === "prolific"
+    ? ["exit_prolific"]
+    : ["debrief", "senddebrief", "exit_sona"]),
 );

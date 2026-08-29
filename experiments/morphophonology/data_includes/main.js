@@ -35,6 +35,16 @@ var RECRUITMENT = (function () {
   if (s === "ling") return "ling";
   return "other";
 })();
+
+// Self-contained so it does not depend on PennController.DownloadRecordingButton
+// existing at load time. The onclick runs at click time, by which point
+// downloadRecordingsArchive has been defined by the UploadRecordings trial.
+var DOWNLOAD_RECORDINGS_BUTTON =
+  '<button type="button" style="font-size:1.2em;padding:10px 20px;" ' +
+  "onclick=\"try { PennController.downloadRecordingsArchive(); } " +
+  "catch (e) { alert('Your recordings are not ready yet. " +
+  "Please wait a few seconds and try again.'); }\">" +
+  "Download your recordings</button>";
 const isDemoMode = GetURLParameter("id") === "demo";
 const SUBJECT_ID = isDemoMode
   ? "demo"
@@ -1413,56 +1423,122 @@ newTrial(
     "<p>Thank you for your participation. Your credit will be approved within 3 days after the due date of the experiment.</p>",
   ).css(text_css),
   newText(
-    "prolific_msg",
-    "<p>Thank you for participating.</p>" +
-      "<p>Click the link below to return to Prolific and complete your " +
-      "submission. Your submission is not recorded until you do.</p>",
-  ).css(text_css),
-  newText(
-    "prolific_link",
-    "<p><a href='" +
-      prolific_completion_link +
-      "'>Complete your submission on Prolific.</a></p>",
-  ).css(text_css),
-  newText(
     "exit_close",
     "<p>When you are finished, you may close this tab.</p>",
   ).css(text_css),
 
-  // Every pool clicks through: Prolific to complete the submission, SONA to
-  // confirm credit after the debrief above.
-  ...(RECRUITMENT === "prolific"
+  ...(RECRUITMENT === "psych"
     ? [
-        getText("prolific_msg").print().center(),
-        getText("prolific_link").print().center(),
+        getText("exit_sona_msg").print().center(),
+        getText("psych_link").print().center(),
+        getText("exit_close").print().center(),
       ]
-    : RECRUITMENT === "psych"
+    : RECRUITMENT === "ling"
       ? [
           getText("exit_sona_msg").print().center(),
-          getText("psych_link").print().center(),
+          getText("ling_link").print().center(),
           getText("exit_close").print().center(),
         ]
-      : RECRUITMENT === "ling"
-        ? [
-            getText("exit_sona_msg").print().center(),
-            getText("ling_link").print().center(),
-            getText("exit_close").print().center(),
-          ]
-        : [
-            getText("fallback_msg").print().center(),
-            getText("exit_close").print().center(),
-          ]),
+      : [
+          getText("fallback_msg").print().center(),
+          getText("exit_close").print().center(),
+        ]),
   newButton().wait(),
 ).setOption("hideProgressBar", true);
 
 UploadRecordings("upload_recordings");
 
+
+newTrial(
+  "exit_prolific",
+  newText("exit_thanks", "<center><b>Thank you for participating!</b></center>")
+    .css(text_css)
+    .print()
+    .center(),
+  newText(
+    "prolific_msg",
+    "<p>Click the link below to return to Prolific and complete your " +
+      "submission. Your submission is not recorded until you do.</p>",
+  )
+    .css(text_css)
+    .print()
+    .center(),
+  newText(
+    "prolific_link",
+    "<p><a href='" +
+      prolific_completion_link +
+      "'>Complete your submission on Prolific.</a></p>",
+  )
+    .css(text_css)
+    .print()
+    .center(),
+  newButton().wait(),
+).setOption("hideProgressBar", true);
+
+newTrial(
+  "end_explanation",
+  newText("end_title", "<b>The experiment has now ended.</b>")
+    .css({ "font-size": "1.6em" })
+    .print()
+    .center(),
+  newText(
+    "end_body",
+    "<p>Your recordings will be sent in three steps. You may see multiple " +
+      "&quot;results sent&quot; or a similar message.</p>" +
+      "<p><b>Please do not close this page until you are told it is safe to " +
+      "do so.</b></p>",
+  )
+    .css(text_css)
+    .print()
+    .center(),
+  newButton("end_continue", "Continue").css(button_css).center().print(),
+  getButton("end_continue").wait(),
+).setOption("hideProgressBar", true);
+
+// The recordings archive is built inside UploadRecordings, which is also where
+// PennController defines downloadRecordingsArchive. The button therefore only
+// works once that trial has run, so this page follows the upload rather than
+// preceding it. The archive is created before the upload is attempted, so the
+// copy is still available even if the upload itself fails.
+newTrial(
+  "download_recordings",
+  newText("download_title", "<b>Download your recordings</b>")
+    .css({ "font-size": "1.6em" })
+    .print()
+    .center(),
+  newText(
+    "download_body",
+    "<p>Please save a copy of your recordings before continuing. " +
+      "This is a backup in case the upload did not go through.</p>",
+  )
+    .css(text_css)
+    .print()
+    .center(),
+  newText("download_button", DOWNLOAD_RECORDINGS_BUTTON).print().center(),
+  newText(
+    "download_note",
+    "<p>Once you have saved the file, click Continue. " +
+      "<b>Do not close this page yet.</b></p>",
+  )
+    .css(text_css)
+    .print()
+    .center(),
+  newButton("download_continue", "Continue")
+    .css(button_css)
+    .center()
+    .print(),
+  getButton("download_continue").wait(),
+).setOption("hideProgressBar", true);
+
 Sequence(
   ...introBlock,
   "check",
   ...metaSequences.flat(),
+  "end_explanation",
   "upload_recordings",
+  "download_recordings",
   "send_results",
-  "debrief",
-  "exit_sona",
+  ...(RECRUITMENT === "prolific"
+    ? ["exit_prolific"]
+    : ["debrief", "exit_sona"]),
 );

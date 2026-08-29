@@ -53,6 +53,33 @@ function sepWithN(sep, main, n) {
   return new SepWithN(sep, main, n);
 }
 
+
+newTrial(
+  "exit_prolific",
+  newText("exit_thanks", "<center><b>Thank you for participating!</b></center>")
+    .css(bodyCss)
+    .print()
+    .center(),
+  newText(
+    "prolific_msg",
+    "<p>Click the link below to return to Prolific and complete your " +
+      "submission. Your submission is not recorded until you do.</p>",
+  )
+    .css(bodyCss)
+    .print()
+    .center(),
+  newText(
+    "prolific_link",
+    "<p><a href='" +
+      prolific_completion_link +
+      "'>Complete your submission on Prolific.</a></p>",
+  )
+    .css(bodyCss)
+    .print()
+    .center(),
+  newButton().wait(),
+).setOption("hideProgressBar", true);
+
 Sequence(
   "setcounter",
   "intro",
@@ -68,9 +95,9 @@ Sequence(
   "exp_start",
   sepWithN("break", rshuffle("experiment", "filler"), BREAK_EVERY),
   "sendresults",
-  "debrief",
-  "senddebrief",
-  "exit_sona"
+  ...(RECRUITMENT === "prolific"
+    ? ["exit_prolific"]
+    : ["debrief", "senddebrief", "exit_sona"])
 );
 
 Header(
@@ -546,44 +573,25 @@ newTrial(
     "<p>Thank you for your participation. Your credit will be approved within 3 days after the due date of the experiment.</p>"
   ).css(bodyCss),
   newText(
-    "prolific_msg",
-    "<p>Thank you for participating.</p>" +
-      "<p>Click the link below to return to Prolific and complete your " +
-      "submission. Your submission is not recorded until you do.</p>",
-  ).css(bodyCss),
-  newText(
-    "prolific_link",
-    "<p><a href='" +
-      prolific_completion_link +
-      "'>Complete your submission on Prolific.</a></p>",
-  ).css(bodyCss),
-  newText(
     "exit_close",
     "<p>When you are finished, you may close this tab.</p>",
   ).css(bodyCss),
 
-  // Every pool clicks through: Prolific to complete the submission, SONA to
-  // confirm credit after the debrief above.
-  ...(RECRUITMENT === "prolific"
+  ...(RECRUITMENT === "psych"
     ? [
-        getText("prolific_msg").print().center(),
-        getText("prolific_link").print().center(),
+        getText("exit_sona_msg").print().center(),
+        getText("psych_link").print().center(),
+        getText("exit_close").print().center(),
       ]
-    : RECRUITMENT === "psych"
+    : RECRUITMENT === "ling"
       ? [
           getText("exit_sona_msg").print().center(),
-          getText("psych_link").print().center(),
+          getText("ling_link").print().center(),
           getText("exit_close").print().center(),
         ]
-      : RECRUITMENT === "ling"
-        ? [
-            getText("exit_sona_msg").print().center(),
-            getText("ling_link").print().center(),
-            getText("exit_close").print().center(),
-          ]
-        : [
-            getText("fallback_msg").print().center(),
-            getText("exit_close").print().center(),
-          ]),
+      : [
+          getText("fallback_msg").print().center(),
+          getText("exit_close").print().center(),
+        ]),
   newButton().wait(),
 ).setOption("hideProgressBar", true);
