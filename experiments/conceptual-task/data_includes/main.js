@@ -10,6 +10,9 @@ PreloadZip(
   "https://raw.githubusercontent.com/utkuturk/tense-timing/norming/chunk_includes/pictures.zip",
 );
 const EXP_START_TIMESTAMP = Date.now();
+// SONA credit links. Set experiment_id and credit_token from the SONA
+// researcher dashboard for this study before deploying to PCIbex; the real
+// values are deliberately not kept in this repository.
 const PSYCH_SONA_LINK_BASE =
   "https://umpsychology.sona-systems.com/webstudy_credit.aspx?experiment_id=XX&credit_token=XX&survey_code=";
 const LING_SONA_LINK_BASE =
