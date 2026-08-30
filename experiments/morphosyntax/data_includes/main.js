@@ -1814,6 +1814,15 @@ newTrial(
     .print()
     .center(),
   newText(
+    "download_msg",
+    "<p>Your responses have been sent. Please also save a copy of your " +
+      "recordings for your own records.</p>",
+  )
+    .css(text_css)
+    .print()
+    .center(),
+  newText("download_button", DOWNLOAD_RECORDINGS_BUTTON).print().center(),
+  newText(
     "exit_sona_msg",
     "<p>You can confirm your participation on SONA by clicking the link below:</p>",
   ).css(text_css),
@@ -1861,6 +1870,15 @@ newTrial(
     .print()
     .center(),
   newText(
+    "download_msg",
+    "<p>Your responses have been sent. Please also save a copy of your " +
+      "recordings for your own records.</p>",
+  )
+    .css(text_css)
+    .print()
+    .center(),
+  newText("download_button", DOWNLOAD_RECORDINGS_BUTTON).print().center(),
+  newText(
     "prolific_msg",
     "<p>Click the link below to return to Prolific and complete your " +
       "submission. Your submission is not recorded until you do.</p>",
@@ -1900,39 +1918,6 @@ newTrial(
   getButton("end_continue").wait(),
 ).setOption("hideProgressBar", true);
 
-// PennController defines downloadRecordingsArchive inside UploadRecordings,
-// when the zip is built, so this page has to follow that trial. The archive is
-// created before the upload is attempted, so the copy is available whether the
-// upload succeeded or failed.
-newTrial(
-  "download_recordings",
-  newText("download_title", "<b>Download your recordings</b>")
-    .css({ "font-size": "1.6em" })
-    .print()
-    .center(),
-  newText(
-    "download_body",
-    "<p>Your responses have been sent. Please also save your own copy " +
-      "of the recordings, whether or not the upload succeeded.</p>",
-  )
-    .css(text_css)
-    .print()
-    .center(),
-  newText("download_button", DOWNLOAD_RECORDINGS_BUTTON).print().center(),
-  newText(
-    "download_note",
-    "<p>Once you have saved the file, click Continue. " +
-      "<b>Do not close this page yet.</b></p>",
-  )
-    .css(text_css)
-    .print()
-    .center(),
-  newButton("download_continue", "Continue")
-    .css(button_css)
-    .center()
-    .print(),
-  getButton("download_continue").wait(),
-).setOption("hideProgressBar", true);
 
 Sequence(
   ...introBlock,
@@ -1941,7 +1926,6 @@ Sequence(
   "end_explanation",
   "upload_recordings",
   "send_results",
-  "download_recordings",
   ...(RECRUITMENT === "prolific"
     ? ["exit_prolific"]
     : ["debrief", "exit_sona"]),
