@@ -47,6 +47,33 @@ var DOWNLOAD_RECORDINGS_BUTTON =
   "catch (e) { alert('Your recordings are not ready yet. " +
   "Please wait a few seconds and try again.'); }\">" +
   "Download your recordings</button>";
+
+// If the upload fails, PennController appends its own error message plus a
+// link whose click both downloads the recordings archive and continues the
+// sequence. Reword both so they match this experiment's instructions. Adapted
+// from the PCIbex pattern; polled on an interval rather than per animation
+// frame so it costs nothing across a long session, and it stops once it fires.
+var uploadErrorWatcher = setInterval(function () {
+  if (typeof $ === "undefined") return;
+  var msg = $(".PennController-PennController p:nth-child(2)");
+  if (
+    msg.length > 0 &&
+    /^There was an error uploading the recordings:/.test(msg[0].innerHTML)
+  ) {
+    msg
+      .html(
+        "<b>Your recordings could not be uploaded automatically.</b> " +
+          "Nothing is lost: you can save them yourself and we will collect " +
+          "them from you.",
+      )
+      .siblings(".Message-continue-link")
+      .html(
+        "Click here to download a copy of your recordings and continue. " +
+          "Please do not close this page afterwards.",
+      );
+    clearInterval(uploadErrorWatcher);
+  }
+}, 400);
 const listOptions = ["a", "b", "c", "d"];
 const requestedListParam = String(GetURLParameter("list") || "")
   .trim()
@@ -1873,11 +1900,10 @@ newTrial(
   getButton("end_continue").wait(),
 ).setOption("hideProgressBar", true);
 
-// The recordings archive is built inside UploadRecordings, which is also where
-// PennController defines downloadRecordingsArchive. The button therefore only
-// works once that trial has run, so this page follows the upload rather than
-// preceding it. The archive is created before the upload is attempted, so the
-// copy is still available even if the upload itself fails.
+// PennController defines downloadRecordingsArchive inside UploadRecordings,
+// when the zip is built, so this page has to follow that trial. The archive is
+// created before the upload is attempted, so the copy is available whether the
+// upload succeeded or failed.
 newTrial(
   "download_recordings",
   newText("download_title", "<b>Download your recordings</b>")
@@ -1886,8 +1912,8 @@ newTrial(
     .center(),
   newText(
     "download_body",
-    "<p>Please save a copy of your recordings before continuing. " +
-      "This is a backup in case the upload did not go through.</p>",
+    "<p>Your responses have been sent. Please also save your own copy " +
+      "of the recordings, whether or not the upload succeeded.</p>",
   )
     .css(text_css)
     .print()
@@ -1914,8 +1940,8 @@ Sequence(
   ...metaSequences.flat(),
   "end_explanation",
   "upload_recordings",
-  "download_recordings",
   "send_results",
+  "download_recordings",
   ...(RECRUITMENT === "prolific"
     ? ["exit_prolific"]
     : ["debrief", "exit_sona"]),
