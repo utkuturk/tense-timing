@@ -1,193 +1,150 @@
 # Tense Timing: Morphophonological Production (Regular vs Irregular)
 
-This repository contains a PCIbex/PennController spoken-production experiment.
-This README reflects the current implementation in `data_includes/`.
+A PCIbex spoken-production experiment. Participants learn which action goes with
+which character, then describe pictures out loud in the past tense. Every
+response is recorded. The manipulation is whether the previous trial used a verb
+of the same morphophonological type, regular or irregular, so the question is
+what repeating a past-tense *form* does to the next utterance.
 
-## Implementation Snapshot
+Production is past tense throughout. Tense never varies here; that is the
+`morphosyntax` experiment.
 
-- Platform: PCIbex + PennController
-- Main entry: `data_includes/main.js`, which holds the whole experiment. The
-  former `helper_block_intro.js`, `helper_trial.js`, `helper_break.js` and
-  `helper_misc.js` were merged into it; there are no separate helper files.
-- Response mode: spoken production with automatic recording windows
-- Recording backend: `InitiateRecorder` + S3 recorder lambda
-- Upload mode: asynchronous checkpoints via `UploadRecordings("async", "noblock")`
+## What a participant does
 
-## Assets
+1. Reads the introduction and consents.
+2. Answers a few demographic questions.
+3. Grants microphone access and makes a test recording.
+4. Reads the instructions, learns two practice verbs, and produces two practice
+   sentences.
+5. Works through three meta-blocks. Each opens by teaching six verbs for that
+   block, then asks for twelve spoken descriptions. Breaks come between blocks.
+6. Reaches the end screen, waits while the recordings and results are sent, is
+   offered a copy of their own recordings, and then claims credit or payment.
 
-At runtime, `main.js` preloads zips from:
+About 108 recorded sentences per participant, plus the two practice ones.
 
-- `https://raw.githubusercontent.com/utkuturk/tense-timing/morphosyntax/chunk_includes/elevenlabs_audio.zip`
-- `https://raw.githubusercontent.com/utkuturk/tense-timing/morphosyntax/chunk_includes/pictures.zip`
+## Design
 
-## Stimuli
+Characters: Pirate, Chef, Wizard.
 
-Entities:
-
-- `Pirate`, `Chef`, `Wizard`
-
-Main verbs (18 total; 6 per block):
+Eighteen verbs, six per block:
 
 - Block 1: `drink, read, eat, paint, wash, push`
 - Block 2: `build, sweep, ride, climb, stir, peel`
 - Block 3: `blow, dig, shake, carry, play, smell`
 
-Practice verbs:
+Practice verbs: `spin`, `drag`.
 
-- `spin`, `drag` (both produced in past tense)
+Irregular set: `blow, build, dig, drink, eat, read, ride, shake, spin, sweep`.
+Everything else is regular. Each block holds exactly three of each, so
+regularity can repeat or switch from trial to trial without confounding block.
 
-Regularity grouping in the active design:
+Each block runs twice, once under each regularity order:
 
-- Irregular set: `blow, build, dig, drink, eat, read, ride, shake, spin, sweep`
-- Regular set: all remaining verbs
-- Each main block is constructed to contain exactly 3 irregular + 3 regular verbs
+```
+Pattern 1:  I R R I I R
+Pattern 2:  R I I R R I
+```
 
-## Cue/Response Design
+Which pattern comes first is randomised per block. Block order is shuffled
+within each meta-block, entity-to-verb assignment rotates across the three
+meta-blocks, and the ordering avoids putting the same character back to back.
 
-- Production is **past tense only**.
-- Participants produce canonical past forms (e.g., `The Pirate spun a top.`).
-- Item metadata still includes conceptual labels in past form:
-  - `The Pirate's spinning a top is in the past.`
+## Sequence
 
-Note: tense-learning trials are not in the active sequence.
+What the participant sees, in order:
 
-## Randomization and Ordering
+| | Screen |
+|:--|:--|
+| 1 | Introduction, consent, demographics |
+| 2 | Microphone permission and a test recording |
+| 3 | Instructions, then two practice sentences |
+| 4 | Three meta-blocks: learn six verbs, produce twelve sentences, break |
+| 5 | "The experiment has now ended" — asks them not to close the page |
+| 6 | Recordings upload, then results are sent |
+| 7 | Exit page: download your own copy, then claim credit or payment |
 
-### Entity rotation
+In code:
 
-- 3 meta-rotations: `0, 1, 2`
-- Rotates entity assignment to verbs across meta-blocks.
+```js
+Sequence(
+  ...introBlock,
+  "check",
+  ...metaSequences.flat(),
+  "end_explanation",
+  "upload_recordings",
+  "send_results",
+  ...(RECRUITMENT === "prolific"
+    ? ["exit_prolific"]
+    : ["debrief", "exit_sona"]),
+);
+```
 
-### Block order
+Results are sent *after* the upload on purpose: the results file then carries the
+`UploadRecordings` rows that `analysis/scripts/prepare_recordings.py` reads, and
+records whether the upload succeeded.
 
-- Within each meta-block, the 3 blocks are shuffled (Fisher-Yates).
+## Recruitment and the end pages
 
-### Regularity-pattern order
+The `source` URL parameter, or Prolific's own `PROLIFIC_PID`, decides where a
+participant is sent at the end.
 
-Each block is presented twice (12 production trials total), once with each fixed regularity pattern:
+- **SONA** (`source=psych` or `source=ling`): debrief questions, then a link
+  that confirms participation and grants credit.
+- **Prolific**: straight to an exit page with the completion link.
+- **Anything else**: a message saying credit will be approved manually.
 
-- Pattern 1: `I R R I I R`
-- Pattern 2: `R I I R R I`
+Both exit pages offer a download of the participant's own recordings before the
+credit or payment link.
 
-Pattern order is randomized per block, and ordering tries to avoid immediate same-entity repetition.
+If the upload fails, PCIbex shows its own error screen with a link that saves the
+recordings and continues. The experiment rewords that screen and carries on, so
+the results are still sent.
 
-## Experiment Flow
+## Recordings
 
-Global sequence:
+Each recording is named:
 
-`Sequence(...introBlock, "check", ...metaSequences.flat(), "time_summary", "send_results", "debrief", "senddebrief", "exit_sona")`
+```
+resp_{participant}_{session}_m{metablock}_block{block}_p{pattern}_{verb}_{tense}
+```
 
-### Intro block
+`participant` is the Prolific PID or the SONA id, reduced to alphanumerics.
+`session` is a random per-session id, so two runs by the same person stay apart.
+Names carrying these ids need no lookup to be traced back to a participant.
 
-1. `intro`
-2. `consent`
-3. `demo`
-4. `init`
-5. `recording_test`
-6. `instructions`
-7. `practice_intro`
-8. `intro_practice` (verb learning only)
-9. `ready_practice`
-10. 2 practice production trials
-11. `async` (non-blocking upload checkpoint)
-12. `exp_ready`
+Recordings made before this naming was introduced start straight at
+`resp_m1_...` with no ids. The analysis handles both.
 
-### Main task
+## Logged per trial
 
-- 3 meta-blocks (`m1`, `m2`, `m3`)
-- each meta-block has 3 shuffled blocks
-- breaks between blocks and before meta-blocks 2/3
+Block, verb, form, tense, regularity, entity, the target sentence in both
+labelled and canonical form, the pattern tag, and the recording filename.
+Session-level: the participant and session ids, the recruitment source, and the
+Prolific study and session ids when present.
 
-Per main block:
+The debrief adds technical issues, instruction clarity, and free-text feedback.
 
-1. `intro_<block>` (verb learning)
-2. `ready_<block>`
-3. 12 production trials (6 items x 2 regularity patterns)
-4. `async` upload checkpoint
+## Stimulus audio
 
-Totals per participant:
-
-- 9 main blocks
-- 108 main production trials
-- 2 practice production trials
-
-## Trial Timing
-
-### Verb learning (`introTrial`)
-
-- White screen: `300 ms`
-- Fixation: `500 ms`
-- Verb audio: `tts_verb_<verb>.mp3`
-- Post-audio minimum gate: `1000 ms`
-
-### Production (`trial`, `practiceDecisionTrial`)
-
-- White screen: `300 ms`
-- Fixation: `500 ms`
-- Picture onset:
-  - click sound
-  - automatic recording start
-- Recording window: `4500 ms` (`AUTO_RECORD_MS`)
-- Recording auto-stops, then participant continues
-
-## Data Logging
-
-Header/global:
-
-- SONA ID URL parameter
-- `source` URL parameter
-- experiment start timestamp
-
-Production logs include:
-
-- `Block`, `Verb`, `Form`, `Tense`, `Regularity`, `Entity`
-- `EventPhrase`
-- `TargetLabelSentence`
-- `TargetCanonicalSentence`
-- `PatternTag`
-- `ResponseMode`
-- `AutoRecordMS`
-- `ProductionRT`
-
-Debrief logs:
-
-- technical issues
-- instruction clarity
-- free-text feedback
-
-Time summary logs:
-
-- start/end timestamps
-- elapsed ms/min
-
-## ElevenLabs Build
-
-Script:
-
-- `scripts/build_elevenlabs_audio.js`
-
-Outputs:
-
-- `chunk_includes/elevenlabs_audio/manifest.json`
-- `chunk_includes/elevenlabs_audio/texts.tsv`
-- `chunk_includes/elevenlabs_audio.zip`
-
-Generate/overwrite:
+Spoken prompts are pre-generated rather than synthesised in the browser:
 
 ```bash
 FORCE_REGEN=1 ELEVENLABS_API_KEY=... node scripts/build_elevenlabs_audio.js
 ```
 
-## Quick Validation
+Writes `chunk_includes/elevenlabs_audio/` and the zip the experiment preloads.
+
+## Running it
+
+Deploy to PCIbex. Before going live, fill in the SONA `experiment_id` and
+`credit_token` and the Prolific completion code at the top of
+`data_includes/main.js`; they ship as `XX` placeholders.
+
+Edit this experiment on `main` under `experiments/morphophonology/`, not on the
+branch. Pushing to `main` propagates it here automatically.
 
 ```bash
 node --check data_includes/main.js
-node --check data_includes/helper_block_intro.js
-node --check data_includes/helper_trial.js
-node --check data_includes/helper_break.js
 node --check scripts/build_elevenlabs_audio.js
 ```
-
-## Notes
-
-- `helper_trial.js` still includes recall-typing helpers not used in the active sequence.

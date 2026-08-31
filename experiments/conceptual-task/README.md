@@ -74,7 +74,21 @@ Master verb list in code contains 20 verbs; `spin` and `drag` are currently rese
 
 Global sequence in `main.js`:
 
-`Sequence(...introBlock, "check", ...metaSequences.flat(), "time_summary", "send_results", "debrief", "senddebrief", "exit_sona")`
+```js
+Sequence(
+  ...introBlock,
+  "check",
+  ...metaSequences.flat(),
+  "time_summary",
+  "send_results",
+  ...(RECRUITMENT === "prolific"
+    ? ["exit_prolific"]
+    : ["debrief", "senddebrief", "exit_sona"]),
+);
+```
+
+Where a participant lands at the end depends on how they were recruited; see
+Recruitment below. This task records nothing, so there is no upload step.
 
 ### Intro block sequence
 
@@ -146,6 +160,16 @@ Per verb item:
 - Immediate feedback:
   - Correct
   - Incorrect + correct answer label
+
+## Recruitment and the end pages
+
+The `source` URL parameter, or Prolific's own `PROLIFIC_PID`, decides where a
+participant is sent at the end.
+
+- **SONA** (`source=psych` or `source=ling`): debrief questions, then a link
+  that confirms participation and grants credit.
+- **Prolific**: straight to an exit page with the completion link.
+- **Anything else**: a message saying credit will be approved manually.
 
 ## Data Logging (Current)
 

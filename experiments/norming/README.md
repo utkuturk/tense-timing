@@ -60,3 +60,13 @@ so PCIbex counter/list assignment can serve Group A vs Group B.
 - `picture`: image filename in `chunk_includes/`
 - `tense`: `past` or `future`
 - `sentence`: sentence shown for rating
+
+## Recruitment and the end pages
+
+The `source` URL parameter, or Prolific's own `PROLIFIC_PID`, decides where a
+participant is sent at the end.
+
+- **SONA** (`source=psych` or `source=ling`): debrief questions, then a link
+  that confirms participation and grants credit.
+- **Prolific**: straight to an exit page with the completion link.
+- **Anything else**: a message saying credit will be approved manually.
