@@ -76,6 +76,16 @@ const isDemoMode = GetURLParameter("id") === "demo";
 const SUBJECT_ID = isDemoMode
   ? "demo"
   : Math.random().toString(36).slice(2, 10);
+
+// Recording names carry the recruitment id and the per-session id so a
+// recording identifies its own participant without needing the results file.
+// Both are reduced to alphanumerics because the stem is parsed on underscores.
+const PARTICIPANT_ID = (function () {
+  const raw = GetURLParameter("PROLIFIC_PID") || GetURLParameter("id") || "";
+  const clean = String(raw).replace(/[^A-Za-z0-9]/g, "").toLowerCase();
+  return clean === "" ? "noid" : clean;
+})();
+const RECORDING_IDS = PARTICIPANT_ID + "_" + SUBJECT_ID;
 const listOptions = ["a", "b", "c", "d"];
 const requestedListParam = String(GetURLParameter("list") || "")
   .trim()
@@ -232,7 +242,7 @@ var trial =
     const uniqueLabel = `exp_${blockLabel}_${patternTag}_${row.verb}_${row.side}`;
     const verbImage = newImage(row.verb, row.pic).size(400, 400);
     const recorderId =
-      `${SUBJECT_ID}_resp_${blockLabel}_${patternTag}_${row.verb}_${row.side}`.toLowerCase();
+      `resp_${RECORDING_IDS}_${blockLabel}_${patternTag}_${row.verb}_${row.side}`.toLowerCase();
 
     return newTrial(
       uniqueLabel,
@@ -317,7 +327,7 @@ var trial =
 var practiceDecisionTrial = (trialLabel, row) => {
   const uniqueLabel = trialLabel;
   const verbImage = newImage(`practice_${row.verb}`, row.pic).size(400, 400);
-  const recorderId = `${SUBJECT_ID}_${trialLabel}_recorder`.toLowerCase();
+  const recorderId = `${trialLabel}_${RECORDING_IDS}_recorder`.toLowerCase();
 
   return newTrial(
     uniqueLabel,

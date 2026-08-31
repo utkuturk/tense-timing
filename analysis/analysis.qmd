@@ -308,23 +308,32 @@ read_tgs <- function(aligned_dir, exp_name) {
     stem <- path_file(fp) %>% str_remove("\\.TextGrid$")
     sona_id <- path_file(path_dir(fp))
 
-    # Parse stem: resp_m{mb}_block{bl}_p{pass}_{verb}_{tense}
+    # Two naming generations. Recordings written before the naming change are
+    # resp_m{mb}_block{bl}_p{pass}_{verb}_{tense} and carry no identifier, so the
+    # participant is only known from the folder prepare_recordings.py chose.
+    # Later ones are resp_{participant}_{session}_m{mb}_... and identify
+    # themselves. The middle group is optional so both parse here.
     parts <- str_match(
       stem,
-      "^resp_m(\\d+)_block(\\d+)_p(\\d+)_([a-z]+)_(past|future|pres)$"
+      paste0(
+        "^resp_(?:([a-z0-9]+)_([a-z0-9]+)_)?",
+        "m(\\d+)_block(\\d+)_p(\\d+)_([a-z]+)_(past|future|pres)$"
+      )
     )
+    id_in_name <- parts[, 2]
+    speaker <- if (is.na(id_in_name)) sona_id else id_in_name
 
     tg %>%
       filter(text != "") %>%
       transmute(
         exp = exp_name,
-        sona_id,
+        sona_id = speaker,
         recording = stem,
-        metablock = parts[, 2],
-        block = parts[, 3],
-        pass = parts[, 4],
-        verb = parts[, 5],
-        tense = parts[, 6],
+        metablock = parts[, 4],
+        block = parts[, 5],
+        pass = parts[, 6],
+        verb = parts[, 7],
+        tense = parts[, 8],
         tier = tier_name,
         word_phone = text,
         t_start = xmin,

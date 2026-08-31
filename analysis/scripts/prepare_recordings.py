@@ -16,6 +16,7 @@ import argparse
 import subprocess
 import tempfile
 import zipfile
+import re
 from pathlib import Path
 
 
@@ -81,6 +82,26 @@ def convert_webm_to_wav(webm_path: Path, wav_path: Path) -> bool:
     return True
 
 
+SPEAKER_IN_NAME = re.compile(
+    r"^resp_([a-z0-9]+)_[a-z0-9]+_m\d+_block\d+_p\d+_[a-z]+_(?:past|future|pres)$"
+)
+
+
+def speaker_from_filename(webm_path: Path) -> str | None:
+    """Participant id carried in the recording name, or None for old recordings.
+
+    Recordings written after the naming change are
+    resp_{participant}_{session}_m{mb}_block{bl}_p{pass}_{verb}_{tense}.webm and
+    identify themselves. Earlier ones are resp_m{mb}_... with no id, and still
+    have to be matched through the results file.
+    """
+    m = SPEAKER_IN_NAME.match(webm_path.stem)
+    if not m:
+        return None
+    speaker = m.group(1)
+    return None if speaker in ("noid", "demo") else speaker
+
+
 def process_experiment(
     zip_dir: Path,
     corpus_dir: Path,
@@ -118,12 +139,18 @@ def process_experiment(
                 zf.extractall(tmp_path)
 
             for webm in sorted(tmp_path.glob("*.webm")):
-                wav_out = speaker_dir / webm.with_suffix(".wav").name
+                # A self-identifying recording overrides whatever folder the
+                # zip was routed to, so it lands with its participant even when
+                # the session never reached the results file.
+                named = speaker_from_filename(webm)
+                out_dir = (corpus_dir / named) if named else speaker_dir
+                out_dir.mkdir(parents=True, exist_ok=True)
+                wav_out = out_dir / webm.with_suffix(".wav").name
                 if wav_out.exists():
                     skipped += 1
                     continue
                 if not is_valid_webm(webm) or not convert_webm_to_wav(webm, wav_out):
-                    corrupt[speaker_dir.name] = corrupt.get(speaker_dir.name, 0) + 1
+                    corrupt[out_dir.name] = corrupt.get(out_dir.name, 0) + 1
                     continue
                 converted += 1
 

@@ -48,15 +48,23 @@ for exp in phon syntax; do
 
   mkdir -p "$align_dir" "$run_dir/validate" "$run_dir/oovs"
 
-  # Build a temp corpus dir with only SONA ID speakers (skip rando_* folders)
+  # Align only speakers we can tie to a participant. Recordings named after the
+  # naming change carry their own id and land in a folder named for it. Older
+  # ones were matched through the results file; anything that could not be
+  # matched sits in rando_*, and demo runs in demo/. Both are skipped.
   sona_corpus_dir="$run_dir/sona_corpus"
   rm -rf "$sona_corpus_dir"
   mkdir -p "$sona_corpus_dir"
+  skipped_speakers=0
   for speaker_dir in "$corpus_dir"/*/; do
     speaker="$(basename "$speaker_dir")"
-    [[ "$speaker" == rando_* ]] && continue
+    if [[ "$speaker" == rando_* || "$speaker" == demo || "$speaker" == noid ]]; then
+      skipped_speakers=$((skipped_speakers + 1))
+      continue
+    fi
     ln -s "$speaker_dir" "$sona_corpus_dir/$speaker"
   done
+  echo "Speakers: $(find "$sona_corpus_dir" -maxdepth 1 -mindepth 1 | wc -l | tr -d ' ') aligned, $skipped_speakers unidentified and skipped"
 
   echo "Validating corpus..."
   mfa validate "$sona_corpus_dir" "$DICTIONARY_MODEL" \
