@@ -1,14 +1,17 @@
 ---
 title: "Tense Timing Experiments: Analysis & Report"
 format:
-  pdf:
+  typst:
     toc: true
-    toc-depth: 3
+    toc-depth: 2
+    papersize: us-letter
+    margin:
+      x: 0.5in
+      y: 0.5in
     fontsize: 10pt
-    geometry: margin=0.5in
-    pdf-engine: xelatex
-    mainfont: "Helvetica Neue"
-    sansfont: "Helvetica Neue"
+    number-sections: true
+fig-cap-location: bottom
+tbl-cap-location: bottom
 execute:
   echo: false
   warning: false
@@ -22,9 +25,9 @@ editor_options:
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir = normalizePath(".."))
 knitr::opts_chunk$set(include = FALSE)
-# The default pdf device cannot embed Helvetica Neue and errors on any figure
-# that draws text; cairo_pdf handles it.
-knitr::opts_chunk$set(dev = "cairo_pdf")
+# Typst embeds raster and SVG images but not PDF, so figures are rendered as
+# PNG at print resolution rather than as vector PDF.
+knitr::opts_chunk$set(dev = "png", dpi = 300)
 library(ggplot2)
 theme_set(theme_classic(base_size = 13, base_family = "Helvetica Neue"))
 ```
@@ -49,7 +52,15 @@ min_subject_accuracy <- 0.50 # min proportion of trials passing all trial-level 
 max_adverbial_rate <- 0.20 # max proportion of "... in the past/future" responses
 n_trials_full <- 108 # trials per participant in the CSV (all participants)
 
-# Experiment 1 is a speeded keypress task; RTs outside this window are either
+# Sessions whose recordings contain no speech. The microphone never delivered
+# audio, so these are a recording failure rather than a performance one and are
+# dropped before anything is counted, including the participant totals. The
+# proportion of their recordings that transcribed as silence:
+#   52505  48/48    52336  96/108    52385  84/108    52399  36/84
+# Every other participant in the September run is at or below 2/108.
+exclude_speakers <- c("52505", "52336", "52385", "52399")
+
+# Experiment 3 is a speeded keypress task; RTs outside this window are either
 # anticipations or disengagement. The raw range runs from 0 ms to 173 s.
 rt_min <- 200 # ms
 rt_max <- 5000 # ms
@@ -57,11 +68,24 @@ rt_max <- 5000 # ms
 # Which priming interactions to estimate. The two priming variables are
 # correlated, so their interaction asks whether tense priming depends on the
 # morphophonological form also repeating. The three-way term additionally asks
-# whether that dependency differs by tense, which the smaller experiments cannot
-# support: Exp 3 has 771 analysed trials over 15 participants, so a three-way
-# split leaves under 100 trials per cell.
+# whether that dependency differs by tense. This was out of reach when Exp 3 had
+# 771 trials from 15 participants; after the September collection it has roughly
+# 2660 trials from 46, so an eight-cell split now leaves a few hundred trials per
+# cell and the three-way term is worth estimating. Both stay off until that is a
+# deliberate choice rather than a side effect of more data arriving.
 fit_prime_interaction <- FALSE # tense prime x regularity prime
 fit_three_way <- FALSE # ... additionally crossed with tense
+
+# An effect is highlighted when this much of its posterior falls on one side of
+# zero. It governs the bold rows in the coefficient tables and the "leaning"
+# verdict in the prose, so both report the same standard.
+pd_close <- 0.85
+
+# Leave-one-out model comparison. It is by far the slowest part of a render and
+# says nothing about the effects themselves, only about which spec in the ladder
+# predicts best, so it is off while the report is being written. Set it to TRUE
+# to restore the model-comparison tables in the appendix.
+run_loo <- FALSE
 # ─────────────────────────────────────────────────────────────────────────────
 
 library(tidyverse)
@@ -74,6 +98,82 @@ library(patchwork)
 #  in addition to primed and unprimed, can you make primed to be F->F Prime/ T->T Prime, and also T->F Switch, F->T Switch. And also same thing with the irregulars. But do the prime x tense first, and then do prime type x tense later in the plots.
 ```
 
+
+```{=typst}
+#import "@preview/eggs:0.6.0": *
+#show: eggs
+
+// The contents list stands on its own page.
+#pagebreak()
+
+// Captions a step below the body text, so a long one does not compete with it.
+#show figure.caption: set text(size: 9pt)
+// Tables may break across pages; a half figure is not worth showing.
+#show figure.where(kind: "quarto-float-tbl"): set block(breakable: true)
+#show table: set text(size: 8pt)
+
+// Shared pieces for the procedure diagrams of all three experiments.
+#let stage(body, fill: white) = box(
+  inset: (x: 6pt, y: 5pt), radius: 2pt,
+  stroke: 0.6pt + luma(40%), fill: fill,
+  align(center + horizon, body)
+)
+#let arw = align(center + horizon, text(fill: luma(45%))[#sym.arrow.r])
+#let note(body) = align(center, text(size: 7.5pt, fill: luma(35%), body))
+#let sub(body) = text(size: 7.5pt, body)
+#let cell(body, fill: white) = box(
+  width: 100%, inset: (x: 2pt, y: 4pt),
+  fill: fill, stroke: 0.5pt + luma(60%),
+  align(center, text(size: 7.5pt, body))
+)
+
+#let unit(body, tone: 100%) = box(
+  inset: (x: 5pt, y: 3pt), radius: 2pt, fill: luma(tone),
+  stroke: 0.5pt + luma(55%), text(size: 7.5pt, body)
+)
+#let nests = block(width: 100%)[
+  #grid(
+    columns: (auto, auto), column-gutter: 6pt, row-gutter: 3pt, align: horizon,
+    text(size: 7.5pt)[Session =],
+    grid(columns: 3, column-gutter: 3pt,
+      unit(tone: 90%)[meta-block], unit(tone: 90%)[meta-block], unit(tone: 90%)[meta-block]),
+    text(size: 7.5pt)[Meta-block =],
+    grid(columns: 3, column-gutter: 3pt,
+      unit[block], unit[block], unit[block]),
+    text(size: 7.5pt)[Block =],
+    unit(tone: 78%)[*shown below*],
+  )
+]
+
+// Columns of the timeline. "The" and the verb are each split so a bracket can
+// start or stop inside a word rather than only at its edges.
+#let tl = (1.0fr, 0.30fr, 0.30fr, 0.95fr, 0.55fr, 0.38fr, 0.90fr, 0.70fr)
+
+#let region(body, tone: 96%) = box(
+  width: 100%, fill: luma(tone), radius: 2pt,
+  stroke: 0.5pt + luma(62%), inset: (x: 3pt, y: 7pt),
+  align(center, text(size: 9pt, body))
+)
+#let span(body, tone: 84%) = box(
+  width: 100%, fill: luma(tone), radius: 2pt,
+  stroke: 0.8pt + luma(30%),
+  inset: (x: 3pt, y: 7pt),
+  align(center, text(size: 8pt, body))
+)
+#let blank = box(width: 100%, inset: (y: 7pt))[]
+#let hyp(body) = align(right + horizon, text(size: 9pt, weight: "bold", body))
+
+// The axis is one arrow, drawn as a rule with a head on its end.
+#let timearrow = box(width: 100%, height: 9pt)[
+  #place(left + horizon, line(length: 100% - 7pt, stroke: 1pt + luma(25%)))
+  #place(right + horizon, polygon(
+    fill: luma(25%), (0pt, 0pt), (7pt, 3.5pt), (0pt, 7pt),
+  ))
+]
+
+// Linguistic examples come from the eggs package, which numbers them, turns a
+// numbered list into lettered subexamples, and gives them referenceable labels.
+```
 
 ```{r}
 # User-defined function to read in PCIbex Farm results files
@@ -282,7 +382,7 @@ exp <- concept %>%
   mutate(
     rt_ok = !is.na(decision_rt) & decision_rt >= rt_min & decision_rt <= rt_max
   ) %>%
-  # Carry-over control, the Experiment 1 analogue of the previous utterance's
+  # Carry-over control, the Experiment 3 analogue of the previous utterance's
   # length: how long the preceding decision took.
   arrange(subj, trial_n) %>%
   group_by(subj) %>%
@@ -343,26 +443,49 @@ read_tgs <- function(aligned_dir, exp_name) {
   })
 }
 
-read_pcibex_meta <- function(filepath, prime_col = "tense", also_prime = NULL) {
-  read.pcibex(filepath) %>%
-    clean_names() %>%
-    subj_id() %>%
-    filter(parameter == "Filename", str_detect(value, "^resp")) %>%
-    mutate(
-      sona_id = as.character(sona_id_url),
-      recording = str_remove(value, "\\.webm$")
-    ) %>%
-    select(
-      sona_id,
-      recording,
-      block,
-      list = assigned_list,
-      subj,
-      tense,
-      regularity,
-      entity,
-      target_sentence = target_canonical_sentence
-    ) %>%
+# Takes one or more results files. Experiment 1 was collected in two runs that
+# logged different URL parameters (the September run adds subject_id, a
+# recruitment flag and the Prolific ids), so the shared columns sit at
+# different positions and the files can only be combined once read.pcibex has
+# named them. Participants are numbered after the bind so that subj is unique
+# across runs, and each file's rows stay in presentation order, which is what
+# add_trial_info counts positions from.
+read_pcibex_meta <- function(
+  filepaths,
+  prime_col = "tense",
+  also_prime = NULL
+) {
+  # Participants are numbered within each file, exactly as a single-file read
+  # would number them, and later files continue the count so that subj stays
+  # unique across runs. Numbering before the row filter keeps the labels a
+  # one-file experiment produces identical to what it produced before.
+  subj_offset <- 0L
+  parts <- lapply(filepaths, function(filepath) {
+    raw <- read.pcibex(filepath) %>%
+      clean_names() %>%
+      subj_id()
+    n_here <- n_distinct(raw$subj)
+    out <- raw %>%
+      filter(parameter == "Filename", str_detect(value, "^resp")) %>%
+      transmute(
+        subj = sprintf(
+          "S[%d]",
+          as.integer(str_extract(subj, "\\d+")) + subj_offset
+        ),
+        sona_id = as.character(sona_id_url),
+        recording = str_remove(value, "\\.webm$"),
+        block = as.character(block),
+        list = as.character(assigned_list),
+        tense = as.character(tense),
+        regularity = as.character(regularity),
+        entity = as.character(entity),
+        target_sentence = as.character(target_canonical_sentence)
+      )
+    subj_offset <<- subj_offset + n_here
+    out
+  })
+
+  bind_rows(parts) %>%
     mutate(regularity = str_to_upper(regularity)) %>%
     add_trial_info(tense_col = prime_col) %>%
     # A second, non-primary priming variable: whether the OTHER factor repeated
@@ -386,7 +509,7 @@ read_pcibex_meta <- function(filepath, prime_col = "tense", also_prime = NULL) {
 #       alongside it as prime_reg.
 phon_meta <- read_pcibex_meta("data/phon_june6.csv", prime_col = "regularity")
 syn_meta <- read_pcibex_meta(
-  "data/syn_june6.csv",
+  c("data/syn_june6.csv", "data/syn_sep6.csv"),
   prime_col = "tense",
   also_prime = "regularity"
 )
@@ -397,7 +520,7 @@ alignments <- bind_rows(
   read_tgs("analysis/mfa/aligned/syntax", "syntax") %>%
     left_join(syn_meta, by = c("sona_id", "recording"))
 ) %>%
-  filter(str_detect(recording, "^resp"))
+  filter(str_detect(recording, "^resp"), !sona_id %in% exclude_speakers)
 
 glimpse(alignments)
 ```
@@ -718,6 +841,7 @@ syn_analysis <- syn_check %>%
   left_join(syn_timing, by = c("sona_id", "recording")) %>%
   mutate(
     utt_onset = t_start_w1, # onset of "the"
+    det_dur = t_end_w1 - t_start_w1, # duration of the determiner
     np_onset = t_start_w2,
     np_head_dur = t_end_w2 - t_start_w2, # duration of entity noun (NP head)
     np_offset = t_end_w2, # offset of full subject NP
@@ -745,6 +869,7 @@ syn_analysis <- syn_check %>%
     verb_ok,
     tense_ok,
     utt_onset,
+    det_dur,
     np_onset,
     np_head_dur,
     np_offset,
@@ -828,6 +953,7 @@ phon_analysis <- phon_words %>%
       coalesce(utt_ok, FALSE)
     },
     utt_onset = t_start_w1,
+    det_dur = t_end_w1 - t_start_w1,
     np_onset = t_start_w2,
     np_head_dur = t_end_w2 - t_start_w2,
     np_offset = t_end_w2,
@@ -854,6 +980,7 @@ phon_analysis <- phon_words %>%
     verb_ok,
     tense_ok,
     utt_onset,
+    det_dur,
     np_onset,
     np_head_dur,
     np_offset,
@@ -1001,6 +1128,7 @@ phon_analysis <- attach_word_metrics(phon_analysis, "phon")
 
 time_cols <- c(
   "utt_onset",
+  "det_dur",
   "np_onset",
   "np_head_dur",
   "np_offset",
@@ -1053,6 +1181,7 @@ phon_analysis <- attach_freq(phon_analysis)
 
 measure_levels <- c(
   "Utterance onset",
+  "Determiner duration\n(ms)",
   "NP onset",
   "Subject duration\n(ms/phone)",
   "Verb duration\n(ms/phone)",
@@ -1068,6 +1197,7 @@ long_measures <- function(df) {
       regularity,
       prime_status,
       `Utterance onset` = utt_onset,
+      `Determiner duration\n(ms)` = det_dur,
       `NP onset` = np_onset,
       `Subject duration\n(ms/phone)` = subj_dur_pp,
       `Verb duration\n(ms/phone)` = verb_dur_pp,
@@ -1161,7 +1291,7 @@ condition_means_plot <- function(plot_data, cond, cond_label, cond_levels) {
     cond_fills(cond_label, cond_levels) +
     cond_linetypes(cond_label, cond_levels) +
     labs(x = "Prime status", y = "Time (ms)") +
-    theme_paper(base_size = 9)
+    theme_paper(base_size = 9, legend_position = "bottom")
 }
 
 timeline_plot <- function(cum_data, cond, cond_label) {
@@ -1220,10 +1350,24 @@ timeline_plot <- function(cum_data, cond, cond_label) {
 }
 
 means_table <- function(plot_data, cond, caption) {
+  # The plotting labels carry their units on a second line, which makes a very
+  # wide first column and squeezes the rest. The table uses the short names and
+  # states the units in its caption instead.
+  short <- c(
+    "Utterance onset" = "Utt. onset",
+    "Determiner duration\n(ms)" = "Det. dur.",
+    "NP onset" = "NP onset",
+    "Subject duration\n(ms/phone)" = "Subj. dur.",
+    "Verb duration\n(ms/phone)" = "Verb dur.",
+    "Gap\n(NP-verb/will)" = "Gap"
+  )
   d <- plot_data %>%
     within_se(value, sona_id, {{ cond }}, prime_status, strata = measure) %>%
     mutate(
-      measure = str_replace_all(as.character(measure), "\n", " "),
+      measure = coalesce(
+        unname(short[as.character(measure)]),
+        str_replace_all(as.character(measure), "\n", " ")
+      ),
       Condition = as.character({{ cond }}),
       `Prime status` = prime_status,
       N = n,
@@ -1254,7 +1398,7 @@ fit_timing <- function(
   if (!fit_models && !file.exists(paste0(file, ".rds"))) {
     return(NULL)
   }
-  # Experiment 1 is keyed by `subj`, the production experiments by `sona_id`.
+  # Experiment 3 is keyed by `subj`, the production experiments by `sona_id`.
   stopifnot(all(c(subject, "verb", dv) %in% names(data)))
   main <- as.formula(sprintf(
     "%s ~ %s + (1 + %s | %s) + (1 + %s | verb)%s",
@@ -1287,6 +1431,10 @@ fit_timing <- function(
     warmup = 1000,
     control = list(adapt_delta = adapt_delta, max_treedepth = 12),
     seed = 1234,
+    # Stan's progress lines otherwise land in the results='asis' chunks that
+    # emit the model tables, and pandoc then escapes the LaTeX around them.
+    refresh = 0,
+    silent = 2,
     file = file,
     file_refit = "on_change"
   )
@@ -1295,6 +1443,7 @@ fit_timing <- function(
 # Facet titles for the coefficient plots, matching the condition-mean figures.
 measure_pretty <- c(
   utt_onset = "Utt. onset",
+  det_dur = "Det. dur.",
   np_onset = "NP onset",
   subj_dur_pp = "Subject dur.",
   verb_dur_pp = "Verb dur.",
@@ -1341,7 +1490,7 @@ specs_tense <- list(
   )
 )
 
-# Experiment 1 is a keypress task with no audio, so there is no articulation
+# Experiment 3 is a keypress task with no audio, so there is no articulation
 # rate to control for; its spec 5 adds entity alone.
 specs_tense_norate <- map(specs_tense, function(sp) {
   sp$fixed <- sub(" \\+ z_rate$", "", sp$fixed)
@@ -1367,8 +1516,20 @@ specs_reg <- list(
 # three entity nouns differ sharply in per-phoneme duration (Chef 162, Pirate
 # 118, Wizard 107 ms/phone), so leaving entity out loads that variance onto the
 # residual for every duration measure.
+# Every spec in the ladder is fitted and held in memory, and a brms fit is tens
+# of megabytes. Only the headline spec is reported; the rest exist for the LOO
+# comparison, so when that is switched off they are skipped rather than loaded
+# and discarded. On a machine that has to swap, this is the difference between a
+# render taking minutes and taking most of an hour.
 fit_ladder <- function(data, measures, specs, tag, subject = "sona_id") {
-  set_names(specs, map_chr(specs, "label")) %>%
+  specs <- set_names(specs, map_chr(specs, "label"))
+  if (!run_loo) {
+    keep <- intersect(c(headline_spec, headline_spec_reg), names(specs))
+    if (length(keep)) {
+      specs <- specs[keep[1]]
+    }
+  }
+  specs %>%
     map(function(sp) {
       set_names(measures, coalesce(measure_pretty[measures], measures)) %>%
         map(
@@ -1510,9 +1671,10 @@ report_ladder <- function(ladder, term_labels, exp_label, fig_prefix) {
       models,
       term_labels,
       sprintf(
-        "%s, model %s. Positive = slower/longer. * marks terms with P(dir) at or above 0.90.",
+        "%s, model %s. Positive = slower/longer. Bold marks terms with P(dir) at or above %.2f.",
         exp_label,
-        nm
+        nm,
+        pd_close
       ),
       figure_name = sprintf(
         "%s-%s",
@@ -1598,85 +1760,80 @@ fmt_p <- function(p) {
 
 # Long tables are split into two side-by-side panels so a five-measure model
 # fits on one page. The split falls on a measure boundary, never inside one.
+# Long tables are split into two side-by-side panels so that a table with many
+# measures fits on one page. The split falls on a measure boundary, never inside
+# one, and a blank row separates the blocks. Emphasis is markdown, which Typst
+# renders, so no engine-specific markup appears here.
 side_by_side <- function(d, cols, caption, font_size = 7) {
+  strong <- if (is.null(d[["strong"]])) rep(FALSE, nrow(d)) else d[["strong"]]
   blocks <- split(
     seq_len(nrow(d)),
     factor(d$measure, levels = unique(d$measure))
   )
   sizes <- lengths(blocks)
   cut <- which.min(abs(cumsum(sizes) - sum(sizes) / 2))
-  left <- unlist(blocks[seq_len(cut)])
-  right <- unlist(blocks[-seq_len(cut)])
-  if (!length(right)) {
-    k <- kable(
-      d[, cols, drop = FALSE],
-      booktabs = TRUE,
-      caption = caption,
-      align = paste(c("l", rep("r", length(cols) - 1)), collapse = "")
-    ) %>%
-      kableExtra::kable_styling(
-        latex_options = "hold_position",
-        font_size = font_size
-      ) %>%
-      kableExtra::pack_rows(
-        index = table(factor(d$measure, levels = unique(d$measure)))
-      )
-    if (any(d$strong)) {
-      k <- kableExtra::row_spec(k, which(d$strong), bold = TRUE)
-    }
-    return(k)
+  left <- blocks[seq_len(cut)]
+  right <- blocks[-seq_len(cut)]
+
+  bold <- function(x, hit) {
+    x <- as.character(x)
+    ifelse(hit & nzchar(x), paste0("**", x, "**"), x)
   }
 
-  # The measure appears once per block, in its own column, so the two halves can
-  # sit next to each other in a single table. Row-level bolding is not available
-  # once the halves are side by side, so strong terms are marked with a star.
-  panel <- function(idx) {
-    dd <- d[idx, , drop = FALSE]
-    first <- !duplicated(as.character(dd$measure))
-    out <- data.frame(
-      Measure = ifelse(first, as.character(dd$measure), ""),
-      dd[, cols, drop = FALSE],
-      check.names = FALSE
-    )
-    last <- names(out)[ncol(out)]
-    out[[last]] <- paste0(out[[last]], ifelse(dd$strong, "*", ""))
-    out
+  # One block of rows per measure, with the measure named on its first row only,
+  # and a blank spacer row after every block but the last.
+  panel <- function(idx_list) {
+    if (!length(idx_list)) {
+      return(NULL)
+    }
+    parts <- imap(idx_list, function(idx, nm) {
+      dd <- d[idx, , drop = FALSE]
+      hit <- strong[idx]
+      out <- data.frame(
+        Measure = c(nm, rep("", nrow(dd) - 1)),
+        lapply(dd[, cols, drop = FALSE], bold, hit = hit),
+        check.names = FALSE,
+        stringsAsFactors = FALSE
+      )
+      names(out) <- c("Measure", cols)
+      out
+    })
+    blank <- parts[[1]][0, , drop = FALSE]
+    blank[1, ] <- ""
+    reduce(parts, function(a, b) rbind(a, blank, b))
   }
+
   L <- panel(left)
   R <- panel(right)
+  if (is.null(R)) {
+    return(kable(L, caption = caption, row.names = FALSE))
+  }
+
   n <- max(nrow(L), nrow(R))
-  pad <- function(x, n) {
+  pad <- function(x) {
     while (nrow(x) < n) {
-      x[nrow(x) + 1, ] <- rep("", ncol(x))
+      x[nrow(x) + 1, ] <- ""
     }
     x
   }
-  both <- cbind(pad(L, n), pad(R, n))
+  both <- cbind(pad(L), pad(R))
   hdr <- c("Measure", "Term", "Est.", "95% CrI", "P(dir)")
   if (length(cols) == 5) {
-    hdr <- c("Measure", "Condition", "Prime", "N", "Mean", "SE")
+    hdr <- c("Measure", "Condition", "Prime status", "N", "Mean", "SE")
   }
-
   kable(
     both,
-    booktabs = TRUE,
     caption = caption,
     row.names = FALSE,
     col.names = rep(hdr, 2),
-    # kable inserts \addlinespace every five rows by default, which lands inside
-    # a block once the two halves are side by side. Suppressing it needs the
-    # format stated explicitly.
-    format = "latex",
-    linesep = "",
-    align = paste(rep(c("l", "l", rep("r", ncol(L) - 2)), 2), collapse = "")
-  ) %>%
-    kableExtra::kable_styling(
-      latex_options = "hold_position",
-      font_size = font_size
-    )
+    align = rep(c("l", "l", rep("r", ncol(L) - 2)), 2)
+  )
 }
 
-model_table <- function(tbl, term_labels, caption) {
+# `split` puts the measures in two panels side by side, which is what a figure
+# caption's worth of space allows. The appendix has a whole page, so a single
+# tall table reads better and no column has to be hyphenated.
+model_table <- function(tbl, term_labels, caption, split = TRUE) {
   # Labels for the control terms, which are the same in every model.
   extra <- c(
     entityPirate = "Pirate vs Chef",
@@ -1691,7 +1848,7 @@ model_table <- function(tbl, term_labels, caption) {
     arrange(measure) %>%
     mutate(
       Term = label_terms(.variable, term_labels),
-      strong = pmax(p_greater_0, 1 - p_greater_0) >= 0.90,
+      strong = pmax(p_greater_0, 1 - p_greater_0) >= pd_close,
       Estimate = sprintf("%.3f", estimate),
       `95% CrI` = sprintf("[%.3f, %.3f]", lower_95, upper_95),
       # P(direction): the posterior mass on the side of zero the estimate is on.
@@ -1699,7 +1856,7 @@ model_table <- function(tbl, term_labels, caption) {
     ) %>%
     select(measure, Term, Estimate, `95% CrI`, `P(dir)`, strong)
 
-  if (n_distinct(d$measure) > 2) {
+  if (split && n_distinct(d$measure) > 2) {
     return(side_by_side(
       d,
       c("Term", "Estimate", "95% CrI", "P(dir)"),
@@ -1707,21 +1864,29 @@ model_table <- function(tbl, term_labels, caption) {
       font_size = 6
     ))
   }
-  k <- d %>%
-    select(-measure, -strong) %>%
-    kable(booktabs = TRUE, align = "lrrr", caption = caption,
-          format = "latex", linesep = "") %>%
-    kableExtra::kable_styling(
-      latex_options = "hold_position",
-      font_size = 8
+  # A single block, with the measure named on its first row so the grouping
+  # survives without engine-specific row packing, and a blank line between
+  # measures so the blocks stay apart.
+  out <- d %>%
+    mutate(
+      across(
+        c(Term, Estimate, `95% CrI`, `P(dir)`),
+        ~ ifelse(strong & nzchar(.x), paste0("**", .x, "**"), .x)
+      ),
+      Measure = ifelse(!duplicated(measure), as.character(measure), "")
     ) %>%
-    kableExtra::pack_rows(
-      index = table(factor(d$measure, levels = unique(d$measure)))
-    )
-  if (any(d$strong)) {
-    k <- kableExtra::row_spec(k, which(d$strong), bold = TRUE)
-  }
-  k
+    select(measure, Measure, Term, Estimate, `95% CrI`, `P(dir)`) %>%
+    # `measure` is a factor, and a blank spacer row cannot be written into one.
+    mutate(across(everything(), as.character)) %>%
+    as.data.frame()
+
+  parts <- split(out, factor(out$measure, levels = unique(out$measure)))
+  blank <- parts[[1]][0, , drop = FALSE]
+  blank[1, ] <- ""
+  out <- reduce(parts, function(a, b) rbind(a, blank, b))
+  out <- out[, setdiff(names(out), "measure"), drop = FALSE]
+
+  kable(out, caption = caption, row.names = FALSE, align = "llrrr")
 }
 
 
@@ -1736,9 +1901,10 @@ report_ladder <- function(ladder, term_labels, exp_label, fig_prefix) {
       models,
       term_labels,
       sprintf(
-        "%s, model %s. Positive = slower/longer. * marks terms with P(dir) at or above 0.90.",
+        "%s, model %s. Positive = slower/longer. Bold marks terms with P(dir) at or above %.2f.",
         exp_label,
-        nm
+        nm,
+        pd_close
       ),
       figure_name = sprintf(
         "%s-%s",
@@ -1828,9 +1994,10 @@ report_ladder <- function(ladder, term_labels, exp_label, fig_prefix) {
       models,
       term_labels,
       sprintf(
-        "%s, model %s. Positive = slower/longer. * marks terms with P(dir) at or above 0.90.",
+        "%s, model %s. Positive = slower/longer. Bold marks terms with P(dir) at or above %.2f.",
         exp_label,
-        nm
+        nm,
+        pd_close
       ),
       figure_name = sprintf(
         "%s-%s",
@@ -1970,7 +2137,7 @@ coef_plot <- function(tbl, term_labels) {
     ) %>%
     droplevels() %>%
     group_by(measure) %>%
-    mutate(.text_x = max(upper_95) + 0.30 * (max(upper_95) - min(lower_95))) %>%
+    mutate(.text_x = max(upper_95) + 0.34 * (max(upper_95) - min(lower_95))) %>%
     ungroup()
 
   ggplot(d, aes(x = estimate, y = lab)) +
@@ -1983,34 +2150,57 @@ coef_plot <- function(tbl, term_labels) {
       colour = "black"
     ) +
     geom_point(size = 2.4, colour = "black") +
-    geom_text(aes(x = .text_x, label = fmt_p(pdir)), hjust = 0.5, size = 2.7) +
-    geom_text(
-      data = d %>% distinct(measure, .text_x),
-      aes(x = .text_x, y = Inf, label = "P(dir)"),
-      inherit.aes = FALSE,
-      vjust = -0.7,
-      size = 2.7,
-      fontface = "bold"
-    ) +
+    geom_text(aes(x = .text_x, label = fmt_p(pdir)), hjust = 0.5, size = 2.6) +
     facet_wrap(~measure, nrow = 1, scales = "free_x") +
-    scale_x_continuous(expand = expansion(mult = c(0.10, 0.28)), n.breaks = 4) +
+    # The right margin has to clear the P(dir) column, and four breaks in a
+    # narrow facet collide, so the axis is given fewer.
+    scale_x_continuous(expand = expansion(mult = c(0.12, 0.46)), n.breaks = 3) +
     coord_cartesian(clip = "off") +
     labs(x = "Estimate (log scale)", y = NULL) +
     theme_paper(legend_position = "none") +
     theme(
       axis.text.y = element_text(face = "bold", size = 8),
-      plot.margin = margin(t = 18, r = 8, b = 4, l = 4, unit = "pt")
+      # Six facets across one page leaves each axis about an inch wide, so the
+      # tick labels have to be small enough not to run together.
+      axis.text.x = element_text(size = 6.5),
+      plot.margin = margin(t = 4, r = 10, b = 4, l = 4, unit = "pt")
     )
 }
 
 
-report_models <- function(models, term_labels, caption, figure_name = NULL) {
+# `what` splits the two outputs: the body of the report carries the figures and
+# the appendix carries the tables behind them, so a model is described once in
+# each place rather than twice on the same page.
+report_models <- function(
+  models,
+  term_labels,
+  caption,
+  figure_name = NULL,
+  hide_terms = character(),
+  what = c("both", "figure", "table"),
+  split = TRUE
+) {
+  what <- match.arg(what)
   if (!length(models)) {
     cat("\n*Models not fitted. Set `fit_models <- TRUE` and re-render.*\n\n")
     return(invisible(NULL))
   }
   tbl <- coef_table(models)
-  print(model_table(tbl, term_labels, caption))
+  # Terms kept in the model as controls but left out of what is reported. The
+  # coefficient plot drops them because they are absent from term_labels; the
+  # table lists every fitted term, so it has to be told.
+  if (length(hide_terms)) {
+    tbl <- tbl %>% filter(!sub("^b_(hu_)?", "", .variable) %in% hide_terms)
+  }
+  # The table has to be the value the chunk ends on. Printing it from inside a
+  # function makes knitr treat the markdown as console output, and it lands in
+  # the document as literal pipes and asterisks.
+  if (what == "table") {
+    return(model_table(tbl, term_labels, caption, split = split))
+  }
+  if (what == "both") {
+    print(model_table(tbl, term_labels, caption))
+  }
 
   # The pause model is on a different scale from the timing measures, so it gets
   # its own panel row rather than being squeezed alongside them.
@@ -2033,7 +2223,7 @@ report_models <- function(models, term_labels, caption, figure_name = NULL) {
       p,
       figure_name,
       width = 7.2,
-      height = if (!is.null(p1) && !is.null(p2)) 5.4 else 3
+      height = if (!is.null(p1) && !is.null(p2)) 4.4 else 2.5
     )
   }
   print(p)
@@ -2099,30 +2289,32 @@ prime_term_labels <- function(
   cond_label,
   cond_term,
   prime_label = "Tense priming",
-  prime_short = "Priming"
+  prime_short = "Priming",
+  show_rprime = TRUE
 ) {
   # Only the terms that can appear in the reported model. Interactions with
   # regularity priming are never fitted; it is a control.
+  #
+  # `show_rprime` governs display, not the model. Where repetition of the
+  # morphophonological form is a nuisance variable rather than the manipulation,
+  # it is still estimated so that it cannot be absorbed by the terms of
+  # interest, but it is left out of the coefficient table and figure, which
+  # report the design.
+  labels <- c(cond_label, prime_label)
+  terms <- c(paste0("b_", cond_term), "b_c_prime")
+  if (show_rprime) {
+    labels <- c(labels, "Regularity priming")
+    terms <- c(terms, "b_c_rprime")
+  }
   setNames(
-    c(
-      cond_label,
-      prime_label,
-      "Regularity priming",
-      "Frequency",
-      paste0(cond_label, " x ", prime_short)
-    ),
-    c(
-      paste0("b_", cond_term),
-      "b_c_prime",
-      "b_c_rprime",
-      "b_z_freq",
-      paste0("b_", cond_term, ":c_prime")
-    )
+    c(labels, "Frequency", paste0(cond_label, " x ", prime_short)),
+    c(terms, "b_z_freq", paste0("b_", cond_term, ":c_prime"))
   )
 }
 
 timing_measures <- c(
   "utt_onset",
+  "det_dur",
   "np_onset",
   "subj_dur_pp",
   "verb_dur_pp",
@@ -2191,7 +2383,7 @@ bb <- function(ex, dv, term, dpar = NULL) {
 rep_b <- function(ex, dv, term, dpar = NULL, digits = 3) {
   z <- bb(ex, dv, term, dpar)
   sprintf(
-    "$\\beta$ = %.*f, 95%% CrI [%.*f, %.*f], $P_{dir}$ = %s",
+    "β = %.*f, 95%% CrI [%.*f, %.*f], P(dir) = %s",
     digits,
     z$b,
     digits,
@@ -2208,6 +2400,310 @@ ms <- function(df, v, ..., unit = " ms") {
   x <- d[[v]][!is.na(d[[v]])]
   sprintf("%.0f%s (SE %.1f)", mean(x), unit, sd(x) / sqrt(length(x)))
 }
+# ─── EFFECT DESCRIPTION ──────────────────────────────────────────────────────
+# Turns a coefficient into a sentence: which way it runs, how big it is in
+# milliseconds, and how much of the posterior stands behind it.
+
+report_bf <- FALSE # Bayes factors: computed below, not printed, until the
+# priors are settled
+
+# Savage-Dickey BF10 against the point null. Needs only the draws and the
+# analytic prior density at zero, so it runs on fits made without
+# sample_prior = "yes". The value scales with the prior width, which is why it
+# is switched off: the Normal(0, 100) prior on Experiment 3 reports evidence
+# for the null almost whatever the data say, and would not be comparable with
+# the Normal(0, 0.3) used on the log scale elsewhere.
+bf10_savage_dickey <- function(fit, term) {
+  ps <- brms::prior_summary(fit)
+  pr <- ps$prior[ps$class == "b" & ps$coef == ""][1]
+  sdp <- suppressWarnings(as.numeric(sub(
+    ".*normal\\(0, *([0-9.eE+-]+)\\).*",
+    "\\1",
+    pr
+  )))
+  if (is.na(sdp)) {
+    return(NA_real_)
+  }
+  x <- posterior::as_draws_df(fit)[[paste0("b_", term)]]
+  if (is.null(x)) {
+    return(NA_real_)
+  }
+  d0 <- stats::density(x, n = 4096)
+  stats::dnorm(0, 0, sdp) / stats::approx(d0$x, d0$y, xout = 0)$y
+}
+
+jeffreys <- function(bf) {
+  if (is.na(bf)) {
+    return(NA_character_)
+  }
+  r <- if (bf < 1) 1 / bf else bf
+  band <- if (r < 3) {
+    "anecdotal"
+  } else if (r < 10) {
+    "moderate"
+  } else if (r < 30) {
+    "strong"
+  } else if (r < 100) {
+    "very strong"
+  } else {
+    "extreme"
+  }
+  paste0(band, if (bf < 1) " evidence against" else " evidence for")
+}
+
+# c_prime is tense repetition in Experiments 1 and 3 but form repetition in
+# Experiment 2, and Experiment 2 codes regularity where the others code tense,
+# so the level names are per experiment rather than global.
+contrast_levels_for <- function(ex) {
+  switch(
+    ex,
+    syn = list(
+      c_tense = c(nice = "Tense", plus = "future", minus = "past"),
+      c_prime = c(
+        nice = "Tense priming",
+        plus = "tense-primed",
+        minus = "tense-unprimed"
+      ),
+      c_rprime = c(
+        nice = "Regularity priming",
+        plus = "form-primed",
+        minus = "form-unprimed"
+      )
+    ),
+    phon = list(
+      c_reg = c(nice = "Regularity", plus = "irregular", minus = "regular"),
+      c_prime = c(
+        nice = "Regularity priming",
+        plus = "form-primed",
+        minus = "form-unprimed"
+      ),
+      c_rprime = c(
+        nice = "Regularity priming",
+        plus = "form-primed",
+        minus = "form-unprimed"
+      )
+    ),
+    concept = list(
+      c_tense = c(nice = "Tense", plus = "future", minus = "past"),
+      c_prime = c(
+        nice = "Tense priming",
+        plus = "tense-primed",
+        minus = "tense-unprimed"
+      ),
+      c_rprime = c(
+        nice = "Regularity priming",
+        plus = "form-primed",
+        minus = "form-unprimed"
+      )
+    ),
+    stop("unknown experiment: ", ex)
+  )
+}
+
+# The reminder that goes above every coefficient figure, built from the same
+# coding the models use so it cannot drift from them.
+sign_note <- function(
+  ex,
+  outcome = "onsets and durations",
+  hide = character()
+) {
+  lv <- contrast_levels_for(ex)
+  lv <- lv[!names(lv) %in% hide]
+  # phon lists the same control twice; show each label once.
+  keys <- names(lv)[!duplicated(vapply(lv, `[[`, character(1), "nice"))]
+  parts <- vapply(
+    keys,
+    function(k) {
+      sprintf(
+        "%s +0.5 = %s, -0.5 = %s",
+        lv[[k]][["nice"]],
+        lv[[k]][["plus"]],
+        lv[[k]][["minus"]]
+      )
+    },
+    character(1)
+  )
+  sprintf(
+    paste0(
+      "*How to read the signs.* A positive coefficient means longer or ",
+      "later %s; a negative one means shorter or earlier. Predictors are ",
+      "sum coded at ±0.5, so each estimate is the difference between ",
+      "its two levels: %s. An interaction is the difference between two ",
+      "such differences."
+    ),
+    outcome,
+    paste(parts, collapse = "; ")
+  )
+}
+
+draws_of <- function(fit, term) {
+  posterior::as_draws_df(fit)[[paste0("b_", term)]]
+}
+
+effect_stats <- function(fit, term) {
+  x <- draws_of(fit, term)
+  if (is.null(x)) {
+    return(NULL)
+  }
+  q <- stats::quantile(x, c(.025, .975))
+  list(
+    m = mean(x),
+    lo = q[[1]],
+    hi = q[[2]],
+    pd = max(mean(x > 0), mean(x < 0)),
+    credible = q[[1]] > 0 || q[[2]] < 0
+  )
+}
+
+# Coefficients are on the log scale, so exp(b) is a ratio; against the measure's
+# observed mean that becomes a millisecond change. Approximate by construction.
+as_ms <- function(b, baseline) baseline * (exp(b) - 1)
+as_pct <- function(b) (exp(b) - 1) * 100
+fmt_ci <- function(z) {
+  sprintf("β = %.3f, 95%% CrI [%.3f, %.3f]", z$m, z$lo, z$hi)
+}
+verdict_of <- function(z) {
+  if (z$credible) {
+    "credible"
+  } else if (z$pd >= pd_close) {
+    "leaning"
+  } else {
+    "flat"
+  }
+}
+
+bf_clause <- function(fit, term) {
+  if (!report_bf) {
+    return("")
+  }
+  b <- bf10_savage_dickey(fit, term)
+  if (is.na(b)) {
+    return("")
+  }
+  sprintf(" BF~10~ = %.2f, %s.", b, jeffreys(b))
+}
+
+# One sentence for a main effect.
+describe_main <- function(fit, term, measure, baseline, ex) {
+  z <- effect_stats(fit, term)
+  if (is.null(z)) {
+    return("")
+  }
+  lv <- contrast_levels_for(ex)[[term]]
+  dir <- if (z$m > 0) "longer or later" else "shorter or earlier"
+  if (verdict_of(z) == "flat") {
+    return(sprintf(
+      paste0(
+        "%s separates %s from %s by at most about %.0f ms ",
+        "(%.1f%%), and the posterior has no clear direction ",
+        "(P(dir) = %.2f).%s"
+      ),
+      measure,
+      lv[["plus"]],
+      lv[["minus"]],
+      abs(as_ms(z$m, baseline)),
+      abs(as_pct(z$m)),
+      z$pd,
+      bf_clause(fit, term)
+    ))
+  }
+  tail <- if (z$credible) {
+    sprintf("The interval excludes zero (P(dir) = %.2f).", z$pd)
+  } else {
+    sprintf(
+      "The interval still spans zero, but %.0f%% of the posterior is on one side.",
+      100 * z$pd
+    )
+  }
+  sprintf(
+    "%s is %s in %s than in %s by about %.0f ms (%.1f%%). %s%s",
+    measure,
+    dir,
+    lv[["plus"]],
+    lv[["minus"]],
+    abs(as_ms(z$m, baseline)),
+    abs(as_pct(z$m)),
+    tail,
+    bf_clause(fit, term)
+  )
+}
+
+# An interaction is only readable as two simple effects, so report those in
+# milliseconds rather than the product term on its own.
+describe_interaction <- function(
+  fit,
+  term,
+  inner,
+  outer,
+  measure,
+  baseline,
+  ex
+) {
+  z <- effect_stats(fit, term)
+  if (is.null(z)) {
+    return("")
+  }
+  bi <- draws_of(fit, inner)
+  x <- draws_of(fit, term)
+  if (is.null(bi) || is.null(x)) {
+    return("")
+  }
+  hi <- mean(bi + 0.5 * x)
+  lo <- mean(bi - 0.5 * x)
+  ol <- contrast_levels_for(ex)[[outer]]
+  il <- contrast_levels_for(ex)[[inner]]
+  bigger <- if (abs(hi) > abs(lo)) ol[["plus"]] else ol[["minus"]]
+  stem <- sprintf(
+    paste0(
+      "The %s-versus-%s effect on %s is about %.0f ms when %s ",
+      "and %.0f ms when %s"
+    ),
+    il[["plus"]],
+    il[["minus"]],
+    measure,
+    as_ms(hi, baseline),
+    ol[["plus"]],
+    as_ms(lo, baseline),
+    ol[["minus"]]
+  )
+  # Only claim amplification when the two halves are actually distinguishable;
+  # otherwise the phrase dresses up a difference of a millisecond or two.
+  if (verdict_of(z) == "flat") {
+    return(sprintf(
+      "%s, which is not a reliable difference (P(dir) = %.2f).%s",
+      stem,
+      z$pd,
+      bf_clause(fit, term)
+    ))
+  }
+  tail <- if (z$credible) {
+    sprintf(
+      "The difference between the two is reliable (P(dir) = %.2f).",
+      z$pd
+    )
+  } else {
+    sprintf(
+      "%.0f%% of the posterior favours this pattern, though the interval spans zero.",
+      100 * z$pd
+    )
+  }
+  sprintf(
+    "%s, so it is amplified in the %s. %s%s",
+    stem,
+    bigger,
+    tail,
+    bf_clause(fit, term)
+  )
+}
+
+# Mean of a measure, for turning log coefficients into milliseconds.
+baseline_of <- function(df, v) mean(df[[v]], na.rm = TRUE)
+
+# Reads the reported model straight off disk, like bb() above.
+fit_of <- function(ex, dv) {
+  readRDS(sprintf("analysis/fits/%s_%s_%s.rds", ex, MOD, dv))
+}
+
 e1 <- exp %>% filter(prime_status != "burn", rt_ok)
 e2 <- phon_analysis %>% filter(correct, prime_status != "burn")
 e3 <- syn_analysis %>% filter(correct, prime_status != "burn")
@@ -2221,32 +2717,116 @@ prate <- function(df, ...) {
 }
 ```
 
-# Report
 
-Three experiments test whether tense is planned before articulation begins, and
-whether the cost of that planning is morphosyntactic (selecting a tense feature)
-or morphophonological (retrieving the form that realises it). Experiment 1 uses a
-speeded keypress decision; Experiments 2 and 3 use spoken production, with timing
-recovered from forced-aligned recordings.
+Models of language production treat morphological features with a good deal of
+uniformity. In the lemma model, morphosyntactic information is carried by
+diacritics on lemma nodes, and the mechanism that assigns a diacritic is much the
+same whether it encodes number, tense or case. Cue-based models are
+architecturally different but inherit the same lexicalist premise: features are
+properties of chunks retrieved from memory, and nothing in the architecture
+distinguishes one kind of feature from another in its timing. Both make
+morphological encoding dependent on lexical selection, and therefore subsequent
+to it. A feature whose information source is available early is nonetheless held
+behind the same bottleneck as one that is not.
+
+Tense is a good place to test that premise, because its information source is
+unusually early. Agreement reaches the verb through a linguistic mediator: the
+discourse fixes the number of the subject, and the subject fixes the number of
+the verb, so the verb's number cannot be specified until another element has been
+planned. Tense has no such mediator. The speaker's communicative intention fixes
+whether the event is past or future, and that is known from the very start of
+planning. If the production system can specify a morphosyntactic feature without
+first retrieving the word that carries it, tense is where it should be visible.
+
+That makes it worth separating two things usually spoken about in one breath.
+One is specification of the tense feature itself, marking the relevant node as
+past or future as a function of the discourse. The other is retrieval of the
+form that realises it, *spun* against *will spin*, which cannot be settled
+without knowing which verb is being produced, since the shape of the past depends
+on the verb's lexical identity. The second cannot precede lexical retrieval. The
+first, on the account pursued here, can.
+
+The three experiments isolate the levels in turn. Experiment 1 holds the task
+constant and repeats the tense, so an effect early in the utterance would show
+the feature being specified before the verb has been reached. Experiment 2 holds
+tense constant, every event being past, and repeats the way the past is formed
+instead; here an effect is expected late, around the verb. The contrast with
+agreement is instructive: in agreement two lexical items bear on one closed-class
+element, whereas here a single piece of information, past, meets a verb whose
+lexical identity refracts it into a regular or an irregular surface form.
+Experiment 3 repeats the same decision about time with no utterance at all, and
+so tests whether a repetition effect needs linguistic material to act on.
+
+The two accounts differ in where they place these operations.
+`@fig-predictions`{=typst} lays them over the utterance. Under the first, the
+tense feature is settled before articulation begins and leaves its trace at the
+left, while the form is retrieved only as the verb is approached and leaves its
+trace at the right. Under the second, the diacritic waits until the word carrying
+it is about to be spoken, so both fall together in the pause before the verb and
+neither leaves a trace earlier. The accounts agree from the verb onwards, so the
+determiner and the subject noun are where they can be told apart.
+
+```{=typst}
+#figure(
+  block(width: 100%, inset: (y: 4pt))[
+    // The utterance, as areas along the timeline.
+    #grid(
+      columns: tl, column-gutter: 7pt,
+      region(tone: 99%)[#text(fill: luma(45%), style: "italic")[before speech]],
+      grid.cell(colspan: 2, region[*The*]),
+      region[*Pirate*],
+      region(tone: 99%)[#text(fill: luma(45%), size: 8pt)[pause]],
+      grid.cell(colspan: 2, region[*will spin* / *spun*]),
+      region[*a top*],
+    )
+
+    // Time, padded away from the words above and the brackets below.
+    #v(7pt)
+    #timearrow
+    #v(9pt)
+
+    // The two accounts, directly under the axis.
+    #grid(
+      columns: (2.4em,) + tl, column-gutter: 7pt, row-gutter: 9pt,
+      align: horizon,
+
+      hyp[H1:],
+      grid.cell(colspan: 2, span(tone: 93%)[conceptual planning]),
+      grid.cell(colspan: 2, span[*diacritic selection*]),
+      grid.cell(colspan: 2, span[*form selection*]),
+      blank, blank,
+
+      hyp[H2:],
+      grid.cell(colspan: 2, span(tone: 93%)[conceptual planning]),
+      blank, blank,
+      grid.cell(colspan: 2, span[*diacritic + form selection*]),
+      blank, blank,
+    )
+  ],
+  caption: [Two accounts of when tense is planned, laid over the utterance they
+  predict about. Time runs left to right. Under H1 the tense feature is fixed
+  early, while the sentence is still being begun, and the form that spells it out
+  is retrieved only as the verb is approached. Under H2 both are resolved
+  together, late, in the pause before the verb and just into it. The accounts
+  make the same predictions from the verb onwards and differ only over the
+  determiner and the subject noun, which is where they can be told apart.],
+  kind: "quarto-float-fig",
+  supplement: "Figure",
+) <fig-predictions>
+```
 
 All timing measures are in milliseconds. Error bars are 95% intervals built on
-Morey (2008) within-subject standard errors. Conditions are distinguished by
-marker fill and line type rather than colour, so the figures survive greyscale
-printing.
+Morey (2008) within-subject standard errors. Instead of reporting statistical significance, we report the posterior mean, the 95% credible interval, and the proportion of the posterior falling on one side of zero. An effect is called *credible* when the interval excludes zero, *leaning* when at least `r round(100 * pd_close)`% of the posterior is on one side but the interval still spans zero, and *flat* otherwise.
 
-## Data and preprocessing
+# Data and preprocessing
 
-Spoken responses were uploaded per block as `.webm`, converted to 16 kHz mono
+Experiments were carried out in PcIbex, and spoken responses were uploaded per block as `.webm`, converted to 16 kHz mono
 wav, transcribed with AssemblyAI, and force-aligned against those transcripts
 with the Montreal Forced Aligner (`english_us_arpa` acoustic model and
-dictionary, out-of-vocabulary items passed through G2P). Word and phone
+dictionary, out-of-vocabulary items passed through G2P). Word and phone¡™
 boundaries come from the resulting TextGrids. The commands are listed in the
-appendix.
-
-Recordings that never reached the server, and sessions with no usable audio, are
-outside the participant screen below: they simply have no timing data. One
-morphophonology participant uploaded 101 empty five-byte files and contributes no
-recordings at all.
+appendix. Recordings that never reached the server, and sessions with no usable audio, are
+excluded and will not reported in any analysis below.
 
 ```{r, include=TRUE, results='asis'}
 # 4c. Participant filtering write-up. Reflects whichever switches are set above.
@@ -2272,9 +2852,7 @@ if (!filter_participants || nrow(filter_log) == 0) {
 } else {
   cat(sprintf(
     paste(
-      "Forced alignment yielded %s. Exclusions were applied in the",
-      "order below; each step acts only on the participants that",
-      "survived the preceding steps.\n\n"
+      "Forced alignment yielded %s. "
     ),
     phrase(n_start)
   ))
@@ -2293,9 +2871,10 @@ if (!filter_participants || nrow(filter_log) == 0) {
       collapse = ", and "
     )
     cat(sprintf(
-      "**Step %d, %s.** Participants who %s were excluded: %s.\n\n",
-      i,
-      tolower(s$step),
+      # "**Step %d, %s.** Participants who %s were excluded: %s.\n\n",
+      "Participants who %s were excluded: %s. ",
+      # i,
+      # tolower(s$step),
       s$desc,
       counts
     ))
@@ -2340,72 +2919,28 @@ if (filter_trials) {
 ```
 
 
-## Experiment 1: Conceptual task
+# Descriptive results
 
-### Prediction
+The condition means for all three experiments are in
+@fig-all-means. Experiments 1 and 2 share their five measures, so their
+rows are directly comparable; Experiment 3 has only the keypress latency, and its
+single panel is drawn to the width of one panel in the rows above it. The tables
+behind these figures are in the appendix.
 
-Repetition should have no effect here. If the repetition effects in the
-production experiments come from reusing linguistic material, then a task that
-requires no verb form to be produced gives nothing to reuse. Participants decide
-which time a picture refers to and press a key. Deciding about the future may
-take longer than deciding about the past, but repeating a decision about the same
-time should not speed up the next one, and the effect of repetition should not
-differ between the two tenses. A repetition effect here would mean the effects in
-the other two experiments need not be linguistic at all.
+```{r fig-all-means, fig.height=8, fig.width=12, out.width="100%", fig.cap="Condition means for all three experiments. Top row, Experiment 1: timing by tense and tense repetition. Middle row, Experiment 2: timing by regularity and regularity repetition. Bottom row, Experiment 3: decision latency by tense and tense repetition, drawn at the width of a single panel above. Onsets and the gap are in milliseconds, the two durations in milliseconds per phoneme, and the decision latency in milliseconds. Filled markers are the primed level, open markers its baseline. Error bars are 95% intervals on Morey (2008) within-subject standard errors."}
+p_syn <- condition_means_plot(
+  syn_plot_data,
+  tense,
+  "Tense",
+  c("past", "future")
+)
+p_phon <- condition_means_plot(
+  phon_plot_data,
+  regularity,
+  "Regularity",
+  c("IRREGULAR", "REGULAR")
+)
 
-
-`r concept_n_subj` participants learned character–verb–time pairings (Chef,
-Pirate, Wizard x 20 verbs) and made speeded keypress decisions (C = Past,
-M = Future). The manipulation is **tense priming**: whether the current trial's
-tense matches the previous trial's (primed) or switches (unprimed). No speech is
-recorded, so the utterance screen does not apply here.
-
-### Filtering
-
-Of `r concept_total` trials, `r concept_burn` boundary trials (positions 1, 6, 7
-and 12 of each 12-trial block) were excluded. A further `r concept_rt_trimmed`
-trials fell outside the `r rt_min`–`r rt_max` ms response window and were dropped
-as anticipations or disengagement: the raw responses run from 0 ms to 173 s, and
-the upper tail distorts both the means and the lognormal fit. That leaves
-**`r concept_included` trials**.
-
-### Means
-
-```{r}
-exp %>%
-  filter(prime_status != "burn", rt_ok) %>%
-  group_by(Tense = tense, `Prime status` = prime_status) %>%
-  summarize(
-    N = n(),
-    `Mean RT (ms)` = round(mean(decision_rt, na.rm = TRUE)),
-    SE = round(sd(decision_rt, na.rm = TRUE) / sqrt(n()), 1),
-    .groups = "drop"
-  ) %>%
-  kable(caption = "Experiment 1: decision RT by tense x prime status")
-```
-
-Regularity repetition is also tracked. The two are not independent: regularity
-repeats on `r round(100 * concept_rrep_given_tprime)`% of trials where tense
-repeats but `r round(100 * concept_rrep_given_tswitch)`% of trials where it
-switches, so the two priming effects are estimated jointly in one model rather
-than separately.
-
-```{r}
-exp %>%
-  filter(prime_status != "burn", prime_reg != "burn", rt_ok) %>%
-  group_by(`Regularity prime` = prime_reg, `Tense prime` = prime_status) %>%
-  summarize(
-    N = n(),
-    `Mean RT (ms)` = round(mean(decision_rt, na.rm = TRUE)),
-    SE = round(sd(decision_rt, na.rm = TRUE) / sqrt(n()), 1),
-    .groups = "drop"
-  ) %>%
-  kable(caption = "Experiment 1: decision RT by regularity prime x tense prime")
-```
-
-### Plot
-
-```{r, fig.height=2.1, fig.width=4.2}
 p_concept <- exp %>%
   filter(prime_status != "burn", rt_ok) %>%
   mutate(measure = "Decision RT") %>%
@@ -2418,6 +2953,7 @@ p_concept <- exp %>%
     linetype = tense,
     group = tense
   )) +
+  facet_wrap(~measure, scales = "free_y", nrow = 1) +
   geom_line(position = pd, linewidth = 0.7, colour = "black") +
   geom_errorbar(
     aes(ymin = lwr, ymax = upr),
@@ -2431,20 +2967,243 @@ p_concept <- exp %>%
   cond_shapes("Tense", c("past", "future")) +
   cond_fills("Tense", c("past", "future")) +
   cond_linetypes("Tense", c("past", "future")) +
-  labs(x = "Prime status", y = "Decision RT (ms)") +
-  theme_paper(base_size = 9)
+  labs(x = "Prime status", y = "Time (ms)") +
+  theme_paper(base_size = 9, legend_position = "bottom")
 
-save_figure(p_concept, "fig-exp1-concept-means", width = 4.6, height = 2.1)
-p_concept
+# Experiment 3 has one measure against six above it, so it is padded out to the
+# width of a single panel rather than stretched across the page.
+row_label <- function(p, txt) {
+  p +
+    labs(title = txt) +
+    theme(plot.title = element_text(face = "bold", size = 9, hjust = 0))
+}
+
+save_figure(p_syn, "fig-exp1-syn-means", width = 7.2, height = 2.2)
+save_figure(p_phon, "fig-exp2-phon-means", width = 7.2, height = 2.2)
+save_figure(p_concept, "fig-exp3-concept-means", width = 3.2, height = 2.0)
+
+(row_label(p_syn, "Experiment 1: Morphosyntax") /
+  row_label(p_phon, "Experiment 2: Morphophonology") /
+  (row_label(p_concept, "Experiment 3: Conceptual task") +
+    patchwork::plot_spacer() +
+    patchwork::plot_layout(widths = c(1, 5)))) +
+  patchwork::plot_layout(heights = c(1, 1, 1), guides = "collect") &
+  theme(legend.position = "bottom")
 ```
 
-### Modelling
 
-The model estimates each measure separately. Positive coefficients mean a later
-onset or a longer duration. The measures are the time from the start of the trial
-to the first word, the time to the subject noun, the duration of the subject noun
-per phone, the duration of the verb per phone, and the interval between the
-subject noun and the verb.
+---
+
+
+
+# Experiment 1: Morphosyntax
+
+Producing a tensed sentence requires two decisions that can come apart. One is
+which tense the sentence carries, a choice about its structure. The other is
+which form realises that tense on the verb. If the two are separate operations
+they should be able to leave their traces at different points in the utterance. This
+experiment isolates the first: participants describe the same scenes in the past
+or the future, and what is modulated whether the tense of the trial is being repeated from trial to trial.
+
+## Prediction
+
+The effects related to the repetition should surface early in the sentence.
+Choosing between past and future is a choice about
+the structure of the sentence, possibly made before articulation begins, so its effects
+should appear at the start of the utterance rather than around the verb. The
+interaction between tense and tense repetition at the onset of the subject noun is the
+measure this predicts, and the later measures should show little.
+
+## Participants
+
+`r syn_c$n_subj` participants are analysed here. All were recruited through the
+University of Maryland SONA subject pool and received course credit. Age, gender
+and language background were collected at the start of the session.
+
+The study was approved by the University of Maryland Institutional Review Board.
+Participants read an information sheet describing the task, the recording of
+their voice, and their right to stop at any point without penalty, and gave
+informed consent before beginning. Responses are identified only by the pool
+identifier needed to award credit and by a per-session token; no names or contact
+details were collected, and the recordings and results analysed here carry no
+information that identifies a participant directly.
+
+## Materials
+
+Three characters appear throughout: the Pirate, the Chef and the Wizard.
+Eighteen verbs are divided into three sets of six, one set per block:
+
+| Block | Verbs |
+|:--|:--|
+| 1 | drink, read, eat, paint, wash, push |
+| 2 | build, sweep, ride, climb, stir, peel |
+| 3 | blow, dig, shake, carry, play, smell |
+
+Two further verbs, *spin* and *drag*, are held back for practice and never used in the main experiment.
+
+Each block, first, familiarizes the event with the participant without the exact sentence to utter and without either the past or future tense marking:
+
+```{=typst}
+#example[The Pirate's spinning a top is in the past.]
+```
+
+Depending on the experimental condition, participants either produced past or the future marked information.
+
+```{=typst}
+#example[
+  + The Pirate spun a top. #h(0.6em) #text(size: 9pt)[(past)]
+  + The Pirate will spin a top. #h(0.6em) #text(size: 9pt)[(future)]
+]
+```
+
+## Procedure
+
+After consent, demographics and a microphone check, participants read the
+instructions, learned two practice verbs and produced two practice sentences.
+
+The main task is built from nine blocks, arranged in three meta-blocks of three.
+A block is the unit that pairs learning with production. It opens with a
+familiarisation phase: the six verbs of that block are presented one at a time
+with audio, and then each is placed in time, so the participant learns both the
+event and whether it is being described as past or future. Only after that phase
+does the participant produce anything. The twelve production trials that follow
+show a picture and ask for a spoken description, with no cue or reminder of the
+tense on the screen; what the participant produces comes from what they learned
+at the start of the block. Breaks fall between blocks, and the second and third
+meta-blocks open with a screen announcing that the events now belong to a new
+situation, because the same verbs recur with different characters and different
+times.
+
+Nine blocks of twelve trials give 108 recorded sentences per participant. The
+eighteen verbs are covered once per meta-block, so each verb is produced six
+times over the session.
+
+`@fig-procedure`{=typst} lays out the session, one block, and one trial.
+
+```{=typst}
+
+#figure(
+  block[
+    // The session: three meta-blocks of three blocks each.
+    #align(left, text(size: 8pt, weight: "bold")[The session])
+    #v(3pt)
+    #grid(
+      columns: 9, column-gutter: 3pt, align: center + horizon,
+      stage[#sub[Consent, demographics,] \ #sub[mic check, practice]], arw,
+      stage(fill: luma(88%))[#sub[Meta-block 1] \ #sub[3 blocks]], arw,
+      stage(fill: luma(88%))[#sub[Meta-block 2] \ #sub[3 blocks]], arw,
+      stage(fill: luma(88%))[#sub[Meta-block 3] \ #sub[3 blocks]], arw,
+      stage[#sub[Upload,] \ #sub[exit page]],
+    )
+    #v(4pt)
+    #note[nine blocks of twelve trials, 108 recorded sentences]
+    #v(12pt)
+
+    // One block: learning first, production after.
+    #align(center, block(
+      stroke: 0.6pt + luma(55%), radius: 3pt, inset: (x: 9pt, y: 7pt), width: 100%,
+      [
+        #align(left, text(size: 8pt, weight: "bold")[One block: learn six verbs, then produce twelve sentences])
+        #v(4pt)
+        #grid(
+          columns: 7, column-gutter: 3pt, align: center + horizon,
+          stage(fill: luma(94%))[#sub[*Familiarisation*] \ #sub[6 verbs, one at a time, \ with audio]],
+          arw,
+          stage(fill: luma(94%))[#sub[*Times taught*] \ #sub[each event placed in \ past or future]],
+          arw,
+          stage[#sub[Ready screen]],
+          arw,
+          stage(fill: luma(78%))[#sub[*12 production trials*] \ #sub[picture only, no cue]],
+        )
+        #v(8pt)
+
+        // The twelve trials, and which are analysed.
+        #grid(
+          columns: (3.6em,) + (2.5em,) * 12, column-gutter: 2pt, row-gutter: 2pt,
+          align: center + horizon,
+          text(size: 7.5pt)[Position], ..range(1, 13).map(i => text(size: 7.5pt)[#i]),
+          text(size: 7.5pt)[Pattern 1],
+          ..("PAST", "FUT", "FUT", "PAST", "PAST", "FUT",
+             "FUT", "PAST", "PAST", "FUT", "FUT", "PAST").enumerate().map(((i, t)) => {
+            cell(fill: if i in (0, 5, 6, 11) { luma(80%) } else { white })[#t]
+          }),
+          text(size: 7.5pt)[Pattern 2],
+          ..("FUT", "PAST", "PAST", "FUT", "FUT", "PAST",
+             "PAST", "FUT", "FUT", "PAST", "PAST", "FUT").enumerate().map(((i, t)) => {
+            cell(fill: if i in (0, 5, 6, 11) { luma(80%) } else { white })[#t]
+          }),
+        )
+      ]
+    ))
+    #v(12pt)
+
+    // One production trial.
+    #align(center, block(
+      stroke: 0.6pt + luma(55%), radius: 3pt, inset: (x: 9pt, y: 7pt),
+      [
+        #align(left, text(size: 8pt, weight: "bold")[One production trial])
+        #v(4pt)
+        #grid(
+          columns: 7, rows: (auto, auto), column-gutter: 4pt, row-gutter: 3pt,
+          align: center + horizon,
+          stage[Blank screen], arw,
+          stage(fill: luma(88%))[Fixation cross], arw,
+          stage(fill: luma(78%))[*Picture* \ #sub[recording runs]], arw,
+          stage[Continue],
+
+          note[400 ms], [],
+          note[600 ms], [],
+          note[4500 ms, stops itself], [],
+          note[self-paced],
+        )
+      ]
+    ))
+  ],
+  caption: [Procedure for Experiment 1. Learning and production are separate
+  phases of a block, not steps within a trial: the six verbs of a block are
+  taught first, with audio and with each event placed in past or future, and the
+  twelve production trials that follow show only a picture, with nothing on the
+  screen naming the tense. Those twelve trials are two passes over the block's
+  six verbs, one under each tense order, with the order of the passes randomised;
+  shaded positions are boundary trials, dropped because they have no comparable
+  predecessor, and every other trial is primed when it repeats the tense of the
+  trial before it and unprimed when it does not. Experiment 2 has the same shape
+  with regularity in place of tense and no time-teaching step, and Experiment 3
+  replaces the spoken response with a keypress.],
+  kind: "quarto-float-fig",
+  supplement: "Figure",
+) <fig-procedure>
+```
+
+Which pattern runs first is randomised per block, block order is shuffled within
+each meta-block, the assignment of characters to verbs rotates across meta-blocks,
+and the ordering avoids placing the same character on consecutive trials.
+
+## Analysis
+
+Five measures are taken from the forced alignment of each recording: utterance
+onset, the onset of the subject noun, the per-phoneme duration of the subject
+noun, the per-phoneme duration of the verb, and the gap running from the offset
+of the subject noun to the tense-bearing word, which is *will* in the future and
+the past-marked verb in the past. Experiment 2 uses the same five measures;
+Experiment 3 has no audio and measures keypress latency instead.
+
+Each measure is modelled separately. The terms of interest are tense, tense
+repetition, and their interaction. Repetition of the morphophonological form is
+carried alongside as a control, because a trial that repeats the tense often
+repeats the form as well. Frequency, the subject noun and articulation rate are
+also controlled. The appendix gives the contrast coding, the priors, the full
+random-effect structure and the convergence checks.
+
+Of `r syn_c$total-syn_c$wrong` trials, `r syn_c$burn` were boundary trials that was not included in the data, leaving
+**`r syn_c$included` trials** from `r syn_c$n_subj` participants.
+
+The model estimates each measure separately. The measures are the time from the
+start of the trial to the first word, the time to the subject noun, the duration
+of the subject noun per phone, the duration of the verb per phone, and the
+interval between the subject noun and the verb.
+
+`r sign_note("syn", hide = "c_rprime")`
 
 Speakers reach the verb without pausing on most trials, so the interval is
 modelled in two parts. **Gap length** is how long the pause lasts on the trials where
@@ -2453,7 +3212,394 @@ straight into the verb; a positive coefficient there means fewer pauses. The
 first part is on the log scale in milliseconds, the second on the log-odds scale.
 
 
-```{r, results='asis', fig.height=2.5, fig.width=6}
+## Results
+
+
+
+```{r, results='asis', fig.height=4, fig.width=8, fig.cap="Experiment 1: population-level coefficients of the reported model. Points are posterior medians, bars 95% credible intervals; the dashed line marks zero. The figure at the right of each panel is the proportion of the posterior on one side of zero."}
+syn_ladder <- fit_ladder(syn_fit_data, timing_measures, specs_tense, "syn")
+
+# ── Reported model: spec 5 (design x prime + freq + reg-prime + entity + rate)
+syn_ladder_main <- pick_headline(syn_ladder)
+
+report_models(
+  syn_ladder_main,
+  # The design is tense and tense repetition; form repetition is a control and
+  # is estimated but not reported here.
+  prime_term_labels("Tense", "c_tense", show_rprime = FALSE),
+  sprintf(
+    paste0(
+      "Experiment 1, reported model (spec 5). Positive = slower/longer. ",
+      "Bold marks terms with P(dir) at or above %.2f."
+    ),
+    pd_close
+  ),
+  figure_name = "fig-exp1-coefs-main",
+  hide_terms = c("c_rprime", "entityPirate", "entityWizard"),
+  what = "figure"
+)
+```
+
+
+Tense itself changed the shape of the utterance from the determiner onwards
+(@fig-all-means, top row). Speakers took longer over the determiner before a future sentence than before a
+past one, `r ms(e3, "det_dur", tense == "future")` against
+`r ms(e3, "det_dur", tense == "past")`, and the model confirms the difference
+(`r rep_b("syn", "det_dur", "c_tense")`). This is the earliest point at which
+tense could show up at all, and *the* is the same word in both conditions, so
+neither the lexical identity of the word nor its frequency can be responsible.
+The subject noun was then reached later in the future,
+`r ms(e3, "np_onset", tense == "future")` against
+`r ms(e3, "np_onset", tense == "past")`
+(`r rep_b("syn", "np_onset", "c_tense")`), was itself produced faster,
+`r ms(e3, "subj_dur_pp", tense == "future", unit = " ms/phone")` against
+`r ms(e3, "subj_dur_pp", tense == "past", unit = " ms/phone")`
+(`r rep_b("syn", "subj_dur_pp", "c_tense")`), and the verb was drawn out,
+`r ms(e3, "verb_dur_pp", tense == "future", unit = " ms/phone")` against
+`r ms(e3, "verb_dur_pp", tense == "past", unit = " ms/phone")`
+(`r rep_b("syn", "verb_dur_pp", "c_tense")`). The raw means for verb duration
+are almost identical across the two tenses, and the model separates them only
+once frequency is controlled: future trials carry the bare form, which is far
+more frequent than the past form and therefore shorter, and that difference
+masks the effect of tense in the unadjusted means.
+
+Repeating the tense from the previous trial did not speed anything up. If
+anything the numerically primed trials were slower rather than faster, and no
+main effect of tense repetition was reliable on any measure, including utterance
+onset (`r rep_b("syn", "utt_onset", "c_prime")`) and the onset of the subject
+noun (`r rep_b("syn", "np_onset", "c_prime")`).
+
+Repetition did, however, interact with tense, and it did so early. At the onset
+of the subject noun, repeating the tense delayed the future
+(`r ms(e3, "np_onset", tense == "future", prime_status == "primed")` primed
+against `r ms(e3, "np_onset", tense == "future", prime_status == "unprimed")`
+unprimed) while the past ran in the opposite direction
+(`r ms(e3, "np_onset", tense == "past", prime_status == "primed")` primed against
+`r ms(e3, "np_onset", tense == "past", prime_status == "unprimed")` unprimed).
+The interaction is in the predicted direction and most of the posterior supports
+it, though the interval still includes zero
+(`r rep_b("syn", "np_onset", "c_tense:c_prime")`). The same asymmetry appears in
+whether speakers paused before the tense-bearing word at all: tense repetition
+made a pause less likely in the future than in the past
+(`r rep_b("syn", "gap", "c_tense:c_prime", dpar = "hu")`), which is the strongest
+interaction anywhere in the experiment.
+
+Neither interaction survives past the subject noun. The duration of the noun
+(`r rep_b("syn", "subj_dur_pp", "c_tense:c_prime")`) and the duration of the verb
+(`r rep_b("syn", "verb_dur_pp", "c_tense:c_prime")`) separate the conditions by
+about a millisecond, with the posterior split almost evenly around zero on the
+verb. Repeating a tense therefore leaves its trace before the verb is reached and
+nothing at the verb itself, which is where an effect of selecting the tense
+feature, rather than of retrieving the form that spells it out, should appear.
+The effect is a lean rather than an established result: with
+`r n_distinct(e3$sona_id)` participants the sample is no longer the limiting
+factor, so the width of the interval reflects the size of the effect.
+
+
+# Experiment 2: Morphophonology
+
+The companion to Experiment 1. Here the tense is held constant and the form is
+varied instead, so that what repeats across trials is not the choice of tense
+but the way the past is spelled out on the verb. If selecting a tense feature
+and retrieving its form are separate operations, repetition of the form should
+act at a different point in the utterance from repetition of the tense.
+
+## Prediction
+
+Repetition should act near the verb. The form of the past tense is not needed
+until the verb is articulated, so preparing it should leave the time to begin
+speaking unchanged and appear on the words immediately around the verb. The
+effect should be larger for irregular verbs, whose past forms have to be
+retrieved individually, than for regular verbs, which share one ending. The
+clearest place to see this is the interaction between regularity and repetition,
+on the duration of the subject noun and on whether the speaker pauses before
+reaching the verb.
+
+## Participants
+
+`r phon_c$n_subj` participants are analysed here, recruited through the same
+University of Maryland SONA subject pool as Experiment 1 and credited for
+participation. No participant took part in more than one experiment. Approval,
+consent and anonymisation were as described for Experiment 1.
+
+## Materials
+
+The characters and the eighteen verbs are those of Experiment 1, in the same
+three blocks. Ten of the twenty verbs form their past irregularly (*blow, build,
+dig, drink, eat, read, ride, shake, spin, sweep*) and the rest are regular. Each
+block holds exactly three of each, so regularity can repeat or switch from trial
+to trial without being confounded with block.
+
+Every response is in the past tense:
+
+```{=typst}
+#example[The Pirate spun a top.]
+```
+
+## Procedure
+
+The session ran as in Experiment 1, with the same nine blocks in three
+meta-blocks and the same split between a familiarisation phase and the twelve
+production trials that follow it. The familiarisation is shorter here: the six
+verbs of the block are presented one at a time with audio, but nothing places
+them in time, because every event is past. Blocks are separated by breaks, and
+the session again yields 108 recorded sentences per participant.
+`@fig-procedure-phon`{=typst} gives the block.
+
+```{=typst}
+#figure(
+  block(width: 100%)[
+    #nests
+    #v(9pt)
+    #grid(
+      columns: 5, column-gutter: 3pt, align: center + horizon,
+      stage(fill: luma(94%))[#sub[*Familiarisation*] \ #sub[6 verbs with audio, \ no times taught]],
+      arw,
+      stage[#sub[Ready screen]],
+      arw,
+      stage(fill: luma(78%))[#sub[*12 production trials*] \ #sub[picture only]],
+    )
+    #v(7pt)
+    #grid(
+      columns: (3.6em,) + (2.5em,) * 12, column-gutter: 2pt, row-gutter: 2pt,
+      align: center + horizon,
+      text(size: 7.5pt)[Position], ..range(1, 13).map(i => text(size: 7.5pt)[#i]),
+      text(size: 7.5pt)[Pattern 1],
+      ..("I", "R", "R", "I", "I", "R", "R", "I", "I", "R", "R", "I").enumerate().map(((i, t)) => {
+        cell(fill: if i in (0, 5, 6, 11) { luma(80%) } else { white })[#t]
+      }),
+      text(size: 7.5pt)[Pattern 2],
+      ..("R", "I", "I", "R", "R", "I", "I", "R", "R", "I", "I", "R").enumerate().map(((i, t)) => {
+        cell(fill: if i in (0, 5, 6, 11) { luma(80%) } else { white })[#t]
+      }),
+    )
+  ],
+  caption: [One block of Experiment 2, which is one ninth of the session:
+  three blocks make a meta-block and three meta-blocks make the session.
+  I is an irregular verb and R a regular
+  one. Two passes over the same six verbs, one under each order, with the order
+  of the passes randomised; shaded positions are boundary trials. Tense is never
+  taught, since every event is past. The session, the trial timings and the
+  randomisation are otherwise those of Experiment 1.],
+  kind: "quarto-float-fig",
+  supplement: "Figure",
+) <fig-procedure-phon>
+```
+
+Which pattern runs first is randomised per block, block order is shuffled within
+each meta-block, the assignment of characters to verbs rotates across
+meta-blocks, and the ordering avoids placing the same character on consecutive
+trials.
+
+A trial is **primed** when its verb forms the past in the same way as the verb on
+the trial before it and **unprimed** when it does not. As in Experiment 1, the
+first and last position of each six-trial pattern have no comparable predecessor
+and are excluded as boundary trials.
+
+## Analysis
+
+The five measures are those of Experiment 1. Each is modelled separately, and
+the terms of interest are regularity, regularity repetition, and their
+interaction. Tense plays no role here, since every trial is past. Frequency, the
+subject noun and articulation rate are controlled. The appendix gives the
+contrast coding, the priors, the random-effect structure and the convergence
+checks.
+
+Of `r phon_c$total` trials, `r phon_c$wrong` (`r phon_c$pct_wrong`%) failed the
+utterance screen and `r phon_c$burn` were boundary trials, leaving
+**`r phon_c$included` trials** from `r phon_c$n_subj` participants.
+
+The model estimates each measure separately. The measures are the time from the
+start of the trial to the first word, the time to the subject noun, the duration
+of the subject noun per phone, the duration of the verb per phone, and the
+interval between the subject noun and the verb.
+
+`r sign_note("phon")`
+
+Speakers reach the verb without pausing on most trials, so the interval is
+modelled in two parts. **Gap length** is how long the pause lasts on the trials where
+there is one. **No pause lik.** is how likely the speaker is to run
+straight into the verb; a positive coefficient there means fewer pauses. The
+first part is on the log scale in milliseconds, the second on the log-odds scale.
+
+
+## Results
+
+
+
+```{r, results='asis', fig.height=4, fig.width=8, fig.cap="Experiment 2: population-level coefficients of the reported model. Points are posterior medians, bars 95% credible intervals; the dashed line marks zero. The figure at the right of each panel is the proportion of the posterior on one side of zero."}
+phon_ladder <- fit_ladder(phon_fit_data, timing_measures, specs_reg, "phon")
+
+# ── Reported model: spec 5 (design x prime + freq + reg-prime + entity + rate)
+phon_ladder_main <- pick_headline(phon_ladder)
+
+report_models(
+  phon_ladder_main,
+  # c_prime is already regularity repetition here, so there is no separate
+  # form-repetition control to report.
+  prime_term_labels(
+    "Regularity",
+    "c_reg",
+    prime_label = "Regularity priming",
+    prime_short = "Priming",
+    show_rprime = FALSE
+  ),
+  sprintf(
+    paste0(
+      "Experiment 2, reported model (spec 5). Positive = slower/longer. ",
+      "Bold marks terms with P(dir) at or above %.2f."
+    ),
+    pd_close
+  ),
+  figure_name = "fig-exp2-coefs-main",
+  hide_terms = c("entityPirate", "entityWizard"),
+  what = "figure"
+)
+```
+
+
+Regularity on its own did almost nothing (@fig-all-means, middle row).
+Irregular and regular verbs did not
+differ at utterance onset (`r rep_b("phon", "utt_onset", "c_reg")`), at the onset
+of the subject noun (`r rep_b("phon", "np_onset", "c_reg")`), or in the duration
+of the subject noun (`r rep_b("phon", "subj_dur_pp", "c_reg")`). The verb itself
+was numerically longer when irregular, but the interval is wide and includes zero
+(`r rep_b("phon", "verb_dur_pp", "c_reg")`).
+
+Repeating the way the past is formed did leave a trace, and it appeared at the
+verb. Verbs were drawn out when the preceding trial formed its past the same way,
+`r ms(e2, "verb_dur_pp", prime_status == "primed", unit = " ms/phone")` against
+`r ms(e2, "verb_dur_pp", prime_status == "unprimed", unit = " ms/phone")`, with
+most of the posterior on that side
+(`r rep_b("phon", "verb_dur_pp", "c_prime")`). This is where the account expects
+form repetition to act: the shape of the past is not needed until the verb is
+spoken.
+
+The same repetition also delayed the start of the utterance,
+`r ms(e2, "utt_onset", prime_status == "primed")` against
+`r ms(e2, "utt_onset", prime_status == "unprimed")`
+(`r rep_b("phon", "utt_onset", "c_prime")`), which the account does not predict.
+Nothing about the form of a verb that has not been reached should govern when a
+speaker begins to talk, so this effect sits awkwardly with the claim that form
+repetition acts late. Both effects are leans rather than established results, and
+they are the same size, so the experiment does not on its own separate an early
+locus from a late one.
+
+The interaction between regularity and repetition was expected to be clearest on
+the words leading up to the verb, and the largest one in the experiment is indeed
+on the duration of the subject noun
+(`r rep_b("phon", "subj_dur_pp", "c_reg:c_prime")`). Repetition lengthened the
+noun more before an irregular verb than before a regular one, which is the
+direction predicted if an irregular past has to be retrieved individually while
+regulars share one ending. It does not reach conventional credibility, and no
+comparable interaction appears at utterance onset
+(`r rep_b("phon", "utt_onset", "c_reg:c_prime")`) or on the verb itself
+(`r rep_b("phon", "verb_dur_pp", "c_reg:c_prime")`).
+
+
+# Experiment 3: Conceptual task
+
+The control for the other two. Experiments 1 and 2 both find their effects by
+repeating something across trials, and both require speech. This experiment
+repeats the same decision about time without asking for any utterance, so it
+tests whether a repetition effect needs linguistic material to act on at all.
+
+## Prediction
+
+Repetition should have no effect here. If the repetition effects in the
+production experiments come from reusing linguistic material, then a task that
+requires no verb form to be produced gives nothing to reuse. Participants decide
+which time a picture refers to and press a key. Deciding about the future may
+take longer than deciding about the past, but repeating a decision about the same
+time should not speed up the next one, and the effect of repetition should not
+differ between the two tenses. A repetition effect here would mean the effects in
+the other two experiments need not be linguistic at all.
+
+## Participants
+
+`r concept_n_subj` participants are analysed here, recruited through the same
+University of Maryland SONA subject pool as the production experiments. Approval,
+consent and anonymisation were as described for Experiment 1; nothing was
+recorded here, so the session produced no audio.
+
+## Materials
+
+The same three characters and the same twenty verbs as Experiments 1 and 2, with
+each character paired with each verb and a time assigned to that pairing. Because
+nothing is spoken, the verb enters only through the picture and the learned
+pairing, not through a produced form.
+
+## Procedure
+
+Participants learned the character, verb and time pairings, then made speeded
+keypress decisions about which time a picture referred to, pressing **C** for past
+and **M** for future. Trials were arranged in twelve-trial blocks on the same
+scheme as the production experiments, so that tense repeats or switches from one
+trial to the next in the same way. A trial is **primed** when its tense matches
+the previous trial's and **unprimed** when it switches, and positions 1, 6, 7 and
+12 of each block are boundary trials, as in `@fig-procedure`{=typst}.
+`@fig-procedure-concept`{=typst} gives the trial.
+
+```{=typst}
+#figure(
+  block(width: 100%)[
+    #nests
+    #v(9pt)
+    #grid(
+      columns: 5, column-gutter: 4pt, rows: (auto, auto),
+      align: center + horizon,
+      stage(fill: luma(94%))[#sub[*Learning*] \ #sub[character, verb and time]],
+      arw,
+      stage(fill: luma(88%))[#sub[Picture]],
+      arw,
+      stage(fill: luma(78%))[#sub[*Keypress*] \ #sub[C = past, M = future]],
+
+      note[once per block], [], note[no speech], [], note[latency measured],
+    )
+  ],
+  caption: [One trial of Experiment 3, and the learning that precedes it. A
+  block teaches its pairings once and then runs twelve trials; three blocks
+  make a meta-block and three meta-blocks make the session, as in the
+  production experiments. The pairings are learned first, as in the
+  production experiments, and the trial itself asks only for a keypress. Nothing
+  is spoken, so the articulatory measures of Experiments 1 and 2 do not apply.],
+  kind: "quarto-float-fig",
+  supplement: "Figure",
+) <fig-procedure-concept>
+```
+
+## Analysis
+
+The single measure is the latency of the keypress reporting the decision. The
+terms of interest are tense, tense repetition, and their interaction. No speech
+is recorded, so the utterance screen and the articulatory controls used in the
+other two experiments do not apply.
+
+Of `r concept_total` trials, `r concept_burn` boundary trials (positions 1, 6, 7
+and 12 of each 12-trial block) were excluded. A further `r concept_rt_trimmed`
+trials fell outside the `r rt_min`–`r rt_max` ms response window and were dropped
+as anticipations or disengagement: the raw responses run from 0 ms to 173 s, and
+the upper tail distorts both the means and the lognormal fit. That leaves
+**`r concept_included` trials**.
+
+Experiment 3 has a single dependent measure, the latency of the keypress
+reporting the decision, so one model is fitted rather than a set over measures.
+The task involves no speech, so none of the articulatory measures used in
+Experiments 1 and 2 apply here.
+
+`r sign_note("concept", "decision latencies")`
+
+
+## Results
+
+Regularity repetition is also tracked. The two are not independent: regularity
+repeats on `r round(100 * concept_rrep_given_tprime)`% of trials where tense
+repeats but `r round(100 * concept_rrep_given_tswitch)`% of trials where it
+switches, so the two priming effects are estimated jointly in one model rather
+than separately; the cell means are in the appendix.
+
+
+```{r, results='asis', fig.height=1.8, fig.width=4.4, out.width="62%", fig.cap="Experiment 3: population-level coefficients of the reported model for decision latency. Points are posterior medians, bars 95% credible intervals. The figure at the right is the proportion of the posterior on one side of zero."}
 concept_ladder <- fit_ladder(
   concept_fit_data,
   "decision_rt",
@@ -2468,32 +3614,22 @@ concept_ladder_main <- pick_headline(concept_ladder)
 report_models(
   concept_ladder_main,
   prime_term_labels("Tense", "c_tense"),
-  "Experiment 1, reported model (spec 5). Positive = slower/longer.",
-  figure_name = "fig-exp1-coefs-main"
+  sprintf(
+    paste0(
+      "Experiment 3, reported model (spec 5). Positive = slower/longer. ",
+      "Bold marks terms with P(dir) at or above %.2f."
+    ),
+    pd_close
+  ),
+  figure_name = "fig-exp3-coefs-main",
+  hide_terms = c("entityPirate", "entityWizard"),
+  what = "figure"
 )
 ```
 
-### Items
 
-By-verb deviations from the intercept in the reported model. A verb whose
-interval excludes zero behaves differently from the rest of the item set.
-
-```{r, fig.height=3, fig.width=5}
-p_items <- item_forest(concept_ladder_main, "Experiment 1")
-if (!is.null(p_items)) {
-  save_figure(p_items, "fig-exp1-item-forest", width = 6, height = 3)
-  p_items
-}
-```
-
-
-
----
-
-
-### Results
-
-Decisions were slower for future than for past. Future trials averaged
+Decisions were slower for future than for past (@fig-all-means, bottom row).
+Future trials averaged
 `r ms(e1, "decision_rt", tense == "future")` and past trials
 `r ms(e1, "decision_rt", tense == "past")`. The model supports this difference
 (`r rep_b("concept", "decision_rt", "c_tense")`).
@@ -2514,98 +3650,243 @@ repeating a decision about the same time does not make the next one faster.
 
 ---
 
-## Experiment 2: Morphophonology
 
-### Prediction
+# What the three experiments show
 
-Repetition should act near the verb. The form of the past tense is not needed
-until the verb is articulated, so preparing it should leave the time to begin
-speaking unchanged and appear on the words immediately around the verb. The
-effect should be larger for irregular verbs, whose past forms have to be
-retrieved individually, than for regular verbs, which share one ending. The
-clearest place to see this is the interaction between regularity and repetition,
-on the duration of the subject noun and on whether the speaker pauses before
-reaching the verb.
+Repeating a tense left its mark before the verb was reached and nothing at the
+verb itself. The interaction between tense and tense repetition ran in the
+predicted direction at the onset of the subject noun, and repetition made a pause
+before the tense-bearing word less likely in the future than in the past; neither
+the duration of the subject noun nor the duration of the verb separated the
+conditions. Tense itself was already visible on the determiner, a word identical
+in both conditions, which is the earliest point at which it could show up at all.
+That is the pattern H1 predicts and H2 does not.
+
+Repeating the form gave a weaker and less well-placed result. The interaction
+between regularity and repetition, which is the term that separates a form that
+has to be retrieved individually from one that shares an ending, fell on the
+duration of the subject noun and not on the verb. Nothing comparable appeared at
+the verb itself. Experiment 3 produced no interaction anywhere, so whatever the
+production experiments are picking up is not a generic effect of repeating a
+decision.
+
+Main effects of repetition are left out of this summary. Both experiments show
+some, but a main effect says only that repetition changed a measure, not when the
+information was planned, and the two accounts make the same prediction about it.
+Only the interactions distinguish them.
+
+`@fig-evidence`{=typst} places these results on the same timeline as the
+predictions.
+
+```{=typst}
+#let found(body, tone: 82%) = box(
+  width: 100%, fill: luma(tone), radius: 2pt,
+  stroke: 0.8pt + luma(30%), inset: (x: 3pt, y: 6pt),
+  align(center, text(size: 7.5pt, body))
+)
+
+#figure(
+  block(width: 100%, inset: (y: 4pt))[
+    #grid(
+      columns: tl, column-gutter: 7pt,
+      region(tone: 99%)[#text(fill: luma(45%), style: "italic")[before speech]],
+      grid.cell(colspan: 2, region[*The*]),
+      region[*Pirate*],
+      region(tone: 99%)[#text(fill: luma(45%), size: 8pt)[pause]],
+      grid.cell(colspan: 2, region[*will spin* / *spun*]),
+      region[*a top*],
+    )
+    #v(7pt)
+    #timearrow
+    #v(9pt)
+
+    #grid(
+      columns: (5.2em,) + tl, column-gutter: 7pt, row-gutter: 9pt,
+      align: horizon,
+
+      align(right + horizon, text(size: 8pt, weight: "bold")[Tense × \ repetition]),
+      grid.cell(colspan: 3, found[NP onset \ #text(size: 7pt)[$P_"dir"$ = .87]]),
+      blank,
+      found[pause less likely \ #text(size: 7pt)[$P_"dir"$ = .93]],
+      blank, blank, blank,
+
+      align(right + horizon, text(size: 8pt, weight: "bold")[Regularity × \ repetition]),
+      blank, blank, blank,
+      found[subject duration \ #text(size: 7pt)[$P_"dir"$ = .94]],
+      blank, blank, blank, blank,
+    )
+    #v(7pt)
+    #align(left, text(size: 7.5pt, fill: luma(30%))[
+      Only interactions are shown: a main effect of repetition, on its own, does
+      not tell the two accounts apart. Tense repetition acts to the left of the
+      verb and not on it, as H1 predicts.
+    ])
+  ],
+  caption: [Where the effects actually fell, on the timeline of
+  `@fig-predictions`{=typst}. Only the interactions are shown, since these are
+  what the two accounts disagree about; each band gives the proportion of the
+  posterior on one side of zero. Every one is a lean rather than a credible
+  effect, as no interval excluded zero. Regions left blank are ones where the
+  measure was taken and no interaction was found. Experiment 3 is not shown: it
+  produced no interaction anywhere.],
+  kind: "quarto-float-fig",
+  supplement: "Figure",
+) <fig-evidence>
+```
 
 
-`r phon_c$n_subj` participants produced past-tense descriptions of the same
-scenes (*The pirate spun a top*). The manipulation is **morphophonological
-priming** by verb regularity: whether the current trial's verb shares its past
-formation with the previous trial's. All trials are past tense, so tense is held
-constant and regularity carries the design.
+---
 
-**Measures.** Utterance onset (when *the* begins), NP onset, NP head duration
-(the entity name), and the gap between NP offset and the verb.
 
-### Filtering
 
-Of `r phon_c$total` trials, `r phon_c$wrong` (`r phon_c$pct_wrong`%) failed the
-utterance screen and `r phon_c$burn` were boundary trials, leaving
-**`r phon_c$included` trials** from `r phon_c$n_subj` participants.
+# A1. Model coefficients {.unnumbered}
 
-### Means
+The tables behind the coefficient figures in each Results section. Estimates are
+on the log scale, so a coefficient is a proportional change; positive means
+slower or longer. Bold marks terms with P(dir) at or above the threshold set in
+the header of this document. Terms held in the models as controls but left out of
+the figures are also left out here.
+
+### Experiment 1: Morphosyntax {.unnumbered}
 
 ```{r}
-means_table(
-  phon_plot_data,
-  regularity,
-  "Experiment 2: timing measures by regularity x prime status"
+#| label: tbl-coefs-exp1
+#| tbl-cap: !expr sprintf("Experiment 1, reported model (spec 5). Positive = slower/longer. Bold marks terms with P(dir) at or above %.2f.", pd_close)
+report_models(
+  syn_ladder_main,
+  prime_term_labels("Tense", "c_tense", show_rprime = FALSE),
+  caption = NULL,
+  hide_terms = c("c_rprime", "entityPirate", "entityWizard"),
+  what = "table",
+  split = FALSE
 )
 ```
 
-### Plot
+### Experiment 2: Morphophonology {.unnumbered}
 
-```{r, fig.height=2, fig.width=8}
-p_phon <- condition_means_plot(
-  phon_plot_data,
-  regularity,
-  "Regularity",
-  c("IRREGULAR", "REGULAR")
-)
-save_figure(p_phon, "fig-exp2-phon-means", width = 7.2, height = 2.2)
-p_phon
-```
-
-### Modelling
-
-The model estimates each measure separately. Positive coefficients mean a later
-onset or a longer duration. The measures are the time from the start of the trial
-to the first word, the time to the subject noun, the duration of the subject noun
-per phone, the duration of the verb per phone, and the interval between the
-subject noun and the verb.
-
-Speakers reach the verb without pausing on most trials, so the interval is
-modelled in two parts. **Gap length** is how long the pause lasts on the trials where
-there is one. **No pause lik.** is how likely the speaker is to run
-straight into the verb; a positive coefficient there means fewer pauses. The
-first part is on the log scale in milliseconds, the second on the log-odds scale.
-
-
-```{r, results='asis', fig.height=5, fig.width=8}
-phon_ladder <- fit_ladder(phon_fit_data, timing_measures, specs_reg, "phon")
-
-# ── Reported model: spec 5 (design x prime + freq + reg-prime + entity + rate)
-phon_ladder_main <- pick_headline(phon_ladder)
-
+```{r}
+#| label: tbl-coefs-exp2
+#| tbl-cap: !expr sprintf("Experiment 2, reported model (spec 5). Positive = slower/longer. Bold marks terms with P(dir) at or above %.2f.", pd_close)
 report_models(
   phon_ladder_main,
   prime_term_labels(
     "Regularity",
     "c_reg",
     prime_label = "Regularity priming",
-    prime_short = "Priming"
+    prime_short = "Priming",
+    show_rprime = FALSE
   ),
-  "Experiment 2, reported model (spec 5). Positive = slower/longer.",
-  figure_name = "fig-exp2-coefs-main"
+  caption = NULL,
+  hide_terms = c("entityPirate", "entityWizard"),
+  what = "table",
+  split = FALSE
 )
 ```
 
-### Items
+### Experiment 3: Conceptual task {.unnumbered}
 
-By-verb deviations from the intercept in the reported model. A verb whose
-interval excludes zero behaves differently from the rest of the item set.
+```{r}
+#| label: tbl-coefs-exp3
+#| tbl-cap: !expr sprintf("Experiment 3, reported model (spec 5). Positive = slower/longer. Bold marks terms with P(dir) at or above %.2f.", pd_close)
+report_models(
+  concept_ladder_main,
+  prime_term_labels("Tense", "c_tense"),
+  caption = NULL,
+  hide_terms = c("entityPirate", "entityWizard"),
+  what = "table",
+  split = FALSE
+)
+```
 
-```{r, fig.height=2.5, fig.width=8}
+
+---
+
+
+
+# A2. Condition means {.unnumbered}
+
+The tables behind the figures in the Descriptive results section.
+
+### Experiment 1: Morphosyntax {.unnumbered}
+
+```{r}
+#| label: tbl-means-exp1
+#| tbl-cap: "Experiment 1: timing measures by tense and tense repetition. Onsets and the gap are in milliseconds; subject-noun and verb durations are milliseconds per phoneme. SE is the Morey (2008) within-subject standard error."
+means_table(
+  syn_plot_data,
+  tense,
+  NULL
+)
+```
+
+### Experiment 2: Morphophonology {.unnumbered}
+
+```{r}
+#| label: tbl-means-exp2
+#| tbl-cap: "Experiment 2: timing measures by regularity and regularity repetition. Onsets and the gap are in milliseconds; subject-noun and verb durations are milliseconds per phoneme. SE is the Morey (2008) within-subject standard error."
+means_table(
+  phon_plot_data,
+  regularity,
+  NULL
+)
+```
+
+### Experiment 3: Conceptual task {.unnumbered}
+
+```{r}
+#| label: tbl-means-exp3
+#| tbl-cap: "Experiment 3: decision RT by tense and tense repetition. SE is the standard error of the mean."
+exp %>%
+  filter(prime_status != "burn", rt_ok) %>%
+  group_by(Tense = tense, `Prime status` = prime_status) %>%
+  summarize(
+    N = n(),
+    `Mean RT (ms)` = round(mean(decision_rt, na.rm = TRUE)),
+    SE = round(sd(decision_rt, na.rm = TRUE) / sqrt(n()), 1),
+    .groups = "drop"
+  ) %>%
+  kable()
+```
+
+```{r}
+#| label: tbl-means-exp3-reg
+#| tbl-cap: "Experiment 3: decision RT by regularity repetition and tense repetition, showing how far the two priming variables co-vary."
+exp %>%
+  filter(prime_status != "burn", prime_reg != "burn", rt_ok) %>%
+  group_by(`Regularity prime` = prime_reg, `Tense prime` = prime_status) %>%
+  summarize(
+    N = n(),
+    `Mean RT (ms)` = round(mean(decision_rt, na.rm = TRUE)),
+    SE = round(sd(decision_rt, na.rm = TRUE) / sqrt(n()), 1),
+    .groups = "drop"
+  ) %>%
+  kable()
+```
+
+
+---
+
+
+# A3. By-item effects {.unnumbered}
+
+By-verb deviations from the intercept in the reported model of each
+experiment. A verb whose interval excludes zero behaves differently from the
+rest of the item set.
+
+### Experiment 1: Morphosyntax {.unnumbered}
+
+```{r, fig.height=2.5, fig.width=8, fig.cap="Experiment 1: by-verb deviations from the population intercept in the reported model. A verb whose interval excludes zero behaves differently from the rest of the item set."}
+p_items <- item_forest(syn_ladder_main, "Experiment 1")
+if (!is.null(p_items)) {
+  save_figure(p_items, "fig-exp1-item-forest", width = 7.2, height = 4)
+  p_items
+}
+```
+
+
+### Experiment 2: Morphophonology {.unnumbered}
+
+```{r, fig.height=2.5, fig.width=8, fig.cap="Experiment 2: by-verb deviations from the population intercept in the reported model."}
 p_items <- item_forest(phon_ladder_main, "Experiment 2")
 if (!is.null(p_items)) {
   save_figure(p_items, "fig-exp2-item-forest", width = 7.2, height = 4)
@@ -2614,266 +3895,75 @@ if (!is.null(p_items)) {
 ```
 
 
+### Experiment 3: Conceptual task {.unnumbered}
 
----
-
-
-### Results
-
-Repetition of the past-tense form shortened the verb. After an irregular prime,
-irregular verbs were produced in `r ms(e2, "verb_dur_pp", regularity == "IRREGULAR", prime_status == "primed", unit = " ms/phone")`
-against `r ms(e2, "verb_dur_pp", regularity == "IRREGULAR", prime_status == "unprimed", unit = " ms/phone")`
-when unprimed. Regular verbs changed less, from
-`r ms(e2, "verb_dur_pp", regularity == "REGULAR", prime_status == "unprimed", unit = " ms/phone")`
-to `r ms(e2, "verb_dur_pp", regularity == "REGULAR", prime_status == "primed", unit = " ms/phone")`.
-The model supports the repetition effect
-(`r rep_b("phon", "verb_dur_pp", "c_prime")`) but does not separate the two verb
-types (`r rep_b("phon", "verb_dur_pp", "c_reg:c_prime")`).
-
-Repetition also changed the subject noun, and here the two verb types behave
-differently. Before a regular verb, the subject was
-`r ms(e2, "subj_dur_pp", regularity == "REGULAR", prime_status == "unprimed", unit = " ms/phone")`
-when unprimed and `r ms(e2, "subj_dur_pp", regularity == "REGULAR", prime_status == "primed", unit = " ms/phone")`
-when primed. Before an irregular verb the two were close,
-`r ms(e2, "subj_dur_pp", regularity == "IRREGULAR", prime_status == "unprimed", unit = " ms/phone")`
-and `r ms(e2, "subj_dur_pp", regularity == "IRREGULAR", prime_status == "primed", unit = " ms/phone")`.
-The model gives `r rep_b("phon", "subj_dur_pp", "c_reg:c_prime")` for the
-interaction, which we read as support given the direction and the size of the
-posterior mass above zero.
-
-The clearest effect is on whether speakers paused at all before the verb. Pauses
-were most frequent before an unprimed irregular verb, on
-`r prate(e2, regularity == "IRREGULAR", prime_status == "unprimed")` of trials,
-and dropped to `r prate(e2, regularity == "IRREGULAR", prime_status == "primed")`
-when the preceding trial had also used an irregular. Regular verbs showed no such
-change, `r prate(e2, regularity == "REGULAR", prime_status == "unprimed")` when
-unprimed and `r prate(e2, regularity == "REGULAR", prime_status == "primed")` when
-primed. The model separates all three terms: irregular verbs are followed by more
-pauses (`r rep_b("phon", "gap", "c_reg", dpar = "hu")`), repetition reduces
-pausing (`r rep_b("phon", "gap", "c_prime", dpar = "hu")`), and the reduction is
-larger for irregulars (`r rep_b("phon", "gap", "c_reg:c_prime", dpar = "hu")`).
-The coefficients are on the probability of producing no pause, so a positive
-value means fewer pauses.
-
-Speech onset was unaffected. Primed trials began at
-`r ms(e2, "utt_onset", prime_status == "primed")` and unprimed trials at
-`r ms(e2, "utt_onset", prime_status == "unprimed")`
-(`r rep_b("phon", "utt_onset", "c_prime")`).
-
-Repetition of the past-tense form therefore acts late. It leaves the time to
-begin speaking unchanged and shows up on the subject noun, on the verb itself,
-and on whether the speaker pauses before reaching the verb. This is what we
-predicted for a form-based effect: the form is not needed until the verb is
-articulated, so preparing it does not delay the start of the sentence.
-
-
----
-
-## Experiment 3: Morphosyntax
-
-### Prediction
-
-Repetition should act early. Choosing between past and future is a choice about
-the structure of the sentence, made before articulation begins, so its effects
-should appear at the start of the utterance rather than around the verb. The
-interaction between tense and repetition at the onset of the subject noun is the
-measure this predicts, and the later measures should show little.
-
-
-`r syn_c$n_subj` participants produced past or future descriptions of the same
-scenes (*The pirate spun a top* vs *The pirate will spin a top*). The
-manipulation is **tense priming**, identical in logic to Experiment 1, but the
-response is spoken, so the dependent measures are timing rather than keypress
-latency.
-
-**Measures.** As in Experiment 2, with the gap running from NP offset to the
-tense-bearing word (*will* in the future, the past-marked verb in the past).
-
-### Filtering
-
-Of `r syn_c$total` trials, `r syn_c$wrong` (`r syn_c$pct_wrong`%) failed the
-utterance screen and `r syn_c$burn` were boundary trials, leaving
-**`r syn_c$included` trials** from `r syn_c$n_subj` participants.
-
-### Means
-
-```{r}
-means_table(
-  syn_plot_data,
-  tense,
-  "Experiment 3: timing measures by tense x prime status"
-)
-```
-
-As in Experiment 1, regularity repetition is tracked alongside tense repetition
-and the two enter the models together.
-
-```{r}
-syn_analysis %>%
-  filter(correct, prime_status != "burn", prime_reg != "burn") %>%
-  group_by(`Regularity prime` = prime_reg, `Tense prime` = prime_status) %>%
-  summarize(
-    N = n(),
-    `Utterance onset (ms)` = round(mean(utt_onset, na.rm = TRUE)),
-    `NP head dur (ms)` = round(mean(np_head_dur, na.rm = TRUE)),
-    `Gap (ms)` = round(mean(gap, na.rm = TRUE)),
-    .groups = "drop"
-  ) %>%
-  kable(caption = "Experiment 3: timing by regularity prime x tense prime")
-```
-
-### Plot
-
-```{r, fig.height=2, fig.width=8}
-p_syn <- condition_means_plot(
-  syn_plot_data,
-  tense,
-  "Tense",
-  c("past", "future")
-)
-save_figure(p_syn, "fig-exp3-syn-means", width = 7.2, height = 2.2)
-p_syn
-```
-
-
-### Modelling
-
-The model estimates each measure separately. Positive coefficients mean a later
-onset or a longer duration. The measures are the time from the start of the trial
-to the first word, the time to the subject noun, the duration of the subject noun
-per phone, the duration of the verb per phone, and the interval between the
-subject noun and the verb.
-
-Speakers reach the verb without pausing on most trials, so the interval is
-modelled in two parts. **Gap length** is how long the pause lasts on the trials where
-there is one. **No pause lik.** is how likely the speaker is to run
-straight into the verb; a positive coefficient there means fewer pauses. The
-first part is on the log scale in milliseconds, the second on the log-odds scale.
-
-
-```{r, results='asis', fig.height=5, fig.width=8}
-syn_ladder <- fit_ladder(syn_fit_data, timing_measures, specs_tense, "syn")
-
-# ── Reported model: spec 5 (design x prime + freq + reg-prime + entity + rate)
-syn_ladder_main <- pick_headline(syn_ladder)
-
-report_models(
-  syn_ladder_main,
-  prime_term_labels("Tense", "c_tense"),
-  "Experiment 3, reported model (spec 5). Positive = slower/longer.",
-  figure_name = "fig-exp3-coefs-main"
-)
-```
-
-### Items
-
-By-verb deviations from the intercept in the reported model. A verb whose
-interval excludes zero behaves differently from the rest of the item set.
-
-```{r, fig.height=2.5, fig.width=8}
-p_items <- item_forest(syn_ladder_main, "Experiment 3")
+```{r, fig.height=2.2, fig.width=3.6, out.width="55%", fig.cap="Experiment 3: by-verb deviations from the population intercept in the reported model."}
+p_items <- item_forest(concept_ladder_main, "Experiment 3")
 if (!is.null(p_items)) {
-  save_figure(p_items, "fig-exp3-item-forest", width = 7.2, height = 4)
+  save_figure(p_items, "fig-exp3-item-forest", width = 4.4, height = 2.6)
   p_items
 }
 ```
 
 
-
 ---
 
 
-### Results
+# A4. Model comparison and checks {.unnumbered}
 
-Tense affected the sentence throughout. Future sentences reached the subject noun
-at `r ms(e3, "np_onset", tense == "future")` against
-`r ms(e3, "np_onset", tense == "past")` for past
-(`r rep_b("syn", "np_onset", "c_tense")`). The subject noun was shorter in the
-future, `r ms(e3, "subj_dur_pp", tense == "future", unit = " ms/phone")` against
-`r ms(e3, "subj_dur_pp", tense == "past", unit = " ms/phone")`
-(`r rep_b("syn", "subj_dur_pp", "c_tense")`), and the verb was longer,
-`r ms(e3, "verb_dur_pp", tense == "future", unit = " ms/phone")` against
-`r ms(e3, "verb_dur_pp", tense == "past", unit = " ms/phone")`
-(`r rep_b("syn", "verb_dur_pp", "c_tense")`).
-
-Tense repetition on its own did nothing. Primed trials reached the subject noun
-at `r ms(e3, "np_onset", prime_status == "primed")` and unprimed trials at
-`r ms(e3, "np_onset", prime_status == "unprimed")`
-(`r rep_b("syn", "np_onset", "c_prime")`), and the same holds for the other
-measures.
-
-Repetition interacted with tense at the subject noun. In the future, primed
-trials reached the noun at
-`r ms(e3, "np_onset", tense == "future", prime_status == "primed")` and unprimed
-trials at `r ms(e3, "np_onset", tense == "future", prime_status == "unprimed")`.
-In the past the ordering reverses,
-`r ms(e3, "np_onset", tense == "past", prime_status == "primed")` when primed and
-`r ms(e3, "np_onset", tense == "past", prime_status == "unprimed")` when unprimed.
-The model gives `r rep_b("syn", "np_onset", "c_tense:c_prime")`. The posterior
-leans in the predicted direction but the interval is wide, and with
-`r n_distinct(e3$sona_id)` participants we treat this as suggestive rather than
-established. A replication would need roughly 45 participants to resolve it.
-
-The interaction appears early, before the verb has been reached, which is where
-we expected an effect of tense selection to appear. Later measures do not show
-it: neither the duration of the subject noun
-(`r rep_b("syn", "subj_dur_pp", "c_tense:c_prime")`) nor the duration of the verb
-(`r rep_b("syn", "verb_dur_pp", "c_tense:c_prime")`) separates the conditions.
-
-
----
-
-
-
-# Appendix: model comparison and checks
-
-## Model comparison
+### Model comparison {.unnumbered}
 
 Models were compared by leave-one-out cross-validation. Differences are relative
 to the best model for that measure; a difference smaller than about twice its
 standard error is not meaningful.
 
 ```{r, results='asis'}
-compare_ladder(concept_ladder, "Experiment 1: model comparison")
-compare_ladder(phon_ladder, "Experiment 2: model comparison")
-compare_ladder(syn_ladder, "Experiment 3: model comparison")
+if (run_loo) {
+  compare_ladder(concept_ladder, "Experiment 3: model comparison")
+  compare_ladder(phon_ladder, "Experiment 2: model comparison")
+  compare_ladder(syn_ladder, "Experiment 1: model comparison")
+} else {
+  cat(
+    "\n*Model comparison is switched off. Set `run_loo <- TRUE` to compute it.*\n\n"
+  )
+}
 ```
 
-## Convergence
+### Convergence {.unnumbered}
 
-No divergent transitions, $\hat{R}$ at or below 1.01, and effective sample sizes
+No divergent transitions, R-hat at or below 1.01, and effective sample sizes
 in the thousands for every model reported.
 
 ```{r, results='asis'}
-convergence_table(concept_ladder_main, "Experiment 1: convergence")
+convergence_table(concept_ladder_main, "Experiment 3: convergence")
 convergence_table(phon_ladder_main, "Experiment 2: convergence")
-convergence_table(syn_ladder_main, "Experiment 3: convergence")
+convergence_table(syn_ladder_main, "Experiment 1: convergence")
 ```
 
-## Posterior predictive checks
+### Posterior predictive checks {.unnumbered}
 
 Each panel compares the observed distribution of a measure (dark line) against
 data simulated from the fitted model (light lines).
 
-```{r, fig.height=2, fig.width=8}
+```{r, fig.height=2, fig.width=8, fig.cap="Experiment 2: posterior predictive checks. Simulated datasets from the fitted model against the observed distribution of each measure."}
 pp_grid(phon_ladder_main, "Experiment 2")
 ```
 
-```{r, fig.height=2, fig.width=7.2}
-pp_grid(syn_ladder_main, "Experiment 3")
+```{r, fig.height=2, fig.width=7.2, fig.cap="Experiment 1: posterior predictive checks. Simulated datasets from the fitted model against the observed distribution of each measure."}
+pp_grid(syn_ladder_main, "Experiment 1")
 ```
 
-```{r, fig.height=2, fig.width=8}
-pp_grid(concept_ladder_main, "Experiment 1")
+```{r, fig.height=1.8, fig.width=4.4, out.width="62%", fig.cap="Experiment 3: posterior predictive checks for decision latency."}
+pp_grid(concept_ladder_main, "Experiment 3")
 ```
 
 
-# Appendix: statistical models
+# A5. Statistical models {.unnumbered}
 
 All models were fitted with brms (Stan), four chains of 4000 iterations with the
 first 1000 discarded, `adapt_delta` = 0.95.
 
-## Contrast coding
+### Contrast coding {.unnumbered}
 
 All categorical predictors are sum coded at $\pm 0.5$, so each coefficient is the
 difference between the two levels and the intercept is the grand mean.
@@ -2897,7 +3987,7 @@ frequent verbs from dominating an otherwise flat predictor. Articulation rate is
 the number of phones per second on that trial, computed over the words that are
 not being measured, and is also centred and scaled.
 
-## Response distributions
+### Response distributions {.unnumbered}
 
 Onsets and durations are positive and right skewed and were fitted with a shifted
 lognormal distribution. The shift estimates a floor below which no response
@@ -2914,7 +4004,7 @@ often speakers pause separately from how long they pause. Coefficients labelled 
 being on the probability of no pause come from the first part, where a positive
 value means fewer pauses.
 
-## Model structure
+### Model structure {.unnumbered}
 
 Every measure was fitted with the same structure. For Experiments 1 and 3,
 
@@ -2954,7 +4044,7 @@ of trials where it switches, so leaving it out would let part of a form-repetiti
 effect appear as a tense priming effect. It is never entered into an
 interaction.
 
-## Priors
+### Priors {.unnumbered}
 
 | parameter | prior |
 |---|---|
@@ -2967,20 +4057,20 @@ interaction.
 Coefficients are on the log scale, so Normal(0, 0.3) places most of its mass on
 effects smaller than a factor of two and rules out nothing the data could show.
 
-## Reporting
+### Reporting {.unnumbered}
 
 Each coefficient is reported as its posterior median, a 95% credible interval,
-and $P_{dir}$, the proportion of the posterior lying on the same side of zero as
-the median. $P_{dir}$ runs from 0.5, meaning the posterior is split evenly and
+and P(dir), the proportion of the posterior lying on the same side of zero as
+the median. P(dir) runs from 0.5, meaning the posterior is split evenly and
 the sign is undetermined, to 1, meaning the whole posterior falls on one side.
 It is not a significance test and has no threshold attached; we describe an
 effect as supported when most of the posterior is on one side and the interval is
 narrow enough to be informative. Values are never printed as 0 or 1, since a
 finite posterior sample cannot establish either.
 
-## Convergence and model checking
+### Convergence and model checking {.unnumbered}
 
-Every model reported here converged: no divergent transitions, $\hat{R} \le 1.01$,
+Every model reported here converged: no divergent transitions, R-hat at or below 1.01,
 and bulk effective sample sizes above 400. Posterior predictive checks compare
 simulated data against the observed distribution for each measure. Posterior
 contraction, the reduction in variance from prior to posterior, is above 0.94 for
@@ -2994,7 +4084,7 @@ margin, which is why they are in the reported model: the three subject nouns
 differ by more than 50 ms per phone, far more than any effect of the manipulation.
 
 
-# Appendix: recordings and measurement
+# A6. Recordings and measurement {.unnumbered}
 
 Spoken responses were recorded in the browser, one file per trial, and uploaded
 in blocks. Recordings were converted to 16 kHz mono audio and transcribed

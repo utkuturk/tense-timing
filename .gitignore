@@ -55,3 +55,19 @@ backup_apr9_run/
 # Local working notes, deliberately not shared
 experiments/TODO.md
 experiments/HANDOFF.csv
+
+# Reference papers read while writing; not ours to redistribute
+shota_papers/
+
+# Quarto build cache
+.quarto/
+analysis/.quarto/
+
+# Local editor and tool state, not part of the project
+.claude/
+CLAUDE.md
+AGENTS.md
+.cursor/
+.cursorrules
+.aider*
+.continue/

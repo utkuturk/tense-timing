@@ -86,6 +86,12 @@ SPEAKER_IN_NAME = re.compile(
     r"^resp_([a-z0-9]+)_[a-z0-9]+_m\d+_block\d+_p\d+_[a-z]+_(?:past|future|pres)$"
 )
 
+# The practice items carry the same two ids as the trial recordings, but at the
+# end of the name rather than after the resp_ prefix.
+PRACTICE_IN_NAME = re.compile(
+    r"^practice_production_[a-z]+_(?:past|future|pres)_([a-z0-9]+)_[a-z0-9]+_recorder$"
+)
+
 
 def speaker_from_filename(webm_path: Path) -> str | None:
     """Participant id carried in the recording name, or None for old recordings.
@@ -100,6 +106,25 @@ def speaker_from_filename(webm_path: Path) -> str | None:
         return None
     speaker = m.group(1)
     return None if speaker in ("noid", "demo") else speaker
+
+
+def speaker_from_zip(zip_path: Path) -> str | None:
+    """Participant id shared by the recordings in a zip, or None if unnamed.
+
+    One zip is one upload from one session, so any recording that names itself
+    names the whole zip. Reading the id here rather than per file also places
+    the mic test, whose name carries only the session token, with its
+    participant instead of stranding it in a rando_ folder.
+    """
+    with zipfile.ZipFile(zip_path) as zf:
+        names = [Path(n).stem for n in zf.namelist() if n.endswith(".webm")]
+    for name in names:
+        for pattern in (SPEAKER_IN_NAME, PRACTICE_IN_NAME):
+            m = pattern.match(name)
+            if m:
+                speaker = m.group(1)
+                return None if speaker in ("noid", "demo") else speaker
+    return None
 
 
 def process_experiment(
@@ -120,7 +145,10 @@ def process_experiment(
 
     for zip_path in sorted(zip_dir.glob(f"{exp_prefix}_*.zip")):
         session_uuid = session_uuid_from_zip(zip_path)
-        sona_id = uuid_to_sona.get(session_uuid)
+        # A zip that names its own participant needs no results file to place
+        # it; the mapping is only there for the sessions recorded before the
+        # naming change.
+        sona_id = speaker_from_zip(zip_path) or uuid_to_sona.get(session_uuid)
 
         if sona_id:
             speaker_dir = corpus_dir / sona_id

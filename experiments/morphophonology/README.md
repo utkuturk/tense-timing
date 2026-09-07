@@ -16,8 +16,11 @@ Production is past tense throughout. Tense never varies here; that is the
 3. Grants microphone access and makes a test recording.
 4. Reads the instructions, learns two practice verbs, and produces two practice
    sentences.
-5. Works through three meta-blocks. Each opens by teaching six verbs for that
-   block, then asks for twelve spoken descriptions. Breaks come between blocks.
+5. Works through nine blocks, grouped into three meta-blocks of three. Each
+   block first teaches its six verbs one at a time with audio, and only
+   afterwards asks for its twelve spoken descriptions, which show a picture and
+   no cue. Tense is never taught, since every event is past. Breaks come between
+   blocks.
 6. Reaches the end screen, waits while the recordings and results are sent, is
    offered a copy of their own recordings, and then claims credit or payment.
 

@@ -35,43 +35,6 @@ var RECRUITMENT = (function () {
   if (s === "ling") return "ling";
   return "other";
 })();
-
-// Self-contained so it does not depend on PennController.DownloadRecordingButton
-// existing at load time. The onclick runs at click time, by which point
-// downloadRecordingsArchive has been defined by the UploadRecordings trial.
-var DOWNLOAD_RECORDINGS_BUTTON =
-  '<button type="button" style="font-size:1.2em;padding:10px 20px;" ' +
-  "onclick=\"try { PennController.downloadRecordingsArchive(); } " +
-  "catch (e) { alert('Your recordings are not ready yet. " +
-  "Please wait a few seconds and try again.'); }\">" +
-  "Download your recordings</button>";
-
-// If the upload fails, PennController appends its own error message plus a
-// link whose click both downloads the recordings archive and continues the
-// sequence. Reword both so they match this experiment's instructions. Adapted
-// from the PCIbex pattern; polled on an interval rather than per animation
-// frame so it costs nothing across a long session, and it stops once it fires.
-var uploadErrorWatcher = setInterval(function () {
-  if (typeof $ === "undefined") return;
-  var msg = $(".PennController-PennController p:nth-child(2)");
-  if (
-    msg.length > 0 &&
-    /^There was an error uploading the recordings:/.test(msg[0].innerHTML)
-  ) {
-    msg
-      .html(
-        "<b>Your recordings could not be uploaded automatically.</b> " +
-          "Nothing is lost: you can save them yourself and we will collect " +
-          "them from you.",
-      )
-      .siblings(".Message-continue-link")
-      .html(
-        "Click here to download a copy of your recordings and continue. " +
-          "Please do not close this page afterwards.",
-      );
-    clearInterval(uploadErrorWatcher);
-  }
-}, 400);
 const isDemoMode = GetURLParameter("id") === "demo";
 const SUBJECT_ID = isDemoMode
   ? "demo"
@@ -971,6 +934,11 @@ function buildBlockSequence(blockOrder, withIntro) {
         previousEntity = productionItems[productionItems.length - 1].entity;
       }
     });
+
+    // Upload what has been recorded so far, without blocking the run. Chunking
+    // keeps each POST under the API Gateway payload limit; one archive for the
+    // whole session is rejected with a 413.
+    seq.push("async");
   });
 
   return seq;
@@ -1384,6 +1352,7 @@ const introBlock = [
   "intro_practice",
   "ready_practice",
   ...PRACTICE_PRODUCTION_LABELS,
+  "async",
   "exp_ready",
 ];
 
@@ -1443,15 +1412,10 @@ newTrial(
     .css(text_css)
     .print()
     .center(),
-  newText(
-    "download_msg",
-    "<p>Your responses have been sent. Please also save a copy of your " +
-      "recordings for your own records.</p>",
-  )
+  newText("sent_msg", "<p>Your responses have been sent.</p>")
     .css(text_css)
     .print()
     .center(),
-  newText("download_button", DOWNLOAD_RECORDINGS_BUTTON).print().center(),
   newText(
     "exit_sona_msg",
     "<p>You can confirm your participation on SONA by clicking the link below:</p>",
@@ -1492,6 +1456,10 @@ newTrial(
   newButton().wait(),
 ).setOption("hideProgressBar", true);
 
+// Chunked non-blocking uploads, triggered by placing "async" in Sequence.
+UploadRecordings("async", "noblock");
+// Final blocking pass: sweeps up anything the async uploads left behind,
+// including chunks whose upload failed and were reset to local.
 UploadRecordings("upload_recordings");
 
 
@@ -1501,15 +1469,10 @@ newTrial(
     .css(text_css)
     .print()
     .center(),
-  newText(
-    "download_msg",
-    "<p>Your responses have been sent. Please also save a copy of your " +
-      "recordings for your own records.</p>",
-  )
+  newText("sent_msg", "<p>Your responses have been sent.</p>")
     .css(text_css)
     .print()
     .center(),
-  newText("download_button", DOWNLOAD_RECORDINGS_BUTTON).print().center(),
   newText(
     "prolific_msg",
     "<p>Click the link below to return to Prolific and complete your " +
@@ -1538,7 +1501,7 @@ newTrial(
     .center(),
   newText(
     "end_body",
-    "<p>Your recordings will be sent in three steps. You may see multiple " +
+    "<p>Your recordings are being sent. You may see multiple " +
       "&quot;results sent&quot; or a similar message.</p>" +
       "<p><b>Please do not close this page until you are told it is safe to " +
       "do so.</b></p>",
