@@ -3,10 +3,10 @@ PennController.ResetPrefix(null);
 DebugOff();
 SendResults("send_results");
 PreloadZip(
-  "https://raw.githubusercontent.com/utkuturk/tense-timing/morphosyntax/chunk_includes/elevenlabs_audio.zip",
+  "https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/morphosyntax/chunk_includes/elevenlabs_audio.zip",
 );
 PreloadZip(
-  "https://raw.githubusercontent.com/utkuturk/tense-timing/morphosyntax/chunk_includes/pictures.zip",
+  "https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/morphosyntax/chunk_includes/pictures.zip",
 );
 const isDemoMode = GetURLParameter("id") === "demo";
 const SUBJECT_ID = isDemoMode ? "demo" : Math.random().toString(36).slice(2, 10);

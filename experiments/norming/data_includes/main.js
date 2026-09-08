@@ -1,7 +1,7 @@
 PennController.ResetPrefix(null);
 DebugOff();
 SetCounter("setcounter");
-PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/norming/chunk_includes/pictures.zip")
+PreloadZip("https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/pictures.zip")
 // SONA credit links. Set experiment_id and credit_token from the SONA
 // researcher dashboard for this study before deploying to PCIbex; the real
 // values are deliberately not kept in this repository.

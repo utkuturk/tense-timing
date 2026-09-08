@@ -16,3 +16,6 @@ Use this directory to track ideas, meeting notes, and literature summaries.
   Analysis source and figures are now tracked; `experiments/` synced with the branch tips.
   `notes/` and `presentations/` moved under `docs/`; `analysis/` split into `scripts/`,
   `notebooks/` and a single `mfa/` working tree.
+- **2026-09-08**: Experiment branches removed, along with the workflow that
+  mirrored `experiments/` onto them. PCIbex preloads assets from `main` at
+  `experiments/<name>/chunk_includes/` instead.

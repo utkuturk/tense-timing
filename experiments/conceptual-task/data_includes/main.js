@@ -4,10 +4,10 @@ DebugOff();
 SendResults("send_results");
 SendResults("senddebrief");
 PreloadZip(
-  "https://raw.githubusercontent.com/utkuturk/tense-timing/conceptual-task/chunk_includes/elevenlabs_audio.zip",
+  "https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/conceptual-task/chunk_includes/elevenlabs_audio.zip",
 );
 PreloadZip(
-  "https://raw.githubusercontent.com/utkuturk/tense-timing/norming/chunk_includes/pictures.zip",
+  "https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/pictures.zip",
 );
 const EXP_START_TIMESTAMP = Date.now();
 // SONA credit links. Set experiment_id and credit_token from the SONA

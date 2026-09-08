@@ -157,9 +157,6 @@ Deploy to PCIbex. Before going live, fill in the SONA `experiment_id` and
 `credit_token` and the Prolific completion code at the top of
 `data_includes/main.js`; they ship as `XX` placeholders.
 
-Edit this experiment on `main` under `experiments/morphosyntax/`, not on the
-branch. Pushing to `main` propagates it here automatically.
-
 ```bash
 node --check data_includes/main.js
 node --check scripts/build_elevenlabs_audio.js

@@ -18,8 +18,8 @@ This README describes the current implementation in `data_includes/` and is mean
 
 At runtime, stimuli are preloaded from GitHub raw URLs in `main.js`:
 
-- Audio zip: `https://raw.githubusercontent.com/utkuturk/tense-timing/conceptual-task/chunk_includes/elevenlabs_audio.zip`
-- Pictures zip: `https://raw.githubusercontent.com/utkuturk/tense-timing/norming/chunk_includes/pictures.zip`
+- Audio zip: `https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/conceptual-task/chunk_includes/elevenlabs_audio.zip`
+- Pictures zip: `https://raw.githubusercontent.com/utkuturk/tense-timing/main/experiments/norming/chunk_includes/pictures.zip`
 
 Implication for reproducibility:
 - Internet access is required unless you replace these URLs with local assets.
